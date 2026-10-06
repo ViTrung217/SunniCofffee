@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Chi tiết đơn hàng')}"></head>
+<body><header th:replace="~{fragments/layout :: header}"></header>
+<main class="container">
+<div th:replace="~{fragments/layout :: notices}"></div>
+<a class="back" th:href="${admin} ? @{/admin/orders} : @{/orders}">← Danh sách đơn</a>
+<div class="section-heading"><h1 th:text="'Đơn hàng SUNI-' + ${order.id}"></h1><span class="badge" th:text="${order.status.label}"></span></div>
+<div class="checkout-grid">
+<section class="panel"><h2>Thông tin nhận hàng</h2>
+<p><strong th:text="${order.recipientName}"></strong></p><p th:text="${order.phone}"></p>
+<p class="description" th:text="${order.address}"></p><p th:if="${!order.note.isBlank()}" th:text="'Ghi chú: ' + ${order.note}"></p>
+<p class="muted" th:text="'Ngày đặt: ' + ${#temporals.format(order.createdAt,'dd/MM/yyyy HH:mm')}"></p>
+<p>Phương thức: thanh toán khi nhận hàng (COD).</p>
+<p th:text="'Phí vận chuyển: ' + ${#numbers.formatDecimal(order.shippingFee,0,'POINT',0,'COMMA')} + ' ₫'"></p>
+<h3>Thông tin vận chuyển</h3>
+<p th:if="${order.carrier.isBlank()}">Chưa có thông tin bàn giao vận chuyển.</p>
+<div th:unless="${order.carrier.isBlank()}"><p th:text="'Đơn vị: ' + ${order.carrier}"></p><p th:text="'Mã vận đơn: ' + ${order.trackingCode}"></p></div>
+<p th:if="${order.shippedAt != null}" th:text="'Bàn giao lần đầu: ' + ${#temporals.format(order.shippedAt,'dd/MM/yyyy HH:mm')}"></p>
+<p th:if="${order.completedAt != null}" th:text="'Giao thành công: ' + ${#temporals.format(order.completedAt,'dd/MM/yyyy HH:mm')}"></p>
+<p th:if="${order.returnedAt != null}" th:text="'Nhận hàng hoàn: ' + ${#temporals.format(order.returnedAt,'dd/MM/yyyy HH:mm')}"></p>
+<div th:if="${admin and order.status.name() == 'COMPLETED'}">
+<p th:if="${order.codSettledAt != null}" th:text="'Đã nhận đủ COD: ' + ${#temporals.format(order.codSettledAt,'dd/MM/yyyy HH:mm')}"></p>
+<form th:if="${order.codSettledAt == null}" th:action="@{/admin/orders/{id}/cod(id=${order.id})}" method="post"><p>Chưa ghi nhận tiền COD về cửa hàng.</p><button>Đã nhận đủ tiền COD</button></form>
+</div>
+</section>
+<section class="panel"><h2>Tiến trình đơn hàng</h2>
+<form th:if="${!admin and order.status.name() == 'PENDING'}" th:action="@{/orders/{id}/cancel(id=${order.id})}" method="post"><p>Bạn có thể hủy khi cửa hàng chưa xác nhận.</p><button class="secondary danger">Hủy đơn hàng</button></form>
+<form th:if="${admin and (order.status.name() == 'PENDING' or order.status.name() == 'CONFIRMED' or order.status.name() == 'SHIPPING' or order.status.name() == 'DELIVERY_FAILED')}" th:action="@{/admin/orders/{id}/status(id=${order.id})}" method="post">
+<label>Chuyển trạng thái<select name="status">
+<option th:if="${order.status.name() == 'PENDING'}" value="CONFIRMED">Xác nhận đơn hàng</option>
+<option th:if="${order.status.name() == 'CONFIRMED' or order.status.name() == 'DELIVERY_FAILED'}" value="SHIPPING">Bàn giao / giao lại</option>
+<option th:if="${order.status.name() == 'SHIPPING'}" value="COMPLETED">Giao thành công</option>
+<option th:if="${order.status.name() == 'SHIPPING'}" value="DELIVERY_FAILED">Giao thất bại</option>
+<option th:if="${order.status.name() == 'DELIVERY_FAILED'}" value="RETURNING">Chuyển hoàn hàng</option>
+<option th:if="${order.status.name() == 'PENDING' or order.status.name() == 'CONFIRMED'}" value="CANCELLED">Hủy đơn và hoàn tồn</option>
+</select></label>
+<div th:if="${order.status.name() == 'CONFIRMED' or order.status.name() == 'DELIVERY_FAILED'}">
+<label>Đơn vị vận chuyển<input name="carrier" maxlength="100" th:value="${order.carrier}" placeholder="Nhập khi bàn giao / giao lại"></label>
+<label>Mã vận đơn<input name="trackingCode" maxlength="100" th:value="${order.trackingCode}"></label>
+</div>
+<label>Lý do / ghi chú<textarea name="reason" maxlength="500" rows="3" placeholder="Bắt buộc khi hủy, giao thất bại hoặc chuyển hoàn"></textarea></label>
+<button>Cập nhật trạng thái</button></form>
+<form th:if="${admin and order.status.name() == 'RETURNING'}" th:action="@{/admin/orders/{id}/return(id=${order.id})}" method="post">
+<h3>Kiểm tra hàng nhận hoàn</h3><p>Chỉ xác nhận khi đã nhận lại toàn bộ kiện. Nhập số lượng còn bán được; phần còn lại được ghi nhận không nhập lại tồn bán.</p>
+<label th:each="i : ${order.items}"><span th:text="${i.productName} + ' — đã gửi ' + ${i.quantity}"></span><input type="number" th:name="'restock_' + ${i.id}" min="0" th:max="${i.quantity}" required placeholder="Số lượng còn bán được"></label>
+<label>Kết quả kiểm tra / lý do hàng hỏng<textarea name="reason" maxlength="500" required></textarea></label><button>Xác nhận đã nhận hàng hoàn</button>
+</form>
+<h3>Lịch sử xử lý</h3><p th:if="${events.empty}">Đơn cũ chưa có nhật ký xử lý. Hệ thống không tự tạo lịch sử trước thời điểm nâng cấp.</p>
+<ol><li th:each="e : ${events}"><strong th:text="${e.status.label}"></strong> <time th:text="${#temporals.format(e.createdAt,'dd/MM/yyyy HH:mm')}"></time><p th:if="${admin}" th:text="'Người thực hiện: ' + ${e.actor}"></p><p th:text="${e.note}"></p></li></ol>
+</section></div>
+<div class="table-wrap"><table><thead><tr><th>Sản phẩm tại thời điểm mua</th><th>Đơn giá</th><th>Số lượng</th><th>Thành tiền</th><th th:if="${order.status.name() == 'RETURNED'}">Đã nhập lại tồn</th></tr></thead>
+<tbody><tr th:each="i : ${order.items}"><td><strong th:text="${i.productName}"></strong><small th:text="${i.sku}"></small></td><td th:text="${#numbers.formatDecimal(i.unitPrice,0,'POINT',0,'COMMA')} + ' ₫'"></td><td th:text="${i.quantity}"></td><td th:text="${#numbers.formatDecimal(i.subtotal,0,'POINT',0,'COMMA')} + ' ₫'"></td><td th:if="${order.status.name() == 'RETURNED'}" th:text="${i.restockedQuantity}"></td></tr></tbody></table></div>
+<p class="right" th:text="'Tiền hàng: ' + ${#numbers.formatDecimal(order.merchandiseTotal,0,'POINT',0,'COMMA')} + ' ₫'"></p>
+<p class="large-price right" th:text="'Tổng thanh toán: ' + ${#numbers.formatDecimal(order.total,0,'POINT',0,'COMMA')} + ' ₫'"></p>
+</main><footer th:replace="~{fragments/layout :: footer}"></footer></body></html>

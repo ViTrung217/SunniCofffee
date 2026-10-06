@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:fragment="head(title)"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title th:text="${title} + ' · SuniCoffee'">SuniCoffee</title><link rel="stylesheet" th:href="@{/css/style.css}"></head>
+<body>
+<header th:fragment="header" class="header"><div class="container nav"><a class="brand" th:href="@{/}"><span class="brand-icon">S</span> SuniCoffee<span class="brand-dot">.</span></a>
+<nav aria-label="Điều hướng chính"><a th:href="@{/products}">Cửa hàng</a><a sec:authorize="isAuthenticated()" th:href="@{/cart}">Giỏ hàng</a><a sec:authorize="isAuthenticated()" th:href="@{/orders}">Đơn của tôi</a><a sec:authorize="isAuthenticated()" th:href="@{/account}">Tài khoản</a><a sec:authorize="hasRole('ADMIN')" th:href="@{/admin}">Quản trị</a><a sec:authorize="isAnonymous()" th:href="@{/login}">Đăng nhập</a><a class="button small" sec:authorize="isAnonymous()" th:href="@{/register}">Tạo tài khoản</a><form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post"><button class="link-button">Đăng xuất</button></form></nav></div></header>
+<div th:fragment="notices"><p class="notice demo" th:if="${demoMode}">Bản thực hành · Sản phẩm, giá và tồn kho là dữ liệu minh họa.</p><p class="notice success" role="status" th:if="${success}" th:text="${success}"></p><p class="notice error" role="alert" th:if="${error}" th:text="${error}"></p></div>
+<nav th:fragment="adminnav" class="tabs" aria-label="Quản trị"><a th:href="@{/admin/products}">Sản phẩm</a><a th:href="@{/admin/categories}">Danh mục</a><a th:href="@{/admin/orders}">Đơn hàng</a><a th:href="@{/admin/users}">Tài khoản</a><a th:href="@{/admin/inventory}">Nhập/xuất kho</a><a th:href="@{/admin/revenue}">Doanh thu</a></nav>
+<div th:fragment="errors" class="notice error" role="alert" th:if="${#fields.hasAnyErrors()}"><strong>Vui lòng kiểm tra thông tin:</strong><ul><li th:each="err : ${#fields.allErrors()}" th:text="${err}"></li></ul></div>
+<footer th:fragment="footer" class="footer"><div class="container footer-inner"><a class="brand" th:href="@{/}">SuniCoffee.</a><p>Mang hương cà phê đến mỗi hành trình.</p><span>Cà phê &amp; dụng cụ dã ngoại</span></div></footer>
+</body></html>

@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/sunicoffee?connectionTimeZone=Asia/Ho_Chi_Minh&characterEncoding=UTF-8}
+    username: ${DB_USERNAME:sunicoffee}
+    password: ${DB_PASSWORD}
+app:
+  seed-demo: ${SEED_DEMO:false}

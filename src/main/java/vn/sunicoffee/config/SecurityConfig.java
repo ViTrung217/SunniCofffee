@@ -1,0 +1,31 @@
+package vn.sunicoffee.config;
+
+import java.util.Locale;
+import org.springframework.context.annotation.*;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.core.userdetails.*;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
+import vn.sunicoffee.repository.UserRepository;
+
+@Configuration
+public class SecurityConfig {
+    @Bean PasswordEncoder passwordEncoder() { return new BCryptPasswordEncoder(); }
+    @Bean UserDetailsService userDetailsService(UserRepository users) {
+        return email -> users.findByEmail(email.strip().toLowerCase(Locale.ROOT))
+            .map(u -> (UserDetails)new AccountPrincipal(u))
+            .orElseThrow(() -> new UsernameNotFoundException("Tài khoản không tồn tại"));
+    }
+    @Bean SecurityFilterChain securityFilterChain(HttpSecurity http,UserRepository users,@org.springframework.beans.factory.annotation.Value("${app.security.login-attempts-per-minute:20}") int loginLimit) throws Exception {
+        return http.authorizeHttpRequests(auth -> auth
+                .requestMatchers("/", "/products/**", "/api/products/**", "/css/**", "/images/**", "/product-images/**", "/login", "/register", "/error").permitAll()
+                .requestMatchers("/admin/**").hasRole("ADMIN")
+                .anyRequest().authenticated())
+            .formLogin(form -> form.loginPage("/login").usernameParameter("email").defaultSuccessUrl("/",false).permitAll())
+            .logout(logout -> logout.logoutSuccessUrl("/?logout"))
+            .addFilterBefore(new LoginThrottleFilter(loginLimit),org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter.class)
+            .addFilterBefore(new AccountStateFilter(users),org.springframework.security.web.access.intercept.AuthorizationFilter.class)
+            .build(); // CSRF protection and session fixation protection remain enabled.
+    }
+}
