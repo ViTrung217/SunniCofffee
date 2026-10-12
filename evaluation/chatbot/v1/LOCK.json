@@ -1,0 +1,37 @@
+{
+  "version": "1.0.0",
+  "status": "frozen",
+  "frozen_on": "2026-10-12",
+  "timezone": "Asia/Ho_Chi_Minh",
+  "phase": "before_chatbot_implementation",
+  "baseline_application_commit": "d0b2f33bcedf492f2f2b30460d16f50d27b04eed",
+  "git_tag": "chatbot-eval-v1",
+  "knowledge_count": 55,
+  "evaluation_count": 30,
+  "hash_algorithm": "SHA-256",
+  "sha256": {
+    "data/knowledge/README.md": "2acba5eea5ac6fdc7cd5f4c06d148c4ef0e7348a6147616e332d66ff1e42d238",
+    "data/knowledge/knowledge.v1.json": "f6dbefa668ee3b6e8820f12aeaef303936376203c5156ef38d26609f1b782c93",
+    "data/knowledge/sources.v1.json": "ed309747b9291cd32df38cef9fd730933d9513f0f76db58e004d7b2d98757829",
+    "docs/ai/kho-tri-thuc-v1.md": "3f6ba29285750cbc7005972dca24bb96bfd8ba2898199d99da182bcdddddf0fa",
+    "docs/ai/pham-vi-chatbot-v1.md": "717713dd25b256bf29165efb1af95fe087593bf3782c6979ad762cb4aac8839d",
+    "evaluation/chatbot/v1/PROTOCOL.md": "e817a427055c49566b634dec10869454b3a90fc7ff4cc055a81e14d06ed5320a",
+    "evaluation/chatbot/v1/QUESTIONS.md": "0131a2fa36c56f168607d8329505754c48765dc7972eac2498c0a75b686ee9d0",
+    "evaluation/chatbot/v1/fixtures.json": "3b6507d44a9a51b0351ecc5071f19e4a1f1ad92f4fdb5a33a8a1fb3670a48b00",
+    "evaluation/chatbot/v1/questions.json": "6b909571e9bc70ed08cc318dea8e7c3369eadfad5ff3257b1bb527909bd7ebb2",
+    "scripts/verify-chatbot-baseline.py": "8c5eed06dcafb67e07eb716afdd2229987e530ac790fbe0382be27e1ae2d9727"
+  },
+  "local_source_evidence": {
+    "git_commit": "d0b2f33bcedf492f2f2b30460d16f50d27b04eed",
+    "sha256": {
+      "docs/06-thiet-ke-va-nghiep-vu-v03.md": "72eaa7777df69a2a4142321d21717d539d9cd2f77085e1c2af8b5d67dbb39a3f",
+      "src/main/java/vn/sunicoffee/service/OrderService.java": "10f996fe2791cca61f21315e25ace12eef00550f6ab167f13cb89a18f69ccbfa",
+      "src/main/java/vn/sunicoffee/service/CartService.java": "cc3121e284466101bedfe3cece9c6cea446dd4ef05082a31c7f97e7fac2b81b8",
+      "src/main/java/vn/sunicoffee/service/ShippingPolicy.java": "adae695be207322b6f4e590576f0473218f526ff97badcd5685e396a0fa70d48",
+      "src/main/java/vn/sunicoffee/service/AccountService.java": "a63a3ce8360788ee70243705d28b4c48ef5148ff29c311272b725bb84b504f92",
+      "src/main/java/vn/sunicoffee/config/AccountStateFilter.java": "1a7877312bbe4a282415e68558ea381422409a1059f0f25a27d71835c9e107d8",
+      "src/main/java/vn/sunicoffee/web/OrderController.java": "c44e30c60750df3fae168f5ec3fb75e113aaf8ae45b700f77b63a00a421484e7"
+    },
+    "note": "Historical source hashes; use git show at this commit when application code later changes."
+  }
+}

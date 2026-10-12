@@ -1,0 +1,131 @@
+{
+  "version": "1.0.0",
+  "sources": [
+    {
+      "id": "SRC01",
+      "title": "Wacaco — Picopresso",
+      "kind": "manufacturer",
+      "location": "https://www.wacaco.com/products/picopresso",
+      "locator": "DESCRIPTION; Characteristics; FAQs",
+      "reviewed_on": "2026-10-12",
+      "verification": "Đã đối chiếu nội dung nguồn; không xác nhận tồn kho SuniCoffee."
+    },
+    {
+      "id": "SRC02",
+      "title": "HARIO — V60 Plastic Coffee Dripper 02",
+      "kind": "manufacturer",
+      "location": "https://www.hario-usa.com/products/v60-plastic-coffee-dripper-02",
+      "locator": "Product Number; Size; Capacity; Materials",
+      "reviewed_on": "2026-10-12",
+      "verification": "Đã đối chiếu nội dung nguồn; không xác nhận tồn kho SuniCoffee."
+    },
+    {
+      "id": "SRC03",
+      "title": "AeroPress — Original",
+      "kind": "manufacturer",
+      "location": "https://aeropress.com/products/aeropress-coffee-maker",
+      "locator": "Features; FAQs",
+      "reviewed_on": "2026-10-12",
+      "verification": "Đã đối chiếu nội dung nguồn; không xác nhận tồn kho SuniCoffee."
+    },
+    {
+      "id": "SRC04",
+      "title": "AeroPress — How to use",
+      "kind": "brewing_guide",
+      "location": "https://aeropress.com/pages/how-to-use",
+      "locator": "AeroPress Original / I DON’T HAVE A GRINDER / Signature Brew (medium, 60 seconds); không trộn nhánh medium-fine 30 giây",
+      "reviewed_on": "2026-10-12",
+      "verification": "Đã đối chiếu nội dung nguồn; không xác nhận tồn kho SuniCoffee."
+    },
+    {
+      "id": "SRC05",
+      "title": "Blue Bottle — French Press",
+      "kind": "brewing_guide",
+      "location": "https://bluebottlecoffee.com/us/eng/brew-guides/french-press",
+      "locator": "Thông số đầu trang; bước 1–9",
+      "reviewed_on": "2026-10-12",
+      "verification": "Đã đối chiếu nội dung nguồn; không xác nhận tồn kho SuniCoffee."
+    },
+    {
+      "id": "SRC06",
+      "title": "Blue Bottle — Pour Over",
+      "kind": "brewing_guide",
+      "location": "https://bluebottlecoffee.com/us/eng/brew-guides/pour-over",
+      "locator": "Thông số đầu trang; bước 1–7; công thức riêng của Blue Bottle",
+      "reviewed_on": "2026-10-12",
+      "verification": "Đã đối chiếu nội dung nguồn; không xác nhận tồn kho SuniCoffee."
+    },
+    {
+      "id": "SRC07",
+      "title": "Nghiệp vụ SuniCoffee 0.3",
+      "kind": "project",
+      "location": "docs/06-thiet-ke-va-nghiep-vu-v03.md",
+      "locator": "Use case; UC03; UC06–09; Phí, doanh thu và đơn chờ; Giới hạn",
+      "reviewed_on": "2026-10-12",
+      "verification": "Đã đối chiếu nội dung nguồn; không xác nhận tồn kho SuniCoffee."
+    },
+    {
+      "id": "SRC08",
+      "title": "OrderService",
+      "kind": "project",
+      "location": "src/main/java/vn/sunicoffee/service/OrderService.java",
+      "locator": "checkout; detail; cancelByCustomer; transition; receiveReturn; settleCod",
+      "reviewed_on": "2026-10-12",
+      "verification": "Đã đối chiếu nội dung nguồn; không xác nhận tồn kho SuniCoffee."
+    },
+    {
+      "id": "SRC09",
+      "title": "CartService",
+      "kind": "project",
+      "location": "src/main/java/vn/sunicoffee/service/CartService.java",
+      "locator": "change; items; total",
+      "reviewed_on": "2026-10-12",
+      "verification": "Đã đối chiếu nội dung nguồn; không xác nhận tồn kho SuniCoffee."
+    },
+    {
+      "id": "SRC10",
+      "title": "ShippingPolicy",
+      "kind": "project",
+      "location": "src/main/java/vn/sunicoffee/service/ShippingPolicy.java",
+      "locator": "constructor; getFee; pendingCutoff",
+      "reviewed_on": "2026-10-12",
+      "verification": "Đã đối chiếu nội dung nguồn; không xác nhận tồn kho SuniCoffee."
+    },
+    {
+      "id": "SRC11",
+      "title": "AccountService",
+      "kind": "project",
+      "location": "src/main/java/vn/sunicoffee/service/AccountService.java",
+      "locator": "profile; password; updateUser",
+      "reviewed_on": "2026-10-12",
+      "verification": "Đã đối chiếu nội dung nguồn; không xác nhận tồn kho SuniCoffee."
+    },
+    {
+      "id": "SRC12",
+      "title": "AccountStateFilter",
+      "kind": "project",
+      "location": "src/main/java/vn/sunicoffee/config/AccountStateFilter.java",
+      "locator": "doFilterInternal",
+      "reviewed_on": "2026-10-12",
+      "verification": "Đã đối chiếu nội dung nguồn; không xác nhận tồn kho SuniCoffee."
+    },
+    {
+      "id": "SRC13",
+      "title": "OrderController",
+      "kind": "project",
+      "location": "src/main/java/vn/sunicoffee/web/OrderController.java",
+      "locator": "history; detail; cancel",
+      "reviewed_on": "2026-10-12",
+      "verification": "Đã đối chiếu nội dung nguồn; không xác nhận tồn kho SuniCoffee."
+    },
+    {
+      "id": "SRC14",
+      "title": "Phạm vi chatbot v1 được chốt trước triển khai",
+      "kind": "design_policy",
+      "location": "docs/ai/pham-vi-chatbot-v1.md",
+      "locator": "Quy tắc trả lời; dữ liệu động; quyền truy cập. Đây là yêu cầu thiết kế, chưa là chức năng đã triển khai.",
+      "reviewed_on": "2026-10-12",
+      "verification": "Đã đối chiếu nội dung nguồn; không xác nhận tồn kho SuniCoffee."
+    }
+  ]
+}

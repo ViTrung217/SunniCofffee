@@ -1,0 +1,738 @@
+{
+  "version": "1.0.0",
+  "language": "vi",
+  "status": "reviewed_reference_baseline",
+  "notice": "Không chứa dữ liệu khách hàng. Sản phẩm hãng chỉ là tham khảo, chưa phải hàng SuniCoffee. Quy tắc SRC14 là yêu cầu thiết kế chưa triển khai.",
+  "items": [
+    {
+      "id": "SP01",
+      "group": "san_pham",
+      "title": "Picopresso và nước nóng",
+      "content": "Picopresso vận hành thủ công, không tự đun nước.",
+      "source_refs": [
+        "SRC01"
+      ],
+      "source_locator": "DESCRIPTION / NOTICE",
+      "access": "public",
+      "reviewed_on": "2026-10-12",
+      "applies_to": "Tài liệu tham khảo; chưa liên kết SKU cửa hàng"
+    },
+    {
+      "id": "SP02",
+      "group": "san_pham",
+      "title": "Bình nước Picopresso",
+      "content": "Dung tích bình Picopresso: 80 ml.",
+      "source_refs": [
+        "SRC01"
+      ],
+      "source_locator": "water capacity",
+      "access": "public",
+      "reviewed_on": "2026-10-12",
+      "applies_to": "Tài liệu tham khảo; chưa liên kết SKU cửa hàng"
+    },
+    {
+      "id": "SP03",
+      "group": "san_pham",
+      "title": "Giỏ lọc Picopresso",
+      "content": "Giỏ tiêu chuẩn Picopresso: đường kính 52 mm, chứa 18 g.",
+      "source_refs": [
+        "SRC01"
+      ],
+      "source_locator": "basket size; ground capacity",
+      "access": "public",
+      "reviewed_on": "2026-10-12",
+      "applies_to": "Tài liệu tham khảo; chưa liên kết SKU cửa hàng"
+    },
+    {
+      "id": "SP04",
+      "group": "san_pham",
+      "title": "Khối lượng Picopresso",
+      "content": "Picopresso nặng 350 g; kích thước 71 × 78 × 106 mm.",
+      "source_refs": [
+        "SRC01"
+      ],
+      "source_locator": "net weight; net dimensions",
+      "access": "public",
+      "reviewed_on": "2026-10-12",
+      "applies_to": "Tài liệu tham khảo; chưa liên kết SKU cửa hàng"
+    },
+    {
+      "id": "SP05",
+      "group": "san_pham",
+      "title": "Vệ sinh Picopresso",
+      "content": "Picopresso không dùng trong máy rửa bát hoặc lò vi sóng.",
+      "source_refs": [
+        "SRC01"
+      ],
+      "source_locator": "FAQs / dishwasher; microwave",
+      "access": "public",
+      "reviewed_on": "2026-10-12",
+      "applies_to": "Tài liệu tham khảo; chưa liên kết SKU cửa hàng"
+    },
+    {
+      "id": "SP06",
+      "group": "san_pham",
+      "title": "Kết cấu V60",
+      "content": "V60 có dạng nón và gân xoắn.",
+      "source_refs": [
+        "SRC02"
+      ],
+      "source_locator": "description",
+      "access": "public",
+      "reviewed_on": "2026-10-12",
+      "applies_to": "Tài liệu tham khảo; chưa liên kết SKU cửa hàng"
+    },
+    {
+      "id": "SP07",
+      "group": "san_pham",
+      "title": "Cỡ V60 02",
+      "content": "HARIO công bố V60 nhựa 02 cho 1–4 cốc.",
+      "source_refs": [
+        "SRC02"
+      ],
+      "source_locator": "Capacity",
+      "access": "public",
+      "reviewed_on": "2026-10-12",
+      "applies_to": "Tài liệu tham khảo; chưa liên kết SKU cửa hàng"
+    },
+    {
+      "id": "SP08",
+      "group": "san_pham",
+      "title": "Kích thước V60 nhựa 02",
+      "content": "V60 nhựa 02: rộng 137 × sâu 116 × cao 102 mm.",
+      "source_refs": [
+        "SRC02"
+      ],
+      "source_locator": "Size",
+      "access": "public",
+      "reviewed_on": "2026-10-12",
+      "applies_to": "Tài liệu tham khảo; chưa liên kết SKU cửa hàng"
+    },
+    {
+      "id": "SP09",
+      "group": "san_pham",
+      "title": "Vật liệu bản trong suốt",
+      "content": "V60 nhựa 02 trong suốt dùng nhựa acrylonitrile-styrene.",
+      "source_refs": [
+        "SRC02"
+      ],
+      "source_locator": "Materials / Clear Dripper",
+      "access": "public",
+      "reviewed_on": "2026-10-12",
+      "applies_to": "Tài liệu tham khảo; chưa liên kết SKU cửa hàng"
+    },
+    {
+      "id": "SP10",
+      "group": "san_pham",
+      "title": "Mã V60 nhựa 02",
+      "content": "Các mã trên trang: VD-02R, VD-02T, VD-02W.",
+      "source_refs": [
+        "SRC02"
+      ],
+      "source_locator": "Product Number",
+      "access": "public",
+      "reviewed_on": "2026-10-12",
+      "applies_to": "Tài liệu tham khảo; chưa liên kết SKU cửa hàng"
+    },
+    {
+      "id": "SP11",
+      "group": "san_pham",
+      "title": "Cơ chế AeroPress Original",
+      "content": "AeroPress Original kết hợp ngâm, lọc và áp lực khí.",
+      "source_refs": [
+        "SRC03"
+      ],
+      "source_locator": "Features",
+      "access": "public",
+      "reviewed_on": "2026-10-12",
+      "applies_to": "Tài liệu tham khảo; chưa liên kết SKU cửa hàng"
+    },
+    {
+      "id": "SP12",
+      "group": "san_pham",
+      "title": "Dung tích AeroPress Original",
+      "content": "Dung tích công bố AeroPress Original: 10 oz.",
+      "source_refs": [
+        "SRC03"
+      ],
+      "source_locator": "Capacity",
+      "access": "public",
+      "reviewed_on": "2026-10-12",
+      "applies_to": "Tài liệu tham khảo; chưa liên kết SKU cửa hàng"
+    },
+    {
+      "id": "SP13",
+      "group": "san_pham",
+      "title": "Giấy lọc AeroPress Original",
+      "content": "AeroPress Original dùng bộ lọc cỡ Standard.",
+      "source_refs": [
+        "SRC03"
+      ],
+      "source_locator": "FAQ / What size filter",
+      "access": "public",
+      "reviewed_on": "2026-10-12",
+      "applies_to": "Tài liệu tham khảo; chưa liên kết SKU cửa hàng"
+    },
+    {
+      "id": "SP14",
+      "group": "san_pham",
+      "title": "Rửa AeroPress Original",
+      "content": "AeroPress Original có thể đặt ở tầng trên máy rửa bát.",
+      "source_refs": [
+        "SRC03"
+      ],
+      "source_locator": "Features / Dishwasher Safe",
+      "access": "public",
+      "reviewed_on": "2026-10-12",
+      "applies_to": "Tài liệu tham khảo; chưa liên kết SKU cửa hàng"
+    },
+    {
+      "id": "SP15",
+      "group": "san_pham",
+      "title": "Đồ uống từ AeroPress",
+      "content": "AeroPress Original hỗ trợ kiểu American, cold brew và espresso-style.",
+      "source_refs": [
+        "SRC03"
+      ],
+      "source_locator": "FAQ / What kinds of coffee",
+      "access": "public",
+      "reviewed_on": "2026-10-12",
+      "applies_to": "Tài liệu tham khảo; chưa liên kết SKU cửa hàng"
+    },
+    {
+      "id": "PC01",
+      "group": "pha_che",
+      "title": "Nhánh công thức AeroPress",
+      "content": "Nhánh Original không có máy xay sử dụng cà phê xay medium.",
+      "source_refs": [
+        "SRC04"
+      ],
+      "source_locator": "Original / I DON’T HAVE A GRINDER",
+      "access": "public",
+      "reviewed_on": "2026-10-12",
+      "applies_to": "Công thức cụ thể của nguồn, không áp dụng chung mọi dụng cụ"
+    },
+    {
+      "id": "PC02",
+      "group": "pha_che",
+      "title": "Nhiệt độ AeroPress",
+      "content": "Công thức Original nhánh medium dùng nước 85°C.",
+      "source_refs": [
+        "SRC04"
+      ],
+      "source_locator": "Original / medium / step 1",
+      "access": "public",
+      "reviewed_on": "2026-10-12",
+      "applies_to": "Công thức cụ thể của nguồn, không áp dụng chung mọi dụng cụ"
+    },
+    {
+      "id": "PC03",
+      "group": "pha_che",
+      "title": "Lắp AeroPress trước khi pha",
+      "content": "Đặt giấy vào nắp lọc, vặn nắp vào thân và đặt trên cốc chắc chắn.",
+      "source_refs": [
+        "SRC04"
+      ],
+      "source_locator": "Original / medium / steps 3–4",
+      "access": "public",
+      "reviewed_on": "2026-10-12",
+      "applies_to": "Công thức cụ thể của nguồn, không áp dụng chung mọi dụng cụ"
+    },
+    {
+      "id": "PC04",
+      "group": "pha_che",
+      "title": "Mực nước AeroPress",
+      "content": "Nhánh Original medium đổ nước tới vạch 4 trên thân.",
+      "source_refs": [
+        "SRC04"
+      ],
+      "source_locator": "Original / medium / step 5",
+      "access": "public",
+      "reviewed_on": "2026-10-12",
+      "applies_to": "Công thức cụ thể của nguồn, không áp dụng chung mọi dụng cụ"
+    },
+    {
+      "id": "PC05",
+      "group": "pha_che",
+      "title": "Ủ và ép AeroPress",
+      "content": "Nhánh medium khuấy 3 giây, lắp piston, chờ 60 giây rồi ép nhẹ đều.",
+      "source_refs": [
+        "SRC04"
+      ],
+      "source_locator": "Original / medium / steps 6–7",
+      "access": "public",
+      "reviewed_on": "2026-10-12",
+      "applies_to": "Công thức cụ thể của nguồn, không áp dụng chung mọi dụng cụ"
+    },
+    {
+      "id": "PC06",
+      "group": "pha_che",
+      "title": "Định lượng French press",
+      "content": "Blue Bottle hướng dẫn French press với 30 g cà phê và 350 g nước.",
+      "source_refs": [
+        "SRC05"
+      ],
+      "source_locator": "Coffee Dose; Water",
+      "access": "public",
+      "reviewed_on": "2026-10-12",
+      "applies_to": "Công thức cụ thể của nguồn, không áp dụng chung mọi dụng cụ"
+    },
+    {
+      "id": "PC07",
+      "group": "pha_che",
+      "title": "Độ xay French press",
+      "content": "Công thức French press này dùng cà phê xay thô, đồng đều.",
+      "source_refs": [
+        "SRC05"
+      ],
+      "source_locator": "step 2",
+      "access": "public",
+      "reviewed_on": "2026-10-12",
+      "applies_to": "Công thức cụ thể của nguồn, không áp dụng chung mọi dụng cụ"
+    },
+    {
+      "id": "PC08",
+      "group": "pha_che",
+      "title": "Nhiệt độ French press",
+      "content": "Blue Bottle dùng nước 205–210°F cho French press.",
+      "source_refs": [
+        "SRC05"
+      ],
+      "source_locator": "step 1",
+      "access": "public",
+      "reviewed_on": "2026-10-12",
+      "applies_to": "Công thức cụ thể của nguồn, không áp dụng chung mọi dụng cụ"
+    },
+    {
+      "id": "PC09",
+      "group": "pha_che",
+      "title": "Thời gian French press",
+      "content": "Sau 4 phút, hạ piston từ từ trong khoảng 20 giây.",
+      "source_refs": [
+        "SRC05"
+      ],
+      "source_locator": "step 7",
+      "access": "public",
+      "reviewed_on": "2026-10-12",
+      "applies_to": "Công thức cụ thể của nguồn, không áp dụng chung mọi dụng cụ"
+    },
+    {
+      "id": "PC10",
+      "group": "pha_che",
+      "title": "Rót French press sau pha",
+      "content": "Rót ra ngay; chuyển phần còn lại sang bình khác để tránh tiếp tục chiết xuất.",
+      "source_refs": [
+        "SRC05"
+      ],
+      "source_locator": "step 9",
+      "access": "public",
+      "reviewed_on": "2026-10-12",
+      "applies_to": "Công thức cụ thể của nguồn, không áp dụng chung mọi dụng cụ"
+    },
+    {
+      "id": "PC11",
+      "group": "pha_che",
+      "title": "Định lượng pour-over",
+      "content": "Blue Bottle dùng 20–27 g cà phê và 350 g nước cho pour-over.",
+      "source_refs": [
+        "SRC06"
+      ],
+      "source_locator": "Coffee Dose; Water",
+      "access": "public",
+      "reviewed_on": "2026-10-12",
+      "applies_to": "Công thức cụ thể của nguồn, không áp dụng chung mọi dụng cụ"
+    },
+    {
+      "id": "PC12",
+      "group": "pha_che",
+      "title": "Độ xay và nhiệt pour-over",
+      "content": "Công thức pour-over này dùng xay medium, nước 195–205°F.",
+      "source_refs": [
+        "SRC06"
+      ],
+      "source_locator": "steps 1–2",
+      "access": "public",
+      "reviewed_on": "2026-10-12",
+      "applies_to": "Công thức cụ thể của nguồn, không áp dụng chung mọi dụng cụ"
+    },
+    {
+      "id": "PC13",
+      "group": "pha_che",
+      "title": "Bloom pour-over",
+      "content": "Rót bloom đến 50 g trong khoảng 10 giây.",
+      "source_refs": [
+        "SRC06"
+      ],
+      "source_locator": "step 3",
+      "access": "public",
+      "reviewed_on": "2026-10-12",
+      "applies_to": "Công thức cụ thể của nguồn, không áp dụng chung mọi dụng cụ"
+    },
+    {
+      "id": "PC14",
+      "group": "pha_che",
+      "title": "Các lần rót pour-over",
+      "content": "Mốc 0:40 rót tới tổng 150 g; 1:10 tới 250 g; 1:40 tới 350 g.",
+      "source_refs": [
+        "SRC06"
+      ],
+      "source_locator": "steps 4–6; số cân cộng dồn",
+      "access": "public",
+      "reviewed_on": "2026-10-12",
+      "applies_to": "Công thức cụ thể của nguồn, không áp dụng chung mọi dụng cụ"
+    },
+    {
+      "id": "PC15",
+      "group": "pha_che",
+      "title": "Thời gian pour-over",
+      "content": "Tổng thời gian pour-over tham khảo: 2 phút 30 đến 3 phút 30.",
+      "source_refs": [
+        "SRC06"
+      ],
+      "source_locator": "step 7",
+      "access": "public",
+      "reviewed_on": "2026-10-12",
+      "applies_to": "Công thức cụ thể của nguồn, không áp dụng chung mọi dụng cụ"
+    },
+    {
+      "id": "NV01",
+      "group": "nghiep_vu",
+      "title": "Phương thức thanh toán",
+      "content": "Bản 0.3 đặt hàng COD; chưa tích hợp thanh toán trực tuyến.",
+      "source_refs": [
+        "SRC07"
+      ],
+      "source_locator": "UC03; Giới hạn đã chốt",
+      "access": "public",
+      "reviewed_on": "2026-10-12",
+      "applies_to": "SuniCoffee 0.3 / phạm vi chatbot v1"
+    },
+    {
+      "id": "NV02",
+      "group": "nghiep_vu",
+      "title": "Điều kiện đặt hàng",
+      "content": "Cần đăng nhập, giỏ không rỗng và thông tin nhận hàng hợp lệ trước khi đặt đơn.",
+      "source_refs": [
+        "SRC07",
+        "SRC08"
+      ],
+      "source_locator": "UC03; checkout",
+      "access": "public",
+      "reviewed_on": "2026-10-12",
+      "applies_to": "SuniCoffee 0.3 / phạm vi chatbot v1"
+    },
+    {
+      "id": "NV03",
+      "group": "nghiep_vu",
+      "title": "Giới hạn giỏ hàng",
+      "content": "Mỗi dòng giỏ có 1–99 sản phẩm và không vượt tồn kho lúc kiểm tra.",
+      "source_refs": [
+        "SRC09"
+      ],
+      "source_locator": "change",
+      "access": "public",
+      "reviewed_on": "2026-10-12",
+      "applies_to": "SuniCoffee 0.3 / phạm vi chatbot v1"
+    },
+    {
+      "id": "NV04",
+      "group": "nghiep_vu",
+      "title": "Giỏ chưa giữ hàng",
+      "content": "Thêm vào giỏ chưa giữ hàng; tạo đơn thành công mới trừ tồn.",
+      "source_refs": [
+        "SRC07",
+        "SRC08"
+      ],
+      "source_locator": "UC02; UC03; checkout",
+      "access": "public",
+      "reviewed_on": "2026-10-12",
+      "applies_to": "SuniCoffee 0.3 / phạm vi chatbot v1"
+    },
+    {
+      "id": "NV05",
+      "group": "nghiep_vu",
+      "title": "Giá tại thời điểm mua",
+      "content": "Đơn lưu tên, SKU và đơn giá lúc đặt; thay đổi sản phẩm sau đó không đổi lịch sử mua.",
+      "source_refs": [
+        "SRC07",
+        "SRC08"
+      ],
+      "source_locator": "UC03; checkout",
+      "access": "public",
+      "reviewed_on": "2026-10-12",
+      "applies_to": "SuniCoffee 0.3 / phạm vi chatbot v1"
+    },
+    {
+      "id": "NV06",
+      "group": "nghiep_vu",
+      "title": "Phí giao hàng",
+      "content": "Phí giao cố định theo cấu hình, mặc định 0 VND; hiển thị trước khi đặt và lưu vào đơn.",
+      "source_refs": [
+        "SRC07",
+        "SRC10"
+      ],
+      "source_locator": "Phí, doanh thu và đơn chờ; getFee",
+      "access": "public",
+      "reviewed_on": "2026-10-12",
+      "applies_to": "SuniCoffee 0.3 / phạm vi chatbot v1"
+    },
+    {
+      "id": "NV07",
+      "group": "nghiep_vu",
+      "title": "Cách tính tổng đơn",
+      "content": "Tổng thanh toán = tổng số lượng nhân đơn giá từng dòng + phí giao đã lưu trên đơn.",
+      "source_refs": [
+        "SRC08"
+      ],
+      "source_locator": "checkout",
+      "access": "public",
+      "reviewed_on": "2026-10-12",
+      "applies_to": "SuniCoffee 0.3 / phạm vi chatbot v1"
+    },
+    {
+      "id": "NV08",
+      "group": "nghiep_vu",
+      "title": "Khách tự hủy đơn",
+      "content": "Khách chỉ hủy được đơn của mình khi còn PENDING (Chờ xác nhận).",
+      "source_refs": [
+        "SRC08"
+      ],
+      "source_locator": "cancelByCustomer",
+      "access": "public",
+      "reviewed_on": "2026-10-12",
+      "applies_to": "SuniCoffee 0.3 / phạm vi chatbot v1"
+    },
+    {
+      "id": "NV09",
+      "group": "nghiep_vu",
+      "title": "Hủy và hoàn tồn",
+      "content": "Hủy hợp lệ trước bàn giao hoàn lại tồn một lần; không hủy kiểu này khi đã giao vận chuyển.",
+      "source_refs": [
+        "SRC07",
+        "SRC08"
+      ],
+      "source_locator": "UC06–09; transition; cancel",
+      "access": "public",
+      "reviewed_on": "2026-10-12",
+      "applies_to": "SuniCoffee 0.3 / phạm vi chatbot v1"
+    },
+    {
+      "id": "NV10",
+      "group": "nghiep_vu",
+      "title": "Luồng giao thành công",
+      "content": "Luồng thường: PENDING → CONFIRMED → SHIPPING → COMPLETED.",
+      "source_refs": [
+        "SRC07",
+        "SRC08"
+      ],
+      "source_locator": "Sơ đồ trạng thái; transition",
+      "access": "public",
+      "reviewed_on": "2026-10-12",
+      "applies_to": "SuniCoffee 0.3 / phạm vi chatbot v1"
+    },
+    {
+      "id": "NV11",
+      "group": "nghiep_vu",
+      "title": "Thông tin khi bàn giao",
+      "content": "Chuyển sang SHIPPING cần có đơn vị vận chuyển và mã vận đơn.",
+      "source_refs": [
+        "SRC08"
+      ],
+      "source_locator": "transition",
+      "access": "public",
+      "reviewed_on": "2026-10-12",
+      "applies_to": "SuniCoffee 0.3 / phạm vi chatbot v1"
+    },
+    {
+      "id": "NV12",
+      "group": "nghiep_vu",
+      "title": "Giao thất bại",
+      "content": "Giao thất bại cần lý do, chưa hoàn tồn; sau đó có thể giao lại hoặc chuyển hoàn.",
+      "source_refs": [
+        "SRC07",
+        "SRC08"
+      ],
+      "source_locator": "UC06–09; transition",
+      "access": "public",
+      "reviewed_on": "2026-10-12",
+      "applies_to": "SuniCoffee 0.3 / phạm vi chatbot v1"
+    },
+    {
+      "id": "NV13",
+      "group": "nghiep_vu",
+      "title": "Nhận hàng hoàn",
+      "content": "Nhận toàn bộ kiện hoàn, kiểm tra từng dòng và chỉ nhập lại số lượng còn bán được.",
+      "source_refs": [
+        "SRC07",
+        "SRC08"
+      ],
+      "source_locator": "UC08; receiveReturn",
+      "access": "public",
+      "reviewed_on": "2026-10-12",
+      "applies_to": "SuniCoffee 0.3 / phạm vi chatbot v1"
+    },
+    {
+      "id": "NV14",
+      "group": "nghiep_vu",
+      "title": "Hoàn thành và COD",
+      "content": "COMPLETED không đồng nghĩa cửa hàng đã nhận tiền COD; đối soát được ghi riêng.",
+      "source_refs": [
+        "SRC07",
+        "SRC08"
+      ],
+      "source_locator": "UC09; settleCod",
+      "access": "public",
+      "reviewed_on": "2026-10-12",
+      "applies_to": "SuniCoffee 0.3 / phạm vi chatbot v1"
+    },
+    {
+      "id": "NV15",
+      "group": "nghiep_vu",
+      "title": "Đơn chờ lâu",
+      "content": "Mốc nhắc mặc định 48 giờ chỉ để lọc; đơn COD không tự hủy vì quá mốc này.",
+      "source_refs": [
+        "SRC07",
+        "SRC10"
+      ],
+      "source_locator": "Phí, doanh thu và đơn chờ; pendingCutoff",
+      "access": "public",
+      "reviewed_on": "2026-10-12",
+      "applies_to": "SuniCoffee 0.3 / phạm vi chatbot v1"
+    },
+    {
+      "id": "NV16",
+      "group": "nghiep_vu",
+      "title": "Quyền xem đơn",
+      "content": "Khách chỉ xem được đơn của mình. Đơn không tồn tại và đơn không thuộc khách đều trả không tìm thấy.",
+      "source_refs": [
+        "SRC08",
+        "SRC13"
+      ],
+      "source_locator": "detail; history",
+      "access": "public",
+      "reviewed_on": "2026-10-12",
+      "applies_to": "SuniCoffee 0.3 / phạm vi chatbot v1"
+    },
+    {
+      "id": "NV17",
+      "group": "nghiep_vu",
+      "title": "Hồ sơ và đơn cũ",
+      "content": "Cập nhật hồ sơ không thay đổi thông tin người nhận đã lưu trong đơn cũ.",
+      "source_refs": [
+        "SRC07",
+        "SRC11"
+      ],
+      "source_locator": "UC13; profile",
+      "access": "public",
+      "reviewed_on": "2026-10-12",
+      "applies_to": "SuniCoffee 0.3 / phạm vi chatbot v1"
+    },
+    {
+      "id": "NV18",
+      "group": "nghiep_vu",
+      "title": "Hiệu lực phiên",
+      "content": "Đổi mật khẩu, quyền hoặc khóa tài khoản làm phiên cũ hết hiệu lực; trạng thái được kiểm tra lại trên yêu cầu.",
+      "source_refs": [
+        "SRC11",
+        "SRC12"
+      ],
+      "source_locator": "password; updateUser; doFilterInternal",
+      "access": "public",
+      "reviewed_on": "2026-10-12",
+      "applies_to": "SuniCoffee 0.3 / phạm vi chatbot v1"
+    },
+    {
+      "id": "NV19",
+      "group": "nghiep_vu",
+      "title": "Doanh thu",
+      "content": "Doanh thu bản 0.3 lấy tiền hàng của đơn COMPLETED theo ngày hoàn thành tại Việt Nam, không gồm phí giao.",
+      "source_refs": [
+        "SRC07"
+      ],
+      "source_locator": "Phí, doanh thu và đơn chờ",
+      "access": "public",
+      "reviewed_on": "2026-10-12",
+      "applies_to": "SuniCoffee 0.3 / phạm vi chatbot v1"
+    },
+    {
+      "id": "NV20",
+      "group": "nghiep_vu",
+      "title": "Giới hạn đổi trả",
+      "content": "Bản 0.3 chưa hỗ trợ giao từng phần hoặc đổi trả sau giao thành công. Đây là giới hạn phần mềm.",
+      "source_refs": [
+        "SRC07"
+      ],
+      "source_locator": "UC06–09; Giới hạn đã chốt",
+      "access": "public",
+      "reviewed_on": "2026-10-12",
+      "applies_to": "SuniCoffee 0.3 / phạm vi chatbot v1"
+    },
+    {
+      "id": "NV21",
+      "group": "nghiep_vu",
+      "title": "Tài liệu hãng và hàng cửa hàng",
+      "content": "Thông số tài liệu hãng không chứng minh SuniCoffee có bán hoặc còn hàng; chưa ánh xạ chúng vào SKU demo.",
+      "source_refs": [
+        "SRC14"
+      ],
+      "source_locator": "Quy tắc trả lời",
+      "access": "public",
+      "reviewed_on": "2026-10-12",
+      "applies_to": "SuniCoffee 0.3 / phạm vi chatbot v1"
+    },
+    {
+      "id": "NV22",
+      "group": "nghiep_vu",
+      "title": "Dữ liệu biến động",
+      "content": "Giá, tồn kho và trạng thái đơn phải lấy từ dữ liệu hiện hành qua dịch vụ được cấp quyền, không suy từ kho tri thức.",
+      "source_refs": [
+        "SRC14"
+      ],
+      "source_locator": "Dữ liệu động",
+      "access": "public",
+      "reviewed_on": "2026-10-12",
+      "applies_to": "SuniCoffee 0.3 / phạm vi chatbot v1"
+    },
+    {
+      "id": "NV23",
+      "group": "nghiep_vu",
+      "title": "Giới hạn chatbot v1",
+      "content": "Chatbot v1 dự kiến tư vấn sản phẩm, pha chế, nghiệp vụ khách hàng và tra cứu đơn của chủ tài khoản đã xác thực.",
+      "source_refs": [
+        "SRC14"
+      ],
+      "source_locator": "Phạm vi",
+      "access": "public",
+      "reviewed_on": "2026-10-12",
+      "applies_to": "SuniCoffee 0.3 / phạm vi chatbot v1"
+    },
+    {
+      "id": "NV24",
+      "group": "nghiep_vu",
+      "title": "Thiếu căn cứ và ngoài phạm vi",
+      "content": "Khi thiếu nguồn cần nói rõ chưa đủ thông tin; yêu cầu ngoài phạm vi được từ chối ngắn gọn và hướng về hỗ trợ cà phê/cửa hàng.",
+      "source_refs": [
+        "SRC14"
+      ],
+      "source_locator": "Quy tắc trả lời",
+      "access": "public",
+      "reviewed_on": "2026-10-12",
+      "applies_to": "SuniCoffee 0.3 / phạm vi chatbot v1"
+    },
+    {
+      "id": "NV25",
+      "group": "nghiep_vu",
+      "title": "Xác thực qua máy chủ",
+      "content": "Không tin email hay vai trò do người hỏi tự khai. Máy chủ xác thực và kiểm tra chủ sở hữu trước khi gửi dữ liệu đơn cho mô hình.",
+      "source_refs": [
+        "SRC14",
+        "SRC08",
+        "SRC12"
+      ],
+      "source_locator": "Quyền truy cập; detail; doFilterInternal",
+      "access": "public",
+      "reviewed_on": "2026-10-12",
+      "applies_to": "SuniCoffee 0.3 / phạm vi chatbot v1"
+    }
+  ]
+}

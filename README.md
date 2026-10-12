@@ -120,7 +120,7 @@ docs/           Phạm vi, thiết kế dữ liệu và tiến độ
 
 Chưa triển khai thanh toán trực tuyến, tích hợp vận chuyển, quên mật khẩu qua email, giá vốn/lợi nhuận hoặc AI. Mỗi quy cách bán hiện là một sản phẩm với SKU riêng. Sản phẩm chưa tải ảnh vẫn dùng SVG minh họa. Phiếu nhập/xuất hiện ghi nhận từng SKU; chưa có nhà cung cấp và phiếu mua hàng nhiều dòng.
 
-Trước phần chatbot cần hoàn thành kho tri thức ít nhất 50 mục có nguồn và bộ 30 câu hỏi đánh giá riêng theo đề cương. Hiện chưa có dữ liệu tri thức được xác minh hoặc kết quả đánh giá AI.
+Đã chuẩn bị [kho tri thức v1 gồm 55 mục có nguồn](data/knowledge/README.md) và [bộ 30 câu hỏi đánh giá kèm đáp án](evaluation/chatbot/v1/QUESTIONS.md), khóa trước khi triển khai chatbot. Sản phẩm hãng chỉ là tài liệu tham khảo, chưa xác nhận thuộc danh mục thật của SuniCoffee. Chưa có chatbot hoặc kết quả đánh giá AI. Kiểm tra mốc bằng `python3 scripts/verify-chatbot-baseline.py`; xem [quy trình đánh giá](evaluation/chatbot/v1/PROTOCOL.md).
 
 
 ## Sử dụng các chức năng mới của bản 0.2
