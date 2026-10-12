@@ -12,6 +12,9 @@ public interface OrderRepository extends JpaRepository<CustomerOrder,Long> {
     Page<CustomerOrder> search(@Param("q") String q,@Param("status") vn.sunicoffee.domain.OrderStatus status,
         @Param("from") java.time.LocalDateTime from,@Param("until") java.time.LocalDateTime until,
         @Param("cutoff") java.time.LocalDateTime cutoff,Pageable pageable);
+    @EntityGraph(attributePaths={"items"})
+    @Query("select o from CustomerOrder o where o.id=:id and o.user.email=:email")
+    Optional<CustomerOrder> findForChat(@Param("id") Long id, @Param("email") String email);
     Optional<CustomerOrder> findByCheckoutToken(String token);
     @EntityGraph(attributePaths={"items", "items.product"})
     @Query("select o from CustomerOrder o where o.id = :id")

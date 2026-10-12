@@ -63,7 +63,13 @@ class ShopIntegrationTest {
     CustomerOrder buy() { cart.add(CUSTOMER,product.getId(),2); return orderService.checkout(CUSTOMER,form()); }
 
     @Test void publicPagesAndApiRender() throws Exception {
-        mvc.perform(get("/")).andExpect(status().isOk()).andExpect(content().string(org.hamcrest.Matchers.containsString("Cà phê mẫu")));
+        mvc.perform(get("/")).andExpect(status().isOk()).andExpect(model().attribute("home", true))
+            .andExpect(content().string(org.hamcrest.Matchers.containsString("Cà phê mẫu")))
+            .andExpect(content().string(org.hamcrest.Matchers.containsString("hero-title")));
+        mvc.perform(get("/products")).andExpect(status().isOk()).andExpect(model().attribute("home", false));
+        mvc.perform(get("/").param("q", "notfound")).andExpect(status().isOk()).andExpect(model().attribute("home", false));
+        mvc.perform(get("/js/storefront.js")).andExpect(status().isOk());
+        mvc.perform(get("/css/storefront.css")).andExpect(status().isOk());
         mvc.perform(get("/products/"+product.getId())).andExpect(status().isOk());
         mvc.perform(get("/products").param("q","notfound")).andExpect(status().isOk());
         mvc.perform(get("/login")).andExpect(status().isOk()); mvc.perform(get("/register")).andExpect(status().isOk());

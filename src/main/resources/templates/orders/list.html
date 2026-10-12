@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="vi" xmlns:th="http://www.thymeleaf.org"><head th:replace="~{fragments/layout :: head('Đơn hàng')}"></head><body><header th:replace="~{fragments/layout :: header}"></header><main class="container"><div th:replace="~{fragments/layout :: notices}"></div>
+<!DOCTYPE html><html lang="vi" xmlns:th="http://www.thymeleaf.org"><head th:replace="~{fragments/layout :: head('Đơn hàng')}"></head><body><header th:replace="~{fragments/layout :: header}"></header><main id="main-content" class="container"><div th:replace="~{fragments/layout :: notices}"></div>
 <div th:if="${admin}"><div th:replace="~{fragments/layout :: adminnav}"></div></div><h1 th:text="${admin} ? 'Quản lý đơn hàng' : 'Đơn hàng của tôi'"></h1><form th:if="${admin}" class="filters order-filters" th:action="@{/admin/orders}" method="get">
 <label>Mã đơn / người nhận / email<input name="q" th:value="${q}" maxlength="100"></label>
 <label>Trạng thái<select name="status"><option value="">Tất cả</option><option th:each="s : ${statuses}" th:value="${s}" th:text="${s.label}" th:selected="${s == selectedStatus}"></option></select></label>

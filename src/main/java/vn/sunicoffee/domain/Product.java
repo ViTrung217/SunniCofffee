@@ -37,7 +37,19 @@ public class Product {
     @ManyToOne(optional=false) @JoinColumn(name="category_id")
     private Category category;
 
-    public String getImageUrl() { return hasImage ? "/product-images/"+id : "/images/product-placeholder.svg"; }
+    private static final java.util.Set<String> DEMO_IMAGE_SKUS = java.util.Set.of(
+        "DEMO-CF-001", "DEMO-CF-002", "DEMO-CF-003",
+        "DEMO-MC-001", "DEMO-MC-002", "DEMO-MC-003",
+        "DEMO-BR-001", "DEMO-BR-002", "DEMO-BR-003",
+        "DEMO-OD-001", "DEMO-OD-002", "DEMO-OD-003");
+
+    public String getImageUrl() {
+        if (hasImage) return "/product-images/" + id;
+        if (sku != null && DEMO_IMAGE_SKUS.contains(sku)) {
+            return "/images/products/" + sku.toLowerCase(java.util.Locale.ROOT) + ".png";
+        }
+        return "/images/product-placeholder.svg";
+    }
     public Long getId() { return id; }
     public String getSku() { return sku; }
     public void setSku(String sku) { this.sku = sku; }

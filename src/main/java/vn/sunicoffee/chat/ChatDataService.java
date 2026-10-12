@@ -1,0 +1,80 @@
+package vn.sunicoffee.chat;
+
+import java.text.NumberFormat;
+import java.util.*;
+import java.util.regex.Pattern;
+import org.springframework.core.env.Environment;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import vn.sunicoffee.domain.OrderStatus;
+import vn.sunicoffee.repository.*;
+
+@Service
+@Transactional(readOnly = true)
+public class ChatDataService {
+    private final OrderRepository orders;
+    private final UserRepository users;
+    private final ProductRepository products;
+    private final Environment environment;
+    public ChatDataService(OrderRepository orders, UserRepository users, ProductRepository products, Environment environment) {
+        this.orders = orders; this.users = users; this.products = products; this.environment = environment;
+    }
+    private static String money(java.math.BigDecimal value) {
+        return NumberFormat.getIntegerInstance(Locale.forLanguageTag("vi-VN")).format(value) + " VND";
+    }
+    public ChatReply order(long id, String email) {
+        if (email == null || users.findByEmail(email).filter(u -> u.isEnabled()).isEmpty()) {
+            return ChatReply.of("AUTH_REQUIRED", "Vui lòng đăng nhập để xem đơn của chính bạn.");
+        }
+        // Scope the SQL query to the session identity, including for administrator accounts.
+        var found = orders.findForChat(id, email);
+        if (found.isEmpty()) return ChatReply.of("NOT_FOUND", "Không tìm thấy đơn trong tài khoản của bạn.");
+        var o = found.get();
+        var answer = new StringBuilder("Đơn SUNI-" + o.getId() + ": " + o.getStatus().getLabel() + ".\n");
+        o.getItems().forEach(i -> answer.append(i.getQuantity()).append(" × ").append(i.getProductName())
+            .append(" — ").append(money(i.getUnitPrice())).append("/sản phẩm\n"));
+        answer.append("Tiền hàng: ").append(money(o.getMerchandiseTotal())).append(". Phí giao: ")
+            .append(money(o.getShippingFee())).append(". Tổng thanh toán: ").append(money(o.getTotal())).append(".\n");
+        if (!o.getTrackingCode().isBlank()) answer.append("Đơn vị vận chuyển: ").append(o.getCarrier())
+            .append(". Mã vận đơn: ").append(o.getTrackingCode()).append(". Chưa có dữ liệu vị trí thực tế hoặc ngày giao dự kiến.\n");
+        if (o.getStatus() == OrderStatus.COMPLETED) answer.append(o.getCodSettledAt() == null
+            ? "Chưa có ghi nhận đối soát COD; trạng thái hoàn thành không chứng minh cửa hàng đã nhận tiền.\n"
+            : "Đã ghi nhận nhận đủ tiền COD.\n");
+        if (o.getStatus() == OrderStatus.PENDING) answer.append("Đơn còn đủ điều kiện tự hủy trong Đơn của tôi. Chatbot chưa thực hiện hủy đơn.");
+        else answer.append("Khách chỉ tự hủy khi đơn còn chờ xác nhận. Chatbot chỉ tra cứu, không sửa đơn.");
+        return new ChatReply("ORDER", answer.toString(), List.of(new ChatReply.Citation("ORDER", "Chi tiết đơn SUNI-" + o.getId(), "/orders/" + o.getId())));
+    }
+    public ChatReply catalog(String question) {
+        String normalized = KnowledgeBase.normalize(question);
+        // Manufacturer reference products are deliberately not mapped to synthetic SKUs.
+        if (Pattern.compile("\\b(picopresso|wacaco|hario|v60|aeropress)\\b").matcher(normalized).find()) {
+            return ChatReply.of("INSUFFICIENT", "Chưa có ánh xạ sản phẩm hãng này với danh mục cửa hàng để xác nhận giá hoặc tồn kho. Bạn có thể kiểm tra trong Cửa hàng hoặc cung cấp mã SKU.");
+        }
+        var skuMatcher = Pattern.compile("(?i)\\b[A-Z][A-Z0-9]*(?:-[A-Z0-9]+)+\\b").matcher(question);
+        if (skuMatcher.find()) {
+            return products.findBySku(skuMatcher.group().toUpperCase(Locale.ROOT)).filter(p -> p.isActive())
+                .map(p -> productReply(List.of(p))).orElseGet(() -> ChatReply.of("INSUFFICIENT", "Không tìm thấy mã SKU đang bán trong danh mục hiện tại."));
+        }
+        var ignored = Set.of("gia", "ban", "con", "hang", "ton", "kho", "bao", "nhieu", "tien", "toi", "muon", "mua", "cho", "hoi", "cua", "hom", "nay", "khong", "co", "sunicoffee", "la");
+        var terms = Arrays.stream(normalized.split(" +")).filter(t -> !ignored.contains(t)).toList();
+        if (terms.isEmpty()) return ChatReply.of("CLARIFY", "Bạn muốn xem giá và tồn kho của sản phẩm nào? Hãy gửi tên hoặc mã SKU trong Cửa hàng.");
+        // Bounded catalogue scan is sufficient for this small store; no private fields are exposed.
+        var matches = products.search("", null, false, PageRequest.of(0, 200)).getContent().stream()
+            .filter(p -> terms.stream().allMatch(t -> (" " + KnowledgeBase.normalize(p.getName()) + " ").contains(" " + t + " "))).limit(4).toList();
+        if (matches.isEmpty()) return ChatReply.of("INSUFFICIENT", "Chưa tìm được sản phẩm phù hợp để xác nhận giá/tồn kho. Hãy gửi mã SKU hoặc tên đúng trong Cửa hàng.");
+        return productReply(matches);
+    }
+    private ChatReply productReply(List<vn.sunicoffee.domain.Product> list) {
+        boolean demo = environment.matchesProfiles("demo") || list.stream().anyMatch(p -> p.getSku().startsWith("DEMO-"));
+        var text = new StringBuilder(demo ? "Dữ liệu minh họa trong cửa hàng demo, không phải giá/tồn hàng thật:\n" : "Dữ liệu cửa hàng tại thời điểm tra cứu:\n");
+        var refs = new ArrayList<ChatReply.Citation>();
+        list.forEach(p -> {
+            text.append(p.getName()).append(" (").append(p.getSku()).append(") — ").append(money(p.getPrice()))
+                .append("/").append(p.getSalesUnit()).append("; tồn ").append(p.getStock()).append(".\n");
+            refs.add(new ChatReply.Citation(p.getSku(), p.getName(), "/products/" + p.getId()));
+        });
+        text.append("Giá và tồn kho sẽ được kiểm tra lại khi đặt hàng.");
+        return new ChatReply("CATALOG", text.toString(), List.copyOf(refs));
+    }
+}

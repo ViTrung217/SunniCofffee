@@ -8,8 +8,11 @@
 - `opening_stock`: tồn kho ban đầu giả lập, chưa có nghiệp vụ nhập hoặc bán phát sinh.
 - `sales_unit`: đơn vị bán.
 - `description`: mô tả minh họa, không phải thông số được kiểm chứng.
-- `image_url` và `source_url`: để trống vì chưa có ảnh và nguồn sản phẩm thực tế.
+- `image_url`: ảnh minh họa AI nền kem, lưu tại `src/main/resources/static/images/products/`, tương ứng 12 SKU demo. Không phải ảnh sản phẩm thật.
+- `source_url`: để trống vì chưa có nguồn sản phẩm thực tế.
 
 Hai túi cà phê cùng dòng nhưng khác khối lượng có mã riêng để minh họa nhu cầu quản lý biến thể. Cách tách bảng sản phẩm và biến thể sẽ quyết định trong bước thiết kế cơ sở dữ liệu.
 
 Chưa dùng những mô tả này làm kho tri thức có nguồn cho chatbot. Khi có dữ liệu thật, cần xác minh thông tin, nguồn và quyền sử dụng ảnh trước khi thay thế.
+
+Ảnh hiển thị được chọn theo SKU demo khi sản phẩm chưa có ảnh tải lên. Ảnh tải lên qua quản trị luôn được ưu tiên. Cơ chế này áp dụng cho cả database đã có dữ liệu, không thay đổi tồn kho, giá hoặc đơn hàng. Khởi động lại ứng dụng sau khi cập nhật để nạp mã và tài nguyên mới.

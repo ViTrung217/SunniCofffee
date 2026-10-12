@@ -19,7 +19,7 @@ public class SecurityConfig {
     }
     @Bean SecurityFilterChain securityFilterChain(HttpSecurity http,UserRepository users,@org.springframework.beans.factory.annotation.Value("${app.security.login-attempts-per-minute:20}") int loginLimit) throws Exception {
         return http.authorizeHttpRequests(auth -> auth
-                .requestMatchers("/", "/products/**", "/api/products/**", "/css/**", "/images/**", "/product-images/**", "/login", "/register", "/error").permitAll()
+                .requestMatchers("/chat", "/chat/messages", "/chat/sources/**", "/", "/products/**", "/api/products/**", "/css/**", "/js/**", "/images/**", "/product-images/**", "/login", "/register", "/error").permitAll()
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated())
             .formLogin(form -> form.loginPage("/login").usernameParameter("email").defaultSuccessUrl("/",false).permitAll())

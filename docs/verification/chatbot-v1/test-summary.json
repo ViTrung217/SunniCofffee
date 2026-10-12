@@ -1,0 +1,92 @@
+{
+  "date": "2026-10-12",
+  "command": "mvn -q -Ddebug=false test",
+  "database": "H2 test profile",
+  "gemini_calls": "Mocked; no live calls",
+  "tests": 81,
+  "failures": 0,
+  "errors": 0,
+  "suites": [
+    {
+      "name": "vn.sunicoffee.chat.ChatRateLimitTest",
+      "tests": "1",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.0"
+    },
+    {
+      "name": "vn.sunicoffee.UploadHttpIntegrationTest",
+      "tests": "1",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "3.352"
+    },
+    {
+      "name": "vn.sunicoffee.chat.KnowledgeBaseTest",
+      "tests": "1",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.02"
+    },
+    {
+      "name": "vn.sunicoffee.LoginThrottleTest",
+      "tests": "2",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.001"
+    },
+    {
+      "name": "vn.sunicoffee.ManagementIntegrationTest",
+      "tests": "21",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "5.656"
+    },
+    {
+      "name": "vn.sunicoffee.chat.GeminiClientTest",
+      "tests": "7",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.037"
+    },
+    {
+      "name": "vn.sunicoffee.MigrationUpgradeTest",
+      "tests": "1",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.039"
+    },
+    {
+      "name": "vn.sunicoffee.ChatIntegrationTest",
+      "tests": "11",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "2.183"
+    },
+    {
+      "name": "vn.sunicoffee.ShippingIntegrationTest",
+      "tests": "15",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "3.368"
+    },
+    {
+      "name": "vn.sunicoffee.ShopIntegrationTest",
+      "tests": "21",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "4.378"
+    }
+  ],
+  "frozen_evaluation": "Not executed against live Gemini; unit/integration tests are not a benchmark score."
+}

@@ -20,7 +20,7 @@
     <dependency><groupId>org.springframework.security</groupId><artifactId>spring-security-test</artifactId><scope>test</scope></dependency>
   </dependencies>
   <build>
-    <resources><resource><directory>src/main/resources</directory></resource><resource><directory>data</directory><targetPath>seed</targetPath><includes><include>products-demo.json</include></includes></resource></resources>
+    <resources><resource><directory>src/main/resources</directory></resource><resource><directory>data</directory><targetPath>seed</targetPath><includes><include>products-demo.json</include></includes></resource><resource><directory>data/knowledge</directory><targetPath>knowledge</targetPath><includes><include>knowledge.v1.json</include><include>sources.v1.json</include></includes></resource></resources>
     <plugins><plugin><groupId>org.springframework.boot</groupId><artifactId>spring-boot-maven-plugin</artifactId></plugin></plugins>
   </build>
 </project>

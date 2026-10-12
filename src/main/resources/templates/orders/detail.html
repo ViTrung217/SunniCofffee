@@ -2,7 +2,7 @@
 <html lang="vi" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments/layout :: head('Chi tiết đơn hàng')}"></head>
 <body><header th:replace="~{fragments/layout :: header}"></header>
-<main class="container">
+<main id="main-content" class="container">
 <div th:replace="~{fragments/layout :: notices}"></div>
 <a class="back" th:href="${admin} ? @{/admin/orders} : @{/orders}">← Danh sách đơn</a>
 <div class="section-heading"><h1 th:text="'Đơn hàng SUNI-' + ${order.id}"></h1><span class="badge" th:text="${order.status.label}"></span></div>

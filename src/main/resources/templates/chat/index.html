@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Trợ lý AI · SuniCoffee</title><link rel="stylesheet" th:href="@{/css/style.css}"><link rel="stylesheet" th:href="@{/css/storefront.css}"><script defer th:src="@{/js/storefront.js}"></script><link rel="stylesheet" th:href="@{/css/chat.css}"><script defer th:src="@{/js/chat.js}"></script></head>
+<body><header th:replace="~{fragments/layout :: header}"></header>
+<main id="main-content" class="container chat-page">
+  <div th:replace="~{fragments/layout :: notices}"></div>
+  <div class="chat-intro"><p class="eyebrow">MỘT NGƯỜI BẠN TRÊN HÀNH TRÌNH</p><h1>Cùng bạn pha một tách ngon.</h1><p>Hỏi về dụng cụ, cách pha hoặc đơn hàng của bạn. Những câu trả lời có căn cứ để bạn dễ kiểm tra.</p></div>
+  <div class="chat-grid">
+    <aside class="chat-aside"><h2>Bắt đầu từ đâu?</h2><div class="chat-suggestions">
+      <button type="button" data-question="Picopresso có tự đun nước không?">Dụng cụ khi đi xa ↗</button>
+      <button type="button" data-question="Hướng dẫn pha French press theo Blue Bottle.">Một công thức dễ thử ↗</button>
+      <button type="button" data-question="Tôi muốn tra cứu đơn của mình.">Đơn hàng của tôi ↗</button>
+    </div><p sec:authorize="isAnonymous()"><a th:href="@{/login}">Đăng nhập</a> để tra cứu đơn của chính bạn.</p>
+    <p>Thông số hãng là tài liệu tham khảo; chưa xác nhận cửa hàng có bán các mẫu này.</p>
+    <p class="chat-privacy">Câu hỏi kiến thức được gửi tới Google Gemini khi AI bật. Không nhập mật khẩu hay thông tin cá nhân. Tra cứu đơn được xử lý tại cửa hàng.</p></aside>
+    <section class="chat-panel" aria-label="Trò chuyện với SuniCoffee">
+      <div class="chat-panel-header"><div><strong>SuniCoffee Assistant</strong><span th:text="${aiReady} ? 'AI sẵn sàng hỗ trợ' : 'AI chưa được cấu hình'"></span></div><button id="chat-clear" class="secondary small" type="button">Xóa trò chuyện</button></div>
+      <p th:unless="${aiReady}" class="notice">Phần AI đang chờ cấu hình. Bạn vẫn có thể hỏi giá/tồn theo SKU hoặc tra cứu mã đơn SUNI sau đăng nhập.</p>
+      <div id="chat-messages" class="chat-messages" role="log" aria-live="polite" aria-relevant="additions text"><article class="chat-message assistant"><strong>SuniCoffee</strong><p>Chào bạn! Mình có thể giúp bạn tìm hiểu cà phê, dụng cụ và cách pha. Bạn đang muốn tìm hiểu điều gì?</p></article></div>
+      <p id="chat-status" class="chat-status" role="status"></p>
+      <form id="chat-form" class="chat-form" th:action="@{/chat/messages}" method="post">
+        <label for="chat-input">Tin nhắn của bạn</label><textarea id="chat-input" name="message" rows="3" maxlength="1500" placeholder="Ví dụ: AeroPress Original dùng giấy lọc cỡ nào?" required></textarea>
+        <div class="chat-form-bottom"><small>Mỗi câu nên nêu đủ tên dụng cụ hoặc mã đơn.</small><button id="chat-send" type="submit">Gửi tin nhắn →</button></div>
+      </form><noscript><p class="notice">Vui lòng bật JavaScript để sử dụng khung chat.</p></noscript>
+    </section>
+  </div>
+</main><footer th:replace="~{fragments/layout :: footer}"></footer></body></html>

@@ -17,8 +17,9 @@ public class StoreController {
     public StoreController(ProductRepository p,CategoryRepository c,CatalogService s) { products=p; categories=c; catalog=s; }
     @GetMapping({"/", "/products"})
     String index(@RequestParam(defaultValue="") String q,@RequestParam(required=false) Long category,
-                 @RequestParam(defaultValue="0") int page,Model model) {
+                 @RequestParam(defaultValue="0") int page,Model model,jakarta.servlet.http.HttpServletRequest request) {
         String search=q.strip(); if(search.length()>100) search=search.substring(0,100);
+        model.addAttribute("home",request.getRequestURI().equals(request.getContextPath() + "/") && search.isEmpty() && category==null && page==0);
         model.addAttribute("products",products.search(search,category,false,PageRequest.of(Math.max(0,page),12,Sort.by("id"))));
         model.addAttribute("categories",categories.findAllByOrderByNameAsc()); model.addAttribute("q",search); model.addAttribute("selectedCategory",category);
         return "store/catalog";

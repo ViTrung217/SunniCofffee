@@ -1,0 +1,80 @@
+{
+  "method": "built-in image_gen",
+  "date": "2026-10-08",
+  "synthetic_demo": true,
+  "items": [
+    {
+      "sku": "DEMO-CF-001",
+      "source": "/Users/vitrung/.codex/generated_images/01a10eeb-bb48-7062-8557-a27ea9f5affa/exec-fb1978f8-750d-45c5-9902-f355582be28b.png",
+      "file": "demo-cf-001.png",
+      "prompt": "Use case: product-mockup. Create ONE square photorealistic ecommerce product photograph for a SuniCoffee synthetic demo catalogue. Match a premium minimal cream-background studio collection: seamless warm light cream backdrop and surface, soft large daylight source upper left, subtle realistic grounded shadow towards right, restrained forest green / cream / terracotta palette, accurate tactile materials, sharp main subject. Product centered, fully visible, occupies about 65-72% image height with generous consistent margins. Camera front three-quarter view, natural 70mm lens perspective. No scene props unless expressly listed, no border, no caption, no watermark, no pricing, no certifications, no real-world third-party logos. Product design is fictional. Subject: A matte forest-green resealable stand-up coffee pouch, cream label with simple terracotta sun icon. Exact label text SUNI COFFEE, WHOLE BEAN, A, 250 g. Compact pouch."
+    },
+    {
+      "sku": "DEMO-CF-002",
+      "source": "/Users/vitrung/.codex/generated_images/01a10eeb-bb48-7062-8557-a27ea9f5affa/exec-0984a75a-d3e2-4b53-ba77-7c1a019a28ad.png",
+      "file": "demo-cf-002.png",
+      "prompt": "Use case: product-mockup. Create ONE square photorealistic ecommerce product photograph for a SuniCoffee synthetic demo catalogue. Match a premium minimal cream-background studio collection: seamless warm light cream backdrop and surface, soft large daylight source upper left, subtle realistic grounded shadow towards right, restrained forest green / cream / terracotta palette, accurate tactile materials, sharp main subject. Product centered, fully visible, occupies about 65-72% image height with generous consistent margins. Camera front three-quarter view, natural 70mm lens perspective. No scene props unless expressly listed, no border, no caption, no watermark, no pricing, no certifications, no real-world third-party logos. Product design is fictional. Subject: A broad tall matte forest-green resealable stand-up coffee pouch, cream label with simple terracotta sun icon. Exact label text SUNI COFFEE, WHOLE BEAN, A, 500 g. Larger family size pouch."
+    },
+    {
+      "sku": "DEMO-CF-003",
+      "source": "/Users/vitrung/.codex/generated_images/01a10eeb-bb48-7062-8557-a27ea9f5affa/exec-62de4161-d001-4c0d-97d8-a3818dd7973f.png",
+      "file": "demo-cf-003.png",
+      "prompt": "Use case: product-mockup. Create ONE square photorealistic ecommerce product photograph for a SuniCoffee synthetic demo catalogue. Match a premium minimal cream-background studio collection: seamless warm light cream backdrop and surface, soft large daylight source upper left, subtle realistic grounded shadow towards right, restrained forest green / cream / terracotta palette, accurate tactile materials, sharp main subject. Product centered, fully visible, occupies about 65-72% image height with generous consistent margins. Camera front three-quarter view, natural 70mm lens perspective. No scene props unless expressly listed, no border, no caption, no watermark, no pricing, no certifications, no real-world third-party logos. Product design is fictional. Subject: A matte forest-green resealable stand-up coffee pouch, cream label with small terracotta sun icon and terracotta narrow accent stripe. Exact label text SUNI COFFEE, GROUND COFFEE, B, 250 g."
+    },
+    {
+      "sku": "DEMO-MC-001",
+      "source": "/Users/vitrung/.codex/generated_images/01a10eeb-bb48-7062-8557-a27ea9f5affa/exec-0a54ab55-0367-46e2-afc4-3f654b61a056.png",
+      "file": "demo-mc-001.png",
+      "prompt": "Use case: product-mockup. Create ONE square photorealistic ecommerce product photograph for a SuniCoffee synthetic demo catalogue. Match a premium minimal cream-background studio collection: seamless warm light cream backdrop and surface, soft large daylight source upper left, subtle realistic grounded shadow towards right, restrained forest green / cream / terracotta palette, accurate tactile materials, sharp main subject. Product centered, fully visible, occupies about 65-72% image height with generous consistent margins. Camera front three-quarter view, natural 70mm lens perspective. No scene props unless expressly listed, no border, no caption, no watermark, no pricing, no certifications, no real-world third-party logos. Product design is fictional. Subject: One fictional compact handheld manual coffee brewer, short matte forest-green cylindrical body, integrated black base cup, small side manual pump button, brushed metal upper rim. Upright assembled product, plausible minimalist design, no brand or text."
+    },
+    {
+      "sku": "DEMO-MC-002",
+      "source": "/Users/vitrung/.codex/generated_images/01a10eeb-bb48-7062-8557-a27ea9f5affa/exec-7b3dc19b-1caf-4301-a8df-9c38b73d7767.png",
+      "file": "demo-mc-002.png",
+      "prompt": "Use case: product-mockup. Create ONE square photorealistic ecommerce product photograph for a SuniCoffee synthetic demo catalogue. Match a premium minimal cream-background studio collection: seamless warm light cream backdrop and surface, soft large daylight source upper left, subtle realistic grounded shadow towards right, restrained forest green / cream / terracotta palette, accurate tactile materials, sharp main subject. Product centered, fully visible, occupies about 65-72% image height with generous consistent margins. Camera front three-quarter view, natural 70mm lens perspective. No scene props unless expressly listed, no border, no caption, no watermark, no pricing, no certifications, no real-world third-party logos. Product design is fictional. Subject: One fictional compact countertop espresso machine, forest-green metal housing, brushed stainless steel front panel, one grouphead and attached portafilter with black handle, small steam wand on right, slotted drip tray. No cup, no brand, no labels or text. Entire machine visible."
+    },
+    {
+      "sku": "DEMO-MC-003",
+      "source": "/Users/vitrung/.codex/generated_images/01a10eeb-bb48-7062-8557-a27ea9f5affa/exec-3e64d7fb-00e0-4921-9947-7011341d6c62.png",
+      "file": "demo-mc-003.png",
+      "prompt": "Use case: product-mockup. Create ONE square photorealistic ecommerce product photograph for a SuniCoffee synthetic demo catalogue. Match a premium minimal cream-background studio collection: seamless warm light cream backdrop and surface, soft large daylight source upper left, subtle realistic grounded shadow towards right, restrained forest green / cream / terracotta palette, accurate tactile materials, sharp main subject. Product centered, fully visible, occupies about 65-72% image height with generous consistent margins. Camera front three-quarter view, natural 70mm lens perspective. No scene props unless expressly listed, no border, no caption, no watermark, no pricing, no certifications, no real-world third-party logos. Product design is fictional. Subject: One fictional slim portable coffee brewer with rounded tall satin ivory cylindrical body, forest-green textured grip band and removable translucent dark base cup, small circular front button. Upright, clearly distinct from a squat green handheld brewer. No brand or text."
+    },
+    {
+      "sku": "DEMO-BR-001",
+      "source": "/Users/vitrung/.codex/generated_images/01a10eeb-bb48-7062-8557-a27ea9f5affa/exec-1b76433e-7c4d-4c70-ab09-32d631abcfa0.png",
+      "file": "demo-br-001.png",
+      "prompt": "Use case: product-mockup. Create ONE square photorealistic ecommerce product photograph for a SuniCoffee synthetic demo catalogue. Match a premium minimal cream-background studio collection: seamless warm light cream backdrop and surface, soft large daylight source upper left, subtle realistic grounded shadow towards right, restrained forest green / cream / terracotta palette, accurate tactile materials, sharp main subject. Product centered, fully visible, occupies about 65-72% image height with generous consistent margins. Camera front three-quarter view, natural 70mm lens perspective. No scene props unless expressly listed, no border, no caption, no watermark, no pricing, no certifications, no real-world third-party logos. Product design is fictional. Subject: One traditional Vietnamese stainless steel coffee phin filter, assembled cylindrical perforated brewing chamber resting on broad round saucer base, lid with small knob seated on top, small side handles. Brushed metal with realistic reflections. No mug, no brand, no text.",
+      "correction": "Edit this product image only: replace ALL the perforated holes on the vertical cylindrical side wall with continuous solid brushed stainless steel. A Vietnamese coffee phin has solid watertight side walls; filter holes are only in the bottom underside, hidden in this camera view. Preserve everything else exactly: lid, knob, handles, saucer base, composition, cream background, lighting, shadow, realistic metallic texture. No text."
+    },
+    {
+      "sku": "DEMO-BR-002",
+      "source": "/Users/vitrung/.codex/generated_images/01a10eeb-bb48-7062-8557-a27ea9f5affa/exec-ed88e70b-ec11-4a2b-a893-f172725a994b.png",
+      "file": "demo-br-002.png",
+      "prompt": "Use case: product-mockup. Create ONE square photorealistic ecommerce product photograph for a SuniCoffee synthetic demo catalogue. Match a premium minimal cream-background studio collection: seamless warm light cream backdrop and surface, soft large daylight source upper left, subtle realistic grounded shadow towards right, restrained forest green / cream / terracotta palette, accurate tactile materials, sharp main subject. Product centered, fully visible, occupies about 65-72% image height with generous consistent margins. Camera front three-quarter view, natural 70mm lens perspective. No scene props unless expressly listed, no border, no caption, no watermark, no pricing, no certifications, no real-world third-party logos. Product design is fictional. Subject: One ivory glazed ceramic pour-over coffee dripper, conical funnel with spiral interior ribs, circular flat support base and small loop handle. Three-quarter elevated view shows hollow interior and single bottom outlet. No server, no paper, no text."
+    },
+    {
+      "sku": "DEMO-BR-003",
+      "source": "/Users/vitrung/.codex/generated_images/01a10eeb-bb48-7062-8557-a27ea9f5affa/exec-f2f006a6-7210-434d-9c42-ad7626c1ae3f.png",
+      "file": "demo-br-003.png",
+      "prompt": "Use case: product-mockup. Create ONE square photorealistic ecommerce product photograph for a SuniCoffee synthetic demo catalogue. Match a premium minimal cream-background studio collection: seamless warm light cream backdrop and surface, soft large daylight source upper left, subtle realistic grounded shadow towards right, restrained forest green / cream / terracotta palette, accurate tactile materials, sharp main subject. Product centered, fully visible, occupies about 65-72% image height with generous consistent margins. Camera front three-quarter view, natural 70mm lens perspective. No scene props unless expressly listed, no border, no caption, no watermark, no pricing, no certifications, no real-world third-party logos. Product design is fictional. Subject: One manual coffee grinder, cylindrical brushed stainless steel body with forest-green textured grip, crank arm on top with walnut wood knob, closed grounds container below. Entire crank visible, physically plausible compact design. No beans, no text."
+    },
+    {
+      "sku": "DEMO-OD-001",
+      "source": "/Users/vitrung/.codex/generated_images/01a10eeb-bb48-7062-8557-a27ea9f5affa/exec-4b9b4184-385d-4d98-bc1f-e020c1951a0c.png",
+      "file": "demo-od-001.png",
+      "prompt": "Use case: product-mockup. Create ONE square photorealistic ecommerce product photograph for a SuniCoffee synthetic demo catalogue. Match a premium minimal cream-background studio collection: seamless warm light cream backdrop and surface, soft large daylight source upper left, subtle realistic grounded shadow towards right, restrained forest green / cream / terracotta palette, accurate tactile materials, sharp main subject. Product centered, fully visible, occupies about 65-72% image height with generous consistent margins. Camera front three-quarter view, natural 70mm lens perspective. No scene props unless expressly listed, no border, no caption, no watermark, no pricing, no certifications, no real-world third-party logos. Product design is fictional. Subject: One cream enamel camping coffee mug, dark forest-green rolled rim and handle, small simple terracotta sun symbol centered on front. Empty mug, slight three-quarter top view. No text, no steam, no other objects."
+    },
+    {
+      "sku": "DEMO-OD-002",
+      "source": "/Users/vitrung/.codex/generated_images/01a10eeb-bb48-7062-8557-a27ea9f5affa/exec-f6bb86f1-9cf5-4ae5-97a9-3c4d9e141370.png",
+      "file": "demo-od-002.png",
+      "prompt": "Use case: product-mockup. Create ONE square photorealistic ecommerce product photograph for a SuniCoffee synthetic demo catalogue. Match a premium minimal cream-background studio collection: seamless warm light cream backdrop and surface, soft large daylight source upper left, subtle realistic grounded shadow towards right, restrained forest green / cream / terracotta palette, accurate tactile materials, sharp main subject. Product centered, fully visible, occupies about 65-72% image height with generous consistent margins. Camera front three-quarter view, natural 70mm lens perspective. No scene props unless expressly listed, no border, no caption, no watermark, no pricing, no certifications, no real-world third-party logos. Product design is fictional. Subject: One compact forest-green canvas coffee gear carry bag, rectangular padded shape, tan leather short carry handle, beige sturdy zipper, small cream patch with simple terracotta sun symbol. Closed bag, three-quarter view, realistic seams. No text, no contents."
+    },
+    {
+      "sku": "DEMO-OD-003",
+      "source": "/Users/vitrung/.codex/generated_images/01a10eeb-bb48-7062-8557-a27ea9f5affa/exec-fdf73fc3-c42b-4387-8958-f1615415ce0b.png",
+      "file": "demo-od-003.png",
+      "prompt": "Use case: product-mockup. Create ONE square photorealistic ecommerce product photograph for a SuniCoffee synthetic demo catalogue. Match a premium minimal cream-background studio collection: seamless warm light cream backdrop and surface, soft large daylight source upper left, subtle realistic grounded shadow towards right, restrained forest green / cream / terracotta palette, accurate tactile materials, sharp main subject. Product centered, fully visible, occupies about 65-72% image height with generous consistent margins. Camera front three-quarter view, natural 70mm lens perspective. No scene props unless expressly listed, no border, no caption, no watermark, no pricing, no certifications, no real-world third-party logos. Product design is fictional. Subject: One fictional coordinated outdoor coffee accessory set arranged compactly: a small forest-green canvas zip pouch behind, one cream enamel mug with green rim at front left, one folded stainless steel collapsible pour-over stand at front right, and one small wooden measuring scoop laid neatly in front. Exactly these four items, no additional equipment, no text."
+    }
+  ]
+}

@@ -3,23 +3,155 @@
   "currency": "VND",
   "notice": "Toàn bộ tên sản phẩm, giá, tồn kho và mô tả là dữ liệu mô phỏng, không phản ánh danh mục thực tế của SuniCoffee.",
   "categories": [
-    {"code": "COFFEE", "name": "Cà phê"},
-    {"code": "MACHINE", "name": "Máy pha cà phê"},
-    {"code": "BREWING", "name": "Dụng cụ pha chế"},
-    {"code": "OUTDOOR", "name": "Phụ kiện cà phê phượt"}
+    {
+      "code": "COFFEE",
+      "name": "Cà phê"
+    },
+    {
+      "code": "MACHINE",
+      "name": "Máy pha cà phê"
+    },
+    {
+      "code": "BREWING",
+      "name": "Dụng cụ pha chế"
+    },
+    {
+      "code": "OUTDOOR",
+      "name": "Phụ kiện cà phê phượt"
+    }
   ],
   "products": [
-    {"sku": "DEMO-CF-001", "name": "Cà phê hạt mẫu A 250 g", "category_code": "COFFEE", "price_vnd": 95000, "opening_stock": 30, "sales_unit": "túi", "description": "Mặt hàng mô phỏng để quản lý cà phê đóng gói.", "image_url": null, "source_url": null},
-    {"sku": "DEMO-CF-002", "name": "Cà phê hạt mẫu A 500 g", "category_code": "COFFEE", "price_vnd": 180000, "opening_stock": 20, "sales_unit": "túi", "description": "Quy cách khác của dòng cà phê mẫu A để thảo luận thiết kế biến thể.", "image_url": null, "source_url": null},
-    {"sku": "DEMO-CF-003", "name": "Cà phê xay mẫu B 250 g", "category_code": "COFFEE", "price_vnd": 75000, "opening_stock": 25, "sales_unit": "túi", "description": "Mặt hàng cà phê xay giả lập.", "image_url": null, "source_url": null},
-    {"sku": "DEMO-MC-001", "name": "Máy pha cầm tay mẫu A", "category_code": "MACHINE", "price_vnd": 650000, "opening_stock": 8, "sales_unit": "chiếc", "description": "Mẫu dữ liệu máy pha; chưa có thông số kỹ thuật xác minh.", "image_url": null, "source_url": null},
-    {"sku": "DEMO-MC-002", "name": "Máy pha để bàn mẫu B", "category_code": "MACHINE", "price_vnd": 2500000, "opening_stock": 4, "sales_unit": "chiếc", "description": "Mẫu dữ liệu máy pha có giá bán cao hơn để thử lọc giá.", "image_url": null, "source_url": null},
-    {"sku": "DEMO-MC-003", "name": "Máy pha cầm tay mẫu C", "category_code": "MACHINE", "price_vnd": 890000, "opening_stock": 0, "sales_unit": "chiếc", "description": "Mặt hàng giả lập hết hàng để kiểm tra hiển thị và đặt hàng.", "image_url": null, "source_url": null},
-    {"sku": "DEMO-BR-001", "name": "Phin cà phê mẫu A", "category_code": "BREWING", "price_vnd": 55000, "opening_stock": 40, "sales_unit": "chiếc", "description": "Dụng cụ pha chế giả lập.", "image_url": null, "source_url": null},
-    {"sku": "DEMO-BR-002", "name": "Phễu lọc cà phê mẫu B", "category_code": "BREWING", "price_vnd": 120000, "opening_stock": 18, "sales_unit": "chiếc", "description": "Dụng cụ giả lập để thử tìm kiếm và phân loại sản phẩm.", "image_url": null, "source_url": null},
-    {"sku": "DEMO-BR-003", "name": "Cối xay tay mẫu C", "category_code": "BREWING", "price_vnd": 320000, "opening_stock": 12, "sales_unit": "chiếc", "description": "Mẫu dữ liệu dụng cụ xay; chưa có thông số kỹ thuật xác minh.", "image_url": null, "source_url": null},
-    {"sku": "DEMO-OD-001", "name": "Cốc dã ngoại mẫu A", "category_code": "OUTDOOR", "price_vnd": 85000, "opening_stock": 22, "sales_unit": "chiếc", "description": "Phụ kiện giả lập cho danh mục cà phê phượt.", "image_url": null, "source_url": null},
-    {"sku": "DEMO-OD-002", "name": "Túi đựng dụng cụ mẫu B", "category_code": "OUTDOOR", "price_vnd": 150000, "opening_stock": 15, "sales_unit": "chiếc", "description": "Mẫu phụ kiện đựng dụng cụ.", "image_url": null, "source_url": null},
-    {"sku": "DEMO-OD-003", "name": "Bộ phụ kiện dã ngoại mẫu C", "category_code": "OUTDOOR", "price_vnd": 280000, "opening_stock": 1, "sales_unit": "bộ", "description": "Mặt hàng giả lập chỉ còn một đơn vị để thử giới hạn số lượng mua.", "image_url": null, "source_url": null}
+    {
+      "sku": "DEMO-CF-001",
+      "name": "Cà phê hạt mẫu A 250 g",
+      "category_code": "COFFEE",
+      "price_vnd": 95000,
+      "opening_stock": 30,
+      "sales_unit": "túi",
+      "description": "Mặt hàng mô phỏng để quản lý cà phê đóng gói.",
+      "image_url": "/images/products/demo-cf-001.png",
+      "source_url": null
+    },
+    {
+      "sku": "DEMO-CF-002",
+      "name": "Cà phê hạt mẫu A 500 g",
+      "category_code": "COFFEE",
+      "price_vnd": 180000,
+      "opening_stock": 20,
+      "sales_unit": "túi",
+      "description": "Quy cách khác của dòng cà phê mẫu A để thảo luận thiết kế biến thể.",
+      "image_url": "/images/products/demo-cf-002.png",
+      "source_url": null
+    },
+    {
+      "sku": "DEMO-CF-003",
+      "name": "Cà phê xay mẫu B 250 g",
+      "category_code": "COFFEE",
+      "price_vnd": 75000,
+      "opening_stock": 25,
+      "sales_unit": "túi",
+      "description": "Mặt hàng cà phê xay giả lập.",
+      "image_url": "/images/products/demo-cf-003.png",
+      "source_url": null
+    },
+    {
+      "sku": "DEMO-MC-001",
+      "name": "Máy pha cầm tay mẫu A",
+      "category_code": "MACHINE",
+      "price_vnd": 650000,
+      "opening_stock": 8,
+      "sales_unit": "chiếc",
+      "description": "Mẫu dữ liệu máy pha; chưa có thông số kỹ thuật xác minh.",
+      "image_url": "/images/products/demo-mc-001.png",
+      "source_url": null
+    },
+    {
+      "sku": "DEMO-MC-002",
+      "name": "Máy pha để bàn mẫu B",
+      "category_code": "MACHINE",
+      "price_vnd": 2500000,
+      "opening_stock": 4,
+      "sales_unit": "chiếc",
+      "description": "Mẫu dữ liệu máy pha có giá bán cao hơn để thử lọc giá.",
+      "image_url": "/images/products/demo-mc-002.png",
+      "source_url": null
+    },
+    {
+      "sku": "DEMO-MC-003",
+      "name": "Máy pha cầm tay mẫu C",
+      "category_code": "MACHINE",
+      "price_vnd": 890000,
+      "opening_stock": 0,
+      "sales_unit": "chiếc",
+      "description": "Mặt hàng giả lập hết hàng để kiểm tra hiển thị và đặt hàng.",
+      "image_url": "/images/products/demo-mc-003.png",
+      "source_url": null
+    },
+    {
+      "sku": "DEMO-BR-001",
+      "name": "Phin cà phê mẫu A",
+      "category_code": "BREWING",
+      "price_vnd": 55000,
+      "opening_stock": 40,
+      "sales_unit": "chiếc",
+      "description": "Dụng cụ pha chế giả lập.",
+      "image_url": "/images/products/demo-br-001.png",
+      "source_url": null
+    },
+    {
+      "sku": "DEMO-BR-002",
+      "name": "Phễu lọc cà phê mẫu B",
+      "category_code": "BREWING",
+      "price_vnd": 120000,
+      "opening_stock": 18,
+      "sales_unit": "chiếc",
+      "description": "Dụng cụ giả lập để thử tìm kiếm và phân loại sản phẩm.",
+      "image_url": "/images/products/demo-br-002.png",
+      "source_url": null
+    },
+    {
+      "sku": "DEMO-BR-003",
+      "name": "Cối xay tay mẫu C",
+      "category_code": "BREWING",
+      "price_vnd": 320000,
+      "opening_stock": 12,
+      "sales_unit": "chiếc",
+      "description": "Mẫu dữ liệu dụng cụ xay; chưa có thông số kỹ thuật xác minh.",
+      "image_url": "/images/products/demo-br-003.png",
+      "source_url": null
+    },
+    {
+      "sku": "DEMO-OD-001",
+      "name": "Cốc dã ngoại mẫu A",
+      "category_code": "OUTDOOR",
+      "price_vnd": 85000,
+      "opening_stock": 22,
+      "sales_unit": "chiếc",
+      "description": "Phụ kiện giả lập cho danh mục cà phê phượt.",
+      "image_url": "/images/products/demo-od-001.png",
+      "source_url": null
+    },
+    {
+      "sku": "DEMO-OD-002",
+      "name": "Túi đựng dụng cụ mẫu B",
+      "category_code": "OUTDOOR",
+      "price_vnd": 150000,
+      "opening_stock": 15,
+      "sales_unit": "chiếc",
+      "description": "Mẫu phụ kiện đựng dụng cụ.",
+      "image_url": "/images/products/demo-od-002.png",
+      "source_url": null
+    },
+    {
+      "sku": "DEMO-OD-003",
+      "name": "Bộ phụ kiện dã ngoại mẫu C",
+      "category_code": "OUTDOOR",
+      "price_vnd": 280000,
+      "opening_stock": 1,
+      "sales_unit": "bộ",
+      "description": "Mặt hàng giả lập chỉ còn một đơn vị để thử giới hạn số lượng mua.",
+      "image_url": "/images/products/demo-od-003.png",
+      "source_url": null
+    }
   ]
 }
