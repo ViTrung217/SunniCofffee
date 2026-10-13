@@ -19,9 +19,12 @@ public class SecurityConfig {
     }
     @Bean SecurityFilterChain securityFilterChain(HttpSecurity http,UserRepository users,@org.springframework.beans.factory.annotation.Value("${app.security.login-attempts-per-minute:20}") int loginLimit) throws Exception {
         return http.authorizeHttpRequests(auth -> auth
+                .requestMatchers("/actuator/health", "/actuator/health/liveness", "/actuator/health/readiness").permitAll()
+                .requestMatchers("/actuator/**").denyAll()
                 .requestMatchers("/chat", "/chat/messages", "/chat/sources/**", "/", "/products/**", "/api/products/**", "/css/**", "/js/**", "/images/**", "/product-images/**", "/login", "/register", "/error").permitAll()
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated())
+            .headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()))
             .formLogin(form -> form.loginPage("/login").usernameParameter("email").defaultSuccessUrl("/",false).permitAll())
             .logout(logout -> logout.logoutSuccessUrl("/?logout"))
             .addFilterBefore(new LoginThrottleFilter(loginLimit),org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter.class)

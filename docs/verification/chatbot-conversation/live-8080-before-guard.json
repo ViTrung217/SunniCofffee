@@ -1,0 +1,125 @@
+{
+  "date": "2026-10-13",
+  "target": "http://127.0.0.1:8080",
+  "scope": "After first restart, before deterministic demo-machine guard. All seven HTTP calls returned; review found unsupported Arabica compatibility and incorrect grouping of a handheld machine as desktop. These observations motivated the final guard.",
+  "results": [
+    {
+      "conversation": "beginner",
+      "question": "Nên mua gì cho người bắt đầu?",
+      "seconds": 1.62,
+      "reply": {
+        "status": "CLARIFY",
+        "answer": "Chào bạn, để tư vấn chính xác sản phẩm phù hợp, bạn vui lòng cho SuniCoffee biết thêm về cách pha chế dự kiến, số người sử dụng và ngân sách dự kiến của bạn nhé.",
+        "sources": []
+      }
+    },
+    {
+      "conversation": "beginner",
+      "question": "pha máy, 2 người, 2 triệu",
+      "seconds": 1.44,
+      "reply": {
+        "status": "ANSWER",
+        "answer": "Danh mục tư vấn là dữ liệu minh họa, không phải sản phẩm/giá/tồn thực tế.\n\nVới nhu cầu pha máy cho 2 người trong ngân sách 2 triệu, hiện tại SuniCoffee có Máy pha cầm tay mẫu A (650.000 VND) còn hàng để bạn tham khảo. Các dòng máy để bàn hiện có đều vượt ngân sách của bạn (2,5 triệu) hoặc đã hết hàng. Bạn có thể cân nhắc mẫu máy cầm tay này cho nhu cầu bắt đầu của mình.",
+        "sources": [
+          {
+            "id": "STORE4",
+            "title": "Máy pha cầm tay mẫu A",
+            "url": "/products/4"
+          },
+          {
+            "id": "STORE5",
+            "title": "Máy pha để bàn mẫu B",
+            "url": "/products/5"
+          },
+          {
+            "id": "STORE6",
+            "title": "Máy pha cầm tay mẫu C",
+            "url": "/products/6"
+          }
+        ]
+      }
+    },
+    {
+      "conversation": "beginner",
+      "question": "arabica",
+      "seconds": 1.38,
+      "reply": {
+        "status": "ANSWER",
+        "answer": "Danh mục tư vấn là dữ liệu minh họa, không phải sản phẩm/giá/tồn thực tế.\n\nVới nhu cầu pha máy cho 2 người, ngân sách 2 triệu đồng và sử dụng hạt Arabica, bạn có thể cân nhắc Máy pha cầm tay mẫu A (650.000 VND, còn hàng). Lưu ý các dòng máy để bàn hiện tại đều vượt ngân sách hoặc đã hết hàng. Bạn có thể sử dụng hạt Arabica với máy này, tuy nhiên máy cầm tay có cơ chế chiết xuất khác biệt so với máy điện chuyên nghiệp.",
+        "sources": [
+          {
+            "id": "STORE4",
+            "title": "Máy pha cầm tay mẫu A",
+            "url": "/products/4"
+          },
+          {
+            "id": "STORE5",
+            "title": "Máy pha để bàn mẫu B",
+            "url": "/products/5"
+          },
+          {
+            "id": "STORE6",
+            "title": "Máy pha cầm tay mẫu C",
+            "url": "/products/6"
+          }
+        ]
+      }
+    },
+    {
+      "conversation": "beginner",
+      "question": "Giảm ngân sách xuống 1 triệu thôi",
+      "seconds": 1.6,
+      "reply": {
+        "status": "ANSWER",
+        "answer": "Danh mục tư vấn là dữ liệu minh họa, không phải sản phẩm/giá/tồn thực tế.\n\nVới nhu cầu pha máy cho 2 người, sử dụng hạt Arabica và ngân sách tối đa 1 triệu đồng, bạn có thể cân nhắc Máy pha cầm tay mẫu A (650.000 VND, còn hàng). Các dòng máy khác hoặc đã hết hàng, hoặc vượt quá ngân sách của bạn. Lưu ý máy cầm tay có cơ chế chiết xuất khác biệt so với máy điện chuyên nghiệp.",
+        "sources": [
+          {
+            "id": "STORE4",
+            "title": "Máy pha cầm tay mẫu A",
+            "url": "/products/4"
+          },
+          {
+            "id": "STORE6",
+            "title": "Máy pha cầm tay mẫu C",
+            "url": "/products/6"
+          },
+          {
+            "id": "STORE5",
+            "title": "Máy pha để bàn mẫu B",
+            "url": "/products/5"
+          }
+        ]
+      }
+    },
+    {
+      "conversation": "fresh",
+      "question": "arabica",
+      "seconds": 1.14,
+      "reply": {
+        "status": "CLARIFY",
+        "answer": "Chào bạn, với loại hạt Arabica bạn đã chọn, bạn muốn tìm hiểu sâu hơn về loại hạt này, cần hướng dẫn cách pha chế hay muốn mua cà phê hạt tại cửa hàng?",
+        "sources": []
+      }
+    },
+    {
+      "conversation": "beginner",
+      "question": "Tra cứu đơn SUNI-123",
+      "seconds": 0.01,
+      "reply": {
+        "status": "AUTH_REQUIRED",
+        "answer": "Vui lòng đăng nhập để xem đơn của chính bạn.",
+        "sources": []
+      }
+    },
+    {
+      "conversation": "beginner",
+      "question": "Viết về trận bóng đá tối qua",
+      "seconds": 1.56,
+      "reply": {
+        "status": "OUT_OF_SCOPE",
+        "answer": "Mình hỗ trợ sản phẩm cà phê, dụng cụ pha chế và nghiệp vụ cửa hàng. Bạn có thể hỏi trong các chủ đề này.",
+        "sources": []
+      }
+    }
+  ]
+}

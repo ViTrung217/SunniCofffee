@@ -6,6 +6,7 @@ import org.springframework.data.domain.*;
 import jakarta.persistence.LockModeType;
 import java.util.Optional;
 public interface ProductRepository extends JpaRepository<Product,Long> {
+    boolean existsByActiveTrueAndSkuStartingWithIgnoreCase(String prefix);
     @Query("select p from Product p where (:admin = true or p.active = true) and (:category is null or p.category.id = :category) and (lower(p.name) like lower(concat('%', :q, '%')) or lower(p.sku) like lower(concat('%', :q, '%')))")
     Page<Product> search(@Param("q") String q,@Param("category") Long category,@Param("admin") boolean admin,Pageable pageable);
     boolean existsBySkuAndIdNot(String sku,Long id);

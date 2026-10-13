@@ -1,0 +1,170 @@
+{
+  "date": "2026-10-13",
+  "target": "http://127.0.0.1:8086",
+  "database": "isolated in-memory demo; not user database",
+  "key_check": "Google HTTP 200; no credentials recorded",
+  "scope": "Three independent conversations. Not the frozen 30-question benchmark. Captured before the final 503 classification and complete-needs fallback patch.",
+  "results": [
+    {
+      "conversation": "round-1",
+      "question": "Nên mua gì cho người bắt đầu?",
+      "seconds": 2.97,
+      "reply": {
+        "status": "UNAVAILABLE",
+        "answer": "Trợ lý AI hiện chưa trả lời được. Vui lòng thử lại sau; bạn vẫn có thể xem cửa hàng và tra cứu đơn.",
+        "sources": []
+      }
+    },
+    {
+      "conversation": "round-1",
+      "question": "pha máy, 2 người, 2 triệu",
+      "seconds": 4.64,
+      "reply": {
+        "status": "INSUFFICIENT",
+        "answer": "Với ngân sách 2 triệu đồng cho 2 người pha máy, hiện tại tôi chưa có đủ dữ liệu xác nhận sản phẩm phù hợp trong danh mục của cửa hàng. Bạn vui lòng kiểm tra mục sản phẩm để xem các lựa chọn máy pha hiện có nhé.",
+        "sources": [
+          {
+            "id": "SRC14",
+            "title": "Phạm vi chatbot v1 được chốt trước triển khai",
+            "url": "/chat/sources/SRC14"
+          }
+        ]
+      }
+    },
+    {
+      "conversation": "round-1",
+      "question": "arabica",
+      "seconds": 2.62,
+      "reply": {
+        "status": "INSUFFICIENT",
+        "answer": "Với nhu cầu pha máy cho 2 người cùng ngân sách 2 triệu đồng và sử dụng hạt Arabica, hiện tại tôi vẫn chưa có đủ căn cứ từ danh mục sản phẩm của cửa hàng để xác nhận thiết bị phù hợp. Bạn có thể tham khảo thêm các sản phẩm tại danh mục của chúng tôi.",
+        "sources": [
+          {
+            "id": "SRC14",
+            "title": "Phạm vi chatbot v1 được chốt trước triển khai",
+            "url": "/chat/sources/SRC14"
+          }
+        ]
+      }
+    },
+    {
+      "conversation": "round-2",
+      "question": "Nên mua gì cho người bắt đầu?",
+      "seconds": 4.5,
+      "reply": {
+        "status": "CLARIFY",
+        "answer": "Để tư vấn dụng cụ hoặc cà phê phù hợp nhất, bạn vui lòng cho SuniCoffee biết thêm về cách pha chế dự định, số lượng người sử dụng và ngân sách dự kiến của bạn nhé.",
+        "sources": []
+      }
+    },
+    {
+      "conversation": "round-2",
+      "question": "pha máy, 2 người, 2 triệu",
+      "seconds": 5.07,
+      "reply": {
+        "status": "ANSWER",
+        "answer": "Danh mục tư vấn là dữ liệu minh họa, không phải sản phẩm/giá/tồn thực tế.\n\nVới ngân sách 2 triệu đồng và nhu cầu pha máy cho 2 người, hiện SuniCoffee có \"Máy pha cầm tay mẫu A\" (650.000 VND) đang còn hàng. Các dòng máy để bàn khác trong hệ thống hiện có giá vượt ngân sách của bạn (2.500.000 VND) hoặc đã hết hàng. Lưu ý đây là dữ liệu minh họa, chưa có thông số kỹ thuật chi tiết để khẳng định khả năng pha chế cụ thể.",
+        "sources": [
+          {
+            "id": "SRC14",
+            "title": "Phạm vi chatbot v1 được chốt trước triển khai",
+            "url": "/chat/sources/SRC14"
+          },
+          {
+            "id": "STORE4",
+            "title": "Máy pha cầm tay mẫu A",
+            "url": "/products/4"
+          },
+          {
+            "id": "STORE5",
+            "title": "Máy pha để bàn mẫu B",
+            "url": "/products/5"
+          },
+          {
+            "id": "STORE6",
+            "title": "Máy pha cầm tay mẫu C",
+            "url": "/products/6"
+          }
+        ]
+      }
+    },
+    {
+      "conversation": "round-2",
+      "question": "arabica",
+      "seconds": 4.57,
+      "reply": {
+        "status": "ANSWER",
+        "answer": "Danh mục tư vấn là dữ liệu minh họa, không phải sản phẩm/giá/tồn thực tế.\n\nVới nhu cầu pha máy cho 2 người trong ngân sách 2 triệu đồng sử dụng hạt Arabica, hiện SuniCoffee có \"Máy pha cầm tay mẫu A\" (650.000 VND) đang còn hàng. Lưu ý đây là dữ liệu minh họa, chưa có thông số kỹ thuật để khẳng định máy tương thích tốt nhất với hạt Arabica hoặc khả năng pha chế cụ thể.",
+        "sources": [
+          {
+            "id": "STORE4",
+            "title": "Máy pha cầm tay mẫu A",
+            "url": "/products/4"
+          }
+        ]
+      }
+    },
+    {
+      "conversation": "round-3",
+      "question": "Nên mua gì cho người bắt đầu?",
+      "seconds": 5.2,
+      "reply": {
+        "status": "CLARIFY",
+        "answer": "Chào bạn, để tư vấn chính xác sản phẩm phù hợp, bạn vui lòng chia sẻ thêm về cách pha chế dự kiến, số người dùng và ngân sách dự tính của bạn nhé.",
+        "sources": []
+      }
+    },
+    {
+      "conversation": "round-3",
+      "question": "pha máy, 2 người, 2 triệu",
+      "seconds": 3.81,
+      "reply": {
+        "status": "ANSWER",
+        "answer": "Danh mục tư vấn là dữ liệu minh họa, không phải sản phẩm/giá/tồn thực tế.\n\nVới ngân sách 2 triệu cho 2 người pha máy, hiện cửa hàng có Máy pha cầm tay mẫu A (SKU: DEMO-MC-001) với giá 650.000 VND và còn hàng, phù hợp để bạn tham khảo. Lưu ý các sản phẩm khác như Máy pha để bàn mẫu B vượt ngân sách hoặc Máy pha cầm tay mẫu C hiện đã hết hàng.",
+        "sources": [
+          {
+            "id": "STORE4",
+            "title": "Máy pha cầm tay mẫu A",
+            "url": "/products/4"
+          },
+          {
+            "id": "STORE5",
+            "title": "Máy pha để bàn mẫu B",
+            "url": "/products/5"
+          },
+          {
+            "id": "STORE6",
+            "title": "Máy pha cầm tay mẫu C",
+            "url": "/products/6"
+          }
+        ]
+      }
+    },
+    {
+      "conversation": "round-3",
+      "question": "arabica",
+      "seconds": 7.63,
+      "reply": {
+        "status": "ANSWER",
+        "answer": "Danh mục tư vấn là dữ liệu minh họa, không phải sản phẩm/giá/tồn thực tế.\n\nVới nhu cầu pha máy cho 2 người, ngân sách 2 triệu và loại hạt Arabica, bạn có thể cân nhắc Máy pha cầm tay mẫu A (SKU: DEMO-MC-001, giá 650.000 VND) hiện còn hàng tại cửa hàng. Các dòng máy khác như Máy pha để bàn mẫu B hiện vượt ngân sách, còn mẫu C đã hết hàng nên không thể lựa chọn.",
+        "sources": [
+          {
+            "id": "STORE4",
+            "title": "Máy pha cầm tay mẫu A",
+            "url": "/products/4"
+          },
+          {
+            "id": "STORE5",
+            "title": "Máy pha để bàn mẫu B",
+            "url": "/products/5"
+          },
+          {
+            "id": "STORE6",
+            "title": "Máy pha cầm tay mẫu C",
+            "url": "/products/6"
+          }
+        ]
+      }
+    }
+  ]
+}

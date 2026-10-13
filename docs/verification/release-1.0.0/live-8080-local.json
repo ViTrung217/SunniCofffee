@@ -1,0 +1,58 @@
+{
+  "profile": "local",
+  "port": 8080,
+  "readiness": "UP",
+  "public_catalog_unchanged": true,
+  "product_count": 12,
+  "widget_in_html": true,
+  "thesis_data_label": true,
+  "conversation": [
+    {
+      "question": "Nên mua gì cho người bắt đầu?",
+      "reply": {
+        "status": "CLARIFY",
+        "answer": "Để tư vấn dụng cụ phù hợp nhất, bạn vui lòng cho mình biết thêm về cách pha bạn dự định sử dụng, số người dùng và ngân sách dự kiến nhé.",
+        "sources": []
+      }
+    },
+    {
+      "question": "pha máy, 2 người, 2 triệu",
+      "reply": {
+        "status": "INSUFFICIENT",
+        "answer": "Bạn cần máy pha cho 2 người, ngân sách 2.000.000 VND.\nDữ liệu dưới đây là minh họa, không phải sản phẩm/giá/tồn thực tế.\n• Máy pha cầm tay mẫu A: 650.000 VND, còn hàng.\n• Máy pha để bàn mẫu B: 2.500.000 VND, vượt ngân sách 500.000 VND.\nChưa có thông số xác nhận máy đáp ứng nhu cầu pha cho 2 người. Máy cầm tay không mặc nhiên là máy điện để bàn; các mẫu trên chỉ để tham khảo, chưa đủ căn cứ chốt mua.",
+        "sources": [
+          {
+            "id": "STORE4",
+            "title": "Máy pha cầm tay mẫu A",
+            "url": "/products/4"
+          },
+          {
+            "id": "STORE5",
+            "title": "Máy pha để bàn mẫu B",
+            "url": "/products/5"
+          }
+        ]
+      }
+    },
+    {
+      "question": "arabica",
+      "reply": {
+        "status": "INSUFFICIENT",
+        "answer": "Bạn cần máy pha cho 2 người, ngân sách 2.000.000 VND, dùng hạt arabica.\nDữ liệu dưới đây là minh họa, không phải sản phẩm/giá/tồn thực tế.\n• Máy pha cầm tay mẫu A: 650.000 VND, còn hàng.\n• Máy pha để bàn mẫu B: 2.500.000 VND, vượt ngân sách 500.000 VND.\nChưa có thông số xác nhận máy đáp ứng nhu cầu pha cho 2 người với hạt arabica. Máy cầm tay không mặc nhiên là máy điện để bàn; các mẫu trên chỉ để tham khảo, chưa đủ căn cứ chốt mua.",
+        "sources": [
+          {
+            "id": "STORE4",
+            "title": "Máy pha cầm tay mẫu A",
+            "url": "/products/4"
+          },
+          {
+            "id": "STORE5",
+            "title": "Máy pha để bàn mẫu B",
+            "url": "/products/5"
+          }
+        ]
+      }
+    }
+  ],
+  "note": "Public synthetic-product conversation only; no private orders queried."
+}

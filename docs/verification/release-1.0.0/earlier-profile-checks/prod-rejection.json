@@ -1,0 +1,5 @@
+{
+  "case": "packaged JAR with prod and app.seed-demo=true",
+  "exit_nonzero": true,
+  "expected_guard_message_observed": true
+}

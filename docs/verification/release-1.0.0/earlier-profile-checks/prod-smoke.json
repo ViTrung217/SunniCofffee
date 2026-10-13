@@ -1,0 +1,60 @@
+{
+  "profile": "prod",
+  "database": "isolated MySQL 8.0.44, port 13327",
+  "app_port": 8087,
+  "transport": "HTTP to loopback with trusted proxy headers; no public TLS certificate/Nginx deployment claimed",
+  "checks": [
+    {
+      "check": "readiness includes DB and is UP",
+      "passed": true
+    },
+    {
+      "check": "empty catalog renders without demo banner",
+      "passed": true
+    },
+    {
+      "check": "floating chatbot appears",
+      "passed": true
+    },
+    {
+      "check": "CSRF token present",
+      "passed": true
+    },
+    {
+      "check": "cookie Secure HttpOnly SameSite",
+      "passed": true
+    },
+    {
+      "check": "trusted proxy activates HTTPS HSTS",
+      "passed": true
+    },
+    {
+      "check": "bootstrap admin can sign in",
+      "passed": true
+    },
+    {
+      "check": "authenticated admin reaches admin products",
+      "passed": true
+    },
+    {
+      "check": "actuator env forbidden even for admin",
+      "passed": true
+    },
+    {
+      "check": "full chat renders",
+      "passed": true
+    },
+    {
+      "check": "mutation without CSRF rejected",
+      "passed": true
+    },
+    {
+      "check": "logout with CSRF succeeds",
+      "passed": true
+    },
+    {
+      "check": "admin page requires login after logout",
+      "passed": true
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "date": "2026-10-13",
+  "target": "http://127.0.0.1:8080",
+  "version": "After final restart with demo machine guard",
+  "scope": "Seven live requests; knowledge/clarification use Gemini, complete demo machine advice uses current database directly. Not a load test or the frozen 30-question benchmark.",
+  "checks_passed": 7,
+  "results": [
+    {
+      "conversation": "beginner",
+      "question": "Nên mua gì cho người bắt đầu?",
+      "seconds": 3.95,
+      "reply": {
+        "status": "CLARIFY",
+        "answer": "Để tư vấn dụng cụ phù hợp cho người mới bắt đầu, bạn vui lòng cho SuniCoffee biết thêm về cách pha chế dự kiến, số người dùng và ngân sách dự kiến của bạn nhé.",
+        "sources": []
+      }
+    },
+    {
+      "conversation": "beginner",
+      "question": "pha máy, 2 người, 2 triệu",
+      "seconds": 0.02,
+      "reply": {
+        "status": "INSUFFICIENT",
+        "answer": "Bạn cần máy pha cho 2 người, ngân sách 2.000.000 VND.\nDữ liệu dưới đây là minh họa, không phải sản phẩm/giá/tồn thực tế.\n• Máy pha cầm tay mẫu A: 650.000 VND, còn hàng.\n• Máy pha để bàn mẫu B: 2.500.000 VND, vượt ngân sách 500.000 VND.\nChưa có thông số xác nhận máy đáp ứng nhu cầu pha cho 2 người. Máy cầm tay không mặc nhiên là máy điện để bàn; các mẫu trên chỉ để tham khảo, chưa đủ căn cứ chốt mua.",
+        "sources": [
+          {
+            "id": "STORE4",
+            "title": "Máy pha cầm tay mẫu A",
+            "url": "/products/4"
+          },
+          {
+            "id": "STORE5",
+            "title": "Máy pha để bàn mẫu B",
+            "url": "/products/5"
+          }
+        ]
+      }
+    },
+    {
+      "conversation": "beginner",
+      "question": "arabica",
+      "seconds": 0.02,
+      "reply": {
+        "status": "INSUFFICIENT",
+        "answer": "Bạn cần máy pha cho 2 người, ngân sách 2.000.000 VND, dùng hạt arabica.\nDữ liệu dưới đây là minh họa, không phải sản phẩm/giá/tồn thực tế.\n• Máy pha cầm tay mẫu A: 650.000 VND, còn hàng.\n• Máy pha để bàn mẫu B: 2.500.000 VND, vượt ngân sách 500.000 VND.\nChưa có thông số xác nhận máy đáp ứng nhu cầu pha cho 2 người với hạt arabica. Máy cầm tay không mặc nhiên là máy điện để bàn; các mẫu trên chỉ để tham khảo, chưa đủ căn cứ chốt mua.",
+        "sources": [
+          {
+            "id": "STORE4",
+            "title": "Máy pha cầm tay mẫu A",
+            "url": "/products/4"
+          },
+          {
+            "id": "STORE5",
+            "title": "Máy pha để bàn mẫu B",
+            "url": "/products/5"
+          }
+        ]
+      }
+    },
+    {
+      "conversation": "beginner",
+      "question": "Giảm ngân sách xuống 1 triệu thôi",
+      "seconds": 0.02,
+      "reply": {
+        "status": "INSUFFICIENT",
+        "answer": "Bạn cần máy pha cho 2 người, ngân sách 1.000.000 VND, dùng hạt arabica.\nDữ liệu dưới đây là minh họa, không phải sản phẩm/giá/tồn thực tế.\n• Máy pha cầm tay mẫu A: 650.000 VND, còn hàng.\n• Máy pha để bàn mẫu B: 2.500.000 VND, vượt ngân sách 1.500.000 VND.\nChưa có thông số xác nhận máy đáp ứng nhu cầu pha cho 2 người với hạt arabica. Máy cầm tay không mặc nhiên là máy điện để bàn; các mẫu trên chỉ để tham khảo, chưa đủ căn cứ chốt mua.",
+        "sources": [
+          {
+            "id": "STORE4",
+            "title": "Máy pha cầm tay mẫu A",
+            "url": "/products/4"
+          },
+          {
+            "id": "STORE5",
+            "title": "Máy pha để bàn mẫu B",
+            "url": "/products/5"
+          }
+        ]
+      }
+    },
+    {
+      "conversation": "fresh",
+      "question": "arabica",
+      "seconds": 3.44,
+      "reply": {
+        "status": "CLARIFY",
+        "answer": "Chào bạn, với hạt Arabica, bạn muốn tìm hiểu về cách pha chế, đặc điểm hương vị hay cần tư vấn chọn dụng cụ pha phù hợp?",
+        "sources": []
+      }
+    },
+    {
+      "conversation": "beginner",
+      "question": "Tra cứu đơn SUNI-123",
+      "seconds": 0.01,
+      "reply": {
+        "status": "AUTH_REQUIRED",
+        "answer": "Vui lòng đăng nhập để xem đơn của chính bạn.",
+        "sources": []
+      }
+    },
+    {
+      "conversation": "beginner",
+      "question": "Viết về trận bóng đá tối qua",
+      "seconds": 3.97,
+      "reply": {
+        "status": "OUT_OF_SCOPE",
+        "answer": "Mình hỗ trợ sản phẩm cà phê, dụng cụ pha chế và nghiệp vụ cửa hàng. Bạn có thể hỏi trong các chủ đề này.",
+        "sources": []
+      }
+    }
+  ]
+}

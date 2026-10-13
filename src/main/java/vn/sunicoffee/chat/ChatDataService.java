@@ -23,6 +23,55 @@ public class ChatDataService {
     private static String money(java.math.BigDecimal value) {
         return NumberFormat.getIntegerInstance(Locale.forLanguageTag("vi-VN")).format(value) + " VND";
     }
+    public record AdviceContext(List<KnowledgeBase.Entry> entries, Map<String, ChatReply.Citation> citations, boolean demonstration, ChatReply demoMachineReply) {}
+    public AdviceContext adviceContext(AdviceNeeds needs) {
+        var budget = needs.budgetVnd();
+        var entries = new ArrayList<KnowledgeBase.Entry>();
+        var citations = new LinkedHashMap<String, ChatReply.Citation>();
+        var page = products.search("", null, false, PageRequest.of(0, 40));
+        for (var p : page.getContent()) {
+            String id = "STORE" + p.getId();
+            boolean demo = environment.matchesProfiles("demo") || p.getSku().startsWith("DEMO-");
+            String content = (demo ? "DỮ LIỆU MINH HỌA, không phải sản phẩm/giá/tồn thực tế. " : "Dữ liệu cửa hàng hiện tại. ")
+                + "SKU: " + p.getSku() + ". Danh mục: " + p.getCategory().getName()
+                + ". Giá: " + money(p.getPrice()) + "/" + p.getSalesUnit() + ". Tồn: " + p.getStock()
+                + ". Mô tả: " + p.getDescription()
+                + ". Chưa có thông số ngoài mô tả. Không suy đoán tương thích Arabica, công suất hoặc chất lượng espresso từ tên sản phẩm."
+                + (budget != null && p.getPrice().compareTo(budget) > 0 ? " VƯỢT NGÂN SÁCH khách đã nêu " + money(p.getPrice().subtract(budget)) + "; không được giới thiệu như lựa chọn trong ngân sách." : "")
+                + (p.getStock() <= 0 ? " HẾT HÀNG; không đề xuất khách mua ngay." : "")
+                + (page.hasNext() ? " Đây chỉ là một phần danh mục." : "");
+            entries.add(new KnowledgeBase.Entry(id, p.getName(), content, List.of(id), "Danh mục công khai tại thời điểm hỏi"));
+            citations.put(id, new ChatReply.Citation(id, p.getName(), "/products/" + p.getId()));
+        }
+        boolean demonstration = environment.matchesProfiles("demo") || page.getContent().stream().anyMatch(p -> p.getSku().startsWith("DEMO-"));
+        ChatReply demoReply = null;
+        // Demo items have no validated brewing specifications. Do not ask a model to invent suitability.
+        if (demonstration && Set.of("pha may", "espresso").contains(needs.brewing()) && !needs.people().isBlank() && budget != null) {
+            var machines = page.getContent().stream().filter(p -> KnowledgeBase.normalize(p.getCategory().getName()).contains("may pha")
+                || KnowledgeBase.normalize(p.getName()).contains("may pha")).toList();
+            var answer = new StringBuilder("Bạn cần máy pha cho " + needs.people() + " người, ngân sách " + money(budget)
+                + (needs.beans().isBlank() ? "" : ", dùng hạt " + needs.beans()) + ".\nDữ liệu dưới đây là minh họa, không phải sản phẩm/giá/tồn thực tế.\n");
+            var refs = new ArrayList<ChatReply.Citation>();
+            var affordable = machines.stream().filter(p -> p.getStock() > 0 && p.getPrice().compareTo(budget) <= 0)
+                .sorted(Comparator.comparing(vn.sunicoffee.domain.Product::getPrice)).limit(2).toList();
+            for (var p : affordable) {
+                answer.append("• ").append(p.getName()).append(": ").append(money(p.getPrice())).append(", còn hàng.\n");
+                refs.add(citations.get("STORE" + p.getId()));
+            }
+            if (affordable.isEmpty()) answer.append("Chưa có máy còn hàng trong ngân sách ở phần danh mục đã tra.\n");
+            machines.stream().filter(p -> p.getStock() > 0 && p.getPrice().compareTo(budget) > 0)
+                .min(Comparator.comparing(vn.sunicoffee.domain.Product::getPrice)).ifPresent(p -> {
+                    answer.append("• ").append(p.getName()).append(": ").append(money(p.getPrice()))
+                        .append(", vượt ngân sách ").append(money(p.getPrice().subtract(budget))).append(".\n");
+                    refs.add(citations.get("STORE" + p.getId()));
+                });
+            answer.append("Chưa có thông số xác nhận máy đáp ứng nhu cầu pha cho ").append(needs.people()).append(" người")
+                .append(needs.beans().isBlank() ? "" : " với hạt " + needs.beans())
+                .append(". Máy cầm tay không mặc nhiên là máy điện để bàn; các mẫu trên chỉ để tham khảo, chưa đủ căn cứ chốt mua.");
+            demoReply = new ChatReply("INSUFFICIENT", answer.toString(), List.copyOf(refs));
+        }
+        return new AdviceContext(List.copyOf(entries), Map.copyOf(citations), demonstration, demoReply);
+    }
     public ChatReply order(long id, String email) {
         if (email == null || users.findByEmail(email).filter(u -> u.isEnabled()).isEmpty()) {
             return ChatReply.of("AUTH_REQUIRED", "Vui lòng đăng nhập để xem đơn của chính bạn.");

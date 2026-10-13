@@ -1,0 +1,16 @@
+<!DOCTYPE html><html lang="vi" xmlns:th="http://www.thymeleaf.org"><body>
+<div th:fragment="widget" th:unless="${chatFullPage == true}" id="chat-widget" class="chat-widget">
+  <section id="chat-widget-panel" class="chat-widget-panel" role="dialog" aria-labelledby="chat-widget-title" hidden>
+    <div class="chat-widget-heading">
+      <div class="chat-widget-brand"><span aria-hidden="true">S</span><div><strong id="chat-widget-title">Trợ lý SuniCoffee</strong><small>Cà phê · Cách pha · Đơn hàng</small></div></div>
+      <div class="chat-widget-actions"><a th:href="@{/chat}" target="_blank" rel="noopener" aria-label="Mở trang chat đầy đủ" title="Mở trang chat đầy đủ">↗</a><button id="chat-widget-close" type="button" aria-label="Thu gọn cửa sổ chat" title="Thu gọn">−</button></div>
+    </div>
+    <iframe id="chat-widget-frame" title="Trò chuyện với trợ lý SuniCoffee" th:attr="data-src=@{/chat(widget=true)}" referrerpolicy="same-origin"></iframe>
+  </section>
+  <button id="chat-widget-toggle" class="chat-widget-toggle" type="button" aria-controls="chat-widget-panel" aria-expanded="false" aria-label="Mở trò chuyện với SuniCoffee" hidden>
+    <svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5H6l-4 3V11.5A7.5 7.5 0 0 1 9.5 4h3a7.5 7.5 0 0 1 7.5 7.5Z"/><path d="M7 10h8M7 14h5"/></svg>
+    <span>Chat với Suni</span>
+  </button>
+  <noscript><a class="chat-widget-toggle" th:href="@{/chat}">Trợ lý SuniCoffee</a></noscript>
+</div>
+</body></html>

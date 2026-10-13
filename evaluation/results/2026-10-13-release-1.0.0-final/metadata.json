@@ -1,0 +1,25 @@
+{
+  "started_at" : "2026-10-13T09:25:13.807687Z",
+  "model" : "gemini-3.1-flash-lite",
+  "application_version" : "1.0.0",
+  "evaluation_version" : "v1",
+  "backend" : "isolated repository fixtures; real ChatService, ChatDataService, KnowledgeBase and GeminiClient",
+  "session_simulation" : "server principal supplied from frozen scenario; expired/public -> null; HTTP authorization tested separately",
+  "sampling" : {
+    "temperature" : "provider default (not explicitly configured)",
+    "retries" : "at most one quick HTTP 503; wait 250 ms; first attempt must finish within 5 s",
+    "maxOutputTokens" : 2048,
+    "seed" : "not supplied"
+  },
+  "sha256" : {
+    "evaluation/chatbot/v1/LOCK.json" : "18563465a6fb0bcf823317a030e871613933e74b7c8c992091531455698fa1c7",
+    "src/main/resources/chat/system-prompt.txt" : "551332261186912503b85ecbf15591b3964958c3c433d090b5385c9797bf4a5c",
+    "src/main/java/vn/sunicoffee/chat/ChatService.java" : "f0ce9cf052752f9c0e0441f0840d7d932e1cfde28d1779b9dc792792a2aac0c0",
+    "src/main/java/vn/sunicoffee/chat/ChatDataService.java" : "fc25078c6394cfa361139c08efbee88143256266bb5f195d913a43192e508190",
+    "src/main/java/vn/sunicoffee/chat/KnowledgeBase.java" : "b576ed7578c812ea7f0c124b1e91609a2f88e85e61ccb61b71dd9d8152f59626",
+    "src/main/java/vn/sunicoffee/chat/GeminiClient.java" : "6658711e87ba8193931ee6b184167dbb2b0cf6927cabad51df17b7148cd51cb2"
+  },
+  "finished_at" : "2026-10-13T09:29:42.054874Z",
+  "responses" : 90,
+  "grading_status" : "PENDING — collection success is not a quality pass"
+}

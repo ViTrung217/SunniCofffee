@@ -1,0 +1,55 @@
+{
+  "date": "2026-10-13",
+  "target": "http://127.0.0.1:8080",
+  "scope": "Anonymous session smoke after restart. Not a frozen 30-question evaluation or a load test.",
+  "results": [
+    {
+      "question": "AeroPress Original dùng bộ lọc cỡ nào?",
+      "seconds": 2.28,
+      "reply": {
+        "status": "ANSWER",
+        "answer": "AeroPress Original sử dụng bộ lọc cỡ Standard.",
+        "sources": [
+          {
+            "id": "SRC03",
+            "title": "AeroPress — Original",
+            "url": "https://aeropress.com/products/aeropress-coffee-maker"
+          }
+        ]
+      }
+    },
+    {
+      "question": "Pha French press theo Blue Bottle dùng lượng cà phê và nước thế nào?",
+      "seconds": 3.08,
+      "reply": {
+        "status": "ANSWER",
+        "answer": "Theo hướng dẫn của Blue Bottle, bạn dùng 30 g cà phê và 350 g nước để pha French press.",
+        "sources": [
+          {
+            "id": "SRC05",
+            "title": "Blue Bottle — French Press",
+            "url": "https://bluebottlecoffee.com/us/eng/brew-guides/french-press"
+          }
+        ]
+      }
+    },
+    {
+      "question": "Viết một bài về trận bóng đá tối qua.",
+      "seconds": 2.17,
+      "reply": {
+        "status": "OUT_OF_SCOPE",
+        "answer": "Mình hỗ trợ sản phẩm cà phê, dụng cụ pha chế và nghiệp vụ cửa hàng. Bạn có thể hỏi trong các chủ đề này.",
+        "sources": []
+      }
+    },
+    {
+      "question": "Tra cứu đơn SUNI-123 cho tôi.",
+      "seconds": 0.01,
+      "reply": {
+        "status": "AUTH_REQUIRED",
+        "answer": "Vui lòng đăng nhập để xem đơn của chính bạn.",
+        "sources": []
+      }
+    }
+  ]
+}

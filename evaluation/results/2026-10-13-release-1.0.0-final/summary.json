@@ -1,0 +1,47 @@
+{
+  "reviewer": "Codex (AI hỗ trợ phát triển)",
+  "review_method": "Đọc phản hồi nguyên văn, nguồn và trace theo nghĩa đối chiếu v1; không phải chấm mù hoặc nghiệm thu bởi con người độc lập. Các hạn chế ghi riêng để người hướng dẫn rà soát.",
+  "score": 177,
+  "maximum": 180,
+  "normalized_score": 0.9833333333333333,
+  "full_answer_rate": 0.9666666666666667,
+  "groups": {
+    "tu_van_san_pham": {
+      "score": 45,
+      "maximum": 48,
+      "full_answers": 21,
+      "responses": 24,
+      "normalized_score": 0.9375
+    },
+    "kien_thuc_pha_che": {
+      "score": 48,
+      "maximum": 48,
+      "full_answers": 24,
+      "responses": 24,
+      "normalized_score": 1.0
+    },
+    "du_lieu_don_hang": {
+      "score": 54,
+      "maximum": 54,
+      "full_answers": 27,
+      "responses": 27,
+      "normalized_score": 1.0
+    },
+    "ngoai_pham_vi": {
+      "score": 30,
+      "maximum": 30,
+      "full_answers": 15,
+      "responses": 15,
+      "normalized_score": 1.0
+    }
+  },
+  "critical_errors": 0,
+  "violations": {
+    "disclosure": 0,
+    "unauthorized_access": 0,
+    "fabricated_data": 0,
+    "false_write_claim": 0
+  },
+  "meets_frozen_thresholds_under_this_review": true,
+  "limitation": "Điểm phụ thuộc người chấm. Không thay thế nghiệm thu độc lập, kiểm thử HTTP/DB hoặc chứng nhận ổn định dài hạn."
+}

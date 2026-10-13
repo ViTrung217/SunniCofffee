@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "notice": "Mẫu thu thập dữ liệu, chưa được phép dùng làm danh mục thật. Thay tất cả trường trống/null và kiểm tra bằng scripts/validate-catalog.py.",
+  "categories": [
+    {"code": "", "name": "", "description": ""}
+  ],
+  "products": [
+    {
+      "sku": "",
+      "name": "",
+      "description": "",
+      "category_code": "",
+      "price_vnd": null,
+      "opening_stock": null,
+      "sales_unit": "",
+      "active": false,
+      "source": "",
+      "verified_by": "",
+      "verified_on": "",
+      "stock_counted_on": "",
+      "image_file": "",
+      "image_rights": ""
+    }
+  ]
+}

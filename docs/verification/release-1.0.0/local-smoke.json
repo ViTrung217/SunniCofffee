@@ -1,0 +1,71 @@
+{
+  "profile": "local",
+  "database": "isolated H2 .runtime/release-local",
+  "port": 8087,
+  "checks": [
+    {
+      "check": "local readiness UP",
+      "passed": true
+    },
+    {
+      "check": "fresh local DB has no automatically seeded products",
+      "passed": true
+    },
+    {
+      "check": "local login page and CSRF",
+      "passed": true
+    },
+    {
+      "check": "HTTP local session HttpOnly and SameSite without Secure",
+      "passed": true
+    },
+    {
+      "check": "bootstrap admin login on local",
+      "passed": true
+    },
+    {
+      "check": "local admin page accessible",
+      "passed": true
+    },
+    {
+      "check": "actuator secrets denied to admin",
+      "passed": true
+    },
+    {
+      "check": "chat renders with server CSRF token",
+      "passed": true
+    },
+    {
+      "check": "store policy refuses unsupported promise",
+      "passed": true
+    },
+    {
+      "check": "real Gemini through packaged local HTTP",
+      "passed": true
+    },
+    {
+      "check": "local logout",
+      "passed": true
+    },
+    {
+      "check": "anonymous order requires authentication",
+      "passed": true
+    },
+    {
+      "check": "floating widget on local storefront",
+      "passed": true
+    }
+  ],
+  "live_gemini_reply": {
+    "status": "ANSWER",
+    "answer": "Theo công thức của Blue Bottle, bạn dùng 30 g cà phê và 350 g nước cho French press.",
+    "sources": [
+      {
+        "id": "SRC05",
+        "title": "Blue Bottle — French Press",
+        "url": "https://bluebottlecoffee.com/us/eng/brew-guides/french-press"
+      }
+    ]
+  },
+  "user_database_on_8080_untouched": true
+}

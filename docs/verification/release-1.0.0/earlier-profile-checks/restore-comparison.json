@@ -1,0 +1,12 @@
+{
+  "isolated_database_only": true,
+  "source_matches_restored": true,
+  "order_status": "COMPLETED",
+  "total_vnd": 240000,
+  "shipping_fee_vnd": 0,
+  "cod_settled": true,
+  "product_stock": 8,
+  "stock_movements": 2,
+  "order_events": 5,
+  "limitation": "Logical restore and business-state comparison; restored database was not switched into the user application."
+}

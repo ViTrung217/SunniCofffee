@@ -20,6 +20,7 @@ jobs:
           distribution: temurin
           java-version: '21'
           cache: maven
+      - run: python3 scripts/verify-chatbot-baseline.py
       - run: mvn -B -Ddebug=false verify
       - uses: actions/upload-artifact@v4
         if: always()

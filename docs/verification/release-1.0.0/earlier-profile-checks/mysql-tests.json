@@ -1,0 +1,124 @@
+{
+  "database": "isolated MySQL 8.0.44; schema sunicoffee_release_test; port 13327",
+  "suites": [
+    {
+      "name": "vn.sunicoffee.ChatIntegrationTest",
+      "tests": "20",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "4.135"
+    },
+    {
+      "name": "vn.sunicoffee.LoginThrottleTest",
+      "tests": "2",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.001"
+    },
+    {
+      "name": "vn.sunicoffee.ManagementIntegrationTest",
+      "tests": "21",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "6.067"
+    },
+    {
+      "name": "vn.sunicoffee.MigrationUpgradeTest",
+      "tests": "1",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.223"
+    },
+    {
+      "name": "vn.sunicoffee.ProductionGuardTest",
+      "tests": "9",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.005"
+    },
+    {
+      "name": "vn.sunicoffee.ReleaseIntegrationTest",
+      "tests": "2",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.443"
+    },
+    {
+      "name": "vn.sunicoffee.ShippingIntegrationTest",
+      "tests": "15",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "4.02"
+    },
+    {
+      "name": "vn.sunicoffee.ShopIntegrationTest",
+      "tests": "21",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "4.748"
+    },
+    {
+      "name": "vn.sunicoffee.UploadHttpIntegrationTest",
+      "tests": "1",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "3.99"
+    },
+    {
+      "name": "vn.sunicoffee.chat.AdviceNeedsTest",
+      "tests": "1",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.002"
+    },
+    {
+      "name": "vn.sunicoffee.chat.ChatConversationTest",
+      "tests": "1",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.001"
+    },
+    {
+      "name": "vn.sunicoffee.chat.ChatRateLimitTest",
+      "tests": "1",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.002"
+    },
+    {
+      "name": "vn.sunicoffee.chat.GeminiClientTest",
+      "tests": "12",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.572"
+    },
+    {
+      "name": "vn.sunicoffee.chat.KnowledgeBaseTest",
+      "tests": "1",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.009"
+    }
+  ],
+  "totals": {
+    "tests": 108,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "evaluation_collector": "1 additional opt-in collector test passed; not included in functional test totals"
+}

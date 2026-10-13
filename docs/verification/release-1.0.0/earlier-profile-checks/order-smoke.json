@@ -1,0 +1,19 @@
+{
+  "database": "sunicoffee_release_smoke on isolated MySQL port 13327",
+  "profile": "prod",
+  "synthetic_data_only": true,
+  "steps": [
+    "sign in bootstrap admin",
+    "create category",
+    "create product with opening stock 10",
+    "add 2 units to cart",
+    "checkout COD with server session token",
+    "confirm",
+    "ship with tracking code",
+    "complete",
+    "settle COD"
+  ],
+  "final_stock": 8,
+  "expected_order_total_vnd": 240000,
+  "note": "Requests passed through application HTTP controllers with CSRF; database assertions saved separately."
+}

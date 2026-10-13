@@ -1,0 +1,122 @@
+{
+  "suites": [
+    {
+      "name": "vn.sunicoffee.ChatIntegrationTest",
+      "tests": "20",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "3.874"
+    },
+    {
+      "name": "vn.sunicoffee.LoginThrottleTest",
+      "tests": "2",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.002"
+    },
+    {
+      "name": "vn.sunicoffee.ManagementIntegrationTest",
+      "tests": "21",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "5.892"
+    },
+    {
+      "name": "vn.sunicoffee.MigrationUpgradeTest",
+      "tests": "1",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.068"
+    },
+    {
+      "name": "vn.sunicoffee.ProductionGuardTest",
+      "tests": "9",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.115"
+    },
+    {
+      "name": "vn.sunicoffee.ReleaseIntegrationTest",
+      "tests": "2",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.447"
+    },
+    {
+      "name": "vn.sunicoffee.ShippingIntegrationTest",
+      "tests": "15",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "3.573"
+    },
+    {
+      "name": "vn.sunicoffee.ShopIntegrationTest",
+      "tests": "21",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "4.537"
+    },
+    {
+      "name": "vn.sunicoffee.UploadHttpIntegrationTest",
+      "tests": "1",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "3.931"
+    },
+    {
+      "name": "vn.sunicoffee.chat.AdviceNeedsTest",
+      "tests": "1",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.002"
+    },
+    {
+      "name": "vn.sunicoffee.chat.ChatConversationTest",
+      "tests": "1",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.0"
+    },
+    {
+      "name": "vn.sunicoffee.chat.ChatRateLimitTest",
+      "tests": "1",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.002"
+    },
+    {
+      "name": "vn.sunicoffee.chat.GeminiClientTest",
+      "tests": "12",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.584"
+    },
+    {
+      "name": "vn.sunicoffee.chat.KnowledgeBaseTest",
+      "tests": "1",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.012"
+    }
+  ],
+  "totals": {
+    "tests": 108,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  }
+}

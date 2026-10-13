@@ -1,0 +1,13 @@
+{
+  "artifact": "sunicoffee-1.0.0.jar",
+  "version": "1.0.0",
+  "default_profile": "local",
+  "sha256": "51288bd8b8e49e2b7920c59d60dbf1780506d35d1e582687a1e26be45d8a59fb",
+  "size_bytes": 89176438,
+  "checks": {
+    "no_production_profile": true,
+    "no_evaluation_fixture_or_runner": true,
+    "no_runtime_config": true,
+    "configured_gemini_key_not_in_application_resources": true
+  }
+}

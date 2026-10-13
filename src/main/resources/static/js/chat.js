@@ -9,6 +9,7 @@
   const clear = document.getElementById('chat-clear');
   const greeting = messages.firstElementChild.cloneNode(true);
   let pending = false;
+  let conversationId = crypto.randomUUID();
   function add(role, text, sources = []) {
     const article = document.createElement('article');
     article.className = `chat-message ${role}`;
@@ -20,7 +21,8 @@
     if (sources.length) {
       const list = document.createElement('ul'); list.className = 'chat-sources';
       sources.forEach(source => {
-        const url = new URL(source.url, window.location.origin);
+        let url;
+        try { url = new URL(source.url, window.location.origin); } catch (_) { return; }
         if (!(url.protocol === 'https:' || (url.origin === window.location.origin && url.pathname.startsWith('/')))) return;
         const item = document.createElement('li'); const a = document.createElement('a');
         a.href = url.href; a.textContent = source.title; a.target = '_blank'; a.rel = 'noopener noreferrer';
@@ -44,20 +46,29 @@
       const response = await fetch(form.action, {
         method: 'POST', credentials: 'same-origin', cache: 'no-store', signal: controller.signal,
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', 'X-CSRF-TOKEN': csrf?.value || '' },
-        body: JSON.stringify({message})
+        body: JSON.stringify({message, conversationId})
       });
       if (response.redirected || response.status === 401 || response.status === 403) {
+        messages.replaceChildren(greeting.cloneNode(true));
+        conversationId = crypto.randomUUID();
         add('assistant', 'Phiên làm việc đã thay đổi. Vui lòng tải lại trang và đăng nhập lại nếu cần tra cứu đơn.');
       } else if (response.ok || response.status === 429) {
-        const reply = await response.json(); add('assistant', reply.answer, reply.sources || []);
+        const reply = await response.json();
+        if (typeof reply.answer !== 'string' || !Array.isArray(reply.sources)) throw new Error('Invalid chat response');
+        add('assistant', reply.answer, reply.sources);
       } else { add('assistant', 'Chưa gửi được tin nhắn. Vui lòng thử lại sau.'); }
     } catch (_) { add('assistant', 'Kết nối bị gián đoạn hoặc phản hồi quá lâu. Vui lòng gửi lại câu hỏi.'); }
-    finally { clearTimeout(timeout); pending = false; send.disabled = false; clear.disabled = false; status.textContent = ''; input.focus(); }
+    finally { clearTimeout(timeout); pending = false; send.disabled = false; clear.disabled = false; status.textContent = ''; if (document.hasFocus()) input.focus(); }
   });
   document.querySelectorAll('[data-question]').forEach(button => button.addEventListener('click', () => {
     input.value = button.dataset.question; input.focus();
   }));
-  clear.addEventListener('click', () => { messages.replaceChildren(greeting.cloneNode(true)); input.value = ''; input.focus(); });
+  clear.addEventListener('click', () => { conversationId = crypto.randomUUID(); messages.replaceChildren(greeting.cloneNode(true)); input.value = ''; input.focus(); });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && window.parent !== window) {
+      window.parent.postMessage({type: 'suni-chat-close'}, window.location.origin);
+    }
+  });
   // Avoid restoring private order replies when returning via the browser back/forward cache.
   window.addEventListener('pageshow', event => { if (event.persisted) window.location.reload(); });
 })();

@@ -1,6 +1,7 @@
 package vn.sunicoffee.chat;
 
 import java.util.regex.Pattern;
+import java.util.*;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,9 +16,13 @@ public class ChatService {
     }
     public boolean ready() { return gemini.ready(); }
     public ChatReply answer(String question, String authenticatedEmail) {
+        return answer(question, authenticatedEmail, new ChatConversation());
+    }
+    public ChatReply answer(String question, String authenticatedEmail, ChatConversation conversation) {
         String normalized = KnowledgeBase.normalize(question);
         // Security and order routing run before any model call; no order reply becomes model history.
         if (Pattern.compile("\\b(mat khau|password|api key|toan bo don|tat ca don|khach khac|nguoi khac|xam nhap)\\b").matcher(normalized).find()) {
+            conversation.clear();
             return ChatReply.of("REFUSED", "Mình không cung cấp dữ liệu riêng hoặc thông tin đăng nhập của khách hàng. Bạn chỉ có thể tra cứu đơn của chính mình sau đăng nhập.");
         }
         var code = ORDER_CODE.matcher(question);
@@ -25,6 +30,7 @@ public class ChatService {
         String id = code.find() ? code.group(1) : number.find() ? number.group(1) : null;
         boolean personalOrder = id != null || Pattern.compile("\\b(don cua|don hang cua|ma don|ma van don|tra don|tra cuu don|theo doi don|order status)\\b").matcher(normalized).find();
         if (personalOrder) {
+            conversation.clear();
             if (authenticatedEmail == null) return ChatReply.of("AUTH_REQUIRED", "Vui lòng đăng nhập để xem đơn của chính bạn.");
             if (id == null) return ChatReply.of("CLARIFY", "Bạn muốn tra cứu đơn nào? Hãy gửi mã SUNI ở trang Đơn của tôi.");
             try {
@@ -36,9 +42,25 @@ public class ChatService {
             }
         }
         if (Pattern.compile("\\b(chuyen tien|thanh toan giup|huy giup|dat giup)\\b").matcher(normalized).find()) {
+            conversation.clear();
             return ChatReply.of("REFUSED", "Chatbot chỉ tư vấn và tra cứu, chưa thực hiện đặt/hủy đơn hoặc chuyển tiền. Bạn có thể thao tác trên trang cửa hàng; hiện hỗ trợ COD.");
         }
-        if (Pattern.compile("\\b(gia|ton kho|con hang|het hang|bao nhieu tien)\\b").matcher(normalized).find()) {
+        // Store policy is not established in the frozen v1 sources. A manufacturer policy
+        // or a requested promise cannot become a SuniCoffee commitment, even if AI is down.
+        boolean storePolicy=Pattern.compile("\\b(sunicoffee|cua hang)\\b").matcher(normalized).find()
+            && Pattern.compile("\\b(bao hanh|doi tra|doi moi|hoan tien)\\b").matcher(normalized).find();
+        if (storePolicy) {
+            conversation.clear();
+            return new ChatReply("INSUFFICIENT",
+                "Chưa có chính sách bảo hành, đổi trả hoặc hoàn tiền riêng của SuniCoffee được xác minh để cam kết điều này. Bạn cần xác nhận trực tiếp với cửa hàng trước khi mua; chính sách của hãng không tự động là chính sách của cửa hàng.",
+                knowledge.citations(List.of("NV20", "NV21")));
+        }
+        String previousQuestions = conversation.history().stream().map(ChatConversation.Turn::question).collect(java.util.stream.Collectors.joining("\n"));
+        var needs = AdviceNeeds.from(conversation.history(), question);
+        boolean advice = Pattern.compile("\\b(tu van|nen mua|goi y|nguoi moi|bat dau|ngan sach|chon mua)\\b")
+            .matcher(KnowledgeBase.normalize(previousQuestions + " " + question)).find()
+            || (!needs.brewing().isBlank() && needs.budgetVnd() != null);
+        if (!advice && Pattern.compile("\\b(gia|ton kho|con hang|het hang|bao nhieu tien)\\b").matcher(normalized.replace("danh gia", "nhan xet").replace("gia tri", "value")).find()) {
             try { return data.catalog(question); }
             catch (org.springframework.dao.DataAccessException ex) {
                 return ChatReply.of("UNAVAILABLE", "Hiện chưa tra cứu được giá và tồn kho. Vui lòng thử lại sau.");
@@ -49,11 +71,47 @@ public class ChatService {
         String sanitized = question.replaceAll("[\\w.+-]+@[\\w.-]+\\.[A-Za-z]{2,}", "[email đã ẩn]")
             .replaceAll("(?<!\\d)\\+?\\d[\\d .-]{7,}\\d(?!\\d)", "[số liên hệ đã ẩn]");
         try {
-            var result = gemini.answer(sanitized, knowledge.search(sanitized));
-            if (result.status().equals("OUT_OF_SCOPE")) return ChatReply.of("OUT_OF_SCOPE", "Mình hỗ trợ sản phẩm cà phê, dụng cụ pha chế và nghiệp vụ cửa hàng. Bạn có thể hỏi trong các chủ đề này.");
-            return new ChatReply(result.status(), result.answer(), knowledge.citations(result.knowledgeIds()));
+            var context = new ArrayList<>(knowledge.search(previousQuestions + "\n" + sanitized));
+            Map<String, ChatReply.Citation> storeCitations = Map.of();
+            boolean demoAdvice = false;
+            if (advice) {
+                try {
+                    var catalog = data.adviceContext(AdviceNeeds.from(conversation.history(), sanitized));
+                    var newNeeds = AdviceNeeds.from(List.of(), sanitized);
+                    boolean preferenceReply = !newNeeds.brewing().isBlank() || !newNeeds.people().isBlank()
+                        || newNeeds.budgetVnd() != null || !newNeeds.beans().isBlank();
+                    if (catalog.demoMachineReply() != null && preferenceReply) {
+                        conversation.remember(sanitized, catalog.demoMachineReply().answer());
+                        return catalog.demoMachineReply();
+                    }
+                    context.addAll(catalog.entries()); storeCitations = catalog.citations(); demoAdvice = catalog.demonstration();
+                } catch (org.springframework.dao.DataAccessException ex) {
+                    return ChatReply.of("UNAVAILABLE", "Hiện chưa đọc được danh mục để tư vấn chính xác. Vui lòng thử lại sau.");
+                }
+            }
+            var history = conversation.history();
+            var result = history.isEmpty() ? gemini.answer(sanitized, context) : gemini.answer(sanitized, context, history);
+            if (result.status().equals("OUT_OF_SCOPE")) {
+                conversation.clear();
+                return ChatReply.of("OUT_OF_SCOPE", "Mình hỗ trợ sản phẩm cà phê, dụng cụ pha chế và nghiệp vụ cửa hàng. Bạn có thể hỏi trong các chủ đề này.");
+            }
+            var citations = new ArrayList<>(knowledge.citations(result.knowledgeIds()));
+            for (String ref : new LinkedHashSet<>(result.knowledgeIds())) if (storeCitations.containsKey(ref)) citations.add(storeCitations.get(ref));
+            // A clarification does not need an irrelevant policy link below it.
+            if (result.status().equals("CLARIFY")) citations.clear();
+            String answer = result.answer();
+            if (demoAdvice && !result.status().equals("CLARIFY")) answer = "Danh mục tư vấn là dữ liệu minh họa, không phải sản phẩm/giá/tồn thực tế.\n\n" + answer;
+            conversation.remember(sanitized, answer);
+            return new ChatReply(result.status(), answer, List.copyOf(citations));
         } catch (GeminiClient.Unavailable ex) {
-            return ChatReply.of("UNAVAILABLE", "Trợ lý AI hiện chưa trả lời được. Vui lòng thử lại sau; bạn vẫn có thể xem cửa hàng và tra cứu đơn.");
+            String message = switch (ex.failure()) {
+                case QUOTA_EXCEEDED -> "Dịch vụ AI đang hết hạn mức hoặc nhận quá nhiều yêu cầu. Vui lòng thử lại sau; bạn vẫn có thể tra cứu đơn.";
+                case KEY_REJECTED, MODEL_UNAVAILABLE, INVALID_REQUEST -> "Dịch vụ AI đang gặp lỗi cấu hình. Cửa hàng cần kiểm tra lại kết nối Gemini; bạn vẫn có thể tra cứu đơn.";
+                case BUSY -> "Trợ lý AI đang bận. Vui lòng chờ một chút rồi gửi lại câu hỏi.";
+                case NETWORK -> "Kết nối đến dịch vụ AI đang gián đoạn. Vui lòng thử lại sau.";
+                default -> "Trợ lý AI hiện chưa trả lời được. Vui lòng thử lại sau; bạn vẫn có thể xem cửa hàng và tra cứu đơn.";
+            };
+            return ChatReply.of("UNAVAILABLE", message);
         }
     }
 }
