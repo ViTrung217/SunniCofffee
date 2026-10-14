@@ -34,7 +34,7 @@ Máy mới cần tạo quản trị riêng bằng `ADMIN_EMAIL` và `ADMIN_PASSW
 | Chatbot | Gemini, 55 mục tri thức có nguồn, ngữ cảnh hội thoại, luồng tra Google cho kiến thức liên quan (phụ thuộc quota), giá/tồn hiện hành, chỉ tra cứu đơn thuộc tài khoản đã xác thực |
 | Vận hành | MySQL hoặc H2 cục bộ, Flyway, health/readiness, graceful shutdown, backup/restore kiểm tra |
 
-Thanh toán online, API hãng vận chuyển, email quên mật khẩu, khuyến mại, đa chi nhánh và giá vốn/lợi nhuận nằm ngoài phạm vi đồ án đã chốt. Không mô tả các mục này là chức năng đã triển khai.
+QR SePay đã có mã tích hợp, cần cấu hình tài khoản và kiểm chứng với dịch vụ thật; xem [hướng dẫn SePay](docs/18-thanh-toan-sepay.md). API hãng vận chuyển, email quên mật khẩu, khuyến mại, đa chi nhánh và giá vốn/lợi nhuận nằm ngoài phạm vi đồ án đã chốt. Không mô tả các mục này là chức năng đã triển khai.
 
 ## Kiểm thử và đánh giá
 
@@ -51,6 +51,7 @@ Bộ [30 câu đánh giá](evaluation/chatbot/v1/QUESTIONS.md) được khóa tr
 
 - [Phát hành local, khởi động và tài khoản mới](docs/13-phat-hanh-va-ban-giao.md)
 - [Kết quả nghiệm thu và phần còn thiếu](docs/14-nghiem-thu-1.0.0.md)
+- [Thanh toán QR SePay, cấu hình local và hạn mức Free](docs/18-thanh-toan-sepay.md)
 - [Chat trực tiếp khách hàng – admin](docs/17-chat-khach-hang.md)
 - [Chatbot Gemini và cấu hình khóa](docs/12-chatbot-gemini.md)
 - [Mẫu thu thập danh mục thật và công cụ kiểm tra](data/catalog/README.md)

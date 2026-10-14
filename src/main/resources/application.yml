@@ -9,6 +9,9 @@ spring:
     timeout-per-shutdown-phase: 30s
   jpa:
     open-in-view: false
+    properties:
+      # Keep LocalDateTime bindings consistent with JdbcTemplate across JVM time zones.
+      hibernate.type.java_time_use_direct_jdbc: true
     hibernate:
       ddl-auto: validate
   thymeleaf:
@@ -45,6 +48,17 @@ management:
         readiness:
           include: readinessState,db
 app:
+  sepay:
+    enabled: ${SEPAY_ENABLED:false}
+    sandbox: ${SEPAY_SANDBOX:true}
+    api-token: ${SEPAY_API_TOKEN:}
+    bank-account-id: ${SEPAY_BANK_ACCOUNT_ID:}
+    account-number: ${SEPAY_ACCOUNT_NUMBER:}
+    qr-account: ${SEPAY_QR_ACCOUNT:}
+    bank: ${SEPAY_BANK:}
+    holder: ${SEPAY_HOLDER:}
+    description-prefix: ${SEPAY_DESCRIPTION_PREFIX:}
+    va: ${SEPAY_VA:}
   chat:
     enabled: ${CHAT_AI_ENABLED:false}
     web-search-enabled: ${CHAT_WEB_SEARCH_ENABLED:true}

@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-14",
+  "java": 21,
+  "jvm_timezone": "UTC",
+  "h2": {
+    "tests": 148,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "mysql": {
+    "tests": 146,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "configuration_helper": {
+    "tests": 4,
+    "failures": 0
+  },
+  "live_sepay_verified": false,
+  "sandbox_service_verified": false,
+  "baseline": "PASS: 55 knowledge entries, 14 sources, 30 questions, 10 SHA-256 locks",
+  "javascript": "payment.js syntax passed",
+  "mysql_note": "146 cases passed before the two direct-payment-flow tests were added; latest MySQL run is delegated to GitHub CI."
+}

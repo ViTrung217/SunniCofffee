@@ -43,7 +43,7 @@ public class ChatService {
         }
         if (Pattern.compile("\\b(chuyen tien|thanh toan giup|huy giup|dat giup)\\b").matcher(normalized).find()) {
             conversation.clear();
-            return ChatReply.of("REFUSED", "Chatbot chỉ tư vấn và tra cứu, chưa thực hiện đặt/hủy đơn hoặc chuyển tiền. Bạn có thể thao tác trên trang cửa hàng; hiện hỗ trợ COD.");
+            return ChatReply.of("REFUSED", "Chatbot chỉ tư vấn và tra cứu, chưa thực hiện đặt/hủy đơn hoặc chuyển tiền. Bạn có thể thao tác trên trang cửa hàng và chọn phương thức thanh toán đang được hiển thị tại checkout.");
         }
         // Store policy is not established in the frozen v1 sources. A manufacturer policy
         // or a requested promise cannot become a SuniCoffee commitment, even if AI is down.

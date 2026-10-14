@@ -1,0 +1,14 @@
+<!DOCTYPE html><html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Thanh toán thành công')}"></head>
+<body><header th:replace="~{fragments/layout :: header}"></header>
+<main id="main-content" class="container">
+<section class="panel">
+<h1 th:text="${payment.sandbox} ? 'Thanh toán mô phỏng thành công' : 'Thanh toán thành công'"></h1>
+<p class="notice" th:if="${payment.sandbox}">Sandbox — đây là giao dịch mô phỏng, không phải tiền thật.</p>
+<p>Cảm ơn bạn đã mua sắm tại SuniCoffee. Hệ thống đã xác nhận đủ tiền cho đơn hàng.</p>
+<p>Đơn hàng: <strong th:text="'SUNI-' + ${payment.orderId}"></strong></p>
+<p>Số tiền: <strong th:text="${#numbers.formatDecimal(payment.total,0,'POINT',0,'COMMA')} + ' ₫'"></strong></p>
+<p>Đơn hàng đang được cửa hàng xử lý. Bạn có thể theo dõi tiến độ trong chi tiết đơn hàng.</p>
+<p><a class="button" th:href="@{/products}">Tiếp tục mua sắm</a></p>
+<p><a th:href="@{/}">Về trang chủ</a> · <a th:href="@{/orders/{id}(id=${payment.orderId})}">Xem đơn hàng</a></p>
+</section></main><footer th:replace="~{fragments/layout :: footer}"></footer></body></html>

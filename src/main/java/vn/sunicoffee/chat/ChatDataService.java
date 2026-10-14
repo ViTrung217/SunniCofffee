@@ -87,11 +87,12 @@ public class ChatDataService {
             .append(money(o.getShippingFee())).append(". Tổng thanh toán: ").append(money(o.getTotal())).append(".\n");
         if (!o.getTrackingCode().isBlank()) answer.append("Đơn vị vận chuyển: ").append(o.getCarrier())
             .append(". Mã vận đơn: ").append(o.getTrackingCode()).append(". Chưa có dữ liệu vị trí thực tế hoặc ngày giao dự kiến.\n");
-        if (o.getStatus() == OrderStatus.COMPLETED) answer.append(o.getCodSettledAt() == null
+        if (o.getPaymentMethod() == vn.sunicoffee.domain.PaymentMethod.COD && o.getStatus() == OrderStatus.COMPLETED) answer.append(o.getCodSettledAt() == null
             ? "Chưa có ghi nhận đối soát COD; trạng thái hoàn thành không chứng minh cửa hàng đã nhận tiền.\n"
             : "Đã ghi nhận nhận đủ tiền COD.\n");
-        if (o.getStatus() == OrderStatus.PENDING) answer.append("Đơn còn đủ điều kiện tự hủy trong Đơn của tôi. Chatbot chưa thực hiện hủy đơn.");
-        else answer.append("Khách chỉ tự hủy khi đơn còn chờ xác nhận. Chatbot chỉ tra cứu, không sửa đơn.");
+        if(o.getPaymentMethod()==vn.sunicoffee.domain.PaymentMethod.SEPAY) answer.append("Thanh toán QR SePay: ").append(o.getPaymentStatus().getLabel()).append(o.isPaymentSandbox()?" (Sandbox)":"").append(".\n");
+        if (o.getStatus() == OrderStatus.PENDING && o.getReceivedAmount().signum()==0) answer.append("Đơn còn đủ điều kiện tự hủy trong Đơn của tôi. Chatbot chưa thực hiện hủy đơn.");
+        else answer.append("Khách chỉ tự hủy khi đơn còn chờ xác nhận và chưa ghi nhận tiền chuyển khoản. Nếu đã chuyển tiền, hãy liên hệ cửa hàng. Chatbot chỉ tra cứu, không sửa đơn.");
         return new ChatReply("ORDER", answer.toString(), List.of(new ChatReply.Citation("ORDER", "Chi tiết đơn SUNI-" + o.getId(), "/orders/" + o.getId())));
     }
     public ChatReply catalog(String question) {

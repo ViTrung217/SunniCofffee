@@ -1,0 +1,18 @@
+# Copy to .runtime/sepay.properties (ignored by Git), chmod 600, then edit locally.
+# Disabled until a SePay account and bank/VA configuration have been supplied.
+app.sepay.enabled=false
+app.sepay.sandbox=true
+app.sepay.api-token=
+# UUID from SePay API v2 /bank-accounts, not the bank account number.
+app.sepay.bank-account-id=
+# account_number returned in SePay transactions.
+app.sepay.account-number=
+# Account/official VA placed in the QR, according to the bank's SePay instructions.
+app.sepay.qr-account=
+app.sepay.bank=
+# Receiver name without Vietnamese accents.
+app.sepay.holder=
+# Example SEVQR for VietinBank; TKPxxx for memo-based VA. Blank where not required.
+app.sepay.description-prefix=
+# Expected va field for a configured VA. Blank only when no VA is used.
+app.sepay.va=

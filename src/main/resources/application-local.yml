@@ -1,7 +1,7 @@
 # Final thesis build: preserve existing local data, without automatically seeding it.
 spring:
   config:
-    import: optional:file:.runtime/chatbot.properties
+    import: optional:file:.runtime/chatbot.properties,optional:file:.runtime/sepay.properties
   datasource:
     url: jdbc:h2:file:./.runtime/sunicoffee;MODE=MySQL;DATABASE_TO_LOWER=TRUE;DB_CLOSE_ON_EXIT=FALSE
     username: sa

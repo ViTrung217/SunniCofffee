@@ -9,6 +9,63 @@ import java.util.List;
 @Entity
 @Table(name="customer_orders")
 public class CustomerOrder {
+    @Enumerated(EnumType.STRING) @Column(nullable=false,length=20)
+    private PaymentMethod paymentMethod = PaymentMethod.COD;
+    public PaymentMethod getPaymentMethod() { return paymentMethod; }
+    public void setPaymentMethod(PaymentMethod value) { paymentMethod=value; }
+    @Enumerated(EnumType.STRING) @Column(nullable=false,length=30)
+    private PaymentStatus paymentStatus = PaymentStatus.UNPAID;
+    public PaymentStatus getPaymentStatus() { return paymentStatus; }
+    public void setPaymentStatus(PaymentStatus value) { paymentStatus=value; }
+    @Column(unique=true,length=24)
+    private String paymentCode = null;
+    public String getPaymentCode() { return paymentCode; }
+    public void setPaymentCode(String value) { paymentCode=value; }
+    @Column(nullable=false,precision=18,scale=0)
+    private BigDecimal receivedAmount = BigDecimal.ZERO;
+    public BigDecimal getReceivedAmount() { return receivedAmount; }
+    public void setReceivedAmount(BigDecimal value) { receivedAmount=value; }
+    @Column
+    private LocalDateTime paidAt = null;
+    public LocalDateTime getPaidAt() { return paidAt; }
+    public void setPaidAt(LocalDateTime value) { paidAt=value; }
+    @Column
+    private LocalDateTime lastPaymentCheck = null;
+    public LocalDateTime getLastPaymentCheck() { return lastPaymentCheck; }
+    public void setLastPaymentCheck(LocalDateTime value) { lastPaymentCheck=value; }
+    @Column(nullable=false)
+    private boolean paymentSandbox = false;
+    public boolean isPaymentSandbox() { return paymentSandbox; }
+    public void setPaymentSandbox(boolean value) { paymentSandbox=value; }
+    @Column(length=36)
+    private String sepayBankAccountId = null;
+    public String getSepayBankAccountId() { return sepayBankAccountId; }
+    public void setSepayBankAccountId(String value) { sepayBankAccountId=value; }
+    @Column(length=64)
+    private String sepayAccountNumber = null;
+    public String getSepayAccountNumber() { return sepayAccountNumber; }
+    public void setSepayAccountNumber(String value) { sepayAccountNumber=value; }
+    @Column(length=64)
+    private String sepayQrAccount = null;
+    public String getSepayQrAccount() { return sepayQrAccount; }
+    public void setSepayQrAccount(String value) { sepayQrAccount=value; }
+    @Column(length=40)
+    private String sepayBank = null;
+    public String getSepayBank() { return sepayBank; }
+    public void setSepayBank(String value) { sepayBank=value; }
+    @Column(length=100)
+    private String sepayHolder = null;
+    public String getSepayHolder() { return sepayHolder; }
+    public void setSepayHolder(String value) { sepayHolder=value; }
+    @Column(length=40)
+    private String sepayPrefix = null;
+    public String getSepayPrefix() { return sepayPrefix; }
+    public void setSepayPrefix(String value) { sepayPrefix=value; }
+    @Column(length=64)
+    private String sepayVa = null;
+    public String getSepayVa() { return sepayVa; }
+    public void setSepayVa(String value) { sepayVa=value; }
+
     @Column
     private LocalDateTime completedAt;
     public LocalDateTime getCompletedAt() { return completedAt; }

@@ -4,6 +4,11 @@ import jakarta.validation.constraints.*;
 import java.math.BigDecimal;
 
 public class CheckoutForm {
+    @NotNull
+    private vn.sunicoffee.domain.PaymentMethod paymentMethod = vn.sunicoffee.domain.PaymentMethod.COD;
+    public vn.sunicoffee.domain.PaymentMethod getPaymentMethod() { return paymentMethod; }
+    public void setPaymentMethod(vn.sunicoffee.domain.PaymentMethod value) { paymentMethod=value; }
+
     @NotBlank @Size(max=100)
     private String recipientName = "";
     @NotBlank @Pattern(regexp="[0-9+ ()-]{9,20}", message="Số điện thoại cần 9–20 ký tự hợp lệ")

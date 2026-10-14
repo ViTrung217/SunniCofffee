@@ -11,7 +11,11 @@
 <p><strong th:text="${order.recipientName}"></strong></p><p th:text="${order.phone}"></p>
 <p class="description" th:text="${order.address}"></p><p th:if="${!order.note.isBlank()}" th:text="'Ghi chú: ' + ${order.note}"></p>
 <p class="muted" th:text="'Ngày đặt: ' + ${#temporals.format(order.createdAt,'dd/MM/yyyy HH:mm')}"></p>
-<p>Phương thức: thanh toán khi nhận hàng (COD).</p>
+<p th:text="'Phương thức: ' + ${order.paymentMethod.label}"></p>
+<p th:text="'Thanh toán: ' + ${order.paymentStatus.label}"></p>
+<p class="notice" th:if="${order.paymentSandbox}">Đơn Sandbox — thanh toán mô phỏng, không chuyển tiền thật.</p>
+<p class="notice" th:if="${order.paymentStatus.name() == 'REFUND_REQUIRED'}">Đơn đã có tiền chuyển khoản và cần cửa hàng đối chiếu, xử lý hoàn tiền thủ công. Hệ thống chưa tự chuyển tiền hoàn.</p>
+<a class="button" th:if="${order.paymentMethod.name() == 'SEPAY'}" th:href="${admin} ? @{/admin/orders/{id}/payment(id=${order.id})} : @{/orders/{id}/payment(id=${order.id})}">Xem QR / kiểm tra thanh toán</a>
 <p th:text="'Phí vận chuyển: ' + ${#numbers.formatDecimal(order.shippingFee,0,'POINT',0,'COMMA')} + ' ₫'"></p>
 <h3>Thông tin vận chuyển</h3>
 <p th:if="${order.carrier.isBlank()}">Chưa có thông tin bàn giao vận chuyển.</p>
@@ -19,13 +23,13 @@
 <p th:if="${order.shippedAt != null}" th:text="'Bàn giao lần đầu: ' + ${#temporals.format(order.shippedAt,'dd/MM/yyyy HH:mm')}"></p>
 <p th:if="${order.completedAt != null}" th:text="'Giao thành công: ' + ${#temporals.format(order.completedAt,'dd/MM/yyyy HH:mm')}"></p>
 <p th:if="${order.returnedAt != null}" th:text="'Nhận hàng hoàn: ' + ${#temporals.format(order.returnedAt,'dd/MM/yyyy HH:mm')}"></p>
-<div th:if="${admin and order.status.name() == 'COMPLETED'}">
+<div th:if="${admin and order.status.name() == 'COMPLETED' and order.paymentMethod.name() == 'COD'}">
 <p th:if="${order.codSettledAt != null}" th:text="'Đã nhận đủ COD: ' + ${#temporals.format(order.codSettledAt,'dd/MM/yyyy HH:mm')}"></p>
 <form th:if="${order.codSettledAt == null}" th:action="@{/admin/orders/{id}/cod(id=${order.id})}" method="post"><p>Chưa ghi nhận tiền COD về cửa hàng.</p><button>Đã nhận đủ tiền COD</button></form>
 </div>
 </section>
 <section class="panel"><h2>Tiến trình đơn hàng</h2>
-<form th:if="${!admin and order.status.name() == 'PENDING'}" th:action="@{/orders/{id}/cancel(id=${order.id})}" method="post"><p>Bạn có thể hủy khi cửa hàng chưa xác nhận.</p><button class="secondary danger">Hủy đơn hàng</button></form>
+<form th:if="${!admin and order.status.name() == 'PENDING' and order.receivedAmount.signum() == 0}" th:action="@{/orders/{id}/cancel(id=${order.id})}" method="post"><p>Bạn có thể hủy khi cửa hàng chưa xác nhận.</p><button class="secondary danger">Hủy đơn hàng</button></form>
 <form th:if="${admin and (order.status.name() == 'PENDING' or order.status.name() == 'CONFIRMED' or order.status.name() == 'SHIPPING' or order.status.name() == 'DELIVERY_FAILED')}" th:action="@{/admin/orders/{id}/status(id=${order.id})}" method="post">
 <label>Chuyển trạng thái<select name="status">
 <option th:if="${order.status.name() == 'PENDING'}" value="CONFIRMED">Xác nhận đơn hàng</option>

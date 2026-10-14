@@ -1,0 +1,32 @@
+<!DOCTYPE html><html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Thanh toán QR')}"></head>
+<body><header th:replace="~{fragments/layout :: header}"></header>
+<main id="main-content" class="container">
+<div th:replace="~{fragments/layout :: notices}"></div>
+<a class="back" th:href="${admin} ? @{/admin/orders/{id}(id=${payment.orderId})} : @{/orders/{id}(id=${payment.orderId})}">← Chi tiết đơn hàng</a>
+<h1 th:text="'Thanh toán đơn SUNI-' + ${payment.orderId}"></h1>
+<div class="checkout-grid" id="payment-box" th:data-auto="${payment.payable}" th:data-success-url="${admin} ? '' : @{/orders/{id}/payment/success(id=${payment.orderId})}">
+<section class="panel"><h2>Chuyển khoản qua SePay</h2>
+<p class="notice" th:if="${payment.sandbox}"><strong>Sandbox — không chuyển tiền thật.</strong> Tạo giao dịch mô phỏng trong Test mode của SePay với số tiền và nội dung bên cạnh.</p>
+<div id="payment-qr" th:hidden="${!payment.payable}">
+<img th:if="${payment.qrUrl != null}" th:src="${payment.qrUrl}" alt="Mã QR chuyển khoản đúng số tiền của đơn hàng" width="300" height="300" style="max-width:100%;height:auto" referrerpolicy="no-referrer">
+<p th:unless="${payment.sandbox}">Mở ứng dụng ngân hàng, quét QR và kiểm tra người nhận, số tiền, nội dung trước khi xác nhận chuyển khoản.</p>
+</div>
+<p>Chỉ chuyển một lần. Nếu đã trừ tiền, bấm kiểm tra hoặc liên hệ cửa hàng; không chuyển lại khi mạng chậm.</p>
+<p id="payment-status" class="notice" role="status" aria-live="polite" th:text="${payment.label}"></p>
+<p id="payment-received" th:text="'Đã ghi nhận: ' + ${#numbers.formatDecimal(payment.received,0,'POINT',0,'COMMA')} + ' ₫'"></p>
+<form id="payment-check" th:action="${admin} ? @{/admin/orders/{id}/payment/check(id=${payment.orderId})} : @{/orders/{id}/payment/check(id=${payment.orderId})}" method="post"><button type="submit">Kiểm tra thanh toán</button></form>
+<p class="muted">Khi chờ thanh toán, trang tự kiểm tra khoảng 15 giây/lần trong tối đa 20 phút. SePay có thể cập nhật chậm. Đóng trang không hủy đơn; bạn có thể quay lại kiểm tra sau.</p>
+<noscript><p>Bật JavaScript để kiểm tra tại trang này, hoặc liên hệ cửa hàng để kiểm tra giúp.</p></noscript>
+</section>
+<section class="panel"><h2>Thông tin chuyển khoản</h2>
+<p>Ngân hàng: <strong th:text="${payment.bank}"></strong></p>
+<p>Tài khoản nhận / VA: <strong th:text="${payment.account}"></strong></p>
+<p>Chủ tài khoản: <strong th:text="${payment.holder}"></strong></p>
+<p>Số tiền: <strong th:text="${#numbers.formatDecimal(payment.total,0,'POINT',0,'COMMA')} + ' ₫'"></strong></p>
+<p>Nội dung: <strong th:text="${payment.description}" style="overflow-wrap:anywhere"></strong></p>
+<p>Giữ nguyên nội dung để hệ thống khớp đúng đơn. Đơn hủy/hoàn hoặc chuyển thiếu, thừa tiền cần cửa hàng đối chiếu; không tự xác nhận giao hàng.</p>
+<h3>Giao dịch đã ghi nhận</h3><p th:if="${payment.receipts.empty}">Chưa ghi nhận giao dịch. Sau khi kiểm tra, tải lại trang để xem lịch sử mới nhất.</p>
+<ul><li th:each="r : ${payment.receipts}"><span th:text="${#numbers.formatDecimal(r.amount,0,'POINT',0,'COMMA')} + ' ₫ — ' + ${r.reference}"></span><small th:text="${#temporals.format(r.at,'dd/MM/yyyy HH:mm:ss')}"></small></li></ul>
+</section></div>
+</main><script defer th:src="@{/js/payment.js}"></script><footer th:replace="~{fragments/layout :: footer}"></footer></body></html>

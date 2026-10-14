@@ -23,6 +23,7 @@ public class OrderController {
     public OrderController(CartService c,OrderService o,OrderRepository r,AccountService a) { cart=c; orders=o; repository=r; accounts=a; }
     @org.springframework.beans.factory.annotation.Autowired private OrderHistoryService history;
     @org.springframework.beans.factory.annotation.Autowired private ShippingPolicy shipping;
+    @org.springframework.beans.factory.annotation.Autowired private vn.sunicoffee.payment.SepaySettings sepay;
     @GetMapping("/checkout") String checkout(Principal p,HttpSession session,Model m) {
         if(cart.items(p.getName()).isEmpty()) return "redirect:/cart";
         String token=CheckoutTokens.issue(session);
@@ -34,13 +35,13 @@ public class OrderController {
                                              Principal p,HttpSession session,Model m) {
         if(!CheckoutTokens.contains(session,form.getCheckoutToken())) result.reject("token","Phiên đặt hàng đã thay đổi. Hãy mở lại trang thanh toán từ giỏ hàng.");
         if(!result.hasErrors()) {
-            try { var order=orders.checkout(p.getName(),form); return "redirect:/orders/"+order.getId(); }
+            try { var order=orders.checkout(p.getName(),form); return "redirect:/orders/"+order.getId()+(order.getPaymentMethod()==vn.sunicoffee.domain.PaymentMethod.SEPAY ? "/payment" : ""); }
             catch(BusinessException e) { result.reject("checkout",e.getMessage()); }
             catch(org.springframework.dao.ConcurrencyFailureException e) { result.reject("checkout","Hệ thống đang xử lý tồn kho. Vui lòng thử đặt hàng lại; giỏ hàng của bạn vẫn được giữ."); }
         }
         summary(p,m); return "store/checkout";
     }
-    private void summary(Principal p,Model m) { var items=cart.items(p.getName()); m.addAttribute("items",items); m.addAttribute("shippingFee",shipping.getFee()); m.addAttribute("total",cart.total(items).add(shipping.getFee())); }
+    private void summary(Principal p,Model m) { m.addAttribute("sepayReady",sepay.ready()); m.addAttribute("sepaySandbox",sepay.sandbox()); var items=cart.items(p.getName()); m.addAttribute("items",items); m.addAttribute("shippingFee",shipping.getFee()); m.addAttribute("total",cart.total(items).add(shipping.getFee())); }
     @GetMapping("/orders") String history(Principal p,@RequestParam(defaultValue="0") int page,Model m) {
         m.addAttribute("orders",repository.findByUserEmailOrderByCreatedAtDesc(p.getName(),PageRequest.of(Math.max(0,page),20))); m.addAttribute("admin",false); return "orders/list";
     }

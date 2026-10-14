@@ -1,6 +1,6 @@
 # Bảng tình trạng SuniCoffee — 14/10/2026
 
-Phạm vi: bàn giao và bảo vệ đồ án chạy local; chưa triển khai thanh toán mới trong đợt này. “Đã có” nghĩa là có mã và luồng sử dụng, không khẳng định không còn lỗi trong mọi tình huống. Dữ liệu sản phẩm vẫn phục vụ đồ án, chưa được cửa hàng xác nhận.
+Phạm vi: bàn giao và bảo vệ đồ án chạy local; bổ sung QR SePay chạy local, chưa cấu hình tài khoản nhận tiền của người dùng. “Đã có” nghĩa là có mã và luồng sử dụng, không khẳng định không còn lỗi trong mọi tình huống. Dữ liệu sản phẩm vẫn phục vụ đồ án, chưa được cửa hàng xác nhận.
 
 | Nhóm | Chức năng | Trạng thái | Giới hạn / việc còn lại |
 | --- | --- | --- | --- |
@@ -14,8 +14,9 @@ Phạm vi: bàn giao và bảo vệ đồ án chạy local; chưa triển khai t
 | Giỏ hàng | Thêm, cập nhật, xóa; giỏ theo tài khoản | Đã có | Kiểm tra tồn khi đặt; không giữ hàng vô thời hạn trong giỏ |
 | Checkout | Địa chỉ nhận, tổng tiền, phí giao, chống đặt trùng | Đã có | Phí giao cố định theo cấu hình, chưa tính theo địa chỉ/hãng |
 | Thanh toán | COD và xác nhận nhận đủ tiền sau giao thành công | Đã có | Đối soát thủ công; trạng thái giao thành công khác với đã nhận tiền |
-| Thanh toán mới | Chuyển khoản/VietQR, VNPay, MoMo, payOS | **Chưa triển khai** | Mới tư vấn lựa chọn; cần chốt phương án trước khi thực hiện |
-| Tiền thanh toán | Đặt cọc, thanh toán một phần, hoàn tiền tự động | **Chưa triển khai** | Chưa có sổ giao dịch cổng thanh toán/webhook |
+| Thanh toán QR | SePay API v2, QR theo đơn, kiểm tra và chống ghi tiền trùng | **Có mã, chờ cấu hình và nghiệm thu SePay** | Polling khi mở trang, không cần public website; thiếu/thừa/tiền đến sau hủy cần đối chiếu. [Hướng dẫn](18-thanh-toan-sepay.md) |
+| Cổng khác | VNPay, MoMo, payOS | **Chưa triển khai** | Người dùng chọn SePay gói Free |
+| Tiền thanh toán | Đặt cọc, thanh toán một phần, hoàn tiền tự động | **Chưa triển khai** | Đã có sổ tiền vào SePay; chưa có hoàn tiền tự động/webhook |
 | Đơn hàng | Khách xem/hủy đơn chờ; admin xác nhận và chuyển trạng thái | Đã có | Lưu diễn biến và lý do; chưa gửi email/SMS thông báo |
 | Vận chuyển | Hãng/mã vận đơn, giao thất bại, giao lại, nhận hoàn | Đã có, thủ công | Chưa gọi API hãng vận chuyển, vị trí thực tế hoặc ETA tự động |
 | Kho | Tồn đầu, nhập/xuất, trừ khi đặt, hoàn khi hủy/nhận hoàn | Đã có | Nhật ký và khóa giao dịch; chưa có nhà cung cấp/phiếu mua nhiều dòng/đa kho |
@@ -34,7 +35,8 @@ Phạm vi: bàn giao và bảo vệ đồ án chạy local; chưa triển khai t
 
 ## Bằng chứng mới nhất
 
-- **Sửa CI: 127/127 ca đạt ở mỗi lượt H2 và cấu hình MySQL**, Java 21, UTC; có hồi quy thời điểm gửi/retry/đọc tin nhắn. Xem [kết quả](verification/customer-support/ci-fix-tests.json). Ca nâng cấp schema vẫn dùng H2 riêng; kiểm thử đơn vị không cần MySQL.
+- **SePay:** đã bổ sung kiểm thử quyền truy cập, đối soát, chuyển thiếu/thừa, nhận tiền sau hủy, chống ghi trùng và nâng cấp dữ liệu; xem [kết quả mới](verification/sepay/README.md). Chưa nghiệm thu giao dịch thật.
+- **Sửa CI trước SePay: 127/127 ca đạt ở mỗi lượt H2 và cấu hình MySQL**, Java 21, UTC; có hồi quy thời điểm gửi/retry/đọc tin nhắn. Xem [kết quả](verification/customer-support/ci-fix-tests.json). Ca nâng cấp schema vẫn dùng H2 riêng; kiểm thử đơn vị không cần MySQL.
 
 - **Chat nhân viên: 126/126 kiểm thử H2 đạt**, thử HTTP thật bằng hai tài khoản tổng hợp riêng; xem [kết quả](verification/customer-support/README.md). Schema mới tự áp dụng ở lần khởi động tiếp theo. Chưa nghiệm thu đầy đủ thao tác widget bằng trình duyệt.
 
@@ -49,6 +51,16 @@ Phạm vi: bàn giao và bảo vệ đồ án chạy local; chưa triển khai t
 ## Thứ tự hoàn thiện đề xuất
 
 1. Rà lại danh mục, ảnh và mô tả trên trang; thay dần số liệu bằng dữ liệu đã xác nhận nếu yêu cầu đồ án cần hàng thật.
-2. Chốt phương thức thanh toán bổ sung và tách trạng thái thanh toán khỏi trạng thái giao hàng; giữ COD hiện có.
+2. Cấu hình SePay Free, thử Sandbox rồi xác minh giao dịch Live khi chủ tài khoản sẵn sàng; theo dõi hạn mức 50 giao dịch tiền vào/tháng.
 3. Kiểm tra hạn mức Gemini/Search, đánh giá thêm hội thoại tự do và chấm lại phản hồi độc lập.
 4. Diễn tập toàn bộ luồng mua → xử lý đơn → kho → COD → báo cáo; rà giao diện trên máy bảo vệ và hoàn thiện hồ sơ theo mẫu khoa.
+
+
+## Cập nhật giao diện và luồng thanh toán
+
+- Chi tiết sản phẩm: ảnh lớn, khu vực mua hàng và mô tả tách riêng.
+- Thanh điều hướng có trạng thái trang hiện tại, cuộn ngang trên màn hình nhỏ.
+- Bộ lọc sản phẩm có khung tìm kiếm/danh mục riêng.
+- COD và chuyển khoản hiển thị dạng thẻ lựa chọn.
+- Đặt đơn chuyển khoản mở thẳng QR; khi xác nhận PAID, tự chuyển trang thành công có liên kết tiếp tục mua sắm/trang chủ.
+- Chưa kiểm chứng trực quan bản giao diện mới bằng công cụ trình duyệt; cần rà soát trên thiết bị khi nghiệm thu.

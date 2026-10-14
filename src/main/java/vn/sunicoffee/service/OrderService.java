@@ -23,6 +23,7 @@ public class OrderService {
     public OrderService(OrderRepository o,UserRepository u,ProductRepository p,CartRepository c,InventoryService inventory) { orders=o; users=u; products=p; carts=c; this.inventory=inventory; }
     @org.springframework.beans.factory.annotation.Autowired private OrderHistoryService history;
     @org.springframework.beans.factory.annotation.Autowired private ShippingPolicy shipping;
+    @org.springframework.beans.factory.annotation.Autowired private vn.sunicoffee.payment.SepaySettings sepay;
     @Transactional
     public CustomerOrder checkout(String email,CheckoutForm f) {
         // Serialize cart mutations and checkout for the same account.
@@ -38,6 +39,9 @@ public class OrderService {
         order.setRecipientName(f.getRecipientName().strip()); order.setPhone(f.getPhone().strip());
         order.setAddress(f.getAddress().strip()); order.setNote(f.getNote().strip());
         order.setStatus(OrderStatus.PENDING); order.setCreatedAt(LocalDateTime.now(ZoneId.of("Asia/Ho_Chi_Minh")));
+        if(f.getPaymentMethod()==null) throw new BusinessException("Chọn phương thức thanh toán hợp lệ.");
+        order.setPaymentMethod(f.getPaymentMethod());
+        if(order.getPaymentMethod()==PaymentMethod.SEPAY) sepay.prepare(order);
         BigDecimal total=BigDecimal.ZERO;
         // Always lock products in ascending ID order to reduce deadlocks.
         for (CartItem line:cart) {
@@ -51,7 +55,7 @@ public class OrderService {
             order.getItems().add(item); total=total.add(item.getSubtotal());
         }
         order.setShippingFee(shipping.getFee()); order.setTotal(total.add(order.getShippingFee())); orders.save(order);
-        history.record(order,email,"Đặt hàng COD"); carts.deleteAll(cart);
+        history.record(order,email,order.getPaymentMethod()==PaymentMethod.COD?"Đặt hàng COD":"Đặt hàng thanh toán QR SePay"+(order.isPaymentSandbox()?" (Sandbox)":"")); carts.deleteAll(cart);
         for(OrderItem item:order.getItems()) inventory.record(item.getProduct(),u,order,StockMovementType.SALE,-item.getQuantity(),"Đặt đơn SUNI-"+order.getId(),null);
         return order;
     }
@@ -67,6 +71,8 @@ public class OrderService {
         CustomerOrder o=orders.lockById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         if (!o.getUser().getEmail().equals(email)) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         if (o.getStatus()!=OrderStatus.PENDING) throw new BusinessException("Chỉ có thể hủy đơn đang chờ xác nhận.");
+        if(o.getPaymentMethod()==PaymentMethod.SEPAY && o.getReceivedAmount().signum()>0)
+            throw new BusinessException("Đơn đã có tiền chuyển khoản. Vui lòng liên hệ cửa hàng để hủy và xử lý hoàn tiền.");
         cancel(o,o.getUser());
         history.record(o,email,"Khách hủy trước khi xác nhận");
     }
@@ -93,6 +99,8 @@ public class OrderService {
         if (!valid) throw new BusinessException("Không thể chuyển trạng thái đơn hàng theo lựa chọn này.");
         if((next==OrderStatus.CANCELLED || next==OrderStatus.DELIVERY_FAILED || next==OrderStatus.RETURNING) && reason.isBlank())
             throw new BusinessException("Vui lòng nhập lý do hủy, giao thất bại hoặc hoàn hàng.");
+        if(o.getPaymentMethod()==PaymentMethod.SEPAY && (next==OrderStatus.CONFIRMED || next==OrderStatus.SHIPPING || next==OrderStatus.COMPLETED)
+                && o.getPaymentStatus()!=PaymentStatus.PAID) throw new BusinessException("Cần xác minh đủ tiền SePay trước khi xác nhận hoặc giao đơn.");
         if(next==OrderStatus.SHIPPING) {
             carrier=carrier==null ? "" : carrier.strip(); tracking=tracking==null ? "" : tracking.strip();
             if(carrier.isBlank()) carrier=o.getCarrier();
@@ -125,15 +133,18 @@ public class OrderService {
             p.setStock(p.getStock()+count); item.setRestockedQuantity(count);
             inventory.record(p,actor,o,StockMovementType.DELIVERY_RETURN,count,"Nhận hoàn SUNI-"+id,null);
         }
+        if(o.getPaymentMethod()==PaymentMethod.SEPAY && o.getReceivedAmount().signum()>0) o.setPaymentStatus(PaymentStatus.REFUND_REQUIRED);
         o.setStatus(OrderStatus.RETURNED); o.setReturnedAt(LocalDateTime.now(ZoneId.of("Asia/Ho_Chi_Minh")));
         history.record(o,actorEmail,reason.strip());
     }
     @Transactional
     public void settleCod(Long id,String actorEmail) {
         CustomerOrder o=orders.lockById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        if(o.getPaymentMethod()!=PaymentMethod.COD) throw new BusinessException("Đơn chuyển khoản không đối soát COD.");
         if(o.getStatus()!=OrderStatus.COMPLETED) throw new BusinessException("Chỉ đối soát COD cho đơn giao thành công.");
         if(o.getCodSettledAt()!=null) return;
         o.setCodSettledAt(LocalDateTime.now(ZoneId.of("Asia/Ho_Chi_Minh")));
+        o.setPaymentStatus(PaymentStatus.PAID);o.setReceivedAmount(o.getTotal());o.setPaidAt(o.getCodSettledAt());
         history.record(o,actorEmail,"Đã nhận đủ tiền COD: "+o.getTotal().toPlainString()+" VND");
     }
     private void cancel(CustomerOrder o,AppUser actor) {
@@ -143,6 +154,7 @@ public class OrderService {
             p.setStock(p.getStock()+item.getQuantity());
             inventory.record(p,actor,o,StockMovementType.CANCEL_RETURN,item.getQuantity(),"Hủy đơn SUNI-"+o.getId(),null);
         }
+        if(o.getPaymentMethod()==PaymentMethod.SEPAY && o.getReceivedAmount().signum()>0) o.setPaymentStatus(PaymentStatus.REFUND_REQUIRED);
         o.setStatus(OrderStatus.CANCELLED);
     }
 }
