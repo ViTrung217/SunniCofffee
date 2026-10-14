@@ -1,0 +1,33 @@
+[
+  {
+    "question": "pha máy, 2 người, 2.000.000 đồng",
+    "reply": {
+      "status": "INSUFFICIENT",
+      "answer": "Bạn cần máy pha cho 2 người, ngân sách 2.000.000 VND.\nDữ liệu dưới đây là minh họa, không phải sản phẩm/giá/tồn thực tế.\n• Máy pha cầm tay mẫu A: 650.000 VND, còn hàng.\n• Máy pha để bàn mẫu B: 2.500.000 VND, vượt ngân sách 500.000 VND.\nChưa có thông số xác nhận máy đáp ứng nhu cầu pha cho 2 người. Máy cầm tay không mặc nhiên là máy điện để bàn; các mẫu trên chỉ để tham khảo, chưa đủ căn cứ chốt mua.",
+      "sources": [
+        {
+          "id": "STORE4",
+          "title": "Máy pha cầm tay mẫu A",
+          "url": "/products/4"
+        },
+        {
+          "id": "STORE5",
+          "title": "Máy pha để bàn mẫu B",
+          "url": "/products/5"
+        }
+      ],
+      "searchSuggestionsHtml": null
+    },
+    "seconds": 0.09
+  },
+  {
+    "question": "Picopresso có tự đun nước không?",
+    "reply": {
+      "status": "UNAVAILABLE",
+      "answer": "Kết nối đến dịch vụ AI đang gián đoạn. Vui lòng thử lại sau.",
+      "sources": [],
+      "searchSuggestionsHtml": null
+    },
+    "seconds": 28.75
+  }
+]

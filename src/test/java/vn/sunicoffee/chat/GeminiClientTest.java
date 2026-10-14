@@ -107,4 +107,18 @@ class GeminiClientTest {
         server.verify();
     }
 
+    @Test void researchUsesSearchToolWithoutHistoryOrJsonSchema() throws Exception {
+        org.springframework.test.util.ReflectionTestUtils.setField(client, "webSearchEnabled", true);
+        server.expect(anything()).andExpect(jsonPath("$.tools[0].google_search").exists())
+            .andExpect(jsonPath("$.generationConfig.responseMimeType").doesNotExist())
+            .andExpect(jsonPath("$.contents[0].parts[0].text").value("{\"question\":\"Cà phê rang sáng là gì?\"}"))
+            .andRespond(withSuccess(mapper.writeValueAsString(new GroundedAnswerTest().response("https://example.org/coffee", true, "STOP")), MediaType.APPLICATION_JSON));
+        assertThat(client.research("Cà phê rang sáng là gì?").status()).isEqualTo("ANSWER");
+        server.verify();
+    }
+    @Test void disabledSearchMakesNoNetworkRequest() {
+        assertThat(client.research("Cà phê rang sáng là gì?").status()).isEqualTo("INSUFFICIENT");
+        server.verify();
+    }
+
 }

@@ -1,6 +1,18 @@
 # Chatbot SuniCoffee — Gemini
 
-Cập nhật: 13/10/2026. Đã tích hợp cửa sổ chat góc dưới bên phải, chạy kiểm thử tự động và thử Gemini thật thành công trên localhost. Đã bổ sung ngữ cảnh tư vấn nhiều lượt và cấu hình khóa cục bộ. Bản local 1.0.0 đã chạy 99 kiểm thử trên H2 và MySQL, cùng 90 lượt đánh giá AI; điểm chấm sơ bộ bởi Codex là 177/180, chưa phải nghiệm thu độc lập. Xem [biên bản bản cuối](14-nghiem-thu-1.0.0.md). Chưa kiểm thử tải dài hạn.
+Cập nhật: 13/10/2026. Đã tích hợp cửa sổ chat góc dưới bên phải, chạy kiểm thử tự động và thử Gemini thật thành công trên localhost. Đã bổ sung ngữ cảnh tư vấn nhiều lượt và cấu hình khóa cục bộ. Trước bổ sung tra cứu web, bản local 1.0.0 đã chạy 99 kiểm thử trên H2 và MySQL, cùng 90 lượt đánh giá AI; điểm chấm sơ bộ bởi Codex là 177/180, chưa phải nghiệm thu độc lập. Xem [biên bản bản cuối](14-nghiem-thu-1.0.0.md). Chưa kiểm thử tải dài hạn.
+
+## Hội thoại mở và tra cứu web (bổ sung)
+
+Bot có thể trả lời câu hỏi liên quan đến cà phê dù không nằm trong 30 câu đánh giá: loại hạt, hương vị, rang, pha chế, bảo quản, đồ uống và dụng cụ. Kho tri thức nội bộ vẫn là nguồn ưu tiên. Khi thiếu kiến thức công khai, Gemini tạo một câu hỏi độc lập cho Google Search; lượt tìm kiếm không nhận lịch sử, danh mục, danh tính đăng nhập hoặc dữ liệu đơn hàng. Câu ngoài chủ đề vẫn bị từ chối; thiếu dữ liệu cửa hàng không được thay bằng suy đoán từ web.
+
+- `app.chat.web-search-enabled` mặc định `true`; tắt bằng `CHAT_WEB_SEARCH_ENABLED=false` rồi khởi động lại. `app.chat.enabled` và khóa Gemini vẫn là điều kiện bắt buộc. Không thay đổi mô hình hay khóa hiện có.
+- Câu phủ định không được coi là lựa chọn; câu so sánh không tự thay sở thích. Ngân sách như `2.000.000 đồng`, `2,000,000 VND`, `2 000 000 đ`, `2 triệu` được nhận dạng và giữ nguyên qua bộ lọc số liên hệ. Gợi ý trích xuất vẫn không thay thế việc đọc nghĩa câu hỏi của mô hình.
+- Trạng thái nội bộ `RESEARCH` yêu cầu tra cứu, không được trả trực tiếp ra giao diện. Một lượt có tối đa hai bước mô hình (trả lời/định tuyến, rồi tìm kiếm nếu cần), mỗi bước giữ timeout và retry giới hạn. Trình duyệt chờ tối đa 75 giây.
+- Kết quả web có nhãn riêng, chỉ lấy URL từ `groundingMetadata` và có dấu `[W1]…` nối với đoạn được nguồn hỗ trợ. Không có metadata nguồn hợp lệ thì không công bố câu trả lời như đã kiểm chứng. Gợi ý tìm kiếm của Google hiển thị trong iframe sandbox, không cho chạy script, truy cập phiên cùng origin hoặc điều hướng trang cha. Văn bản chat vẫn dùng `textContent`.
+- Search có hạn mức/phí riêng theo dự án Google; không yêu cầu khóa tìm kiếm thứ hai. Google có thể thực hiện nhiều truy vấn trong một lượt. Xem [tài liệu Grounding with Google Search](https://ai.google.dev/gemini-api/docs/generate-content/google-search). Không tự bật thanh toán hoặc thay đổi hạn mức tài khoản Google.
+
+**Kết quả kiểm tra bổ sung:** 111 kiểm thử tự động đạt trên H2 (Gemini giả lập), bộ v1 giữ nguyên. Thử Gemini thật trên DB bộ nhớ riêng xác nhận ngân sách có dấu phân cách và câu phủ định. Tuy nhiên yêu cầu Google Search nhận HTTP 429 `RESOURCE_EXHAUSTED`; một số lượt mô hình trả 503/timeout. Vì vậy **chưa nghiệm thu thành công đầu-cuối tính năng tra web với khóa hiện tại**. Cần kiểm tra hạn mức Search của dự án Google rồi thử lại; không coi điểm 177/180 của bản trước là điểm của phiên bản mới. Xem [bằng chứng bổ sung](verification/chatbot-web/README.md).
 
 ## Cấu hình cục bộ trên máy này
 

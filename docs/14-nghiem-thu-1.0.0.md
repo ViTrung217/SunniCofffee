@@ -57,6 +57,22 @@ Bộ thu thập kiểm tra tầng dịch vụ với danh tính/đơn fixture; vi
 - [Phiếu chấm từng lượt](../evaluation/results/2026-10-13-release-1.0.0-final/grading.json), [tổng hợp điểm](../evaluation/results/2026-10-13-release-1.0.0-final/summary.json)
 - [Lần đầu trước sửa](../evaluation/results/2026-10-13-release-1.0.0/summary.json): 162/180, giữ lại để không lựa chọn chỉ công bố kết quả đẹp; có 5 lượt lỗi 503 và 3 lượt trả lời cam kết đổi mới quá chung.
 
+## Rà soát bổ sung: phát hiện trước khi sửa hội thoại mở
+
+**Cập nhật sau rà soát:** đã bổ sung bản sửa và kiểm thử hồi quy cho các lỗi dưới đây, đồng thời thêm luồng tra cứu web. Xem [kết quả hội thoại mở](verification/chatbot-web/README.md). Bảng dưới giữ bằng chứng trước sửa; điểm AI 177/180 phía trên chưa được chạy lại cho mã/prompt mới.
+
+Kiểm tra thêm ngày 13/10/2026 trên ứng dụng local ở cổng 8080 phát hiện các tình huống ngoài bộ v1. **Tại thời điểm rà soát này, chưa thể kết luận chatbot đã ổn định cho hội thoại tự do.** Kết quả 99 kiểm thử và 177/180 điểm phía trên thuộc các ca đã chạy, không phủ định những lỗi mới dưới đây. Lần rà soát bổ sung chỉ đọc dữ liệu; không sửa mã ứng dụng hoặc bộ đánh giá đã khóa.
+
+| Mức ưu tiên | Tình huống | Kết quả và nguyên nhân xác định |
+| --- | --- | --- |
+| Cao | “Tôi không muốn pha máy, ngân sách 2 triệu, 2 người.” | Bot vẫn trả “Bạn cần máy pha…” và liệt kê máy. `AdviceNeeds` trích từ khóa phương pháp pha mà chưa xử lý phủ định. |
+| Cao | Sau “pha máy, 2 người, 2 triệu”, hỏi “Arabica khác Robusta thế nào?” | Bot tiếp tục liệt kê máy và tự ghi nhu cầu “dùng hạt robusta”. Việc nhắc tên hạt trong câu hỏi so sánh bị coi là cập nhật sở thích; nhánh tư vấn máy trả lời trước khi phân biệt ý định mới. |
+| Cao | Ngân sách viết “2.000.000 đồng” | Kiểm tra trực tiếp biểu thức Java cho thấy bộ đọc tiền không khớp; bộ ẩn số liên hệ đổi số tiền thành `[số liên hệ đã ẩn]`. Đây là lỗi xử lý đầu vào xác định từ mã. Lượt gọi HTTP tương ứng trả `UNAVAILABLE`, nên chưa có câu trả lời AI để đánh giá riêng tác động của lỗi này. |
+
+Bằng chứng HTTP: [additional-audit.json](verification/release-1.0.0/additional-audit.json). Biểu thức kiểm tra tiền nằm trong `AdviceNeeds.java`; biểu thức ẩn thông tin liên hệ và điều hướng hội thoại nằm trong `ChatService.java`. Kiểm tra độc lập bằng JShell với chính các biểu thức hiện tại trả `budgetMatched=false` và câu đã ẩn số tiền như mô tả.
+
+Lượt HTTP báo AI bận là một lần gián đoạn quan sát được, chưa đủ để kết luận tần suất lỗi của dịch vụ. Cần ưu tiên sửa ba lỗi hội thoại/đầu vào trên và bổ sung kiểm thử hồi quy riêng, giữ nguyên bộ v1; sau đó thử lại chuỗi hội thoại trên ứng dụng đang chạy. Chưa kiểm tra tải kéo dài hoặc nghiệm thu đầy đủ trên nhiều trình duyệt/thiết bị.
+
 ## Phần cần chốt trước buổi bảo vệ
 
 1. **Dữ liệu:** có thể bảo vệ bằng dữ liệu mô phỏng nếu được người hướng dẫn chấp nhận; ghi rõ trong báo cáo. Nếu yêu cầu khảo sát cửa hàng thật, còn thiếu người xác nhận, danh mục, giá, kiểm kê và chính sách. Đã chuẩn bị [mẫu thu thập](../data/catalog/README.md), không tự tạo kết quả khảo sát.

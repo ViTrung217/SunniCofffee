@@ -1,0 +1,12 @@
+{
+  "command": "mvn -q -Ddebug=false verify",
+  "database": "H2 isolated test database",
+  "counts": {
+    "tests": 126,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "jar_sha256": "48bad26f91f1486fe68833745bf887f709d9f576e7d0e515a0afbf47ed3c60ea",
+  "privateCustomerDataUsed": false
+}

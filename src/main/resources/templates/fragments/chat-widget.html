@@ -1,10 +1,17 @@
-<!DOCTYPE html><html lang="vi" xmlns:th="http://www.thymeleaf.org"><body>
+<!DOCTYPE html><html lang="vi" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"><body>
 <div th:fragment="widget" th:unless="${chatFullPage == true}" id="chat-widget" class="chat-widget">
   <section id="chat-widget-panel" class="chat-widget-panel" role="dialog" aria-labelledby="chat-widget-title" hidden>
     <div class="chat-widget-heading">
       <div class="chat-widget-brand"><span aria-hidden="true">S</span><div><strong id="chat-widget-title">Trợ lý SuniCoffee</strong><small>Cà phê · Cách pha · Đơn hàng</small></div></div>
       <div class="chat-widget-actions"><a th:href="@{/chat}" target="_blank" rel="noopener" aria-label="Mở trang chat đầy đủ" title="Mở trang chat đầy đủ">↗</a><button id="chat-widget-close" type="button" aria-label="Thu gọn cửa sổ chat" title="Thu gọn">−</button></div>
     </div>
+    <div class="chat-widget-channels" aria-label="Chọn kênh trò chuyện">
+      <button type="button" data-chat-mode="ai" aria-pressed="true">Trợ lý AI</button>
+      <button sec:authorize="hasRole('CUSTOMER')" type="button" data-chat-mode="support" aria-pressed="false">Nhân viên cửa hàng</button>
+      <a sec:authorize="isAnonymous()" th:href="@{/support}" target="_top">Đăng nhập để chat nhân viên</a>
+      <a sec:authorize="hasRole('ADMIN')" th:href="@{/admin/support}">Hộp thư khách hàng</a>
+    </div>
+    <iframe sec:authorize="hasRole('CUSTOMER')" id="support-widget-frame" title="Chat với nhân viên cửa hàng" th:attr="data-src=@{/support(widget=true)}" referrerpolicy="same-origin" hidden></iframe>
     <iframe id="chat-widget-frame" title="Trò chuyện với trợ lý SuniCoffee" th:attr="data-src=@{/chat(widget=true)}" referrerpolicy="same-origin"></iframe>
   </section>
   <button id="chat-widget-toggle" class="chat-widget-toggle" type="button" aria-controls="chat-widget-panel" aria-expanded="false" aria-label="Mở trò chuyện với SuniCoffee" hidden>

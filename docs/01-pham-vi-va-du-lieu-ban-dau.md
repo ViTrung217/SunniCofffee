@@ -1,5 +1,7 @@
 # Bước 1 — Phạm vi nghiệp vụ và dữ liệu ban đầu của SuniCoffee
 
+Tài liệu lưu căn cứ phạm vi ban đầu; tình trạng hiện tại xem [bảng tiến độ](16-tinh-trang-du-an.md).
+
 Trạng thái: bản khởi đầu để trao đổi, chưa phải kết quả khảo sát cửa hàng. Người dùng đã xác nhận chưa có dự án và chưa có dữ liệu thật; bắt đầu từ đầu bằng dữ liệu mẫu.
 
 ## Mục tiêu
@@ -87,7 +89,7 @@ Kho tri thức và bộ câu hỏi đánh giá được chuẩn bị thành ph�
 
 ## Cập nhật sau khi viết mã bản 0.1
 
-Đã xây dựng ứng dụng Spring Boot với dữ liệu, tài khoản và luồng bán hàng cơ bản theo yêu cầu tiếp tục tạo code của người dùng. Thiết kế dữ liệu nằm trong `02-thiet-ke-co-so-du-lieu.md`; kết quả thực hiện và kiểm thử nằm trong `03-ket-qua-ban-0.1.md`. Chưa khảo sát cửa hàng và chưa tích hợp AI.
+Đã xây dựng ứng dụng Spring Boot với dữ liệu, tài khoản và luồng bán hàng cơ bản theo yêu cầu tiếp tục tạo code của người dùng. Thiết kế dữ liệu nằm trong `02-thiet-ke-co-so-du-lieu.md`; kết quả bản 0.1 có thể tra lại trong lịch sử Git. Chưa khảo sát cửa hàng và chưa tích hợp AI.
 
 ## Xử lý hai khách cùng đặt sản phẩm cuối
 
@@ -112,4 +114,4 @@ Kiểm thử trong `src/test/java/vn/sunicoffee/ShopIntegrationTest.java` bao g�
 
 ## Cập nhật phạm vi 0.3
 
-Người dùng yêu cầu triển khai vận chuyển và hoàn thiện các phần còn thiếu ngoài AI. Đã xác nhận phí mặc định 0 VND có thể cấu hình, xử lý đơn chờ lâu thủ công, chỉ hoàn tồn khi nhận lại hàng còn bán được. Chưa cung cấp dữ liệu cửa hàng thật hoặc mẫu báo cáo khoa. Thiết kế hiện hành ở tài liệu 02 và 06, hướng dẫn ở 07, kết quả/giới hạn ở 08. Các phần ghi “ban đầu”, “0.1” là lịch sử phân tích.
+Người dùng yêu cầu triển khai vận chuyển và hoàn thiện các phần còn thiếu ngoài AI. Đã xác nhận phí mặc định 0 VND có thể cấu hình, xử lý đơn chờ lâu thủ công, chỉ hoàn tồn khi nhận lại hàng còn bán được. Chưa cung cấp dữ liệu cửa hàng thật hoặc mẫu báo cáo khoa. Thiết kế hiện hành ở tài liệu 02 và 06, hướng dẫn hiện tại ở [tài liệu 13](13-phat-hanh-va-ban-giao.md), kết quả/giới hạn mới nhất ở [tài liệu 16](16-tinh-trang-du-an.md). Các phần ghi “ban đầu”, “0.1” là lịch sử phân tích.

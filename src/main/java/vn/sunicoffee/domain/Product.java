@@ -48,6 +48,9 @@ public class Product {
         if (sku != null && DEMO_IMAGE_SKUS.contains(sku)) {
             return "/images/products/" + sku.toLowerCase(java.util.Locale.ROOT) + ".png";
         }
+        if (sku != null && sku.matches("DEMO-(CF|MC|BR|OD)-[0-9]{3}")) {
+            return "/images/products/sample-" + sku.substring(5,7).toLowerCase(java.util.Locale.ROOT) + ".svg";
+        }
         return "/images/product-placeholder.svg";
     }
     public Long getId() { return id; }

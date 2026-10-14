@@ -1,6 +1,6 @@
 # Phát hành SuniCoffee 1.0.0 và bàn giao đồ án
 
-Ngày rà soát: 13/10/2026. Mục tiêu được xác nhận: bản hoàn chỉnh để bàn giao và bảo vệ đồ án, chưa mở cửa hàng cho khách mua thật. Số phiên bản chỉ phiên bản phần mềm; không chứng nhận giá, tồn kho hay chính sách đã được cửa hàng xác minh.
+Cập nhật hướng dẫn: 14/10/2026. Mục tiêu được xác nhận: bản hoàn chỉnh để bàn giao và bảo vệ đồ án, chưa mở cửa hàng cho khách mua thật. Số phiên bản chỉ phiên bản phần mềm; không chứng nhận giá, tồn kho hay chính sách đã được cửa hàng xác minh.
 
 **Phạm vi cuối: chỉ chạy local, không deploy, không yêu cầu tên miền, HTTPS, Nginx hay máy chủ.** Các mẫu deploy và profile prod thử trong lúc rà soát đã được loại khỏi bản bàn giao.
 
@@ -55,6 +55,18 @@ Health chỉ trả trạng thái, không lộ kết nối DB hoặc khóa. Readi
 5. Sao lưu rồi khôi phục vào cơ sở dữ liệu thử riêng; ghi thời điểm và kết quả. Không coi một tệp backup chưa thử khôi phục là đủ bằng chứng.
 6. Chốt báo cáo theo mẫu khoa, ảnh màn hình, sơ đồ và kịch bản [thuyết trình](09-dan-y-thuyet-trinh.md). Không tự điền khảo sát, doanh thu thật hay chữ ký nghiệm thu.
 
+## Sử dụng và trình diễn
+
+Khách tìm sản phẩm → thêm giỏ → nhập thông tin nhận hàng → đặt COD → xem **Đơn của tôi**. Giỏ chưa giữ tồn; chỉ hủy đơn còn chờ xác nhận. Giá và thông tin nhận hàng được chụp vào đơn.
+
+Admin vào **Đơn hàng**, xác nhận đơn rồi nhập hãng/mã vận đơn để bàn giao. Giao thành công và **Đã nhận đủ tiền COD** là hai thao tác riêng. Nếu giao thất bại, nhập lý do rồi chọn giao lại hoặc chuyển hoàn; chỉ hoàn kho sau khi nhận kiện và xác nhận số còn bán được của từng dòng.
+
+Nhập/xuất ở **Kho**, không sửa trực tiếp tồn trên biểu mẫu sản phẩm. Phiếu sai được bù bằng phiếu ngược chiều có lý do. Báo cáo doanh thu dùng ngày hoàn thành, loại phí giao và chưa trừ giá vốn; không đồng nghĩa tiền COD đã thu.
+
+Cấu hình tùy chọn: `SHIPPING_FEE=0`, `PENDING_REMINDER_HOURS=48`; khởi động lại sau khi đổi. Phí mới không thay phí trên đơn đã đặt. Xem [chat với khách của admin](17-chat-khach-hang.md), [chatbot Gemini](12-chatbot-gemini.md) và [cách nạp 36 sản phẩm mẫu](../data/README-products.md).
+
+Khi diễn tập, dùng tài khoản và đơn giả lập: đặt → xác nhận → giao thành công → đối soát; thêm một đơn giao thất bại → nhận hoàn để kiểm tra tồn. Mở hai phiên khách/admin riêng để thử gửi/nhận chat. Kiểm tra desktop và chiều rộng 390 px, thao tác bàn phím, thông báo lỗi biểu mẫu và nút mở/thu nhỏ cửa sổ chat. Đây là checklist, không phải tuyên bố các bước đã được nghiệm thu trực quan.
+
 ## Đánh giá chatbot có thể chạy lại
 
 ```bash
@@ -82,9 +94,18 @@ H2: dừng ứng dụng bằng Ctrl+C, chờ dừng hoàn tất, sao chép `.run
 
 MySQL local: dùng `scripts/backup-mysql.sh` và `scripts/restore-mysql-check.sh` với tệp kết nối riêng. Lệnh restore chỉ chấp nhận DB mới có hậu tố `_restore_check`. Đối chiếu đơn, tổng tiền, COD, tồn và nhật ký sau khôi phục.
 
+Tệp kết nối MySQL đặt ngoài repository, phân quyền `chmod 600`. Chạy với đường dẫn riêng của máy:
+
+```bash
+scripts/backup-mysql.sh /absolute/private/client.cnf sunicoffee /absolute/backups/sunicoffee.sql
+scripts/restore-mysql-check.sh /absolute/private/client.cnf sunicoffee_restore_check /absolute/backups/sunicoffee.sql
+```
+
+Backup không ghi đè tệp có sẵn; nếu lệnh lỗi, không dùng tệp dở. Không thay schema trong khi sao lưu. Restore dừng nếu DB đích đã tồn tại; chỉ dùng dump đáng tin cậy. Kiểm tra thêm ảnh, đăng nhập và lịch sử chat trên bản khôi phục. Giữ backup ngoài Git.
+
 ## Giới hạn đã công bố
 
-Bản này chạy trên một máy và một tiến trình. Session, giới hạn tần suất và lịch sử chat ở bộ nhớ; restart làm kết thúc phiên và cuộc trò chuyện. Gemini cần Internet và còn hạn mức; nếu không có AI, cửa hàng và tra cứu giá/tồn/đơn vẫn hoạt động. Không cần bật cổng ra Internet để bảo vệ đồ án.
+Bản này chạy trên một máy và một tiến trình. Session, giới hạn đăng nhập/AI và lịch sử chatbot AI ở bộ nhớ; restart kết thúc phiên và ngữ cảnh AI. Tin nhắn khách–admin và trạng thái hội thoại lưu trong DB, vẫn còn sau khi đăng nhập lại; giới hạn gửi tin nhân viên được tính từ tin đã lưu. Gemini cần Internet và còn hạn mức; nếu không có AI, cửa hàng và tra cứu giá/tồn/đơn vẫn hoạt động. Không cần bật cổng ra Internet để bảo vệ đồ án.
 
 Trạng thái Gemini chỉ cho biết đã cấu hình, không bảo đảm dịch vụ luôn sẵn sàng. Xem phản hồi nguyên văn và kết quả chấm sơ bộ ở [biên bản nghiệm thu](14-nghiem-thu-1.0.0.md). Khi báo cáo điểm AI, nêu rõ Codex hỗ trợ chấm, không phải đánh giá mù bởi người độc lập.
 

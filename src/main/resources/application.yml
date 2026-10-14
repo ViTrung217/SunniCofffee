@@ -47,6 +47,7 @@ management:
 app:
   chat:
     enabled: ${CHAT_AI_ENABLED:false}
+    web-search-enabled: ${CHAT_WEB_SEARCH_ENABLED:true}
     gemini-api-key: ${GEMINI_API_KEY:}
     model: ${GEMINI_MODEL:gemini-3.1-flash-lite}
   shipping:

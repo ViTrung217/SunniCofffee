@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="_csrf" th:content="${_csrf.token}"><title>Chat với cửa hàng · SuniCoffee</title><link rel="stylesheet" th:href="@{/css/style.css}"><link rel="stylesheet" th:href="@{/css/support.css}"><script defer th:src="@{/js/support.js}"></script></head>
+<body th:classappend="${embedded} ? 'support-embedded' : ''">
+<th:block th:unless="${embedded}"><header th:replace="~{fragments/layout :: header}"></header></th:block>
+<main id="main-content" class="container support-page">
+  <th:block th:unless="${embedded}"><th:block th:if="${supportAdmin}"><nav th:replace="~{fragments/layout :: adminnav}"></nav></th:block>
+  <a th:if="${supportAdmin}" th:href="@{/admin/support}" class="back">← Hộp thư khách hàng</a>
+  <h1 th:text="${supportAdmin} ? 'Trao đổi với ' + ${conversation.customerName} : 'Chat với cửa hàng'"></h1>
+  <p th:if="${supportAdmin}" class="muted" th:text="${conversation.customerEmail}"></p></th:block>
+  <section id="support-chat" class="support-panel" th:attr="data-endpoint=@{${endpoint}},data-admin=${supportAdmin},data-embedded=${embedded}" aria-label="Tin nhắn hỗ trợ">
+    <div class="support-heading"><div><strong th:text="${supportAdmin} ? 'Hội thoại khách hàng' : 'Nhân viên SuniCoffee'"></strong><p id="support-state" class="muted">Đang tải hội thoại…</p></div><button th:if="${supportAdmin}" id="support-toggle-state" type="button" class="small secondary" disabled>Đóng hội thoại</button></div>
+    <p class="support-note" th:unless="${supportAdmin}">Đây là tin nhắn với nhân viên, không phải AI. Lịch sử được lưu để cửa hàng hỗ trợ bạn; phản hồi có thể không đến ngay. Không gửi mật khẩu hoặc thông tin thẻ.</p>
+    <button id="support-older" type="button" class="link-button" hidden>Xem tin nhắn cũ hơn</button>
+    <div id="support-messages" class="support-messages" role="log" aria-live="polite" aria-relevant="additions"><p id="support-empty" class="muted">Đang tải tin nhắn…</p></div>
+    <p id="support-notice" role="status" class="support-notice"></p>
+    <form id="support-form" th:action="@{${endpoint} + '/messages'}" method="post"><label for="support-input">Tin nhắn<textarea id="support-input" rows="3" maxlength="1500" required placeholder="Nhập nội dung cần trao đổi…"></textarea></label><div class="support-form-bottom"><small>Tối đa 1.500 ký tự · Enter xuống dòng</small><button id="support-send" type="submit">Gửi tin nhắn</button></div></form>
+    <noscript><p class="notice">Cần bật JavaScript để gửi và nhận tin nhắn.</p></noscript>
+  </section>
+</main>
+<th:block th:unless="${embedded}"><footer th:replace="~{fragments/layout :: footer}"></footer></th:block>
+</body></html>

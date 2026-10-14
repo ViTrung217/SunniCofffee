@@ -1,0 +1,13 @@
+{
+  "environment": "localhost:8087, isolated H2 memory database, synthetic accounts only, AI disabled",
+  "checks": {
+    "retry_same_message": true,
+    "admin_unread": true,
+    "customer_received_admin_reply": true,
+    "read_ack": true,
+    "closed": true,
+    "customer_reopens": true,
+    "embedded_page": true,
+    "customer_widget_channel": true
+  }
+}

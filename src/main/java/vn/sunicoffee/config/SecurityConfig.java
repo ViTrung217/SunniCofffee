@@ -23,6 +23,7 @@ public class SecurityConfig {
                 .requestMatchers("/actuator/**").denyAll()
                 .requestMatchers("/chat", "/chat/messages", "/chat/sources/**", "/", "/products/**", "/api/products/**", "/css/**", "/js/**", "/images/**", "/product-images/**", "/login", "/register", "/error").permitAll()
                 .requestMatchers("/admin/**").hasRole("ADMIN")
+                .requestMatchers("/support", "/support/**").hasRole("CUSTOMER")
                 .anyRequest().authenticated())
             .headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()))
             .formLogin(form -> form.loginPage("/login").usernameParameter("email").defaultSuccessUrl("/",false).permitAll())

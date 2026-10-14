@@ -1,10 +1,10 @@
-# Dàn ý thuyết trình SuniCoffee 0.3 — phần ngoài AI
+# Dàn ý thuyết trình SuniCoffee 1.0.0 — chạy local
 
-Bản nội dung nháp khoảng 10 phút, chưa theo mẫu khoa. Chưa có tệp PPTX. Không điền tên giảng viên, khoa, người thực hiện hoặc số liệu khảo sát khi chưa có thông tin xác nhận. Nguồn kỹ thuật: docs/02, docs/06, docs/08 và các báo cáo kiểm thử trong docs/verification.
+Bản nội dung nháp khoảng 10 phút, chưa theo mẫu khoa. Chưa có tệp PPTX. Không điền tên giảng viên, khoa, người thực hiện hoặc số liệu khảo sát khi chưa có thông tin xác nhận. Cập nhật 14/10/2026. Nguồn: [thiết kế](06-thiet-ke-va-nghiep-vu-v03.md), [chatbot](12-chatbot-gemini.md), [tình trạng hiện tại](16-tinh-trang-du-an.md), [chat nhân viên](17-chat-khach-hang.md) và bằng chứng trong `docs/verification`.
 
 ## 1. SuniCoffee: bán hàng và quản lý vận chuyển
 
-Nội dung: ứng dụng quản lý bán cà phê và dụng cụ cà phê phượt; phiên bản 0.3; dữ liệu trình diễn mô phỏng; không trình bày AI trong phần này.
+Nội dung: ứng dụng quản lý bán cà phê và dụng cụ cà phê phượt; phiên bản 1.0.0; 36 sản phẩm minh họa, chatbot có nguồn và kênh chat trực tiếp với admin. Dữ liệu trình diễn mô phỏng, chưa phải khảo sát cửa hàng.
 
 Lời dẫn: “Phần trình diễn tập trung vào đặt hàng, bảo đảm tồn kho và xử lý vận chuyển. Các sản phẩm và giao dịch sử dụng dữ liệu mẫu.”
 
@@ -16,7 +16,7 @@ Lời dẫn: “Khách xem sản phẩm, đặt và theo dõi đơn của mình.
 
 ## 3. Kiến trúc và dữ liệu
 
-Nội dung: Spring Boot MVC + Thymeleaf; Spring Security; service giao dịch; JPA/JDBC; MySQL; Flyway V1–V3. Dùng sơ đồ kiến trúc ở docs/06 và ERD hiện hành ở docs/02 khi dựng slide.
+Nội dung: Spring Boot MVC + Thymeleaf; Spring Security; service giao dịch; JPA/JDBC; H2 local hoặc MySQL; Flyway V1–V4. Sơ đồ nghiệp vụ nền ở docs/06 và ERD V3 ở docs/02; V4 bổ sung bảng hội thoại/tin nhắn, mô tả ở docs/17.
 
 Lời dẫn: “Quy tắc nghiệp vụ nằm ở service. Các thay đổi liên quan đơn và tồn kho cùng nằm trong giao dịch; migration cập nhật cấu trúc và giữ dữ liệu cũ.”
 
@@ -38,17 +38,23 @@ Nội dung: tổng thanh toán gồm phí; nhận tiền COD tách khỏi giao t
 
 Lời dẫn: “Đơn hoàn thành có thể chưa được hãng trả tiền COD. Báo cáo doanh thu và việc nhận tiền vì vậy được diễn giải riêng, chưa phải báo cáo lợi nhuận.”
 
-## 7. Kiểm thử và phục hồi
+## 7. Chatbot AI và chat nhân viên
 
-Nội dung: 61/61 ca đạt ở mỗi lượt H2/MySQL; lượt MySQL có 58 ca ứng dụng dùng MySQL, 2 ca không database, 1 ca nâng cấp H2 riêng. Sao lưu/phục hồi giữ tồn, đơn và hash ảnh. GET cục bộ 100 yêu cầu/10 luồng đạt 100%; p95 21,57 ms, không phải cam kết tải sản xuất.
+Nội dung: 55 mục tri thức/14 nguồn; 30 câu đánh giá khóa trước khi code. Chatbot tư vấn theo ngữ cảnh, đọc giá/tồn và chỉ tra đơn của tài khoản đã xác thực. Google Search có mã nhưng chưa nghiệm thu đầu-cuối do quota/lỗi dịch vụ. Chat nhân viên độc lập Gemini, lưu lịch sử DB và tự cập nhật khi cửa sổ hiển thị.
 
-Lời dẫn: “Các số liệu được lấy từ báo cáo chạy thật. Kiểm thử đồng thời bao gồm tranh món cuối, hủy cùng lúc và đặt hàng với xuất kho. Phép đo phản hồi chỉ là kiểm tra ngắn trên localhost.”
+Trình diễn một hội thoại nhiều lượt, mở nguồn dẫn; sau đó dùng hai phiên khách/admin để gửi nhận tin, xem số chưa đọc và đóng/mở hội thoại. Không đưa API key hoặc thông tin khách thật lên màn hình.
 
-## 8. Demo và giới hạn
+## 8. Kiểm thử và phục hồi
 
-Nội dung: demo đặt → bàn giao → thất bại → nhận hoàn; kiểm tra tồn/nhật ký; demo COD và báo cáo. Còn cần dữ liệu thật, kiểm tra trực quan trên thiết bị, môi trường triển khai và mẫu báo cáo khoa. AI để ngoài phạm vi theo yêu cầu.
+Nội dung: [126/126 kiểm thử H2 đạt](verification/customer-support/tests.json), gồm kiểm thử quyền chat, phân trang, gửi lặp và đồng thời. HTTP thật dùng hai tài khoản tổng hợp đã được kiểm tra. Chưa chạy lại MySQL cho toàn bộ phần bổ sung mới và chưa nghiệm thu đầy đủ widget trên trình duyệt.
 
-Lời dẫn: “Kết quả hiện tại là phần mềm và tài liệu kỹ thuật có thể chạy lại. Không coi dữ liệu demo là kết quả khảo sát, và chưa khẳng định hệ thống đã được triển khai công khai.”
+Bằng chứng [nghiệm thu trước đây](14-nghiem-thu-1.0.0.md) gồm 99 ca H2/MySQL, backup/restore và điểm AI sơ bộ 177/180 do Codex hỗ trợ chấm. Các số cũ gắn với phiên bản được ghi trong bằng chứng, không dùng làm điểm chất lượng của mã mới. Cần chấm AI độc lập và diễn tập khôi phục trước buổi bảo vệ.
+
+## 9. Demo và giới hạn
+
+Nội dung: đặt → bàn giao → thất bại → nhận hoàn; kiểm tra tồn/nhật ký; COD và báo cáo; chatbot và chat admin. Chạy theo [hướng dẫn bàn giao](13-phat-hanh-va-ban-giao.md). Chỉ chạy local theo phạm vi đã chốt.
+
+Chưa có thanh toán online, API vận chuyển hoặc quên mật khẩu qua email. Còn cần dữ liệu xác minh, kiểm tra giao diện trên thiết bị và hoàn thiện báo cáo/slide theo mẫu khoa. Không trình bày dữ liệu mẫu thành doanh thu hay khảo sát thật.
 
 ## Câu hỏi dự kiến
 

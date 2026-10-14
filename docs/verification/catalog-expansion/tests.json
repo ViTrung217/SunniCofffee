@@ -1,0 +1,19 @@
+{
+  "command": "mvn -q -Ddebug=false verify",
+  "database": "H2 test database",
+  "counts": {
+    "tests": 114,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "products": 36,
+  "category_counts": {
+    "COFFEE": 10,
+    "MACHINE": 6,
+    "BREWING": 12,
+    "OUTDOOR": 8
+  },
+  "jar_sha256": "438065035b3a67ba74f716ba5c3392ba5863608f9d44081f7bbb81b73c781aeb",
+  "baseline_check": "55 items, 14 sources, 30 questions, 10 SHA-256 locks unchanged"
+}

@@ -1,0 +1,12 @@
+{
+  "command": "mvn -q -Ddebug=false verify",
+  "database": "isolated H2 test profile",
+  "counts": {
+    "tests": 111,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "realGeminiInTests": false,
+  "jar_sha256": "a20f05e9faba270834524e1b857cb8cfdd6d12f64cfa160081e36ea942d6c318"
+}

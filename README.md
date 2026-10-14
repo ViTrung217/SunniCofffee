@@ -2,7 +2,7 @@
 
 Ứng dụng bán cà phê và dụng cụ pha chế, bản chạy local để bàn giao và bảo vệ đồ án. Bao gồm cửa hàng, quản trị, kho, vận chuyển COD và chatbot Gemini có nguồn tham chiếu, cửa sổ chat ở góc dưới bên phải.
 
-**Dữ liệu hiện tại phục vụ đồ án, chưa được cửa hàng xác nhận.** Phần mềm 1.0.0 không đồng nghĩa đã có hàng hóa, giá hay chính sách kinh doanh thực tế. [Biên bản rà soát cuối](docs/14-nghiem-thu-1.0.0.md) phân biệt kết quả đã kiểm tra và việc cần bổ sung.
+**Dữ liệu hiện tại phục vụ đồ án, chưa được cửa hàng xác nhận.** Phần mềm 1.0.0 không đồng nghĩa đã có hàng hóa, giá hay chính sách kinh doanh thực tế. [Bảng tình trạng hiện tại](docs/16-tinh-trang-du-an.md) phân biệt kết quả đã kiểm tra và việc cần bổ sung.
 
 ## Chạy bản bàn giao
 
@@ -20,6 +20,8 @@ Máy mới cần tạo quản trị riêng bằng `ADMIN_EMAIL` và `ADMIN_PASSW
 
 ## Chức năng
 
+[Bảng đã làm / còn thiếu cập nhật 14/10/2026](docs/16-tinh-trang-du-an.md). Danh mục đồ án hiện có 36 sản phẩm với mô tả chi tiết; xem [nguồn dữ liệu và cách nạp bổ sung](data/README-products.md).
+
 | Nhóm | Nội dung |
 | --- | --- |
 | Khách hàng | Đăng ký/đăng nhập, hồ sơ, đổi mật khẩu, tìm/lọc sản phẩm, giỏ riêng, đặt COD, xem và hủy đơn còn chờ xác nhận |
@@ -28,7 +30,8 @@ Máy mới cần tạo quản trị riêng bằng `ADMIN_EMAIL` và `ADMIN_PASSW
 | Kho | Nhật ký tồn đầu/nhập/xuất, trừ khi đặt, hoàn khi hủy/nhận hàng hoàn; giao dịch và khóa tồn |
 | Đơn hàng | Trạng thái hợp lệ, hãng/mã vận đơn, giao thất bại/giao lại/hoàn, phí giao chụp vào đơn, chống đặt trùng |
 | COD và báo cáo | Đối soát riêng với giao thành công, doanh thu tiền hàng theo ngày hoàn thành tại Việt Nam, bộ lọc đơn |
-| Chatbot | Gemini, 55 mục tri thức có nguồn, ngữ cảnh hội thoại, giá/tồn hiện hành, chỉ tra cứu đơn thuộc tài khoản đã xác thực |
+| Chat nhân viên | Khách đăng nhập trao đổi trực tiếp với admin; hộp thư, số chưa đọc, đóng/mở lại và lịch sử lưu DB |
+| Chatbot | Gemini, 55 mục tri thức có nguồn, ngữ cảnh hội thoại, luồng tra Google cho kiến thức liên quan (phụ thuộc quota), giá/tồn hiện hành, chỉ tra cứu đơn thuộc tài khoản đã xác thực |
 | Vận hành | MySQL hoặc H2 cục bộ, Flyway, health/readiness, graceful shutdown, backup/restore kiểm tra |
 
 Thanh toán online, API hãng vận chuyển, email quên mật khẩu, khuyến mại, đa chi nhánh và giá vốn/lợi nhuận nằm ngoài phạm vi đồ án đã chốt. Không mô tả các mục này là chức năng đã triển khai.
@@ -48,12 +51,11 @@ Bộ [30 câu đánh giá](evaluation/chatbot/v1/QUESTIONS.md) được khóa tr
 
 - [Phát hành local, khởi động và tài khoản mới](docs/13-phat-hanh-va-ban-giao.md)
 - [Kết quả nghiệm thu và phần còn thiếu](docs/14-nghiem-thu-1.0.0.md)
+- [Chat trực tiếp khách hàng – admin](docs/17-chat-khach-hang.md)
 - [Chatbot Gemini và cấu hình khóa](docs/12-chatbot-gemini.md)
 - [Mẫu thu thập danh mục thật và công cụ kiểm tra](data/catalog/README.md)
-- [Thiết kế và nghiệp vụ](docs/06-thiet-ke-va-nghiep-vu-v03.md), [vận hành/sao lưu](docs/07-huong-dan-van-hanh-va-demo.md)
+- [Thiết kế và nghiệp vụ](docs/06-thiet-ke-va-nghiep-vu-v03.md), [vận hành/sao lưu](docs/13-phat-hanh-va-ban-giao.md)
 - [Kho tri thức 55 mục](docs/ai/kho-tri-thuc-v1.md), [quy trình đánh giá đã khóa](evaluation/chatbot/v1/PROTOCOL.md)
 - [Đề cương thuyết trình](docs/09-dan-y-thuyet-trinh.md)
 
-Các tài liệu 0.1–0.3 và bằng chứng trước đây giữ làm lịch sử phát triển. Tài liệu 13/14 là hướng dẫn phát hành hiện tại; không suy số kiểm thử/điểm AI hiện tại từ các bản cũ.
-
-# SunniCofffee
+Tài liệu 13 hướng dẫn chạy và vận hành; tài liệu 16 theo dõi tình trạng mới nhất; tài liệu 14 lưu kết quả nghiệm thu trước các đợt bổ sung. Các báo cáo tiến độ cũ đã được lược bỏ, có thể tra lại trong lịch sử Git. Tài liệu thiết kế 06 được giữ nguyên vì là nguồn tham chiếu của kho tri thức đã khóa. Không suy số kiểm thử/điểm AI hiện tại từ bằng chứng cũ.

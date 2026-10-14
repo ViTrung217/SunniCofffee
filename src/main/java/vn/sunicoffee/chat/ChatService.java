@@ -57,9 +57,9 @@ public class ChatService {
         }
         String previousQuestions = conversation.history().stream().map(ChatConversation.Turn::question).collect(java.util.stream.Collectors.joining("\n"));
         var needs = AdviceNeeds.from(conversation.history(), question);
-        boolean advice = Pattern.compile("\\b(tu van|nen mua|goi y|nguoi moi|bat dau|ngan sach|chon mua)\\b")
+        boolean advice = !AdviceNeeds.knowledgeQuestion(question) && (Pattern.compile("\\b(tu van|nen mua|goi y|nguoi moi|bat dau|ngan sach|chon mua)\\b")
             .matcher(KnowledgeBase.normalize(previousQuestions + " " + question)).find()
-            || (!needs.brewing().isBlank() && needs.budgetVnd() != null);
+            || (!needs.brewing().isBlank() && needs.budgetVnd() != null));
         if (!advice && Pattern.compile("\\b(gia|ton kho|con hang|het hang|bao nhieu tien)\\b").matcher(normalized.replace("danh gia", "nhan xet").replace("gia tri", "value")).find()) {
             try { return data.catalog(question); }
             catch (org.springframework.dao.DataAccessException ex) {
@@ -68,10 +68,9 @@ public class ChatService {
         }
         if (!gemini.ready()) return ChatReply.of("NOT_CONFIGURED", "Trợ lý AI chưa được cấu hình. Bạn vẫn có thể hỏi giá/tồn theo mã SKU hoặc tra cứu đơn SUNI sau đăng nhập.");
         // Minimize common personal identifiers voluntarily entered into a general knowledge question.
-        String sanitized = question.replaceAll("[\\w.+-]+@[\\w.-]+\\.[A-Za-z]{2,}", "[email đã ẩn]")
-            .replaceAll("(?<!\\d)\\+?\\d[\\d .-]{7,}\\d(?!\\d)", "[số liên hệ đã ẩn]");
+        String sanitized = ChatPrivacy.redact(question);
         try {
-            var context = new ArrayList<>(knowledge.search(previousQuestions + "\n" + sanitized));
+            var context = new ArrayList<>(knowledge.search(AdviceNeeds.knowledgeQuestion(question) ? sanitized : previousQuestions + "\n" + sanitized));
             Map<String, ChatReply.Citation> storeCitations = Map.of();
             boolean demoAdvice = false;
             if (advice) {
@@ -80,7 +79,7 @@ public class ChatService {
                     var newNeeds = AdviceNeeds.from(List.of(), sanitized);
                     boolean preferenceReply = !newNeeds.brewing().isBlank() || !newNeeds.people().isBlank()
                         || newNeeds.budgetVnd() != null || !newNeeds.beans().isBlank();
-                    if (catalog.demoMachineReply() != null && preferenceReply) {
+                    if (catalog.demoMachineReply() != null && preferenceReply && AdviceNeeds.preferenceStatement(sanitized)) {
                         conversation.remember(sanitized, catalog.demoMachineReply().answer());
                         return catalog.demoMachineReply();
                     }
@@ -91,6 +90,22 @@ public class ChatService {
             }
             var history = conversation.history();
             var result = history.isEmpty() ? gemini.answer(sanitized, context) : gemini.answer(sanitized, context, history);
+            if (result.status().equals("RESEARCH")) {
+                if (!ChatPrivacy.publicResearch(sanitized) || result.researchQuery() == null
+                        || !ChatPrivacy.publicResearch(result.researchQuery())) {
+                    return ChatReply.of("INSUFFICIENT", "Chưa có dữ liệu đã xác minh cho nội dung này. Giá, tồn kho, đơn hàng và chính sách SuniCoffee cần được kiểm tra trong cửa hàng.");
+                }
+                try {
+                    var researched = gemini.research(result.researchQuery());
+                    if (researched.status().equals("ANSWER")) conversation.remember(sanitized, researched.answer());
+                    return researched;
+                } catch (GeminiClient.Unavailable ex) {
+                    String reason = ex.failure() == GeminiClient.Failure.QUOTA_EXCEEDED
+                        ? "Google đang giới hạn lượt tra cứu web."
+                        : "Dịch vụ tra cứu web đang gián đoạn.";
+                    return ChatReply.of("UNAVAILABLE", reason + " Mình chưa kiểm chứng được thông tin để trả lời câu hỏi này. Bạn có thể thử lại sau.");
+                }
+            }
             if (result.status().equals("OUT_OF_SCOPE")) {
                 conversation.clear();
                 return ChatReply.of("OUT_OF_SCOPE", "Mình hỗ trợ sản phẩm cà phê, dụng cụ pha chế và nghiệp vụ cửa hàng. Bạn có thể hỏi trong các chủ đề này.");
@@ -100,7 +115,7 @@ public class ChatService {
             // A clarification does not need an irrelevant policy link below it.
             if (result.status().equals("CLARIFY")) citations.clear();
             String answer = result.answer();
-            if (demoAdvice && !result.status().equals("CLARIFY")) answer = "Danh mục tư vấn là dữ liệu minh họa, không phải sản phẩm/giá/tồn thực tế.\n\n" + answer;
+            if (demoAdvice && result.knowledgeIds().stream().anyMatch(storeCitations::containsKey) && !result.status().equals("CLARIFY")) answer = "Danh mục tư vấn là dữ liệu minh họa, không phải sản phẩm/giá/tồn thực tế.\n\n" + answer;
             conversation.remember(sanitized, answer);
             return new ChatReply(result.status(), answer, List.copyOf(citations));
         } catch (GeminiClient.Unavailable ex) {

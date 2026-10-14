@@ -1,0 +1,98 @@
+{
+  "environment": "localhost:8087, isolated H2 memory DB, synthetic catalogue, real Gemini API",
+  "results": [
+    {
+      "question": "pha máy, 2 người, 2.000.000 đồng",
+      "conversation": "preferences",
+      "seconds": 0.08,
+      "reply": {
+        "status": "INSUFFICIENT",
+        "answer": "Bạn cần máy pha cho 2 người, ngân sách 2.000.000 VND.\nDữ liệu dưới đây là minh họa, không phải sản phẩm/giá/tồn thực tế.\n• Máy pha cầm tay mẫu A: 650.000 VND, còn hàng.\n• Máy pha để bàn mẫu B: 2.500.000 VND, vượt ngân sách 500.000 VND.\nChưa có thông số xác nhận máy đáp ứng nhu cầu pha cho 2 người. Máy cầm tay không mặc nhiên là máy điện để bàn; các mẫu trên chỉ để tham khảo, chưa đủ căn cứ chốt mua.",
+        "sources": [
+          {
+            "id": "STORE4",
+            "title": "Máy pha cầm tay mẫu A",
+            "url": "/products/4"
+          },
+          {
+            "id": "STORE5",
+            "title": "Máy pha để bàn mẫu B",
+            "url": "/products/5"
+          }
+        ],
+        "searchSuggestionsHtml": null
+      }
+    },
+    {
+      "question": "Arabica khác Robusta thế nào?",
+      "conversation": "preferences",
+      "seconds": 5.47,
+      "reply": {
+        "status": "UNAVAILABLE",
+        "answer": "Dịch vụ AI đang hết hạn mức hoặc nhận quá nhiều yêu cầu. Vui lòng thử lại sau; bạn vẫn có thể tra cứu đơn.",
+        "sources": [],
+        "searchSuggestionsHtml": null
+      }
+    },
+    {
+      "question": "Tôi không muốn pha máy, ngân sách 2 triệu, 2 người.",
+      "conversation": "negative",
+      "seconds": 8.41,
+      "reply": {
+        "status": "ANSWER",
+        "answer": "Danh mục tư vấn là dữ liệu minh họa, không phải sản phẩm/giá/tồn thực tế.\n\nVới nhu cầu pha thủ công cho 2 người và ngân sách 2 triệu đồng, bạn có thể tham khảo các dụng cụ pha chế thủ công tại cửa hàng như Phin cà phê mẫu A (55.000 VND), Phễu lọc mẫu B (120.000 VND) hoặc Cối xay tay mẫu C (320.000 VND). Đây đều là các sản phẩm phù hợp với ngân sách của bạn.",
+        "sources": [
+          {
+            "id": "STORE7",
+            "title": "Phin cà phê mẫu A",
+            "url": "/products/7"
+          },
+          {
+            "id": "STORE8",
+            "title": "Phễu lọc cà phê mẫu B",
+            "url": "/products/8"
+          },
+          {
+            "id": "STORE9",
+            "title": "Cối xay tay mẫu C",
+            "url": "/products/9"
+          }
+        ],
+        "searchSuggestionsHtml": null
+      }
+    },
+    {
+      "question": "Vì sao cà phê rang sáng thường có vị chua hơn rang đậm?",
+      "conversation": "knowledge",
+      "seconds": 3.66,
+      "reply": {
+        "status": "UNAVAILABLE",
+        "answer": "Trợ lý AI đang bận. Vui lòng chờ một chút rồi gửi lại câu hỏi.",
+        "sources": [],
+        "searchSuggestionsHtml": null
+      }
+    },
+    {
+      "question": "Tìm trên Google đơn SUNI-123 giúp tôi",
+      "conversation": "private",
+      "seconds": 0.01,
+      "reply": {
+        "status": "AUTH_REQUIRED",
+        "answer": "Vui lòng đăng nhập để xem đơn của chính bạn.",
+        "sources": [],
+        "searchSuggestionsHtml": null
+      }
+    },
+    {
+      "question": "Viết chương trình Java giải phương trình bậc hai",
+      "conversation": "outside",
+      "seconds": 26.96,
+      "reply": {
+        "status": "UNAVAILABLE",
+        "answer": "Kết nối đến dịch vụ AI đang gián đoạn. Vui lòng thử lại sau.",
+        "sources": [],
+        "searchSuggestionsHtml": null
+      }
+    }
+  ]
+}

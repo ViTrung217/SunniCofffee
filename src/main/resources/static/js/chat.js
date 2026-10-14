@@ -10,7 +10,7 @@
   const greeting = messages.firstElementChild.cloneNode(true);
   let pending = false;
   let conversationId = crypto.randomUUID();
-  function add(role, text, sources = []) {
+  function add(role, text, sources = [], searchSuggestionsHtml = null) {
     const article = document.createElement('article');
     article.className = `chat-message ${role}`;
     const name = document.createElement('strong');
@@ -30,6 +30,15 @@
       });
       article.append(list);
     }
+    if (role === 'assistant' && typeof searchSuggestionsHtml === 'string' && searchSuggestionsHtml.length <= 50000) {
+      // Provider Search Suggestions stay isolated: no scripts, same-origin access, forms or top navigation.
+      const suggestions = document.createElement('iframe');
+      suggestions.title = 'Gợi ý tìm kiếm Google'; suggestions.className = 'chat-search-suggestions';
+      suggestions.setAttribute('sandbox', 'allow-popups allow-popups-to-escape-sandbox');
+      suggestions.referrerPolicy = 'no-referrer';
+      suggestions.srcdoc = '<meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src \'none\'; style-src \'unsafe-inline\'; img-src https: data:; base-uri \'none\'; form-action \'none\'">' + searchSuggestionsHtml;
+      article.append(suggestions);
+    }
     messages.append(article);
     while (messages.children.length > 60) messages.firstElementChild.remove();
     messages.scrollTop = messages.scrollHeight;
@@ -40,7 +49,7 @@
     if (pending || !message || message.length > 1500) return;
     pending = true; send.disabled = true; clear.disabled = true;
     add('user', message); input.value = ''; status.textContent = 'Đang tìm câu trả lời…';
-    const controller = new AbortController(); const timeout = setTimeout(() => controller.abort(), 40000);
+    const controller = new AbortController(); const timeout = setTimeout(() => controller.abort(), 75000);
     try {
       const csrf = form.querySelector('input[name="_csrf"]');
       const response = await fetch(form.action, {
@@ -55,7 +64,7 @@
       } else if (response.ok || response.status === 429) {
         const reply = await response.json();
         if (typeof reply.answer !== 'string' || !Array.isArray(reply.sources)) throw new Error('Invalid chat response');
-        add('assistant', reply.answer, reply.sources);
+        add('assistant', reply.answer, reply.sources, reply.searchSuggestionsHtml);
       } else { add('assistant', 'Chưa gửi được tin nhắn. Vui lòng thử lại sau.'); }
     } catch (_) { add('assistant', 'Kết nối bị gián đoạn hoặc phản hồi quá lâu. Vui lòng gửi lại câu hỏi.'); }
     finally { clearTimeout(timeout); pending = false; send.disabled = false; clear.disabled = false; status.textContent = ''; if (document.hasFocus()) input.focus(); }
