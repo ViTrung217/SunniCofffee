@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-14",
+  "java": "21.0.9",
+  "timezone": "UTC",
+  "h2": {
+    "tests": 127,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "mysql_8_0_44": {
+    "tests": 127,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "mysql_scope": "Application integration tests use isolated MySQL; migration test uses its own H2; unit tests do not require MySQL.",
+  "regression_failed_before_fix": true,
+  "live_gemini_called": false,
+  "user_database_used": false
+}

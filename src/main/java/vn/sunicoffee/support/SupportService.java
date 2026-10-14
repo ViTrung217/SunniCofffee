@@ -93,7 +93,8 @@ public class SupportService {
             ps.setLong(1,conversationId);ps.setLong(2,u.getId());ps.setString(3,u.getFullName());ps.setBoolean(4,admin);ps.setString(5,content);ps.setString(6,token);ps.setObject(7,at);return ps;},keys);
         long messageId=Objects.requireNonNull(keys.getKey()).longValue();
         jdbc.update("UPDATE support_conversations SET closed=FALSE,last_message_id=?,preview=?,updated_at=? WHERE id=?",messageId,content.substring(0,Math.min(200,content.length())),at,id);
-        return new Message(messageId,admin,u.getFullName(),content,at);
+        // Return the database timestamp precision, also used by reloads and idempotent retries.
+        return jdbc.queryForObject("SELECT * FROM support_messages WHERE id=?",MESSAGE,messageId);
     }
     @Transactional
     public void read(String email,Long requestedId,boolean admin,long throughId) {

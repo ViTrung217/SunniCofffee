@@ -79,6 +79,19 @@ class SupportIntegrationTest {
         assertThat(service.inbox(ADMIN,"","all",0).conversations().getFirst().unread()).isEqualTo(1);
         mvc.perform(post("/support/messages").with(user(CUSTOMER).roles("CUSTOMER")).with(csrf()).contentType("application/json").content(body("Nội dung khác",token))).andExpect(status().isConflict());
     }
+    @Test void firstSendRetryAndReloadReturnTheSamePersistedTimestamp() {
+        // Linux clocks can produce nanoseconds; H2/MySQL TIMESTAMP precision is lower.
+        var instant=LocalDateTime.of(2026,10,14,14,30,0,123456789);
+        String token=UUID.randomUUID().toString();
+        try(var clock=org.mockito.Mockito.mockStatic(LocalDateTime.class,org.mockito.Mockito.CALLS_REAL_METHODS)) {
+            clock.when(()->LocalDateTime.now(java.time.ZoneId.of("Asia/Ho_Chi_Minh"))).thenReturn(instant);
+            var sent=service.send(CUSTOMER,null,false,"Kiểm tra thời điểm",token);
+            var retry=service.send(CUSTOMER,null,false,"Kiểm tra thời điểm",token);
+            var loaded=service.messages(CUSTOMER,null,false,0,0).messages().getFirst();
+            assertThat(sent).isEqualTo(loaded);
+            assertThat(retry).isEqualTo(loaded);
+        }
+    }
     @Test void closedConversationCanBeReopenedByCustomerWithoutLosingHistory() throws Exception {
         service.send(CUSTOMER,null,false,"Câu đầu",UUID.randomUUID().toString());long id=thread();
         mvc.perform(post("/admin/support/"+id+"/state").with(user(ADMIN).roles("ADMIN")).with(csrf()).contentType("application/json").content("{\"closed\":true}")).andExpect(status().isOk());

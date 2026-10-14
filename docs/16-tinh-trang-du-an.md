@@ -27,12 +27,14 @@ Phạm vi: bàn giao và bảo vệ đồ án chạy local; chưa triển khai t
 | Chatbot hội thoại | Ngữ cảnh, sửa phủ định, số tiền, đổi chủ đề | Đã có, đã có hồi quy | Không bảo đảm hiểu mọi cách nói; lịch sử tối đa 6 lượt, không lưu lâu dài |
 | Chatbot dữ liệu | Giá/tồn công khai, đơn thuộc tài khoản đã xác thực | Đã có | Chỉ đọc; không đặt/hủy/thanh toán thay khách |
 | Chatbot tìm web | Định tuyến kiến thức liên quan sang Google Search, nguồn tham chiếu | **Có mã, chưa nghiệm thu đầu-cuối** | Lần thử gần nhất: Search 429; Gemini có 503/timeout. Cần quota và thử lại |
-| Kiểm thử | Bộ tự động H2; kiểm tra hash bộ đánh giá đã khóa | Đã có | Xem kết quả mới ở mục dưới; kết quả MySQL/điểm AI cũ không đại diện toàn bộ bản mới |
+| Kiểm thử | Bộ tự động H2; kiểm tra hash bộ đánh giá đã khóa | Đã có | Xem kết quả mới ở mục dưới; đã chạy lại H2/MySQL sau sửa CI; điểm AI cũ không đại diện toàn bộ bản mới |
 | Vận hành local | H2/MySQL, Flyway, health/readiness, hướng dẫn backup | Đã có | Chỉ chạy một phiên với cùng file H2; không cần deploy theo yêu cầu |
 | Hồ sơ bảo vệ | Tài liệu thiết kế, vận hành, đề cương thuyết trình | Đã có một phần | Cần mẫu khoa, rà báo cáo nộp, chấm AI độc lập và diễn tập trên máy bảo vệ |
 | Kiểm tra trải nghiệm | Trang bán hàng và widget có kiểm thử tích hợp | Chưa nghiệm thu toàn diện | Chưa xác nhận mọi kích thước mobile/trình duyệt và tải kéo dài |
 
 ## Bằng chứng mới nhất
+
+- **Sửa CI: 127/127 ca đạt ở mỗi lượt H2 và cấu hình MySQL**, Java 21, UTC; có hồi quy thời điểm gửi/retry/đọc tin nhắn. Xem [kết quả](verification/customer-support/ci-fix-tests.json). Ca nâng cấp schema vẫn dùng H2 riêng; kiểm thử đơn vị không cần MySQL.
 
 - **Chat nhân viên: 126/126 kiểm thử H2 đạt**, thử HTTP thật bằng hai tài khoản tổng hợp riêng; xem [kết quả](verification/customer-support/README.md). Schema mới tự áp dụng ở lần khởi động tiếp theo. Chưa nghiệm thu đầy đủ thao tác widget bằng trình duyệt.
 
