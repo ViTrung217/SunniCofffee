@@ -43,7 +43,7 @@ public class SampleCatalogService {
             String code=item.path("code").asText();
             if (categories.findByCode(code).isEmpty()) {
                 var c=new Category(); c.setCode(code); c.setName(item.path("name").asText());
-                c.setDescription("Danh mục dữ liệu phục vụ đồ án, chưa được cửa hàng xác nhận."); categories.save(c);
+                c.setDescription("Danh mục SuniCoffee."); categories.save(c);
             }
         }
         int added=0, updated=0;

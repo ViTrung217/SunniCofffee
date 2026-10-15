@@ -41,4 +41,9 @@
     if (automatic && !document.hidden) check();
   }, 15000);
   window.addEventListener('pagehide', () => clearInterval(timer));
+  // A cached page can retain stopped timers, pending fetches and stale payment state.
+  // Reload from the server before restarting polling or displaying a payment QR.
+  window.addEventListener('pageshow', event => {
+    if (event.persisted) window.location.reload();
+  });
 })();

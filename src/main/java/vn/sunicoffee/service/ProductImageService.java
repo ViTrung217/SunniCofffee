@@ -28,6 +28,33 @@ public class ProductImageService {
         jdbc.update("INSERT INTO product_images(product_id,media_type,content) VALUES (?,?,?)",id,data.mediaType(),data.content());
         product.setHasImage(true);
     }
+    public record GalleryImage(long id,String url) {}
+    @Transactional(readOnly=true) public java.util.List<GalleryImage> gallery(Long productId) {
+        return jdbc.query("SELECT id FROM product_gallery WHERE product_id=? ORDER BY id",(r,n)->new GalleryImage(r.getLong(1),"/product-images/"+productId+"/gallery/"+r.getLong(1)),productId);
+    }
+    @Transactional public void add(Long id,MultipartFile file) {
+        var product=products.lockById(id).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND));
+        if(!product.isHasImage()){upload(id,file);return;}
+        if(gallery(id).size()>=5)throw new BusinessException("Mỗi sản phẩm tối đa 6 ảnh tải lên.");
+        if(file==null || file.isEmpty() || file.getSize()>MAX_BYTES)throw new BusinessException("Chọn ảnh JPG/PNG không quá 5 MB.");
+        var data=decode(file);
+        jdbc.update("INSERT INTO product_gallery(product_id,media_type,content) VALUES (?,?,?)",id,data.mediaType(),data.content());
+    }
+    @Transactional(readOnly=true) public ImageData getGallery(Long id,long imageId,boolean admin) {
+        products.findById(id).filter(p->admin || p.isActive()).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND));
+        return jdbc.query("SELECT content,media_type FROM product_gallery WHERE product_id=? AND id=?",(r,n)->new ImageData(r.getBytes(1),r.getString(2)),id,imageId)
+            .stream().findFirst().orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND));
+    }
+    @Transactional public void removeGallery(Long id,long imageId) {
+        products.lockById(id).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND));
+        if(jdbc.update("DELETE FROM product_gallery WHERE product_id=? AND id=?",id,imageId)==0)throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+    }
+    @Transactional public void cover(Long id,long imageId) {
+        products.lockById(id).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND));
+        var next=getGallery(id,imageId,true);var old=get(id,true);
+        jdbc.update("UPDATE product_images SET media_type=?,content=? WHERE product_id=?",next.mediaType(),next.content(),id);
+        jdbc.update("UPDATE product_gallery SET media_type=?,content=? WHERE product_id=? AND id=?",old.mediaType(),old.content(),id,imageId);
+    }
     private ImageData decode(MultipartFile file) {
         try(var raw=file.getInputStream();var input=ImageIO.createImageInputStream(raw)) {
             var readers=ImageIO.getImageReaders(input);
@@ -50,7 +77,12 @@ public class ProductImageService {
     }
     @Transactional public void remove(Long id) {
         var product=products.lockById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        jdbc.update("DELETE FROM product_images WHERE product_id=?",id);product.setHasImage(false);
+        var remaining=gallery(id);
+        if(!remaining.isEmpty()) {
+            var next=getGallery(id,remaining.getFirst().id(),true);
+            jdbc.update("UPDATE product_images SET media_type=?,content=? WHERE product_id=?",next.mediaType(),next.content(),id);
+            jdbc.update("DELETE FROM product_gallery WHERE id=?",remaining.getFirst().id());
+        } else {jdbc.update("DELETE FROM product_images WHERE product_id=?",id);product.setHasImage(false);}
     }
     @Transactional(readOnly=true) public ImageData get(Long id,boolean admin) {
         var product=products.findById(id).filter(p -> admin || p.isActive()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));

@@ -1,6 +1,6 @@
 # Prompt tạo ảnh sản phẩm SuniCoffee
 
-Bộ hiện tại đã có ảnh cho đủ 12 SKU trong `data/products-demo.json`. Phong cách chọn: nền kem, ánh sáng mềm, sản phẩm ở giữa. Khi tạo ảnh mới, đính kèm `cream-v1/demo-cf-001.png` để tham chiếu nền và ánh sáng; nếu là sản phẩm thật, đính kèm thêm ảnh thật và yêu cầu giữ đúng hình dáng.
+Bộ hiện tại đã có ảnh cho đủ 36 SKU trong `data/products-demo.json`. Phong cách chọn: nền kem, ánh sáng mềm, sản phẩm ở giữa. Khi tạo ảnh mới, đính kèm `../../src/main/resources/static/images/products/demo-cf-001.png` để tham chiếu nền và ánh sáng; nếu là sản phẩm thật, đính kèm thêm ảnh thật và yêu cầu giữ đúng hình dáng.
 
 ## Prompt dùng lại
 

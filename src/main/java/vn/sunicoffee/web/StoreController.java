@@ -15,6 +15,8 @@ public class StoreController {
     private final CategoryRepository categories;
     private final CatalogService catalog;
     public StoreController(ProductRepository p,CategoryRepository c,CatalogService s) { products=p; categories=c; catalog=s; }
+    @org.springframework.beans.factory.annotation.Autowired private ProductEngagementService engagement;
+    @org.springframework.beans.factory.annotation.Autowired private ProductImageService images;
     @GetMapping({"/", "/products"})
     String index(@RequestParam(defaultValue="") String q,@RequestParam(required=false) Long category,
                  @RequestParam(defaultValue="0") int page,Model model,jakarta.servlet.http.HttpServletRequest request) {
@@ -25,8 +27,17 @@ public class StoreController {
         return "store/catalog";
     }
     @GetMapping("/products/{id}")
-    String detail(@PathVariable Long id,Model model) {
+    String detail(@PathVariable Long id,@RequestParam(defaultValue="0") int reviewPage,java.security.Principal principal,Model model) {
         var p=catalog.product(id); if(!p.isActive()) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        String email=principal==null?null:principal.getName();
+        model.addAttribute("gallery",images.gallery(id));
+        model.addAttribute("favorite",engagement.favorite(email,id));
+        model.addAttribute("canReview",engagement.eligible(email,id));
+        model.addAttribute("ownReview",engagement.own(email,id));
+        model.addAttribute("reviews",engagement.reviews(id,reviewPage));
+        model.addAttribute("reviewSummary",engagement.summary(id));
+        model.addAttribute("reviewPage",Math.max(0,reviewPage));
+        model.addAttribute("relatedProducts",products.related(p.getId(),p.getCategory().getId(),p.getPrice(),PageRequest.of(0,4)));
         model.addAttribute("product",p); return "store/product";
     }
 }

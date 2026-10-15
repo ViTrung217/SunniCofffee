@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-15",
+  "database": "H2",
+  "java": 21,
+  "timezone": "UTC",
+  "verify": {
+    "tests": 156,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "baseline": "passed",
+  "local_database_imported": false,
+  "requires_restart": true,
+  "mysql_verified_this_change": false,
+  "generated": {
+    "customers": 24,
+    "orders": 72,
+    "completed_orders": 60,
+    "cancelled_orders": 12,
+    "reviews": 60,
+    "favorites": 120
+  }
+}

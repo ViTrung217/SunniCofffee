@@ -11,3 +11,6 @@ target/
 
 *.cnf
 !docs/verification/*.log
+
+__pycache__/
+*.py[cod]

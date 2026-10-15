@@ -5,6 +5,29 @@ import java.sql.DriverManager;
 import static org.assertj.core.api.Assertions.*;
 
 class MigrationUpgradeTest {
+    @Test void approvalCopyMigrationPreservesProductDataAndCustomDescriptions() throws Exception {
+        String url="jdbc:h2:mem:approval-copy;MODE=MySQL;DATABASE_TO_LOWER=TRUE;DB_CLOSE_DELAY=-1";
+        Flyway.configure().dataSource(url,"sa","").target("5").load().migrate();
+        try(var c=DriverManager.getConnection(url,"sa","");var s=c.createStatement()) {
+            s.executeUpdate("INSERT INTO categories(code,name,description) VALUES ('COFFEE','Coffee','Danh mục dữ liệu phục vụ đồ án, chưa được cửa hàng xác nhận.')");
+            s.executeUpdate("INSERT INTO products(sku,name,description,price,stock,sales_unit,active,category_id) VALUES ('DEMO-CF-001','Coffee','Mô tả riêng. Nguồn dữ liệu: danh mục; tên, giá, tồn và thuộc tính chưa được cửa hàng xác nhận.',123000,7,'túi',TRUE,1)");
+            s.executeUpdate("INSERT INTO products(sku,name,description,price,stock,sales_unit,active,category_id) VALUES ('CUSTOM-1','Custom','Nội dung quản trị tự nhập.',456000,9,'túi',TRUE,1)");
+        }
+        var flyway=Flyway.configure().dataSource(url,"sa","").load();flyway.migrate();flyway.migrate();
+        try(var c=DriverManager.getConnection(url,"sa","");var s=c.createStatement()) {
+            try(var r=s.executeQuery("SELECT description,price,stock FROM products WHERE sku='DEMO-CF-001'")) {
+                r.next();assertThat(r.getString(1)).isEqualTo("Mô tả riêng. Nguồn dữ liệu: danh mục.");
+                assertThat(r.getBigDecimal(2)).isEqualByComparingTo("123000");assertThat(r.getInt(3)).isEqualTo(7);
+            }
+            try(var r=s.executeQuery("SELECT description FROM products WHERE sku='CUSTOM-1'")) {
+                r.next();assertThat(r.getString(1)).isEqualTo("Nội dung quản trị tự nhập.");
+            }
+            try(var r=s.executeQuery("SELECT description FROM categories")) {
+                r.next();assertThat(r.getString(1)).isEqualTo("Danh mục SuniCoffee.");
+            }
+        }
+    }
+
     @Test void upgradePreservesExistingDataAndCreatesOpeningBalanceOnlyOnce() throws Exception {
         String url="jdbc:h2:mem:upgrade-test;MODE=MySQL;DATABASE_TO_LOWER=TRUE;DB_CLOSE_DELAY=-1";
         Flyway.configure().dataSource(url,"sa","").target("1").load().migrate();

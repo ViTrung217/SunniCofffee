@@ -16,6 +16,17 @@ public class ProductImageController {
         var image=images.get(id,admin);
         return ResponseEntity.ok().contentType(MediaType.parseMediaType(image.mediaType())).cacheControl(CacheControl.noCache()).body(image.content());
     }
+    @GetMapping("/product-images/{id}/gallery/{imageId}") @ResponseBody ResponseEntity<byte[]> gallery(@PathVariable Long id,@PathVariable long imageId,Authentication auth) {
+        boolean admin=auth!=null && auth.getAuthorities().stream().anyMatch(a->a.getAuthority().equals("ROLE_ADMIN"));
+        var image=images.getGallery(id,imageId,admin);
+        return ResponseEntity.ok().contentType(MediaType.parseMediaType(image.mediaType())).cacheControl(CacheControl.noCache()).body(image.content());
+    }
+    @PostMapping("/admin/products/{id}/gallery") String add(@PathVariable Long id,@RequestParam("image") MultipartFile image,RedirectAttributes flash) {
+        try{images.add(id,image);flash.addFlashAttribute("success","Đã thêm ảnh.");}catch(BusinessException e){flash.addFlashAttribute("error",e.getMessage());}
+        return "redirect:/admin/products/"+id+"/edit";
+    }
+    @PostMapping("/admin/products/{id}/gallery/{imageId}/cover") String cover(@PathVariable Long id,@PathVariable long imageId) {images.cover(id,imageId);return "redirect:/admin/products/"+id+"/edit";}
+    @PostMapping("/admin/products/{id}/gallery/{imageId}/remove") String removeGallery(@PathVariable Long id,@PathVariable long imageId) {images.removeGallery(id,imageId);return "redirect:/admin/products/"+id+"/edit";}
     @PostMapping("/admin/products/{id}/image") String upload(@PathVariable Long id,@RequestParam("image") MultipartFile image,RedirectAttributes flash) {
         try {images.upload(id,image);flash.addFlashAttribute("success","Đã cập nhật ảnh sản phẩm.");}
         catch(BusinessException e) {flash.addFlashAttribute("error",e.getMessage());}

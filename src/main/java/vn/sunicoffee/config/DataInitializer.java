@@ -11,6 +11,8 @@ import vn.sunicoffee.service.UserService;
 
 @Component
 public class DataInitializer implements CommandLineRunner {
+    @org.springframework.beans.factory.annotation.Autowired private vn.sunicoffee.service.SampleActivityService activity;
+    @Value("${app.seed-activity:false}") private boolean seedActivity;
     private final CategoryRepository categories;
     private final ProductRepository products;
     private final UserRepository users;
@@ -30,6 +32,7 @@ public class DataInitializer implements CommandLineRunner {
             var result=sampleCatalog.refresh();
             org.slf4j.LoggerFactory.getLogger(DataInitializer.class).info("Sample catalogue: added={}, descriptionsUpdated={}", result.added(), result.descriptionsUpdated());
         }
+        if (seedActivity) activity.populate();
         boolean demo=environment.matchesProfiles("demo");
         if (demo) {
             if (!users.existsByEmail("admin@sunicoffee.local")) userService.create("Quản trị demo","admin@sunicoffee.local","SuniDemo!2026",Role.ADMIN);

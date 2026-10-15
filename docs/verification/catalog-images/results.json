@@ -1,0 +1,14 @@
+{
+  "date": "2026-10-15",
+  "h2_verify": {
+    "tests": 150,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "catalog_products": 36,
+  "dedicated_images": 36,
+  "new_ai_images": 24,
+  "new_images_bytes": 5835545,
+  "live_browser_verified": false
+}

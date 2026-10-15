@@ -31,8 +31,7 @@ public class ChatDataService {
         var page = products.search("", null, false, PageRequest.of(0, 40));
         for (var p : page.getContent()) {
             String id = "STORE" + p.getId();
-            boolean demo = environment.matchesProfiles("demo") || p.getSku().startsWith("DEMO-");
-            String content = (demo ? "DỮ LIỆU MINH HỌA, không phải sản phẩm/giá/tồn thực tế. " : "Dữ liệu cửa hàng hiện tại. ")
+            String content = "Dữ liệu cửa hàng hiện tại. "
                 + "SKU: " + p.getSku() + ". Danh mục: " + p.getCategory().getName()
                 + ". Giá: " + money(p.getPrice()) + "/" + p.getSalesUnit() + ". Tồn: " + p.getStock()
                 + ". Mô tả: " + p.getDescription()
@@ -50,7 +49,7 @@ public class ChatDataService {
             var machines = page.getContent().stream().filter(p -> KnowledgeBase.normalize(p.getCategory().getName()).contains("may pha")
                 || KnowledgeBase.normalize(p.getName()).contains("may pha")).toList();
             var answer = new StringBuilder("Bạn cần máy pha cho " + needs.people() + " người, ngân sách " + money(budget)
-                + (needs.beans().isBlank() ? "" : ", dùng hạt " + needs.beans()) + ".\nDữ liệu dưới đây là minh họa, không phải sản phẩm/giá/tồn thực tế.\n");
+                + (needs.beans().isBlank() ? "" : ", dùng hạt " + needs.beans()) + ".\nCác lựa chọn trong danh mục hiện tại:\n");
             var refs = new ArrayList<ChatReply.Citation>();
             var affordable = machines.stream().filter(p -> p.getStock() > 0 && p.getPrice().compareTo(budget) <= 0)
                 .sorted(Comparator.comparing(vn.sunicoffee.domain.Product::getPrice)).limit(2).toList();
@@ -116,8 +115,7 @@ public class ChatDataService {
         return productReply(matches);
     }
     private ChatReply productReply(List<vn.sunicoffee.domain.Product> list) {
-        boolean demo = environment.matchesProfiles("demo") || list.stream().anyMatch(p -> p.getSku().startsWith("DEMO-"));
-        var text = new StringBuilder(demo ? "Dữ liệu minh họa trong cửa hàng demo, không phải giá/tồn hàng thật:\n" : "Dữ liệu cửa hàng tại thời điểm tra cứu:\n");
+        var text = new StringBuilder("Thông tin sản phẩm tại thời điểm tra cứu:\n");
         var refs = new ArrayList<ChatReply.Citation>();
         list.forEach(p -> {
             text.append(p.getName()).append(" (").append(p.getSku()).append(") — ").append(money(p.getPrice()))

@@ -1,0 +1,218 @@
+[
+  {
+    "sku": "DEMO-CF-004",
+    "file": "src/main/resources/static/images/products/demo-cf-004.jpg",
+    "prompt": "Use case: product-mockup. Square photo of a 250g cream resealable bag of medium-roast Arabica coffee, SUNI and ARABICA green label, ivory seamless background, soft side light, whole product centered, no props or watermark.",
+    "generator": "built-in image_gen",
+    "date": "2026-10-15",
+    "sha256": "d78bf6682b5053faaf0dbc05abab368225b4b11347b325f7292fb3d87ed25897",
+    "bytes": 207405
+  },
+  {
+    "sku": "DEMO-CF-005",
+    "file": "src/main/resources/static/images/products/demo-cf-005.jpg",
+    "prompt": "Use case: product-mockup. One square photorealistic ecommerce product photograph for SuniCoffee: one cream 250g coffee bag, dark roast Robusta, label SUNI and ROBUSTA. Warm ivory seamless studio background, soft side light, subtle grounded shadows, centered complete product with generous margins. Elegant cream and forest green catalog style. No third party brands, no additional props, no watermark.",
+    "generator": "built-in image_gen",
+    "date": "2026-10-15",
+    "sha256": "c5310ef630ccb309dffe9ff93016e6055592f4753564d636b6b122d0b4919dbf",
+    "bytes": 303676
+  },
+  {
+    "sku": "DEMO-CF-006",
+    "file": "src/main/resources/static/images/products/demo-cf-006.jpg",
+    "prompt": "Use case: product-mockup. One square photorealistic ecommerce product photograph for SuniCoffee: one larger cream 500g bag of medium roast blend coffee, label SUNI and BLEND. Warm ivory seamless studio background, soft side light, subtle grounded shadows, centered complete product with generous margins. Elegant cream and forest green catalog style. No third party brands, no additional props, no watermark.",
+    "generator": "built-in image_gen",
+    "date": "2026-10-15",
+    "sha256": "db960a51c98a5c39fce5de43e3c3b270565146f65b37fc6ba2960c6ec9a07ff7",
+    "bytes": 275015
+  },
+  {
+    "sku": "DEMO-CF-007",
+    "file": "src/main/resources/static/images/products/demo-cf-007.jpg",
+    "prompt": "Use case: product-mockup. One square photorealistic ecommerce product photograph for SuniCoffee: one cream 250g bag of ground coffee for Vietnamese phin brewing, label SUNI and PHIN. Warm ivory seamless studio background, soft side light, subtle grounded shadows, centered complete product with generous margins. Elegant cream and forest green catalog style. No third party brands, no additional props, no watermark.",
+    "generator": "built-in image_gen",
+    "date": "2026-10-15",
+    "sha256": "6db3ce7173715edbfe126ac2552c72145c7e919b1768a4870311a0d6fe5c0e43",
+    "bytes": 271206
+  },
+  {
+    "sku": "DEMO-CF-008",
+    "file": "src/main/resources/static/images/products/demo-cf-008.jpg",
+    "prompt": "Use case: product-mockup. One square photorealistic ecommerce product photograph for SuniCoffee: one cream 250g bag light roast whole bean coffee, label SUNI and LIGHT ROAST. Warm ivory seamless studio background, soft side light, subtle grounded shadows, centered complete product with generous margins. Elegant cream and forest green catalog style. No third party brands, no additional props, no watermark.",
+    "generator": "built-in image_gen",
+    "date": "2026-10-15",
+    "sha256": "a3adbc4527d7d3a1c302d3238cf947490f4cd39a3a6a94d5bfb8e1688f0be97b",
+    "bytes": 279964
+  },
+  {
+    "sku": "DEMO-CF-009",
+    "file": "src/main/resources/static/images/products/demo-cf-009.jpg",
+    "prompt": "Use case: product-mockup. One square photorealistic ecommerce product photograph for SuniCoffee: one cream retail box of ten single serve drip coffee sachets with one hanging paper drip filter beside it, label SUNI. Warm ivory seamless studio background, soft side light, subtle grounded shadows, centered complete product with generous margins. Elegant cream and forest green catalog style. No third party brands, no additional props, no watermark.",
+    "generator": "built-in image_gen",
+    "date": "2026-10-15",
+    "sha256": "c42bdf0bf1a6674621d052c4b4daa6dd21016f0608ec289dc93200d70695f12c",
+    "bytes": 300541
+  },
+  {
+    "sku": "DEMO-CF-010",
+    "file": "src/main/resources/static/images/products/demo-cf-010.jpg",
+    "prompt": "Use case: product-mockup. One square photorealistic ecommerce product photograph for SuniCoffee: a coffee discovery set of three small 100g cream pouches, coordinated green tan and terracotta labels reading SUNI. Warm ivory seamless studio background, soft side light, subtle grounded shadows, centered complete product with generous margins. Elegant cream and forest green catalog style. No third party brands, no additional props, no watermark.",
+    "generator": "built-in image_gen",
+    "date": "2026-10-15",
+    "sha256": "c5fdb08691204e8dda4b42d171ca02bb07c0a189033626476f4fe8c3d14dcf9b",
+    "bytes": 279468
+  },
+  {
+    "sku": "DEMO-MC-004",
+    "file": "src/main/resources/static/images/products/demo-mc-004.jpg",
+    "prompt": "Use case: product-mockup. One square photorealistic ecommerce photo: a compact cream and forest-green electric drip coffee machine with clear glass carafe. Whole product centered on warm ivory seamless studio background, soft side lighting and grounded shadow, generous margins. Realistic functional construction. No text, labels, logos, claims, extra props or watermark. SuniCoffee catalog neutral cream forest green style.",
+    "generator": "built-in image_gen",
+    "date": "2026-10-15",
+    "sha256": "c5535f58567d92ac76eb33451bfc755e69bc5ecc71ca7028bf85ef4f262afeeb",
+    "bytes": 198194
+  },
+  {
+    "sku": "DEMO-MC-005",
+    "file": "src/main/resources/static/images/products/demo-mc-005.jpg",
+    "prompt": "Use case: product-mockup. One square photorealistic ecommerce photo: a small cream capsule espresso machine with black drip tray and water reservoir. Whole product centered on warm ivory seamless studio background, soft side lighting and grounded shadow, generous margins. Realistic functional construction. No text, labels, logos, claims, extra props or watermark. SuniCoffee catalog neutral cream forest green style.",
+    "generator": "built-in image_gen",
+    "date": "2026-10-15",
+    "sha256": "4e30aa88b63aac3e2e5172dc4fae2560c0f3adc0bbd90aeb675e90b9467b8b3a",
+    "bytes": 206107
+  },
+  {
+    "sku": "DEMO-MC-006",
+    "file": "src/main/resources/static/images/products/demo-mc-006.jpg",
+    "prompt": "Use case: product-mockup. One square photorealistic ecommerce photo: a compact brushed stainless steel semi-automatic espresso machine with portafilter and steam wand. Whole product centered on warm ivory seamless studio background, soft side lighting and grounded shadow, generous margins. Realistic functional construction. No text, labels, logos, claims, extra props or watermark. SuniCoffee catalog neutral cream forest green style.",
+    "generator": "built-in image_gen",
+    "date": "2026-10-15",
+    "sha256": "7527343b6a418c1646ca72f2b2c3df36f380e7781142fa08f090063a4e2edf8c",
+    "bytes": 276820
+  },
+  {
+    "sku": "DEMO-BR-004",
+    "file": "src/main/resources/static/images/products/demo-br-004.jpg",
+    "prompt": "Use case: product-mockup. One square photorealistic ecommerce photo: a small 350ml French press, clear glass cylinder, stainless plunger and dark green handle. Whole product centered on warm ivory seamless studio background, soft side lighting and grounded shadow, generous margins. Realistic functional construction. No text, labels, logos, claims, extra props or watermark. SuniCoffee catalog neutral cream forest green style.",
+    "generator": "built-in image_gen",
+    "date": "2026-10-15",
+    "sha256": "9a400e4c4e8aa112694ebe0b8a4b8e55b0ad854ba1b477e1cfac12b0154ba54e",
+    "bytes": 207866
+  },
+  {
+    "sku": "DEMO-BR-005",
+    "file": "src/main/resources/static/images/products/demo-br-005.jpg",
+    "prompt": "Use case: product-mockup. One square photorealistic ecommerce photo: a tall 600ml French press, glass cylinder and brushed stainless steel frame and handle. Whole product centered on warm ivory seamless studio background, soft side lighting and grounded shadow, generous margins. Realistic functional construction. No text, labels, logos, claims, extra props or watermark. SuniCoffee catalog neutral cream forest green style.",
+    "generator": "built-in image_gen",
+    "date": "2026-10-15",
+    "sha256": "b824a3aca10488931e1e1ec77709fd6d36f9d64b53413557885722df2d6b198d",
+    "bytes": 231770
+  },
+  {
+    "sku": "DEMO-BR-006",
+    "file": "src/main/resources/static/images/products/demo-br-006.jpg",
+    "prompt": "Use case: product-mockup. One square photorealistic ecommerce photo: a 600ml clear glass cold brew bottle with removable fine mesh cylindrical filter and dark green screw lid. Whole product centered on warm ivory seamless studio background, soft side lighting and grounded shadow, generous margins. Realistic functional construction. No text, labels, logos, claims, extra props or watermark. SuniCoffee catalog neutral cream forest green style.",
+    "generator": "built-in image_gen",
+    "date": "2026-10-15",
+    "sha256": "d589e6b9b6e2bc66e8e0b92edc18f5e9595dd00c9b70892104147ffe97c89137",
+    "bytes": 230330
+  },
+  {
+    "sku": "DEMO-BR-007",
+    "file": "src/main/resources/static/images/products/demo-br-007.jpg",
+    "prompt": "Use case: product-mockup. One square photorealistic ecommerce photo: a brushed stainless steel 600ml gooseneck pour-over kettle, slender curved spout, dark handle and lid. Whole product centered on warm ivory seamless studio background, soft side lighting and grounded shadow, generous margins. Realistic functional construction. No text, labels, logos, claims, extra props or watermark. SuniCoffee catalog neutral cream forest green style.",
+    "generator": "built-in image_gen",
+    "date": "2026-10-15",
+    "sha256": "0b32448beb13ff9749ea5d85501ae3e819211bd40f562c4ce0607b7d0b3bee37",
+    "bytes": 197334
+  },
+  {
+    "sku": "DEMO-BR-008",
+    "file": "src/main/resources/static/images/products/demo-br-008.jpg",
+    "prompt": "Use case: product-mockup. One square photorealistic ecommerce photo: a slim matte black coffee brewing scale with flat weighing platform and small timer display. Whole product centered on warm ivory seamless studio background, soft side lighting and grounded shadow, generous margins. Realistic functional construction. No text, labels, logos, claims, extra props or watermark. SuniCoffee catalog neutral cream forest green style.",
+    "generator": "built-in image_gen",
+    "date": "2026-10-15",
+    "sha256": "5db00fdbda8ebe0131f2bf7fdd5625a72cf41d56c63fcd565913da12336b567a",
+    "bytes": 191635
+  },
+  {
+    "sku": "DEMO-BR-009",
+    "file": "src/main/resources/static/images/products/demo-br-009.jpg",
+    "prompt": "Use case: product-mockup. One square photorealistic ecommerce photo: a neat stack of unbleached cone coffee paper filters with plain kraft sleeve. Whole product centered on warm ivory seamless studio background, soft side lighting and grounded shadow, generous margins. Realistic functional construction. No text, labels, logos, claims, extra props or watermark. SuniCoffee catalog neutral cream forest green style.",
+    "generator": "built-in image_gen",
+    "date": "2026-10-15",
+    "sha256": "99c3f570c82026cc8d6a827f405deb15e2ecf708c010c080ecec7466798b9eab",
+    "bytes": 349070
+  },
+  {
+    "sku": "DEMO-BR-010",
+    "file": "src/main/resources/static/images/products/demo-br-010.jpg",
+    "prompt": "Use case: product-mockup. One square photorealistic ecommerce photo: a 350ml brushed stainless steel milk frothing pitcher with pointed pouring spout and handle. Whole product centered on warm ivory seamless studio background, soft side lighting and grounded shadow, generous margins. Realistic functional construction. No text, labels, logos, claims, extra props or watermark. SuniCoffee catalog neutral cream forest green style.",
+    "generator": "built-in image_gen",
+    "date": "2026-10-15",
+    "sha256": "b6b8a917e5573d5622ebfee40840344697a323ad874ac2f0f0a82d3ea4f62c6d",
+    "bytes": 215689
+  },
+  {
+    "sku": "DEMO-BR-011",
+    "file": "src/main/resources/static/images/products/demo-br-011.jpg",
+    "prompt": "Use case: product-mockup. One square photorealistic ecommerce photo: a set of three small coffee equipment cleaning brushes, wooden handles, natural bristles. Whole product centered on warm ivory seamless studio background, soft side lighting and grounded shadow, generous margins. Realistic functional construction. No text, labels, logos, claims, extra props or watermark. SuniCoffee catalog neutral cream forest green style.",
+    "generator": "built-in image_gen",
+    "date": "2026-10-15",
+    "sha256": "1620a1fb390cf5b638603c5f028146e3ad077be495779115635e56fa051769e7",
+    "bytes": 244752
+  },
+  {
+    "sku": "DEMO-BR-012",
+    "file": "src/main/resources/static/images/products/demo-br-012.jpg",
+    "prompt": "Use case: product-mockup. One square photorealistic ecommerce photo: a 500ml coffee storage jar with matte cream body and dark green airtight lid. Whole product centered on warm ivory seamless studio background, soft side lighting and grounded shadow, generous margins. Realistic functional construction. No text, labels, logos, claims, extra props or watermark. SuniCoffee catalog neutral cream forest green style.",
+    "generator": "built-in image_gen",
+    "date": "2026-10-15",
+    "sha256": "2e8dd26eaaf3ee36a0254b5f03d9683984677d8f91ff7aa2ebb7ec2c4ba581c6",
+    "bytes": 186780
+  },
+  {
+    "sku": "DEMO-OD-004",
+    "file": "src/main/resources/static/images/products/demo-od-004.jpg",
+    "prompt": "Use case: product-mockup. One square photorealistic ecommerce photo: one 500ml matte forest green travel beverage bottle with screw lid, simple cylindrical shape. Whole product centered on warm ivory seamless studio background, soft side lighting and grounded shadow, generous margins. Realistic construction. No text, labels, logos, claims, extra props or watermark. SuniCoffee catalog neutral cream forest green style.",
+    "generator": "built-in image_gen",
+    "date": "2026-10-15",
+    "sha256": "248ff2d4238ef595a5e227615cad8fef93f8485186a95e426c4b7ae10312ecae",
+    "bytes": 177734
+  },
+  {
+    "sku": "DEMO-OD-005",
+    "file": "src/main/resources/static/images/products/demo-od-005.jpg",
+    "prompt": "Use case: product-mockup. One square photorealistic ecommerce photo: one 250ml collapsible silicone travel cup with visible accordion folds, muted sage green body and cream rim. Whole product centered on warm ivory seamless studio background, soft side lighting and grounded shadow, generous margins. Realistic construction. No text, labels, logos, claims, extra props or watermark. SuniCoffee catalog neutral cream forest green style.",
+    "generator": "built-in image_gen",
+    "date": "2026-10-15",
+    "sha256": "7abd1a18c86a54ed67d326c14fa9b1a685529a79b52b75a05dcb6cb222a99c6e",
+    "bytes": 161126
+  },
+  {
+    "sku": "DEMO-OD-006",
+    "file": "src/main/resources/static/images/products/demo-od-006.jpg",
+    "prompt": "Use case: product-mockup. One square photorealistic ecommerce photo: one compact coffee bean storage organizer with exactly four visible compartments and a clear lid placed beside it, a few beans inside each compartment. Whole product centered on warm ivory seamless studio background, soft side lighting and grounded shadow, generous margins. Realistic construction. No text, labels, logos, claims, extra props or watermark. SuniCoffee catalog neutral cream forest green style.",
+    "generator": "built-in image_gen",
+    "date": "2026-10-15",
+    "sha256": "38e24c2de13d8362a146546efcbfdee70e70a6e5c9c924a23845b33377328ccd",
+    "bytes": 250594
+  },
+  {
+    "sku": "DEMO-OD-007",
+    "file": "src/main/resources/static/images/products/demo-od-007.jpg",
+    "prompt": "Use case: product-mockup. One square photorealistic ecommerce photo: one rectangular dark sage silicone portable coffee brewing mat, fine raised ribs and low border, lying flat at three-quarter angle. Whole product centered on warm ivory seamless studio background, soft side lighting and grounded shadow, generous margins. Realistic construction. No text, labels, logos, claims, extra props or watermark. SuniCoffee catalog neutral cream forest green style.",
+    "generator": "built-in image_gen",
+    "date": "2026-10-15",
+    "sha256": "bc860984380b9dcae73d61fa07b4ee12a7d18ad583daed3f9757d810eb59e76e",
+    "bytes": 242075
+  },
+  {
+    "sku": "DEMO-OD-008",
+    "file": "src/main/resources/static/images/products/demo-od-008.jpg",
+    "prompt": "Use case: product-mockup. One square photorealistic ecommerce photo: exactly two neatly folded microfiber coffee equipment cleaning cloths, one cream and one forest green. Whole product centered on warm ivory seamless studio background, soft side lighting and grounded shadow, generous margins. Realistic construction. No text, labels, logos, claims, extra props or watermark. SuniCoffee catalog neutral cream forest green style.",
+    "generator": "built-in image_gen",
+    "date": "2026-10-15",
+    "sha256": "229c72ec2e223b1da5de44ea4170341fc73f973e73094622f0f45cf911f126e0",
+    "bytes": 350394
+  }
+]

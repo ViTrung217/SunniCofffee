@@ -20,12 +20,12 @@ Máy mới cần tạo quản trị riêng bằng `ADMIN_EMAIL` và `ADMIN_PASSW
 
 ## Chức năng
 
-[Bảng đã làm / còn thiếu cập nhật 14/10/2026](docs/16-tinh-trang-du-an.md). Danh mục đồ án hiện có 36 sản phẩm với mô tả chi tiết; xem [nguồn dữ liệu và cách nạp bổ sung](data/README-products.md).
+[Bảng đã làm / còn thiếu cập nhật 15/10/2026](docs/16-tinh-trang-du-an.md). Danh mục đồ án hiện có 36 sản phẩm với mô tả chi tiết; xem [nguồn dữ liệu và cách nạp bổ sung](data/README-products.md).
 
 | Nhóm | Nội dung |
 | --- | --- |
-| Khách hàng | Đăng ký/đăng nhập, hồ sơ, đổi mật khẩu, tìm/lọc sản phẩm, giỏ riêng, đặt COD, xem và hủy đơn còn chờ xác nhận |
-| Sản phẩm | Danh mục, thêm/sửa/ngừng bán, một ảnh JPG/PNG tối đa 5 MB, kiểm tra nội dung ảnh |
+| Khách hàng | Đăng ký/đăng nhập Google hoặc mật khẩu, yêu thích, đánh giá, hồ sơ, đổi mật khẩu, tìm/lọc sản phẩm, giỏ riêng, đặt COD, xem và hủy đơn còn chờ xác nhận |
+| Sản phẩm | Danh mục, thêm/sửa/ngừng bán, thư viện tối đa 6 ảnh JPG/PNG, mỗi ảnh tối đa 5 MB, kiểm tra nội dung ảnh |
 | Tài khoản | Phân quyền, khóa/mở, vô hiệu hóa phiên khi đổi quyền/mật khẩu; giữ ít nhất một admin hoạt động |
 | Kho | Nhật ký tồn đầu/nhập/xuất, trừ khi đặt, hoàn khi hủy/nhận hàng hoàn; giao dịch và khóa tồn |
 | Đơn hàng | Trạng thái hợp lệ, hãng/mã vận đơn, giao thất bại/giao lại/hoàn, phí giao chụp vào đơn, chống đặt trùng |
@@ -53,6 +53,7 @@ Bộ [30 câu đánh giá](evaluation/chatbot/v1/QUESTIONS.md) được khóa tr
 - [Kết quả nghiệm thu và phần còn thiếu](docs/14-nghiem-thu-1.0.0.md)
 - [Thanh toán QR SePay, cấu hình local và hạn mức Free](docs/18-thanh-toan-sepay.md)
 - [Chat trực tiếp khách hàng – admin](docs/17-chat-khach-hang.md)
+- [Đăng nhập Google và cấu hình localhost](docs/17-dang-nhap-google.md)
 - [Chatbot Gemini và cấu hình khóa](docs/12-chatbot-gemini.md)
 - [Mẫu thu thập danh mục thật và công cụ kiểm tra](data/catalog/README.md)
 - [Thiết kế và nghiệp vụ](docs/06-thiet-ke-va-nghiep-vu-v03.md), [vận hành/sao lưu](docs/13-phat-hanh-va-ban-giao.md)

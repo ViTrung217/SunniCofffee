@@ -48,3 +48,7 @@ Quy tắc nhập:
 - Không xóa tài khoản, giỏ hàng, đơn hàng hoặc nhật ký cũ; toàn bộ lần nhập nằm trong một giao dịch.
 
 Nếu thay giá/tồn trong JSON rồi nhập lại, giá/tồn của SKU đã có **không** đổi. Dùng quản trị sản phẩm và nghiệp vụ nhập/xuất kho để thay đổi số liệu hiện hành.
+
+## Xác nhận sử dụng ngày 15/10/2026
+
+Chủ dự án đã xác nhận và đồng ý sử dụng toàn bộ danh mục mặc định cho đồ án. Đây là phê duyệt dữ liệu dự án, không thay đổi nguồn gốc biên soạn thành khảo sát hàng thực tế. Đã bổ sung 24 ảnh AI riêng, đủ ảnh cho 36 SKU. Xem [manifest ảnh mới](../output/product-images/cream-v2/manifest.json).

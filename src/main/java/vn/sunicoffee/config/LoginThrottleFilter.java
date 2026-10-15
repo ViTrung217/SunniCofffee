@@ -31,7 +31,7 @@ public class LoginThrottleFilter extends OncePerRequestFilter {
         windows.put(address,new Window(window.expires(),window.count()+1));return true;
     }
     @Override protected void doFilterInternal(HttpServletRequest request,HttpServletResponse response,FilterChain chain) throws ServletException,IOException {
-        if(request.getMethod().equals("POST") && request.getServletPath().equals("/login") && !allow(request.getRemoteAddr())) {
+        if(request.getMethod().equals("POST") && (request.getServletPath().equals("/login") || request.getServletPath().equals("/login/google/link")) && !allow(request.getRemoteAddr())) {
             response.setStatus(429);response.setHeader("Retry-After","60");response.setContentType("text/plain;charset=UTF-8");
             response.getWriter().write("Bạn đã thử đăng nhập quá nhiều lần. Vui lòng thử lại sau 60 giây.");return;
         }

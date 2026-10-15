@@ -30,13 +30,44 @@ class SampleCatalogIntegrationTest {
     @BeforeEach void clear() {
         for (String table:new String[]{"order_events","stock_movements","product_images","order_items","customer_orders","cart_items","products","categories","app_users"}) jdbc.update("DELETE FROM "+table);
     }
+    @Test void relatedProductsAreSameCategoryVisibleAndRankedByAvailabilityThenPrice() throws Exception {
+        importer.refresh();
+        var current=products.findBySku("DEMO-CF-004").orElseThrow();
+        var hidden=products.findBySku("DEMO-CF-005").orElseThrow();hidden.setActive(false);
+        var out=products.findBySku("DEMO-CF-006").orElseThrow();out.setStock(0);out.setPrice(current.getPrice());
+        products.saveAndFlush(hidden);products.saveAndFlush(out);
+        var expected=products.findAll().stream()
+            .filter(p->p.isActive() && !p.getId().equals(current.getId()) && p.getCategory().getId().equals(current.getCategory().getId()))
+            .sorted(java.util.Comparator.comparingInt((Product p)->p.getStock()>0?0:1)
+                .thenComparing(p->p.getPrice().subtract(current.getPrice()).abs()).thenComparing(Product::getId))
+            .limit(4).map(Product::getId).toList();
+        var actual=products.related(current.getId(),current.getCategory().getId(),current.getPrice(),org.springframework.data.domain.PageRequest.of(0,4));
+        assertThat(actual).extracting(Product::getId).containsExactlyElementsOf(expected);
+        var result=mvc.perform(get("/products/"+current.getId())).andExpect(status().isOk())
+            .andExpect(content().string(org.hamcrest.Matchers.containsString("Sản phẩm liên quan"))).andReturn();
+        var related=(java.util.List<Product>)result.getModelAndView().getModel().get("relatedProducts");
+        assertThat(related).extracting(Product::getId).containsExactlyElementsOf(expected);
+        current.setHasImage(true);
+        assertThat(current.getImageUrl()).isEqualTo("/product-images/"+current.getId());
+    }
+    @Test void hidesRelatedSectionWhenCategoryHasNoOtherVisibleProducts() throws Exception {
+        importer.refresh();
+        var current=products.findBySku("DEMO-MC-001").orElseThrow();
+        for(var p:products.findAll()) if(!p.getId().equals(current.getId()) && p.getCategory().getId().equals(current.getCategory().getId())) {
+            p.setActive(false);products.save(p);
+        }
+        products.flush();
+        mvc.perform(get("/products/"+current.getId())).andExpect(status().isOk())
+            .andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("id=\"related-title\""))));
+    }
     @Test void freshImportCreatesAllProductsWithDescriptionsImagesAndOpeningLedger() throws Exception {
         assertThat(importer.refresh()).isEqualTo(new SampleCatalogService.ImportResult(36,0));
         assertThat(categories.count()).isEqualTo(4);
         for (var p:products.findAll()) {
-            assertThat(p.getDescription()).contains("Quy cách", "Gợi ý sử dụng", "Nguồn dữ liệu");
+            assertThat(p.getDescription()).contains("Quy cách", "Gợi ý sử dụng", "Bảo quản");
             assertThat(p.getDescription().length()).isLessThanOrEqualTo(2000);
             assertThat(new ClassPathResource("static"+p.getImageUrl()).exists()).isTrue();
+            assertThat(p.getImageUrl()).doesNotContain("sample-", "placeholder");
             assertThat(jdbc.queryForObject("SELECT COALESCE(SUM(quantity_delta),0) FROM stock_movements WHERE product_id=?",Integer.class,p.getId())).isEqualTo(p.getStock());
         }
     }
@@ -63,6 +94,6 @@ class SampleCatalogIntegrationTest {
         mvc.perform(get("/products/"+p.getId())).andExpect(status().isOk())
             .andExpect(content().string(org.hamcrest.Matchers.containsString("Thông tin sản phẩm")))
             .andExpect(content().string(org.hamcrest.Matchers.containsString("Quy cách và thông tin:")))
-            .andExpect(content().string(org.hamcrest.Matchers.containsString("Nguồn dữ liệu:")));
+            .andExpect(content().string(org.hamcrest.Matchers.containsString("Bảo quản:")));
     }
 }

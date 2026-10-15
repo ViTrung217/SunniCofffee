@@ -72,7 +72,6 @@ public class ChatService {
         try {
             var context = new ArrayList<>(knowledge.search(AdviceNeeds.knowledgeQuestion(question) ? sanitized : previousQuestions + "\n" + sanitized));
             Map<String, ChatReply.Citation> storeCitations = Map.of();
-            boolean demoAdvice = false;
             if (advice) {
                 try {
                     var catalog = data.adviceContext(AdviceNeeds.from(conversation.history(), sanitized));
@@ -83,7 +82,7 @@ public class ChatService {
                         conversation.remember(sanitized, catalog.demoMachineReply().answer());
                         return catalog.demoMachineReply();
                     }
-                    context.addAll(catalog.entries()); storeCitations = catalog.citations(); demoAdvice = catalog.demonstration();
+                    context.addAll(catalog.entries()); storeCitations = catalog.citations();
                 } catch (org.springframework.dao.DataAccessException ex) {
                     return ChatReply.of("UNAVAILABLE", "Hiện chưa đọc được danh mục để tư vấn chính xác. Vui lòng thử lại sau.");
                 }
@@ -115,7 +114,6 @@ public class ChatService {
             // A clarification does not need an irrelevant policy link below it.
             if (result.status().equals("CLARIFY")) citations.clear();
             String answer = result.answer();
-            if (demoAdvice && result.knowledgeIds().stream().anyMatch(storeCitations::containsKey) && !result.status().equals("CLARIFY")) answer = "Danh mục tư vấn là dữ liệu minh họa, không phải sản phẩm/giá/tồn thực tế.\n\n" + answer;
             conversation.remember(sanitized, answer);
             return new ChatReply(result.status(), answer, List.copyOf(citations));
         } catch (GeminiClient.Unavailable ex) {

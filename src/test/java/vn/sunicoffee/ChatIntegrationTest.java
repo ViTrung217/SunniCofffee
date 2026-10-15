@@ -242,7 +242,7 @@ class ChatIntegrationTest {
             .andExpect(jsonPath("$.status").value("INSUFFICIENT"))
             .andExpect(jsonPath("$.sources[0].url").value("/products/" + product.getId()))
             .andReturn().getResponse().getContentAsString();
-        assertThat(reply).contains("2 người", "2.000.000 VND", "arabica", "Chưa có thông số", "minh họa");
+        assertThat(reply).contains("2 người", "2.000.000 VND", "arabica", "Chưa có thông số", "danh mục hiện tại");
         verify(gemini, never()).answer(anyString(), anyList());
         verify(gemini, never()).answer(anyString(), anyList(), anyList());
         mvc.perform(post("/chat/messages").session(session).with(csrf()).contentType("application/json").content(message("Giảm còn 100 nghìn")))

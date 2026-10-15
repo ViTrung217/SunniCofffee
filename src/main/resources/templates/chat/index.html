@@ -12,7 +12,7 @@
       <button type="button" data-question="Tôi muốn tra cứu đơn của mình.">Đơn hàng của tôi ↗</button>
     </div><p sec:authorize="isAnonymous()"><a th:href="@{/login}">Đăng nhập</a> để tra cứu đơn của chính bạn.</p>
     <p><a sec:authorize="!hasRole('ADMIN')" th:href="@{/support}" target="_top">Muốn trao đổi với nhân viên? Mở chat cửa hàng →</a><a sec:authorize="hasRole('ADMIN')" th:href="@{/admin/support}" target="_top">Mở hộp thư khách hàng →</a></p>
-    <p>Thông số hãng là tài liệu tham khảo; chưa xác nhận cửa hàng có bán các mẫu này.</p>
+    <p>Xem giá và tình trạng còn hàng trong Cửa hàng.</p>
     <p class="chat-privacy">Câu hỏi và ngữ cảnh tư vấn được gửi tới Google Gemini khi AI bật. Không nhập mật khẩu hay thông tin cá nhân. Tra cứu đơn được xử lý tại cửa hàng.</p></aside>
     <section class="chat-panel" aria-label="Trò chuyện với SuniCoffee">
       <div class="chat-panel-header" th:unless="${embedded}"><div><strong>SuniCoffee Assistant</strong><span th:text="${aiReady} ? 'AI đã được bật' : 'AI chưa được cấu hình'"></span></div><button id="chat-clear" class="secondary small" type="button">Xóa trò chuyện</button></div>

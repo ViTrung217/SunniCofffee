@@ -31,12 +31,13 @@ public class AdminController {
         if(q.length()>100) q=q.substring(0,100);
         m.addAttribute("products",products.search(q,null,true,PageRequest.of(Math.max(0,page),20,Sort.by("id")))); m.addAttribute("q",q); return "admin/products";
     }
+    @org.springframework.beans.factory.annotation.Autowired private ProductImageService imageGallery;
     @GetMapping("/products/new") String newProduct(Model m) { m.addAttribute("form",new ProductForm()); productModel(m,null); return "admin/product-form"; }
     @GetMapping("/products/{id}/edit") String editProduct(@PathVariable Long id,Model m) {
         var p=catalog.product(id); var f=new ProductForm(); f.setSku(p.getSku()); f.setName(p.getName()); f.setDescription(p.getDescription());
         f.setVersion(p.getVersion());
         f.setPrice(p.getPrice()); f.setStock(p.getStock()); f.setSalesUnit(p.getSalesUnit()); f.setCategoryId(p.getCategory().getId()); f.setActive(p.isActive());
-        m.addAttribute("form",f); productModel(m,id); return "admin/product-form";
+        m.addAttribute("gallery",imageGallery.gallery(id)); m.addAttribute("form",f); productModel(m,id); return "admin/product-form";
     }
     @PostMapping("/products/save") String saveProduct(@RequestParam(required=false) Long id,@Valid @ModelAttribute("form") ProductForm form,BindingResult result,Model m,RedirectAttributes flash,java.security.Principal actor) {
         if(!result.hasErrors()) {
@@ -44,7 +45,7 @@ public class AdminController {
             catch(BusinessException e) { result.reject("product",e.getMessage()); }
             catch(DataIntegrityViolationException e) { result.reject("product","Mã SKU bị trùng hoặc danh mục không hợp lệ."); }
         }
-        productModel(m,id); return "admin/product-form";
+        if(id!=null)m.addAttribute("gallery",imageGallery.gallery(id)); productModel(m,id); return "admin/product-form";
     }
     private void productModel(Model m,Long id) { m.addAttribute("id",id); m.addAttribute("categories",categories.findAllByOrderByNameAsc()); if(id!=null) m.addAttribute("product",catalog.product(id)); }
     @PostMapping("/products/{id}/archive") String archive(@PathVariable Long id,RedirectAttributes flash) {

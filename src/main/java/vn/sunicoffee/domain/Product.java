@@ -43,8 +43,12 @@ public class Product {
         "DEMO-BR-001", "DEMO-BR-002", "DEMO-BR-003",
         "DEMO-OD-001", "DEMO-OD-002", "DEMO-OD-003");
 
+    private static final java.util.Set<String> CATALOG_IMAGE_SKUS = java.util.Set.of(
+        "DEMO-CF-004", "DEMO-CF-005", "DEMO-CF-006", "DEMO-CF-007", "DEMO-CF-008", "DEMO-CF-009", "DEMO-CF-010", "DEMO-MC-004", "DEMO-MC-005", "DEMO-MC-006", "DEMO-BR-004", "DEMO-BR-005", "DEMO-BR-006", "DEMO-BR-007", "DEMO-BR-008", "DEMO-BR-009", "DEMO-BR-010", "DEMO-BR-011", "DEMO-BR-012", "DEMO-OD-004", "DEMO-OD-005", "DEMO-OD-006", "DEMO-OD-007", "DEMO-OD-008");
+
     public String getImageUrl() {
         if (hasImage) return "/product-images/" + id;
+        if (sku != null && CATALOG_IMAGE_SKUS.contains(sku)) return "/images/products/" + sku.toLowerCase(java.util.Locale.ROOT) + ".jpg";
         if (sku != null && DEMO_IMAGE_SKUS.contains(sku)) {
             return "/images/products/" + sku.toLowerCase(java.util.Locale.ROOT) + ".png";
         }
