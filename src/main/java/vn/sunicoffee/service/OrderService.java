@@ -38,7 +38,10 @@ public class OrderService {
         CustomerOrder order=new CustomerOrder(); order.setUser(u); order.setCheckoutToken(f.getCheckoutToken());
         order.setRecipientName(f.getRecipientName().strip()); order.setPhone(f.getPhone().strip());
         order.setAddress(f.getAddress().strip()); order.setNote(f.getNote().strip());
-        order.setStatus(OrderStatus.PENDING); order.setCreatedAt(LocalDateTime.now(ZoneId.of("Asia/Ho_Chi_Minh")));
+        order.setStatus(OrderStatus.PENDING);
+        // The schema stores whole seconds. Truncate before persisting so MySQL cannot
+        // round creation into the next second and reject a valid immediate payment.
+        order.setCreatedAt(LocalDateTime.now(ZoneId.of("Asia/Ho_Chi_Minh")).withNano(0));
         if(f.getPaymentMethod()==null) throw new BusinessException("Chọn phương thức thanh toán hợp lệ.");
         order.setPaymentMethod(f.getPaymentMethod());
         if(order.getPaymentMethod()==PaymentMethod.SEPAY) sepay.prepare(order);

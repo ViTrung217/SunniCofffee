@@ -141,3 +141,9 @@ Kiểm chứng: 35 kiểm thử liên quan (Shop, SampleCatalog, ProductEngageme
 ## Đồng bộ và dọn repository — 15/10/2026
 
 Bản cập nhật gồm ảnh sản phẩm, đánh giá/yêu thích/thư viện ảnh, lịch sử tổng hợp, Google login và giao diện. Xóa 12 bản PNG trùng cùng ZIP xuất ảnh cũ (ảnh dùng trên website giữ nguyên); giữ manifest nguồn, tài liệu vận hành và baseline. Thêm quy tắc bỏ qua cache Python, cập nhật README. Đã sửa thuộc tính data-reveal trùng ở trang danh mục được phát hiện trong lượt kiểm tra trước push. Kết quả cuối: 161/161 kiểm thử H2 đạt, 6 kiểm thử script cấu hình đạt, hồi quy JavaScript thanh toán và baseline đạt. Không đưa cấu hình bí mật hoặc database local vào Git. Các ghi chú “chưa đẩy GitHub” phía trên là trạng thái lịch sử trước đợt đồng bộ này.
+
+## Vá đối soát thanh toán trên MySQL — 16/10/2026
+
+CI phát hiện ca đối soát đồng thời không ghi nhận tiền. Cột created_at có độ chính xác giây; MySQL làm tròn phần lẻ từ 0,5 giây lên giây tiếp theo, khiến giao dịch đến ngay sau checkout có thể bị coi là xảy ra trước đơn. OrderService chuẩn hóa thời gian tạo đơn xuống giây trước khi lưu. Giữ nguyên điều kiện kiểm tra tài khoản, mã, số tiền và chống ghi nhận trùng. Kiểm thử hồi quy xác nhận thời gian sau đọc DB không thay đổi và hai yêu cầu đồng thời chỉ ghi nhận một biên nhận ở cùng giây tạo đơn.
+
+161/161 kiểm thử đạt trên mỗi cấu hình H2 và MySQL 8.0, Java 21 / UTC; baseline đạt. Không thử chuyển tiền thật. [Bằng chứng](verification/sepay/creation-time-fix.json).

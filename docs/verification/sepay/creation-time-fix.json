@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-16",
+  "java": 21,
+  "timezone": "UTC",
+  "h2": {
+    "tests": 161,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "mysql": {
+    "tests": 161,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "mysql_precision_probe": "TIMESTAMP rounds 10:00:00.900000 to 10:00:01",
+  "baseline": "passed",
+  "live_transfer_tested": false
+}

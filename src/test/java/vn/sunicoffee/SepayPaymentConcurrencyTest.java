@@ -33,7 +33,11 @@ class SepayPaymentConcurrencyTest {
         try {
             carts.add(email,p.getId(),1);var f=new CheckoutForm();f.setCheckoutToken(suffix);f.setRecipientName("Khách");f.setAddress("Địa chỉ mẫu kiểm thử");f.setPhone("0900000000");f.setPaymentMethod(PaymentMethod.SEPAY);
             var o=orders.checkout(email,f);orderId=o.getId();
-            var t=new SepayClient.Transfer(UUID.randomUUID().toString(),o.getSepayBankAccountId(),o.getSepayAccountNumber(),"","in",o.getTotal(),BigDecimal.ZERO,o.getPaymentCode(),LocalDateTime.now(ZoneId.of("Asia/Ho_Chi_Minh")),"TEST-RACE");
+            assertThat(o.getCreatedAt().getNano()).isZero();
+            LocalDateTime storedCreation=jdbc.queryForObject("SELECT created_at FROM customer_orders WHERE id=?",
+                (rs,n)->rs.getObject(1,LocalDateTime.class),orderId);
+            assertThat(storedCreation).isEqualTo(o.getCreatedAt());
+            var t=new SepayClient.Transfer(UUID.randomUUID().toString(),o.getSepayBankAccountId(),o.getSepayAccountNumber(),"","in",o.getTotal(),BigDecimal.ZERO,o.getPaymentCode(),o.getCreatedAt().plusNanos(900_000_000),"TEST-RACE");
             try(var pool=Executors.newFixedThreadPool(2)) {
                 var start=new CountDownLatch(1);Callable<Void> task=()->{start.await();payments.apply(o.getId(),List.of(t));return null;};
                 var a=pool.submit(task);var b=pool.submit(task);start.countDown();a.get(15,TimeUnit.SECONDS);b.get(15,TimeUnit.SECONDS);
