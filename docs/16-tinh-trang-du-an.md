@@ -147,3 +147,15 @@ Bản cập nhật gồm ảnh sản phẩm, đánh giá/yêu thích/thư viện
 CI phát hiện ca đối soát đồng thời không ghi nhận tiền. Cột created_at có độ chính xác giây; MySQL làm tròn phần lẻ từ 0,5 giây lên giây tiếp theo, khiến giao dịch đến ngay sau checkout có thể bị coi là xảy ra trước đơn. OrderService chuẩn hóa thời gian tạo đơn xuống giây trước khi lưu. Giữ nguyên điều kiện kiểm tra tài khoản, mã, số tiền và chống ghi nhận trùng. Kiểm thử hồi quy xác nhận thời gian sau đọc DB không thay đổi và hai yêu cầu đồng thời chỉ ghi nhận một biên nhận ở cùng giây tạo đơn.
 
 161/161 kiểm thử đạt trên mỗi cấu hình H2 và MySQL 8.0, Java 21 / UTC; baseline đạt. Không thử chuyển tiền thật. [Bằng chứng](verification/sepay/creation-time-fix.json).
+
+## Trang cá nhân và thanh điều hướng — 16/10/2026
+
+Trang hồ sơ có thẻ nhận diện, menu tài khoản, nhóm thông tin liên hệ/địa chỉ và nút lưu rõ ràng; trang đổi mật khẩu thống nhất phong cách. Header chuyển sang hai hàng với ô tìm sản phẩm, giỏ hàng, menu tài khoản dạng details và điều hướng chính. Menu hỗ trợ bàn phím, Esc và bấm bên ngoài; không có JavaScript vẫn mở được. Có bố cục mobile và hỗ trợ giảm chuyển động. Giữ nguyên xử lý hồ sơ, CSRF, đăng xuất và phân quyền.
+
+51 kiểm thử liên quan đạt (Management, Shop, GoogleLogin, ProductEngagement); JavaScript kiểm tra cú pháp đạt. Chưa nghiệm thu trực quan trình duyệt của bản này. Chưa đẩy thay đổi giao diện này lên GitHub.
+
+## Tinh chỉnh chi tiết sản phẩm — 19/10/2026
+
+Điều chỉnh khoảng cách, tỷ lệ ảnh/thông tin, khung giá và đơn vị bán, nhãn tồn kho, ảnh thu nhỏ cuộn ngang trên màn hình hẹp. Mô tả có khối tư vấn bên cạnh trên desktop và xếp dọc trên mobile. Đánh giá có điểm tổng quan từ dữ liệu thật trong database, trạng thái chưa có nhận xét và lựa chọn sao bằng radio hỗ trợ bàn phím. Ẩn CTA đăng nhập mua hàng khi hết hàng; tiêu đề trình duyệt dùng tên sản phẩm. Không thêm khuyến mãi hay chỉ số bán hàng giả.
+
+30 kiểm thử liên quan đạt (ProductEngagement, SampleCatalog, Shop); diff hợp lệ. Chưa nghiệm thu trực quan desktop/mobile trong đợt này. Thay đổi đang ở local, chưa push GitHub.

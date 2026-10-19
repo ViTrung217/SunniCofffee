@@ -52,9 +52,21 @@
     document.querySelectorAll('[data-reveal]:not([data-revealed])').forEach(element => observer.observe(element));
   }
   observe();
+  const accountMenu = document.querySelector('.account-menu');
+  if (accountMenu) {
+    document.addEventListener('click', event => {
+      if (!accountMenu.contains(event.target)) accountMenu.open = false;
+    });
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && accountMenu.open) {
+        accountMenu.open = false;
+        accountMenu.querySelector('summary').focus();
+      }
+    });
+  }
   const path = window.location.pathname.replace(/\/$/, '') || '/';
-  document.querySelectorAll('.nav nav > a').forEach(link => {
+  document.querySelectorAll('.main-navigation > a, .account-dropdown > a').forEach(link => {
     const target = new URL(link.href).pathname.replace(/\/$/, '') || '/';
-    if (target === path || (target === '/products' && path.startsWith('/products/'))) link.setAttribute('aria-current', 'page');
+    if (target === path || (target === '/products' && path.startsWith('/products/')) || (target === '/account' && path.startsWith('/account/'))) link.setAttribute('aria-current', 'page');
   });
 })();
