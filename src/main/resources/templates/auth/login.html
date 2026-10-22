@@ -8,5 +8,5 @@
 <p th:text="${session.googleLinkPending.email}"></p>
 <p class="error" th:if="${googleLinkError}" th:text="${googleLinkError}"></p>
 <form th:action="@{/login/google/link}" method="post"><label>Mật khẩu SuniCoffee<input name="password" type="password" autocomplete="current-password" required maxlength="100"></label><button>Liên kết với Google</button></form>
-</div></div><form th:action="@{/login}" method="post"><label>Email<input name="email" type="email" autocomplete="username" required maxlength="190"></label><label>Mật khẩu<input name="password" type="password" autocomplete="current-password" required></label><button class="full">Đăng nhập →</button></form><p>Chưa có tài khoản? <a th:href="@{/register}">Đăng ký</a></p></section>
+</div></div><form th:action="@{/login}" method="post"><label>Email<input name="email" type="email" autocomplete="username" required maxlength="190"></label><label>Mật khẩu<input name="password" type="password" autocomplete="current-password" required></label><button class="full">Đăng nhập →</button></form><p><a th:href="@{/forgot-password}">Quên mật khẩu?</a></p><p>Chưa có tài khoản? <a th:href="@{/register}">Đăng ký</a></p></section>
 </main><footer th:replace="~{fragments/layout :: footer}"></footer></body></html>

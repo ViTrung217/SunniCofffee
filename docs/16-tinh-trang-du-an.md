@@ -159,3 +159,57 @@ Trang hồ sơ có thẻ nhận diện, menu tài khoản, nhóm thông tin liê
 Điều chỉnh khoảng cách, tỷ lệ ảnh/thông tin, khung giá và đơn vị bán, nhãn tồn kho, ảnh thu nhỏ cuộn ngang trên màn hình hẹp. Mô tả có khối tư vấn bên cạnh trên desktop và xếp dọc trên mobile. Đánh giá có điểm tổng quan từ dữ liệu thật trong database, trạng thái chưa có nhận xét và lựa chọn sao bằng radio hỗ trợ bàn phím. Ẩn CTA đăng nhập mua hàng khi hết hàng; tiêu đề trình duyệt dùng tên sản phẩm. Không thêm khuyến mãi hay chỉ số bán hàng giả.
 
 30 kiểm thử liên quan đạt (ProductEngagement, SampleCatalog, Shop); diff hợp lệ. Chưa nghiệm thu trực quan desktop/mobile trong đợt này. Thay đổi đang ở local, chưa push GitHub.
+
+## Banner trang chủ — 20/10/2026
+
+Thêm 2 ảnh minh họa AI riêng, nén JPEG tổng dưới 1 MB, lưu trong static/images/banners; hồ sơ prompt ở output/product-images/homepage-v1/manifest.json. Trang chủ có nút trước/sau, chấm chọn ảnh, tạm dừng và tự chuyển sau 6 giây; hỗ trợ phím mũi tên. Dừng khi hover, focus, tab ẩn hoặc người dùng giảm chuyển động. Không có JavaScript vẫn thấy ảnh đầu và nội dung trang chủ. Tham khảo website https://bongbieng.com/ về cách giới thiệu hình ảnh thương hiệu; không sao chép ảnh/nội dung của website đó.
+
+26 kiểm thử Shop/SampleCatalog đạt; kiểm tra JavaScript mô phỏng chuyển vòng, pause/resume, reduced motion, focus và tab ẩn đạt. Đã kiểm tra trực quan ảnh đầu ra; chưa nghiệm thu carousel trong trình duyệt thực tế. Chưa đẩy thay đổi này lên GitHub.
+
+## Banner mở rộng — 21/10/2026
+
+Thêm hai ảnh AI espresso và cà phê bên hồ, tổng bốn ảnh. Banner chuyển thành khung ảnh rộng tối đa 1440 px, cao đến 680 px; phần giới thiệu và CTA phía dưới. Mobile cao 440–500 px, giữ bốn chấm chọn và nút trước/sau/tạm dừng. 26 kiểm thử Shop/SampleCatalog đạt; đủ bốn asset và chấm chọn đúng thứ tự. Đã xem ảnh tạo ra, chưa nghiệm thu trực quan bố cục trên trình duyệt. Chưa push GitHub.
+
+## Tìm kiếm sản phẩm — 21/10/2026
+
+Tìm kiếm công khai ở trang cửa hàng và API chuyển sang chuẩn hóa dấu tiếng Việt, chữ hoa/thường, khoảng trắng và tìm tất cả từ trong tên/SKU/danh mục. Hỗ trợ cách gõ phee thành phe; không phải cơ chế sửa mọi lỗi chính tả. Cụm máy pha cà phê khớp danh mục kể cả tên sản phẩm không chứa nguyên cụm. Ưu tiên khớp SKU/tên, thứ tự ổn định; giữ lọc danh mục, trạng thái đang bán và phân trang. Tìm kiếm admin giữ nguyên.
+
+Dùng metadata tên/SKU/danh mục để so khớp trong Java nhằm có kết quả nhất quán giữa các database; chỉ tải entity cho trang kết quả. Phù hợp danh mục local hiện tại, chưa phải chỉ mục tìm kiếm cho danh mục quy mô lớn. 29 kiểm thử Shop/SampleCatalog đạt, gồm 3 ca mới kiểm tra có/không dấu, thứ tự từ, phee, HTTP/API, ẩn sản phẩm, lọc danh mục, ký tự đặc biệt và phân trang. Chưa chạy lại MySQL cho thay đổi này; chưa push GitHub.
+
+## Rà soát toàn dự án — 22/10/2026
+
+Kết quả hiện tại: **164/164 kiểm thử H2 đạt**, không bỏ qua ca nào; 6 kiểm thử script cấu hình đạt; baseline chatbot và git diff --check đạt. CI của commit 2a13ab9 đã hoàn tất thành công. Banner và tìm kiếm mới vẫn chưa commit/push và chưa chạy MySQL trong lượt này. [Bằng chứng](verification/project-audit-20261022/results.json).
+
+### Các điểm còn thiếu hoặc cần sửa
+
+| Ưu tiên | Phát hiện từ mã nguồn | Hướng hoàn thiện |
+|---|---|---|
+| Cao | Thanh toán có trạng thái REVIEW/REFUND_REQUIRED nhưng chưa có quy trình quản trị kết thúc đối soát/ghi nhận hoàn tiền | Thêm xử lý có phân quyền, lý do và nhật ký; không đánh dấu đã hoàn chỉ vì khách yêu cầu |
+| Cao | Đối soát SePay phụ thuộc trang thanh toán: kiểm tra mỗi 15 giây khi tab hiển thị, tự dừng sau 20 phút; chưa có webhook/tác vụ nền | Với phạm vi local, có thể bổ sung tác vụ nền đối soát đơn chờ; hiện cần mở lại trang hoặc admin kiểm tra khi khách rời trang |
+| Vừa | Tài khoản mới tạo bằng Google dùng mật khẩu ngẫu nhiên, nhưng trang đổi mật khẩu luôn yêu cầu mật khẩu hiện tại | Phân biệt tài khoản Google và mật khẩu nội bộ; bổ sung luồng đặt mật khẩu có xác minh hoặc thông báo rõ giới hạn |
+| Thấp | Link /support ở sidebar hồ sơ hiển thị cả cho ADMIN nhưng SecurityConfig chỉ cho CUSTOMER | Đổi link theo vai trò sang /admin/support cho admin |
+| Vừa | Chưa có tự khôi phục mật khẩu, xác minh email và quản lý liên kết Google | Bổ sung nếu cần hoàn chỉnh vòng đời tài khoản; hiện chưa phải yêu cầu bắt buộc của bản local |
+| Vừa | docs/09 còn mô tả Flyway V1–V4 và số kiểm thử 126; các đoạn lịch sử docs/16 có số liệu cũ | Đồng bộ tài liệu thuyết trình với migration V10, Google, SePay, đánh giá/yêu thích và kết quả mới; giữ bằng chứng cũ dưới nhãn lịch sử |
+| Thấp | Tìm kiếm tải metadata danh mục để so khớp trong Java; chưa có từ đồng nghĩa/sửa lỗi chính tả tổng quát | Đủ cho danh mục hiện tại; chỉ tối ưu chỉ mục khi tăng quy mô, không cần thêm AI để tìm sản phẩm |
+
+### Nghiệm thu còn cần thực hiện
+
+- Lần rà soát này localhost:8080 từ chối kết nối: chưa kiểm chứng giao diện desktop/mobile, điều hướng bàn phím, banner, gallery trên ứng dụng đang chạy.
+- Thử Google đăng nhập thật, chatbot nhiều lượt và thanh toán SePay với tài khoản đã cấu hình; kiểm tra cả chuyển thiếu/thừa, đóng trang và giao dịch lặp. Bộ test tự động không thay thế nghiệm thu tích hợp thật.
+- Thử khôi phục bản sao H2 hiện tại vào thư mục riêng, đối chiếu dữ liệu và ảnh. Đã có hướng dẫn backup/restore, nhưng chưa thực hiện trên dữ liệu hiện tại trong lượt này.
+- Dữ liệu đơn hàng, đánh giá và khách hàng tổng hợp vẫn được đưa vào báo cáo; giải thích nguồn dữ liệu khi trình bày kết quả.
+
+Chưa cần thêm voucher, tích điểm, biến thể hay API vận chuyển chỉ để hoàn thành phạm vi local. Ưu tiên đóng các luồng còn dang dở và nghiệm thu thay vì tiếp tục tăng số lượng chức năng. Lượt này chỉ kiểm tra và ghi nhận, chưa sửa các phát hiện trên.
+
+### Kiểm tra lại ứng dụng đang chạy
+
+Cổng 8080 đã UP. Trang chủ, danh mục, đăng nhập, đăng ký trả 200; 36 trang chi tiết, 36 ảnh sản phẩm và 4 banner đều trả 200. Tìm máy pha cà phê có dấu/không dấu/phee đều được 6 kết quả. Chạy lại verify: 164/164 kiểm thử H2 đạt; baseline đạt. Các phát hiện ở lượt rà soát trên chưa được sửa. Đây là kiểm tra HTTP, chưa phải nghiệm thu trực quan hoặc giao dịch thật. [Kết quả kiểm tra lại](verification/project-audit-20261022/recheck.json).
+
+## Sửa mục 4 và 5 sau rà soát — 22/10/2026
+
+- Link hỗ trợ ở hồ sơ chuyển đến `/admin/support` cho ADMIN và `/support` cho CUSTOMER; kiểm thử render theo hai vai trò đạt.
+- Thêm quên mật khẩu qua email: form công khai có CSRF, phản hồi chung tránh tiết lộ email, giới hạn IP và một phút/tài khoản; mã ngẫu nhiên 32 byte chỉ lưu SHA-256, hết hạn 15 phút, dùng một lần. Khóa và đọc lại bản ghi khi đổi mật khẩu để chặn dùng đồng thời. Đổi thành công tăng authVersion thu hồi phiên cũ; không tự đăng nhập hoặc mở khóa tài khoản. Gửi SMTP thất bại rollback mã mới. Tài khoản Google có thể đặt mật khẩu nội bộ qua email, không gỡ liên kết Google.
+- Migration V11 thêm bảng mã khôi phục. Chưa cấu hình SMTP thì chức năng gửi email chưa khả dụng; không có mã khôi phục hiển thị hoặc ghi log. [Hướng dẫn cấu hình](20-khoi-phuc-mat-khau.md).
+- Cập nhật README và dàn ý thuyết trình về SePay, Google, tương tác sản phẩm, V11 và bằng chứng kiểm thử hiện tại. Các mục rà soát phía trên là lịch sử trước sửa.
+
+**172/172 kiểm thử H2 đạt**, gồm 8 ca mới về khôi phục mật khẩu, cạnh tranh dùng mã, gửi mail thất bại, CSRF, giới hạn yêu cầu và link theo vai trò. Baseline và diff hợp lệ. [Bằng chứng](verification/project-audit-20261022/fixes.json). Chưa chạy MySQL cho V11, chưa gửi email SMTP thật. Ứng dụng đang chạy cần khởi động lại để nạp mã và migration; chưa push GitHub.

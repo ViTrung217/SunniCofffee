@@ -30,6 +30,40 @@ class SampleCatalogIntegrationTest {
     @BeforeEach void clear() {
         for (String table:new String[]{"order_events","stock_movements","product_images","order_items","customer_orders","cart_items","products","categories","app_users"}) jdbc.update("DELETE FROM "+table);
     }
+    @Autowired vn.sunicoffee.service.ProductSearchService searchService;
+    @Test void searchMatchesCategoryAccentsWordOrderAndTypingVariant() throws Exception {
+        importer.refresh();
+        for(String query:new String[]{"máy pha cà phê","may pha ca phe","máy pha cà phee","  MÁY   PHA  ","cà phê máy pha"}) {
+            var result=searchService.search(query,null,0);
+            assertThat(result.getTotalElements()).as(query).isEqualTo(6);
+            assertThat(result.getContent()).allMatch(p->p.getSku().startsWith("DEMO-MC-"));
+        }
+        mvc.perform(get("/products").param("q","máy pha cà phê")).andExpect(status().isOk())
+            .andExpect(content().string(org.hamcrest.Matchers.containsString("Máy pha cầm tay Suni A")));
+        mvc.perform(get("/api/products").param("q","may pha ca phe")).andExpect(status().isOk())
+            .andExpect(jsonPath("$.totalElements").value(6));
+    }
+    @Test void searchKeepsCategoryVisibilityAndAllQueryWords() throws Exception {
+        importer.refresh();
+        var hidden=products.findBySku("DEMO-MC-001").orElseThrow();hidden.setActive(false);products.saveAndFlush(hidden);
+        assertThat(searchService.search("máy pha cà phê",null,0).getTotalElements()).isEqualTo(5);
+        Long coffee=categories.findByCode("COFFEE").orElseThrow().getId();
+        assertThat(searchService.search("máy pha cà phê",coffee,0)).isEmpty();
+        assertThat(searchService.search("máy pha khôngtồntại",null,0)).isEmpty();
+        assertThat(searchService.search("%_",null,0)).isEmpty();
+        assertThat(searchService.search("DEMO-MC-002",null,0).getContent()).extracting(Product::getSku).containsExactly("DEMO-MC-002");
+        assertThat(searchService.search("máy pha cầm tay",null,0).getTotalElements()).isEqualTo(1);
+    }
+    @Test void normalizedSearchPaginatesWithoutDuplicatesAndHandlesLargePage() throws Exception {
+        importer.refresh();
+        var first=searchService.search("cà phê",null,0);
+        var second=searchService.search("ca phe",null,1);
+        assertThat(first.getContent()).hasSize(12);
+        assertThat(second.getContent()).isNotEmpty();
+        assertThat(first.getContent()).extracting(Product::getId).doesNotContainAnyElementsOf(second.getContent().stream().map(Product::getId).toList());
+        assertThat(searchService.search("ca phe",null,Integer.MAX_VALUE).getContent()).isEmpty();
+        assertThat(searchService.search("ca phe",null,Integer.MAX_VALUE).getTotalElements()).isEqualTo(first.getTotalElements());
+    }
     @Test void relatedProductsAreSameCategoryVisibleAndRankedByAvailabilityThenPrice() throws Exception {
         importer.refresh();
         var current=products.findBySku("DEMO-CF-004").orElseThrow();

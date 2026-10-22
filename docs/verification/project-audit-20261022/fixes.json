@@ -1,0 +1,19 @@
+{
+  "h2": {
+    "tests": 172,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "new_tests": 8,
+  "baseline": "PASS",
+  "diff_check": "PASS",
+  "mysql": "Not run for V11",
+  "smtp": "Mocked only; requires local SMTP configuration",
+  "changes": [
+    "Role-aware account support link",
+    "Single-use 15-minute hashed password reset tokens and email delivery",
+    "CSRF, throttling, authVersion revocation, concurrent reuse and delivery rollback tests",
+    "Updated presentation and SMTP instructions"
+  ]
+}

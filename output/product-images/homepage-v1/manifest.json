@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-20",
+  "generator": "built-in image_gen",
+  "purpose": "Homepage editorial illustration, not a photograph of actual inventory or shop",
+  "assets": [
+    {
+      "file": "src/main/resources/static/images/banners/morning-v1.jpg",
+      "prompt": "Wide horizontal 1536x1024 premium editorial photography for a Vietnamese coffee shop homepage. A quiet morning coffee ritual: handmade ivory ceramic mug of black coffee, matte forest green gooseneck kettle, clear glass dripper on a warm light oak table near a sunlit window. Soft cream linen, delicate shadows of leaves, warm morning light, sophisticated muted sage green and ivory palette. Objects concentrated center-right, beautifully natural composition. Photorealistic, tactile, relaxed, high-end lifestyle magazine. No text, no lettering, no logos, no people, no watermark. Not a collage."
+    },
+    {
+      "file": "src/main/resources/static/images/banners/outdoor-v1.jpg",
+      "prompt": "Wide horizontal 1536x1024 premium editorial photography for a Vietnamese outdoor coffee shop homepage. A peaceful coffee picnic overlooking misty lush green hills in Vietnam at dawn. On foreground small wooden camping table: ivory enamel coffee cup, compact dark olive manual coffee grinder and simple stainless Vietnamese phin, folded beige cloth. Soft atmospheric sunlight, muted olive and cream palette, realistic premium lifestyle photography, calm inviting scene. Objects concentrated center-right, scenery with breathing room. No text, no logos, no people, no watermark. Not a collage."
+    }
+  ]
+}

@@ -20,11 +20,11 @@ Máy mới cần tạo quản trị riêng bằng `ADMIN_EMAIL` và `ADMIN_PASSW
 
 ## Chức năng
 
-[Bảng đã làm / còn thiếu cập nhật 15/10/2026](docs/16-tinh-trang-du-an.md). Danh mục đồ án hiện có 36 sản phẩm với mô tả chi tiết; xem [nguồn dữ liệu và cách nạp bổ sung](data/README-products.md).
+[Bảng đã làm / còn thiếu](docs/16-tinh-trang-du-an.md). Danh mục đồ án hiện có 36 sản phẩm với mô tả chi tiết; xem [nguồn dữ liệu và cách nạp bổ sung](data/README-products.md).
 
 | Nhóm | Nội dung |
 | --- | --- |
-| Khách hàng | Đăng ký/đăng nhập Google hoặc mật khẩu, yêu thích, đánh giá, hồ sơ, đổi mật khẩu, tìm/lọc sản phẩm, giỏ riêng, đặt COD, xem và hủy đơn còn chờ xác nhận |
+| Khách hàng | Đăng ký/đăng nhập Google hoặc mật khẩu, yêu thích, đánh giá, hồ sơ, đổi/khôi phục mật khẩu qua email (cần SMTP), tìm/lọc sản phẩm, giỏ riêng, đặt COD/QR SePay, xem và hủy đơn còn chờ xác nhận |
 | Sản phẩm | Danh mục, thêm/sửa/ngừng bán, thư viện tối đa 6 ảnh JPG/PNG, mỗi ảnh tối đa 5 MB, kiểm tra nội dung ảnh |
 | Tài khoản | Phân quyền, khóa/mở, vô hiệu hóa phiên khi đổi quyền/mật khẩu; giữ ít nhất một admin hoạt động |
 | Kho | Nhật ký tồn đầu/nhập/xuất, trừ khi đặt, hoàn khi hủy/nhận hàng hoàn; giao dịch và khóa tồn |
@@ -34,7 +34,7 @@ Máy mới cần tạo quản trị riêng bằng `ADMIN_EMAIL` và `ADMIN_PASSW
 | Chatbot | Gemini, 55 mục tri thức có nguồn, ngữ cảnh hội thoại, luồng tra Google cho kiến thức liên quan (phụ thuộc quota), giá/tồn hiện hành, chỉ tra cứu đơn thuộc tài khoản đã xác thực |
 | Vận hành | MySQL hoặc H2 cục bộ, Flyway, health/readiness, graceful shutdown, backup/restore kiểm tra |
 
-QR SePay đã có mã tích hợp, cần cấu hình tài khoản và kiểm chứng với dịch vụ thật; xem [hướng dẫn SePay](docs/18-thanh-toan-sepay.md). API hãng vận chuyển, email quên mật khẩu, khuyến mại, đa chi nhánh và giá vốn/lợi nhuận nằm ngoài phạm vi đồ án đã chốt. Không mô tả các mục này là chức năng đã triển khai.
+QR SePay đã có mã tích hợp, cần cấu hình tài khoản và kiểm chứng với dịch vụ thật; xem [hướng dẫn SePay](docs/18-thanh-toan-sepay.md). Khôi phục mật khẩu qua email đã có luồng xử lý; cần cấu hình SMTP theo [hướng dẫn](docs/20-khoi-phuc-mat-khau.md). API hãng vận chuyển, khuyến mại, đa chi nhánh và giá vốn/lợi nhuận nằm ngoài phạm vi đồ án đã chốt. Không mô tả các mục này là chức năng đã triển khai.
 
 ## Kiểm thử và đánh giá
 

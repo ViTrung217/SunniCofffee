@@ -12,6 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/products")
 public class ProductApiController {
+    @org.springframework.beans.factory.annotation.Autowired private vn.sunicoffee.service.ProductSearchService searchService;
     private final ProductRepository products;
     public ProductApiController(ProductRepository p) { products=p; }
     public record ProductView(Long id,String sku,String name,String description,BigDecimal price,int stock,String salesUnit,String category,String imageUrl) {
@@ -20,7 +21,7 @@ public class ProductApiController {
     public record ProductPage(List<ProductView> items,int page,int totalPages,long totalElements) {}
     @GetMapping ProductPage list(@RequestParam(defaultValue="") String q,@RequestParam(required=false) Long category,@RequestParam(defaultValue="0") int page) {
         if(q.length()>100) q=q.substring(0,100);
-        var result=products.search(q,category,false,PageRequest.of(Math.max(0,page),12,Sort.by("id")));
+        var result=searchService.search(q,category,page);
         return new ProductPage(result.getContent().stream().map(ProductView::from).toList(),result.getNumber(),result.getTotalPages(),result.getTotalElements());
     }
     @GetMapping("/{id}") ProductView detail(@PathVariable Long id) {

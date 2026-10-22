@@ -35,7 +35,7 @@ public class SecurityConfig {
                 .requestMatchers("/actuator/health", "/actuator/health/liveness", "/actuator/health/readiness").permitAll()
                 .requestMatchers("/actuator/**").denyAll()
                 .requestMatchers(org.springframework.http.HttpMethod.POST,"/products/*/favorite","/products/*/reviews","/products/*/reviews/delete").authenticated()
-                .requestMatchers("/chat", "/chat/messages", "/chat/sources/**", "/", "/products/**", "/api/products/**", "/css/**", "/js/**", "/images/**", "/product-images/**", "/login", "/login/google/link", "/oauth2/authorization/google", "/login/oauth2/code/google", "/register", "/error").permitAll()
+                .requestMatchers("/chat", "/chat/messages", "/chat/sources/**", "/", "/products/**", "/api/products/**", "/css/**", "/js/**", "/images/**", "/product-images/**", "/login", "/login/google/link", "/oauth2/authorization/google", "/login/oauth2/code/google", "/register", "/forgot-password", "/reset-password", "/error").permitAll()
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 .requestMatchers("/support", "/support/**").hasRole("CUSTOMER")
                 .anyRequest().authenticated())

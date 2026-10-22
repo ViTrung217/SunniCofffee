@@ -13,6 +13,7 @@ import vn.sunicoffee.service.*;
 public class StoreController {
     private final ProductRepository products;
     private final CategoryRepository categories;
+    @org.springframework.beans.factory.annotation.Autowired private ProductSearchService searchService;
     private final CatalogService catalog;
     public StoreController(ProductRepository p,CategoryRepository c,CatalogService s) { products=p; categories=c; catalog=s; }
     @org.springframework.beans.factory.annotation.Autowired private ProductEngagementService engagement;
@@ -22,7 +23,7 @@ public class StoreController {
                  @RequestParam(defaultValue="0") int page,Model model,jakarta.servlet.http.HttpServletRequest request) {
         String search=q.strip(); if(search.length()>100) search=search.substring(0,100);
         model.addAttribute("home",request.getRequestURI().equals(request.getContextPath() + "/") && search.isEmpty() && category==null && page==0);
-        model.addAttribute("products",products.search(search,category,false,PageRequest.of(Math.max(0,page),12,Sort.by("id"))));
+        model.addAttribute("products",searchService.search(search,category,page));
         model.addAttribute("categories",categories.findAllByOrderByNameAsc()); model.addAttribute("q",search); model.addAttribute("selectedCategory",category);
         return "store/catalog";
     }

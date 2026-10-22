@@ -1,6 +1,6 @@
 # Dàn ý thuyết trình SuniCoffee 1.0.0 — chạy local
 
-Bản nội dung nháp khoảng 10 phút, chưa theo mẫu khoa. Chưa có tệp PPTX. Không điền tên giảng viên, khoa, người thực hiện hoặc số liệu khảo sát khi chưa có thông tin xác nhận. Cập nhật 14/10/2026. Nguồn: [thiết kế](06-thiet-ke-va-nghiep-vu-v03.md), [chatbot](12-chatbot-gemini.md), [tình trạng hiện tại](16-tinh-trang-du-an.md), [chat nhân viên](17-chat-khach-hang.md) và bằng chứng trong `docs/verification`.
+Bản nội dung nháp khoảng 10 phút, chưa theo mẫu khoa. Chưa có tệp PPTX. Không điền tên giảng viên, khoa, người thực hiện hoặc số liệu khảo sát khi chưa có thông tin xác nhận. Cập nhật 22/10/2026. Nguồn: [thiết kế](06-thiet-ke-va-nghiep-vu-v03.md), [chatbot](12-chatbot-gemini.md), [tình trạng hiện tại](16-tinh-trang-du-an.md), [chat nhân viên](17-chat-khach-hang.md) và bằng chứng trong `docs/verification`.
 
 ## 1. SuniCoffee: bán hàng và quản lý vận chuyển
 
@@ -10,13 +10,13 @@ Lời dẫn: “Phần trình diễn tập trung vào đặt hàng, bảo đảm
 
 ## 2. Phạm vi và tác nhân
 
-Nội dung: một cửa hàng, một kho; khách hàng và quản trị; đặt COD, phí cố định có thể cấu hình; vận chuyển được admin cập nhật thủ công.
+Nội dung: một cửa hàng, một kho; khách hàng và quản trị; đặt COD hoặc chuyển khoản QR SePay, đăng nhập email/Google, đánh giá sau mua, yêu thích và thư viện ảnh; phí cố định có thể cấu hình; vận chuyển được admin cập nhật thủ công.
 
 Lời dẫn: “Khách xem sản phẩm, đặt và theo dõi đơn của mình. Quản trị xử lý đơn, kho, tài khoản và báo cáo. Phiên bản này chưa kết nối hãng vận chuyển thật.”
 
 ## 3. Kiến trúc và dữ liệu
 
-Nội dung: Spring Boot MVC + Thymeleaf; Spring Security; service giao dịch; JPA/JDBC; H2 local hoặc MySQL; Flyway V1–V4. Sơ đồ nghiệp vụ nền ở docs/06 và ERD V3 ở docs/02; V4 bổ sung bảng hội thoại/tin nhắn, mô tả ở docs/17.
+Nội dung: Spring Boot MVC + Thymeleaf; Spring Security; service giao dịch; JPA/JDBC; H2 local hoặc MySQL; Flyway V1–V11. Sơ đồ nền ở docs/06 và docs/02 cần được đọc cùng các migration hiện tại: chat, thanh toán, tương tác sản phẩm, lịch sử tổng hợp, liên kết Google và mã khôi phục mật khẩu.
 
 Lời dẫn: “Quy tắc nghiệp vụ nằm ở service. Các thay đổi liên quan đơn và tồn kho cùng nằm trong giao dịch; migration cập nhật cấu trúc và giữ dữ liệu cũ.”
 
@@ -32,11 +32,13 @@ Nội dung: chờ → xác nhận → đang giao → hoàn thành; thất bại 
 
 Lời dẫn: “Giao thất bại không có nghĩa hàng đã về kho. Ví dụ gửi hai túi, nhận về chỉ một túi còn bán được thì chỉ cộng lại một túi, còn lại ghi kết quả kiểm tra.”
 
-## 6. COD, nhật ký và doanh thu
+## 6. COD, QR SePay, nhật ký và doanh thu
 
 Nội dung: tổng thanh toán gồm phí; nhận tiền COD tách khỏi giao thành công; nhật ký người/thời điểm/lý do; doanh thu tiền hàng không gồm phí; top theo product_id dù đổi tên/SKU.
 
 Lời dẫn: “Đơn hoàn thành có thể chưa được hãng trả tiền COD. Báo cáo doanh thu và việc nhận tiền vì vậy được diễn giải riêng, chưa phải báo cáo lợi nhuận.”
+
+QR SePay: tạo mã riêng cho đơn, đối chiếu tài khoản nhận, nội dung và tổng tiền; chống ghi nhận lặp. Trang thanh toán chủ động kiểm tra qua server, chưa dùng webhook hoặc đối soát nền. Chuyển thiếu/thừa hoặc cần hoàn tiền chưa có luồng quản trị kết thúc xử lý.
 
 ## 7. Chatbot AI và chat nhân viên
 
@@ -46,15 +48,15 @@ Trình diễn một hội thoại nhiều lượt, mở nguồn dẫn; sau đó 
 
 ## 8. Kiểm thử và phục hồi
 
-Nội dung: [126/126 kiểm thử H2 đạt](verification/customer-support/tests.json), gồm kiểm thử quyền chat, phân trang, gửi lặp và đồng thời. HTTP thật dùng hai tài khoản tổng hợp đã được kiểm tra. Chưa chạy lại MySQL cho toàn bộ phần bổ sung mới và chưa nghiệm thu đầy đủ widget trên trình duyệt.
+Nội dung: trước lượt bổ sung khôi phục mật khẩu, [164/164 kiểm thử H2 đạt](verification/project-audit-20261022/recheck.json). Bản có V11 đạt [172/172 kiểm thử H2](verification/project-audit-20261022/fixes.json), gồm khôi phục mật khẩu và dùng mã đồng thời; SMTP được giả lập trong kiểm thử. CI commit 2a13ab9 thành công; không dùng kết quả CI cũ để khẳng định các thay đổi local mới đã được kiểm tra MySQL. Đã kiểm tra HTTP 36 trang sản phẩm, 36 ảnh và 4 banner; vẫn cần nghiệm thu trực quan desktop/mobile và các dịch vụ thật.
 
 Bằng chứng [nghiệm thu trước đây](14-nghiem-thu-1.0.0.md) gồm 99 ca H2/MySQL, backup/restore và điểm AI sơ bộ 177/180 do Codex hỗ trợ chấm. Các số cũ gắn với phiên bản được ghi trong bằng chứng, không dùng làm điểm chất lượng của mã mới. Cần chấm AI độc lập và diễn tập khôi phục trước buổi bảo vệ.
 
 ## 9. Demo và giới hạn
 
-Nội dung: đặt → bàn giao → thất bại → nhận hoàn; kiểm tra tồn/nhật ký; COD và báo cáo; chatbot và chat admin. Chạy theo [hướng dẫn bàn giao](13-phat-hanh-va-ban-giao.md). Chỉ chạy local theo phạm vi đã chốt.
+Nội dung: đặt → bàn giao → thất bại → nhận hoàn; kiểm tra tồn/nhật ký; COD/QR SePay và báo cáo; Google login, đánh giá/yêu thích, chatbot và chat admin. Chạy theo [hướng dẫn bàn giao](13-phat-hanh-va-ban-giao.md). Chỉ chạy local theo phạm vi đã chốt.
 
-Chưa có thanh toán online, API vận chuyển hoặc quên mật khẩu qua email. Còn cần dữ liệu xác minh, kiểm tra giao diện trên thiết bị và hoàn thiện báo cáo/slide theo mẫu khoa. Không trình bày dữ liệu mẫu thành doanh thu hay khảo sát thật.
+Đã có QR SePay và luồng khôi phục mật khẩu qua email; cần cấu hình SMTP và nghiệm thu email thật. Chưa có API vận chuyển, đối soát SePay nền và quy trình kết thúc hoàn tiền. Cần kiểm tra giao diện trên thiết bị và hoàn thiện báo cáo/slide theo mẫu khoa. Không trình bày dữ liệu mẫu thành doanh thu hay khảo sát thật.
 
 ## Câu hỏi dự kiến
 

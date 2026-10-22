@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-21",
+  "generator": "built-in image_gen",
+  "purpose": "Fictional editorial homepage imagery",
+  "assets": [
+    {
+      "file": "src/main/resources/static/images/banners/espresso-v1.jpg",
+      "prompt": "Wide landscape 1536x1024 photorealistic editorial coffee lifestyle image for SuniCoffee website. Beautiful quiet espresso bar at golden morning light, matte dark olive espresso machine, two handmade ivory ceramic cups with crema on pale warm stone counter, coffee beans in a small wooden bowl, leafy plant and softly blurred cream wall. Center composition with generous breathing room, luxurious restrained sage green cream warm oak palette. No people, no logos, no text, no watermark. Natural premium commercial photography, not collage."
+    },
+    {
+      "file": "src/main/resources/static/images/banners/lakeside-v1.jpg",
+      "prompt": "Wide landscape 1536x1024 photorealistic editorial outdoor coffee photograph. Peaceful lakeside coffee picnic in Vietnamese pine forest with mist over still water, wooden tray in foreground with ivory enamel mug of coffee, olive insulated flask, small manual coffee grinder and beige linen, soft morning sunlight through trees, harmonious muted forest greens and warm cream tones. Objects centered, calm broad scenic composition for wide homepage banner. No people, no text, no brand logos, no watermark, not collage."
+    }
+  ]
+}

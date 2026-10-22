@@ -1,0 +1,29 @@
+{
+  "h2": {
+    "tests": 164,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "local_health": "UP",
+  "public_pages": {
+    "/": 200,
+    "/products": 200,
+    "/login": 200,
+    "/register": 200
+  },
+  "product_detail_checks": 36,
+  "product_image_checks": 36,
+  "banner_checks": 4,
+  "http_failures": 0,
+  "search_machine_accent_plain_typo": [
+    6,
+    6,
+    6
+  ],
+  "limitations": [
+    "HTTP checks only, not visual browser QA",
+    "No real payments or authenticated Google/Gemini calls",
+    "Existing audit findings remain unresolved"
+  ]
+}

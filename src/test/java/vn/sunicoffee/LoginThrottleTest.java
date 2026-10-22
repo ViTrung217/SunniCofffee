@@ -20,6 +20,14 @@ class LoginThrottleTest {
         var other=new MockHttpServletRequest("POST","/login");other.setServletPath("/login");other.setRemoteAddr("127.0.0.2");
         response=new MockHttpServletResponse();filter.doFilter(other,response,new MockFilterChain());assertThat(response.getStatus()).isEqualTo(200);
     }
+    @Test void resetEndpointsShareTheAttemptLimit() throws Exception {
+        var filter=new LoginThrottleFilter(1);
+        for(String path:new String[]{"/forgot-password","/reset-password"}) {
+            var request=new MockHttpServletRequest("POST",path);request.setServletPath(path);
+            var response=new MockHttpServletResponse();filter.doFilter(request,response,new MockFilterChain());
+            assertThat(response.getStatus()).isEqualTo(path.equals("/forgot-password")?200:429);
+        }
+    }
     @Test void windowExpiresWithoutSleeping() throws Exception {
         var now=new java.util.concurrent.atomic.AtomicLong(0);
         Clock clock=new Clock() {

@@ -10,6 +10,11 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
     java.util.List<Product> related(@Param("id") Long id,@Param("category") Long category,@Param("price") java.math.BigDecimal price,Pageable pageable);
     @Query(value="select p.* from products p join product_favorites f on f.product_id=p.id where f.user_id=:userId and p.active=true order by f.created_at desc,p.id", countQuery="select count(*) from products p join product_favorites f on f.product_id=p.id where f.user_id=:userId and p.active=true",nativeQuery=true)
     Page<Product> favorites(@Param("userId") long userId,Pageable pageable);
+    interface SearchCandidate {
+        Long getId(); String getName(); String getSku(); String getCategoryName();
+    }
+    @Query("select p.id as id,p.name as name,p.sku as sku,c.name as categoryName from Product p join p.category c where p.active=true and (:category is null or c.id=:category)")
+    java.util.List<SearchCandidate> searchCandidates(@Param("category") Long category);
     boolean existsByActiveTrueAndSkuStartingWithIgnoreCase(String prefix);
     @Query("select p from Product p where (:admin = true or p.active = true) and (:category is null or p.category.id = :category) and (lower(p.name) like lower(concat('%', :q, '%')) or lower(p.sku) like lower(concat('%', :q, '%')))")
     Page<Product> search(@Param("q") String q,@Param("category") Long category,@Param("admin") boolean admin,Pageable pageable);
