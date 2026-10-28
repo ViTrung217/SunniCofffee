@@ -1,0 +1,359 @@
+{
+  "total_products": 50,
+  "new_products": 14,
+  "original_public_products_unchanged": 36,
+  "pages_and_images": [
+    {
+      "sku": "DEMO-CF-001",
+      "id": 1,
+      "page_status": 200,
+      "image_status": 200,
+      "image_url": "/product-images/1"
+    },
+    {
+      "sku": "DEMO-CF-002",
+      "id": 2,
+      "page_status": 200,
+      "image_status": 200,
+      "image_url": "/images/products/demo-cf-002.png"
+    },
+    {
+      "sku": "DEMO-CF-003",
+      "id": 3,
+      "page_status": 200,
+      "image_status": 200,
+      "image_url": "/images/products/demo-cf-003.png"
+    },
+    {
+      "sku": "DEMO-MC-001",
+      "id": 4,
+      "page_status": 200,
+      "image_status": 200,
+      "image_url": "/images/products/demo-mc-001.png"
+    },
+    {
+      "sku": "DEMO-MC-002",
+      "id": 5,
+      "page_status": 200,
+      "image_status": 200,
+      "image_url": "/images/products/demo-mc-002.png"
+    },
+    {
+      "sku": "DEMO-MC-003",
+      "id": 6,
+      "page_status": 200,
+      "image_status": 200,
+      "image_url": "/images/products/demo-mc-003.png"
+    },
+    {
+      "sku": "DEMO-BR-001",
+      "id": 7,
+      "page_status": 200,
+      "image_status": 200,
+      "image_url": "/images/products/demo-br-001.png"
+    },
+    {
+      "sku": "DEMO-BR-002",
+      "id": 8,
+      "page_status": 200,
+      "image_status": 200,
+      "image_url": "/images/products/demo-br-002.png"
+    },
+    {
+      "sku": "DEMO-BR-003",
+      "id": 9,
+      "page_status": 200,
+      "image_status": 200,
+      "image_url": "/images/products/demo-br-003.png"
+    },
+    {
+      "sku": "DEMO-OD-001",
+      "id": 10,
+      "page_status": 200,
+      "image_status": 200,
+      "image_url": "/images/products/demo-od-001.png"
+    },
+    {
+      "sku": "DEMO-OD-002",
+      "id": 11,
+      "page_status": 200,
+      "image_status": 200,
+      "image_url": "/images/products/demo-od-002.png"
+    },
+    {
+      "sku": "DEMO-OD-003",
+      "id": 12,
+      "page_status": 200,
+      "image_status": 200,
+      "image_url": "/images/products/demo-od-003.png"
+    },
+    {
+      "sku": "DEMO-CF-004",
+      "id": 13,
+      "page_status": 200,
+      "image_status": 200,
+      "image_url": "/images/products/demo-cf-004.jpg"
+    },
+    {
+      "sku": "DEMO-CF-005",
+      "id": 14,
+      "page_status": 200,
+      "image_status": 200,
+      "image_url": "/images/products/demo-cf-005.jpg"
+    },
+    {
+      "sku": "DEMO-CF-006",
+      "id": 15,
+      "page_status": 200,
+      "image_status": 200,
+      "image_url": "/images/products/demo-cf-006.jpg"
+    },
+    {
+      "sku": "DEMO-CF-007",
+      "id": 16,
+      "page_status": 200,
+      "image_status": 200,
+      "image_url": "/images/products/demo-cf-007.jpg"
+    },
+    {
+      "sku": "DEMO-CF-008",
+      "id": 17,
+      "page_status": 200,
+      "image_status": 200,
+      "image_url": "/images/products/demo-cf-008.jpg"
+    },
+    {
+      "sku": "DEMO-CF-009",
+      "id": 18,
+      "page_status": 200,
+      "image_status": 200,
+      "image_url": "/images/products/demo-cf-009.jpg"
+    },
+    {
+      "sku": "DEMO-CF-010",
+      "id": 19,
+      "page_status": 200,
+      "image_status": 200,
+      "image_url": "/images/products/demo-cf-010.jpg"
+    },
+    {
+      "sku": "DEMO-MC-004",
+      "id": 20,
+      "page_status": 200,
+      "image_status": 200,
+      "image_url": "/images/products/demo-mc-004.jpg"
+    },
+    {
+      "sku": "DEMO-MC-005",
+      "id": 21,
+      "page_status": 200,
+      "image_status": 200,
+      "image_url": "/images/products/demo-mc-005.jpg"
+    },
+    {
+      "sku": "DEMO-MC-006",
+      "id": 22,
+      "page_status": 200,
+      "image_status": 200,
+      "image_url": "/images/products/demo-mc-006.jpg"
+    },
+    {
+      "sku": "DEMO-BR-004",
+      "id": 23,
+      "page_status": 200,
+      "image_status": 200,
+      "image_url": "/images/products/demo-br-004.jpg"
+    },
+    {
+      "sku": "DEMO-BR-005",
+      "id": 24,
+      "page_status": 200,
+      "image_status": 200,
+      "image_url": "/images/products/demo-br-005.jpg"
+    },
+    {
+      "sku": "DEMO-BR-006",
+      "id": 25,
+      "page_status": 200,
+      "image_status": 200,
+      "image_url": "/images/products/demo-br-006.jpg"
+    },
+    {
+      "sku": "DEMO-BR-007",
+      "id": 26,
+      "page_status": 200,
+      "image_status": 200,
+      "image_url": "/images/products/demo-br-007.jpg"
+    },
+    {
+      "sku": "DEMO-BR-008",
+      "id": 27,
+      "page_status": 200,
+      "image_status": 200,
+      "image_url": "/images/products/demo-br-008.jpg"
+    },
+    {
+      "sku": "DEMO-BR-009",
+      "id": 28,
+      "page_status": 200,
+      "image_status": 200,
+      "image_url": "/images/products/demo-br-009.jpg"
+    },
+    {
+      "sku": "DEMO-BR-010",
+      "id": 29,
+      "page_status": 200,
+      "image_status": 200,
+      "image_url": "/images/products/demo-br-010.jpg"
+    },
+    {
+      "sku": "DEMO-BR-011",
+      "id": 30,
+      "page_status": 200,
+      "image_status": 200,
+      "image_url": "/images/products/demo-br-011.jpg"
+    },
+    {
+      "sku": "DEMO-BR-012",
+      "id": 31,
+      "page_status": 200,
+      "image_status": 200,
+      "image_url": "/images/products/demo-br-012.jpg"
+    },
+    {
+      "sku": "DEMO-OD-004",
+      "id": 32,
+      "page_status": 200,
+      "image_status": 200,
+      "image_url": "/images/products/demo-od-004.jpg"
+    },
+    {
+      "sku": "DEMO-OD-005",
+      "id": 33,
+      "page_status": 200,
+      "image_status": 200,
+      "image_url": "/images/products/demo-od-005.jpg"
+    },
+    {
+      "sku": "DEMO-OD-006",
+      "id": 34,
+      "page_status": 200,
+      "image_status": 200,
+      "image_url": "/images/products/demo-od-006.jpg"
+    },
+    {
+      "sku": "DEMO-OD-007",
+      "id": 35,
+      "page_status": 200,
+      "image_status": 200,
+      "image_url": "/images/products/demo-od-007.jpg"
+    },
+    {
+      "sku": "DEMO-OD-008",
+      "id": 36,
+      "page_status": 200,
+      "image_status": 200,
+      "image_url": "/images/products/demo-od-008.jpg"
+    },
+    {
+      "sku": "DEMO-CF-011",
+      "id": 37,
+      "page_status": 200,
+      "image_status": 200,
+      "image_url": "/images/products/demo-cf-011.jpg"
+    },
+    {
+      "sku": "DEMO-CF-012",
+      "id": 38,
+      "page_status": 200,
+      "image_status": 200,
+      "image_url": "/images/products/demo-cf-012.jpg"
+    },
+    {
+      "sku": "DEMO-CF-013",
+      "id": 39,
+      "page_status": 200,
+      "image_status": 200,
+      "image_url": "/images/products/demo-cf-013.jpg"
+    },
+    {
+      "sku": "DEMO-CF-014",
+      "id": 40,
+      "page_status": 200,
+      "image_status": 200,
+      "image_url": "/images/products/demo-cf-014.jpg"
+    },
+    {
+      "sku": "DEMO-MC-007",
+      "id": 41,
+      "page_status": 200,
+      "image_status": 200,
+      "image_url": "/images/products/demo-mc-007.jpg"
+    },
+    {
+      "sku": "DEMO-MC-008",
+      "id": 42,
+      "page_status": 200,
+      "image_status": 200,
+      "image_url": "/images/products/demo-mc-008.jpg"
+    },
+    {
+      "sku": "DEMO-BR-013",
+      "id": 43,
+      "page_status": 200,
+      "image_status": 200,
+      "image_url": "/images/products/demo-br-013.jpg"
+    },
+    {
+      "sku": "DEMO-BR-014",
+      "id": 44,
+      "page_status": 200,
+      "image_status": 200,
+      "image_url": "/images/products/demo-br-014.jpg"
+    },
+    {
+      "sku": "DEMO-BR-015",
+      "id": 45,
+      "page_status": 200,
+      "image_status": 200,
+      "image_url": "/images/products/demo-br-015.jpg"
+    },
+    {
+      "sku": "DEMO-BR-016",
+      "id": 46,
+      "page_status": 200,
+      "image_status": 200,
+      "image_url": "/images/products/demo-br-016.jpg"
+    },
+    {
+      "sku": "DEMO-BR-017",
+      "id": 47,
+      "page_status": 200,
+      "image_status": 200,
+      "image_url": "/images/products/demo-br-017.jpg"
+    },
+    {
+      "sku": "DEMO-OD-009",
+      "id": 48,
+      "page_status": 200,
+      "image_status": 200,
+      "image_url": "/images/products/demo-od-009.jpg"
+    },
+    {
+      "sku": "DEMO-OD-010",
+      "id": 49,
+      "page_status": 200,
+      "image_status": 200,
+      "image_url": "/images/products/demo-od-010.jpg"
+    },
+    {
+      "sku": "DEMO-OD-011",
+      "id": 50,
+      "page_status": 200,
+      "image_status": 200,
+      "image_url": "/images/products/demo-od-011.jpg"
+    }
+  ],
+  "new_images_match_manifest": true,
+  "readiness": "UP"
+}

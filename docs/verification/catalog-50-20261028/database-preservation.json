@@ -1,0 +1,28 @@
+{
+  "comparison":"Full row SHA-256 multiset comparison of offline H2 copies",
+  "result":"PASS",
+  "new_products":14,
+  "new_opening_movements":14,
+  "tables":[
+    {"table":"account_admin_guard","before_rows":1,"after_rows":1,"old_rows_preserved":true},
+    {"table":"activity_seed_runs","before_rows":1,"after_rows":1,"old_rows_preserved":true},
+    {"table":"app_users","before_rows":28,"after_rows":28,"old_rows_preserved":true},
+    {"table":"cart_items","before_rows":0,"after_rows":0,"old_rows_preserved":true},
+    {"table":"categories","before_rows":4,"after_rows":4,"old_rows_preserved":true},
+    {"table":"customer_orders","before_rows":75,"after_rows":75,"old_rows_preserved":true},
+    {"table":"flyway_schema_history","before_rows":12,"after_rows":12,"old_rows_preserved":true},
+    {"table":"google_accounts","before_rows":1,"after_rows":1,"old_rows_preserved":true},
+    {"table":"order_events","before_rows":279,"after_rows":279,"old_rows_preserved":true},
+    {"table":"order_items","before_rows":75,"after_rows":75,"old_rows_preserved":true},
+    {"table":"password_reset_tokens","before_rows":0,"after_rows":0,"old_rows_preserved":true},
+    {"table":"payment_receipts","before_rows":0,"after_rows":0,"old_rows_preserved":true},
+    {"table":"product_favorites","before_rows":120,"after_rows":120,"old_rows_preserved":true},
+    {"table":"product_gallery","before_rows":0,"after_rows":0,"old_rows_preserved":true},
+    {"table":"product_images","before_rows":1,"after_rows":1,"old_rows_preserved":true},
+    {"table":"product_reviews","before_rows":60,"after_rows":60,"old_rows_preserved":true},
+    {"table":"products","before_rows":36,"after_rows":50,"old_rows_preserved":true},
+    {"table":"stock_movements","before_rows":158,"after_rows":172,"old_rows_preserved":true},
+    {"table":"support_conversations","before_rows":0,"after_rows":0,"old_rows_preserved":true},
+    {"table":"support_messages","before_rows":0,"after_rows":0,"old_rows_preserved":true}
+  ]
+}

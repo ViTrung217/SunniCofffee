@@ -23,6 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Transactional
 class SampleCatalogIntegrationTest {
     @Autowired SampleCatalogService importer;
+    @jakarta.persistence.PersistenceContext jakarta.persistence.EntityManager entityManager;
     @Autowired ProductRepository products;
     @Autowired CategoryRepository categories;
     @Autowired JdbcTemplate jdbc;
@@ -35,18 +36,18 @@ class SampleCatalogIntegrationTest {
         importer.refresh();
         for(String query:new String[]{"máy pha cà phê","may pha ca phe","máy pha cà phee","  MÁY   PHA  ","cà phê máy pha"}) {
             var result=searchService.search(query,null,0);
-            assertThat(result.getTotalElements()).as(query).isEqualTo(6);
+            assertThat(result.getTotalElements()).as(query).isEqualTo(8);
             assertThat(result.getContent()).allMatch(p->p.getSku().startsWith("DEMO-MC-"));
         }
         mvc.perform(get("/products").param("q","máy pha cà phê")).andExpect(status().isOk())
             .andExpect(content().string(org.hamcrest.Matchers.containsString("Máy pha cầm tay Suni A")));
         mvc.perform(get("/api/products").param("q","may pha ca phe")).andExpect(status().isOk())
-            .andExpect(jsonPath("$.totalElements").value(6));
+            .andExpect(jsonPath("$.totalElements").value(8));
     }
     @Test void searchKeepsCategoryVisibilityAndAllQueryWords() throws Exception {
         importer.refresh();
         var hidden=products.findBySku("DEMO-MC-001").orElseThrow();hidden.setActive(false);products.saveAndFlush(hidden);
-        assertThat(searchService.search("máy pha cà phê",null,0).getTotalElements()).isEqualTo(5);
+        assertThat(searchService.search("máy pha cà phê",null,0).getTotalElements()).isEqualTo(7);
         Long coffee=categories.findByCode("COFFEE").orElseThrow().getId();
         assertThat(searchService.search("máy pha cà phê",coffee,0)).isEmpty();
         assertThat(searchService.search("máy pha khôngtồntại",null,0)).isEmpty();
@@ -95,7 +96,7 @@ class SampleCatalogIntegrationTest {
             .andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("id=\"related-title\""))));
     }
     @Test void freshImportCreatesAllProductsWithDescriptionsImagesAndOpeningLedger() throws Exception {
-        assertThat(importer.refresh()).isEqualTo(new SampleCatalogService.ImportResult(36,0));
+        assertThat(importer.refresh()).isEqualTo(new SampleCatalogService.ImportResult(50,0));
         assertThat(categories.count()).isEqualTo(4);
         for (var p:products.findAll()) {
             assertThat(p.getDescription()).contains("Quy cách", "Gợi ý sử dụng", "Bảo quản");
@@ -117,7 +118,7 @@ class SampleCatalogIntegrationTest {
         assertThat(after.getName()).isEqualTo("Tên đã chỉnh");assertThat(after.getPrice()).isEqualByComparingTo("123456");
         assertThat(after.getStock()).isEqualTo(7);assertThat(after.isActive()).isFalse();
         assertThat(other.getDescription()).isEqualTo("Mô tả của cửa hàng");
-        assertThat(products.count()).isEqualTo(37);
+        assertThat(products.count()).isEqualTo(51);
         assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM stock_movements",Integer.class)).isEqualTo(movements);
     }
     @Test void publicCatalogueShowsNewItemsAndFullMultilineDescription() throws Exception {
@@ -130,4 +131,38 @@ class SampleCatalogIntegrationTest {
             .andExpect(content().string(org.hamcrest.Matchers.containsString("Quy cách và thông tin:")))
             .andExpect(content().string(org.hamcrest.Matchers.containsString("Bảo quản:")));
     }
+    @Test void addingMissingProductsPreservesFinalizedDataAndIsIdempotent() throws Exception {
+        importer.refresh();
+        var existing=products.findBySku("DEMO-CF-001").orElseThrow();
+        long id=existing.getId();
+        existing.setName("Tên cửa hàng đã chốt");
+        existing.setDescription("Mô tả riêng đã chốt");
+        existing.setPrice(new BigDecimal("123456"));
+        existing.setStock(7); existing.setHasImage(true); existing.setActive(false);
+        products.saveAndFlush(existing);
+        var additions=java.util.List.of("DEMO-CF-011","DEMO-CF-012","DEMO-CF-013","DEMO-CF-014",
+            "DEMO-MC-007","DEMO-MC-008","DEMO-BR-013","DEMO-BR-014","DEMO-BR-015","DEMO-BR-016","DEMO-BR-017",
+            "DEMO-OD-009","DEMO-OD-010","DEMO-OD-011");
+        // Reconstruct the previously finalized 36-SKU database without retaining
+        // managed opening-ledger entities that reference the removed fixtures.
+        entityManager.flush(); entityManager.clear();
+        for (String sku:additions) {
+            Long addedId=jdbc.queryForObject("SELECT id FROM products WHERE sku=?",Long.class,sku);
+            jdbc.update("DELETE FROM stock_movements WHERE product_id=?",addedId);
+            jdbc.update("DELETE FROM products WHERE id=?",addedId);
+        }
+        assertThat(products.count()).isEqualTo(36);
+        int movements=jdbc.queryForObject("SELECT COUNT(*) FROM stock_movements",Integer.class);
+        assertThat(importer.addMissing()).isEqualTo(new SampleCatalogService.ImportResult(14,0));
+        assertThat(importer.addMissing()).isEqualTo(new SampleCatalogService.ImportResult(0,0));
+        assertThat(products.count()).isEqualTo(50);
+        var after=products.findById(id).orElseThrow();
+        assertThat(after.getName()).isEqualTo("Tên cửa hàng đã chốt");
+        assertThat(after.getDescription()).isEqualTo("Mô tả riêng đã chốt");
+        assertThat(after.getPrice()).isEqualByComparingTo("123456");
+        assertThat(after.getStock()).isEqualTo(7);
+        assertThat(after.isHasImage()).isTrue(); assertThat(after.isActive()).isFalse();
+        assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM stock_movements",Integer.class)).isEqualTo(movements+14);
+    }
+
 }

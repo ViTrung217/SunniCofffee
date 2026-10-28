@@ -1,0 +1,44 @@
+{
+  "date": "2026-10-28",
+  "test_database": "H2 isolated",
+  "maven_verify": {
+    "tests": 172,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "suites": 25,
+    "result": "BUILD SUCCESS"
+  },
+  "configuration_script_tests": 6,
+  "chatbot_baseline": "PASS: 55 entries / 14 sources / 30 questions / 10 SHA-256 locks",
+  "javascript_syntax_files": 8,
+  "payment_lifecycle": "PASS",
+  "carousel_lifecycle": "PASS: autoplay, focus/hover, offscreen/hidden tab, manual/OS reduced motion, swipe, keyboard, BFCache",
+  "http_preview_checks": 76,
+  "catalog_pages": 36,
+  "product_images": 36,
+  "banners": 4,
+  "manual_safari": [
+    "login",
+    "password visibility",
+    "product detail",
+    "quantity stepper",
+    "add to cart",
+    "cart layout"
+  ],
+  "not_verified_live": [
+    "MySQL in this audit",
+    "SePay Live",
+    "Google OAuth provider login",
+    "SMTP delivery",
+    "Gemini/Search quality",
+    "full real-device mobile and cross-browser coverage"
+  ],
+  "data_finalized_by_owner": true,
+  "catalog_preserved_after_restart": 36,
+  "final_template_checks": [
+    "actual product name in title",
+    "header search preserves query"
+  ],
+  "jar_sha256": "f291a21133ba45532b994d0a04af36507a2cff42c724d3070fa602951212668b"
+}

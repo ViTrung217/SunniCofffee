@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Trợ lý AI · SuniCoffee</title><link rel="stylesheet" th:href="@{/css/style.css}"><link rel="stylesheet" th:href="@{/css/storefront.css}"><script defer th:src="@{/js/storefront.js}"></script><link rel="stylesheet" th:href="@{/css/chat.css}"><script defer th:src="@{/js/chat.js}"></script></head>
+<head><th:block th:replace="~{fragments/layout :: assets}"></th:block><title>Trợ lý AI · SuniCoffee</title><link rel="stylesheet" th:href="@{/css/chat.css}"><script defer th:src="@{/js/chat.js}"></script></head>
 <body th:classappend="${embedded} ? 'chat-embedded' : ''"><th:block th:unless="${embedded}"><header th:replace="~{fragments/layout :: header}"></header></th:block>
 <main id="main-content" class="container chat-page">
   <th:block th:unless="${embedded}"><div th:replace="~{fragments/layout :: notices}"></div></th:block>

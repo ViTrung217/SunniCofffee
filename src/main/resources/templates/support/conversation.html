@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi" xmlns:th="http://www.thymeleaf.org">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="_csrf" th:content="${_csrf.token}"><title>Chat với cửa hàng · SuniCoffee</title><link rel="stylesheet" th:href="@{/css/style.css}"><link rel="stylesheet" th:href="@{/css/support.css}"><script defer th:src="@{/js/support.js}"></script></head>
+<head><th:block th:replace="~{fragments/layout :: assets}"></th:block><meta name="_csrf" th:content="${_csrf.token}"><title>Chat với cửa hàng · SuniCoffee</title><link rel="stylesheet" th:href="@{/css/support.css}"><script defer th:src="@{/js/support.js}"></script></head>
 <body th:classappend="${embedded} ? 'support-embedded' : ''">
 <th:block th:unless="${embedded}"><header th:replace="~{fragments/layout :: header}"></header></th:block>
 <main id="main-content" class="container support-page">

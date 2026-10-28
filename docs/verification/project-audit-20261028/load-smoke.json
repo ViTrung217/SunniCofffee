@@ -1,0 +1,11 @@
+{
+  "url": "http://127.0.0.1:18080/api/products",
+  "requests": 100,
+  "workers": 10,
+  "success": 100,
+  "elapsed_seconds": 0.084,
+  "median_ms": 6.7,
+  "p95_ms": 14.54,
+  "max_ms": 17.72,
+  "scope": "local read-only API smoke, not sustained capacity"
+}

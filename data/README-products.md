@@ -1,13 +1,15 @@
 # Danh mục sản phẩm phục vụ đồ án
 
-Bản dữ liệu: **14/10/2026**, tệp [products-demo.json](products-demo.json). Gồm **36 sản phẩm / 4 nhóm**.
+**Chủ dự án đã chốt sử dụng bộ dữ liệu triển khai ngày 28/10/2026.** Nguồn gốc biên soạn bên dưới được giữ để truy xuất; lượt tối ưu giao diện không thay tên, giá, tồn hoặc lịch sử.
+
+Bản dữ liệu hiện tại: **28/10/2026**, tệp [products-demo.json](products-demo.json). Gồm **50 sản phẩm / 4 nhóm**.
 
 | Nhóm | Số lượng | Nội dung bổ sung |
 | --- | ---: | --- |
-| Cà phê | 10 | Hạt, xay sẵn, các mức rang, Arabica/Robusta/phối trộn, túi lọc treo, bộ quy cách nhỏ |
-| Máy pha | 6 | Cầm tay, để bàn, nhỏ giọt, viên nén, bán tự động |
-| Dụng cụ pha | 12 | Phin, phễu, cối xay, French press, cold brew, ấm rót, cân, giấy lọc, ca sữa, chổi, hũ |
-| Phụ kiện cà phê phượt | 8 | Cốc, túi, bộ phụ kiện, bình mang đồ uống, cốc gấp, hộp chia hạt, thảm, khăn |
+| Cà phê | 14 | Hạt, xay sẵn, các mức rang, Arabica/Robusta/phối trộn, túi lọc treo, bộ quy cách nhỏ |
+| Máy pha | 8 | Cầm tay, để bàn, nhỏ giọt, viên nén, bán tự động |
+| Dụng cụ pha | 17 | Phin, phễu, cối xay, French press, cold brew, ấm rót, cân, giấy lọc, ca sữa, chổi, hũ |
+| Phụ kiện cà phê phượt | 11 | Cốc, túi, bộ phụ kiện, bình mang đồ uống, cốc gấp, hộp chia hạt, thảm, khăn |
 
 <a id="nguon-va-pham-vi"></a>
 
@@ -17,11 +19,24 @@ Bản dữ liệu: **14/10/2026**, tệp [products-demo.json](products-demo.json
 
 Tên, giá, tồn ban đầu và thuộc tính của các SKU `DEMO-*` là giả lập. Quy cách mới (khối lượng, dung tích, số món) được ghi rõ là giả lập; các thông số chưa biết như công suất, áp suất, khả năng giữ nhiệt, tính tương thích, xuất xứ và bảo hành được ghi là chưa xác minh. Không gán các SKU này cho Wacaco, HARIO hoặc thương hiệu thật.
 
-Mỗi mô tả có phần giới thiệu, quy cách/thông tin, gợi ý sử dụng, bảo quản/lưu ý và nguồn dữ liệu. Gợi ý chung không thay thế tài liệu đúng model. Bốn hình SVG mới là minh họa nhóm, có nhãn ngay trên ảnh; 12 ảnh minh họa ban đầu được giữ. Mô tả luôn được xuất bằng `th:text`, không chạy HTML nhập vào.
+Mỗi mô tả có phần giới thiệu, quy cách/thông tin, gợi ý sử dụng và bảo quản/lưu ý. Nguồn được lưu trong `source_ref`. Gợi ý chung không thay thế tài liệu đúng model. Toàn bộ 50 sản phẩm có ảnh AI riêng; SVG theo nhóm chỉ còn là tài nguyên dự phòng. Mô tả luôn được xuất bằng `th:text`, không chạy HTML nhập vào.
 
 Kho tri thức và bộ đánh giá chatbot v1 vẫn giữ nguyên. Chatbot nhận mô tả/giá/tồn qua danh mục công khai; thông tin giả lập không biến thành thông số đã được hãng xác nhận. Khi có hàng thật, dùng [cấu trúc thu thập dữ liệu xác minh](catalog/README.md).
 
-## Nạp hoặc cập nhật database local
+## Bổ sung danh mục đã chốt lên 50 sản phẩm
+
+Theo yêu cầu ngày 28/10/2026, thêm 14 SKU có ảnh riêng; 36 bản ghi gốc trong JSON được giữ nguyên. [Danh sách và bằng chứng](../docs/22-danh-muc-50-san-pham.md), [prompt/manifest ảnh mới](../output/product-images/catalog-50/manifest.json).
+
+Với database đang dùng, dừng ứng dụng và sao lưu H2 trước khi chạy một lần:
+
+```bash
+mvn -B verify
+bash scripts/run-local.sh --app.catalog.add-missing=true
+```
+
+`add-missing` chỉ thêm SKU còn thiếu và nhật ký tồn đầu; không cập nhật bất kỳ trường nào của sản phẩm đã tồn tại. Chạy lặp không tạo trùng hoặc cộng thêm tồn. Sau khi kiểm tra xong, dừng và chạy lại `bash scripts/run-local.sh` không kèm cờ nhập. Profile local vẫn không tự seed danh mục hoặc hoạt động.
+
+## Nạp hoặc làm mới mô tả theo tệp dữ liệu (chủ động riêng)
 
 Mặc định khởi động **không tự nạp** dữ liệu. Với DB trống, profile `demo` có thể tạo toàn bộ danh mục theo cơ chế seed hiện có.
 

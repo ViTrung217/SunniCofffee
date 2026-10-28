@@ -1,4 +1,10 @@
-# Bảng tình trạng SuniCoffee — 15/10/2026
+# Lịch sử tình trạng SuniCoffee
+
+**Danh mục mới nhất: [50 sản phẩm / đủ ảnh — 28/10/2026](22-danh-muc-50-san-pham.md).**
+
+**Đánh giá giao diện: [28/10/2026 — rà soát và hoàn thiện giao diện](21-danh-gia-cuoi-cung-20261028.md).** Dữ liệu đã được chủ dự án chốt triển khai. Các mục bên dưới là ghi nhận theo từng thời điểm; các số kiểm thử và giới hạn cũ không thay thế kết quả trong đánh giá hiện tại.
+
+## Mốc ban đầu — 15/10/2026
 
 Phạm vi: bàn giao và bảo vệ đồ án chạy local; QR SePay chạy local; chưa có bằng chứng nghiệm thu giao dịch thật. “Đã có” nghĩa là có mã và luồng sử dụng, không khẳng định không còn lỗi trong mọi tình huống. Dữ liệu sản phẩm phục vụ đồ án đã được chủ dự án xác nhận sử dụng ngày 15/10/2026.
 

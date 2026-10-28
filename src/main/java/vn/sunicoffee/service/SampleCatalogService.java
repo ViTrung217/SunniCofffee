@@ -21,6 +21,14 @@ public class SampleCatalogService {
     public record ImportResult(int added, int descriptionsUpdated) {}
     @Transactional(rollbackFor=Exception.class)
     public ImportResult refresh() throws java.io.IOException {
+        return importCatalog(true);
+    }
+    /** Adds missing SKUs without changing any field of existing products. */
+    @Transactional(rollbackFor=Exception.class)
+    public ImportResult addMissing() throws java.io.IOException {
+        return importCatalog(false);
+    }
+    private ImportResult importCatalog(boolean updateDescriptions) throws java.io.IOException {
         com.fasterxml.jackson.databind.JsonNode data;
         try (var in=new ClassPathResource("seed/products-demo.json").getInputStream()) { data=mapper.readTree(in); }
         Set<String> codes=new HashSet<>(), skus=new HashSet<>();
@@ -50,6 +58,7 @@ public class SampleCatalogService {
         for (var item:data.path("products")) {
             String sku=item.path("sku").asText(); var existing=products.findBySku(sku);
             if (existing.isPresent()) {
+                if (!updateDescriptions) continue;
                 var p=products.lockById(existing.get().getId()).orElseThrow();
                 String description=item.path("description").asText();
                 if (!description.equals(p.getDescription())) { p.setDescription(description); updated++; }

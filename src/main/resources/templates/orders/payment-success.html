@@ -2,7 +2,7 @@
 <head th:replace="~{fragments/layout :: head('Thanh toán thành công')}"></head>
 <body><header th:replace="~{fragments/layout :: header}"></header>
 <main id="main-content" class="container">
-<section class="panel">
+<section class="panel payment-celebration" data-reveal><span class="success-emblem" aria-hidden="true">✓</span><p class="eyebrow">CẢM ƠN BẠN ĐÃ CHỌN SUNI</p>
 <h1 th:text="${payment.sandbox} ? 'Thanh toán mô phỏng thành công' : 'Thanh toán thành công'"></h1>
 <p class="notice" th:if="${payment.sandbox}">Sandbox — đây là giao dịch mô phỏng, không phải tiền thật.</p>
 <p>Cảm ơn bạn đã mua sắm tại SuniCoffee. Hệ thống đã xác nhận đủ tiền cho đơn hàng.</p>

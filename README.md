@@ -2,7 +2,7 @@
 
 Ứng dụng bán cà phê và dụng cụ pha chế, bản chạy local để bàn giao và bảo vệ đồ án. Bao gồm cửa hàng, quản trị, kho, vận chuyển COD và chatbot Gemini có nguồn tham chiếu, cửa sổ chat ở góc dưới bên phải.
 
-**Dữ liệu hiện tại phục vụ đồ án, chưa được cửa hàng xác nhận.** Phần mềm 1.0.0 không đồng nghĩa đã có hàng hóa, giá hay chính sách kinh doanh thực tế. [Bảng tình trạng hiện tại](docs/16-tinh-trang-du-an.md) phân biệt kết quả đã kiểm tra và việc cần bổ sung.
+**Dữ liệu đã được chủ dự án chốt triển khai ngày 28/10/2026.** Các thay đổi giao diện giữ nguyên danh mục, giá, tồn kho và lịch sử hiện có; profile local không tự nạp thêm hoạt động mẫu. Xem [đánh giá cuối cùng](docs/21-danh-gia-cuoi-cung-20261028.md) và [lịch sử tình trạng dự án](docs/16-tinh-trang-du-an.md).
 
 ## Chạy bản bàn giao
 
@@ -16,11 +16,11 @@ bash scripts/run-local.sh
 
 Truy cập [http://localhost:8080](http://localhost:8080). Khi phát triển có thể chạy `mvn spring-boot:run`. Profile mặc định nay là **local**, giữ dữ liệu H2 ở `.runtime/sunicoffee`, không tự nạp sản phẩm hoặc tạo tài khoản demo. Khóa Gemini hiện có ở `.runtime/chatbot.properties` tiếp tục dùng được trên máy này, không đóng gói hoặc đưa vào Git.
 
-Máy mới cần tạo quản trị riêng bằng `ADMIN_EMAIL` và `ADMIN_PASSWORD` rồi thêm danh mục/sản phẩm. Xem cách nhập mật khẩu kín, cấu hình MySQL cục bộ và bàn giao trong [hướng dẫn phát hành](docs/13-phat-hanh-va-ban-giao.md). Profile `demo` chỉ dùng khi chủ động dựng dữ liệu minh họa; không phải chế độ mặc định.
+Bản triển khai dùng dữ liệu đã chốt: chuyển database và thư mục ảnh theo hướng dẫn sao lưu; không dùng profile `demo` để thay thế dữ liệu đang vận hành. Máy mới cần tạo quản trị riêng bằng `ADMIN_EMAIL` và `ADMIN_PASSWORD` rồi thêm danh mục/sản phẩm. Xem cách nhập mật khẩu kín, cấu hình MySQL cục bộ và bàn giao trong [hướng dẫn phát hành](docs/13-phat-hanh-va-ban-giao.md). Profile `demo` chỉ dùng khi chủ động dựng dữ liệu minh họa; không phải chế độ mặc định.
 
 ## Chức năng
 
-[Bảng đã làm / còn thiếu](docs/16-tinh-trang-du-an.md). Danh mục đồ án hiện có 36 sản phẩm với mô tả chi tiết; xem [nguồn dữ liệu và cách nạp bổ sung](data/README-products.md).
+[Bảng đã làm / còn thiếu](docs/16-tinh-trang-du-an.md). Danh mục triển khai hiện có 50 sản phẩm với mô tả chi tiết; xem [nguồn dữ liệu và cách nạp bổ sung](data/README-products.md).
 
 | Nhóm | Nội dung |
 | --- | --- |
@@ -50,6 +50,8 @@ Bộ [30 câu đánh giá](evaluation/chatbot/v1/QUESTIONS.md) được khóa tr
 ## Tài liệu bàn giao
 
 - [Phát hành local, khởi động và tài khoản mới](docs/13-phat-hanh-va-ban-giao.md)
+- [Mở rộng danh mục lên 50 sản phẩm và ảnh mới](docs/22-danh-muc-50-san-pham.md)
+- [Đánh giá cuối cùng và nâng cấp giao diện — 28/10/2026](docs/21-danh-gia-cuoi-cung-20261028.md)
 - [Kết quả nghiệm thu và phần còn thiếu](docs/14-nghiem-thu-1.0.0.md)
 - [Thanh toán QR SePay, cấu hình local và hạn mức Free](docs/18-thanh-toan-sepay.md)
 - [Chat trực tiếp khách hàng – admin](docs/17-chat-khach-hang.md)
@@ -60,4 +62,4 @@ Bộ [30 câu đánh giá](evaluation/chatbot/v1/QUESTIONS.md) được khóa tr
 - [Kho tri thức 55 mục](docs/ai/kho-tri-thuc-v1.md), [quy trình đánh giá đã khóa](evaluation/chatbot/v1/PROTOCOL.md)
 - [Đề cương thuyết trình](docs/09-dan-y-thuyet-trinh.md)
 
-Tài liệu 13 hướng dẫn chạy và vận hành; tài liệu 16 theo dõi tình trạng mới nhất; tài liệu 14 lưu kết quả nghiệm thu trước các đợt bổ sung. Các báo cáo tiến độ cũ đã được lược bỏ, có thể tra lại trong lịch sử Git. Tài liệu thiết kế 06 được giữ nguyên vì là nguồn tham chiếu của kho tri thức đã khóa. Không suy số kiểm thử/điểm AI hiện tại từ bằng chứng cũ.
+Tài liệu 13 hướng dẫn chạy và vận hành; tài liệu 21 ghi nhận đánh giá hiện tại; tài liệu 16 giữ lịch sử thay đổi; tài liệu 14 lưu kết quả nghiệm thu trước các đợt bổ sung. Các báo cáo tiến độ cũ đã được lược bỏ, có thể tra lại trong lịch sử Git. Tài liệu thiết kế 06 được giữ nguyên vì là nguồn tham chiếu của kho tri thức đã khóa. Không suy số kiểm thử/điểm AI hiện tại từ bằng chứng cũ.

@@ -20,6 +20,7 @@ public class DataInitializer implements CommandLineRunner {
     private final Environment environment;
     @Value("${app.seed-demo:false}") private boolean seed;
     @Value("${app.catalog.refresh-sample:false}") private boolean refreshSample;
+    @Value("${app.catalog.add-missing:false}") private boolean addMissing;
     private final vn.sunicoffee.service.SampleCatalogService sampleCatalog;
     @Value("${app.bootstrap.email:}") private String adminEmail;
     @Value("${app.bootstrap.password:}") private String adminPassword;
@@ -28,8 +29,8 @@ public class DataInitializer implements CommandLineRunner {
     }
     @Override @Transactional
     public void run(String... args) throws Exception {
-        if (refreshSample || (seed && categories.count()==0 && products.count()==0)) {
-            var result=sampleCatalog.refresh();
+        if (addMissing || refreshSample || (seed && categories.count()==0 && products.count()==0)) {
+            var result=addMissing ? sampleCatalog.addMissing() : sampleCatalog.refresh();
             org.slf4j.LoggerFactory.getLogger(DataInitializer.class).info("Sample catalogue: added={}, descriptionsUpdated={}", result.added(), result.descriptionsUpdated());
         }
         if (seedActivity) activity.populate();

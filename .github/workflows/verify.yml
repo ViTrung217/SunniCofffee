@@ -37,6 +37,8 @@ jobs:
         run: python3 scripts/test-configure-google.py
       - name: Verify payment page lifecycle
         run: node scripts/test-payment-lifecycle.mjs
+      - name: Verify storefront motion lifecycle
+        run: node scripts/test-storefront-lifecycle.mjs
       - name: Verify H2
         id: h2
         if: matrix.database == 'h2'

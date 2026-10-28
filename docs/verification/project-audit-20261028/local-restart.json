@@ -1,0 +1,64 @@
+{
+  "date": "2026-10-28",
+  "profile": "local",
+  "readiness": "UP",
+  "products_unchanged": 36,
+  "comparison": "All public product fields match before/after, including IDs, names, SKU, description, price, stock, sales unit, category and image URL",
+  "runtime_checks": [
+    {
+      "path": "/",
+      "status": 200
+    },
+    {
+      "path": "/products",
+      "status": 200
+    },
+    {
+      "path": "/products/1",
+      "status": 200
+    },
+    {
+      "path": "/login",
+      "status": 200
+    },
+    {
+      "path": "/register",
+      "status": 200
+    },
+    {
+      "path": "/forgot-password",
+      "status": 200
+    },
+    {
+      "path": "/chat",
+      "status": 200
+    },
+    {
+      "path": "/chat?embedded=true",
+      "status": 200
+    },
+    {
+      "path": "/css/experience.css",
+      "status": 200,
+      "matches_source": true
+    },
+    {
+      "path": "/js/storefront.js",
+      "status": 200,
+      "matches_source": true
+    },
+    {
+      "path": "/js/hero-carousel.js",
+      "status": 200,
+      "matches_source": true
+    },
+    {
+      "path": "/images/suni-mark.svg",
+      "status": 200,
+      "matches_source": true
+    }
+  ],
+  "database_backup_verified": true,
+  "final_package_title_and_search": "PASS",
+  "catalog_final_comparison": "PASS: all 36 products unchanged"
+}

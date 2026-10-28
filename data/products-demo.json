@@ -452,9 +452,177 @@
       "image_url": "/images/products/demo-od-008.jpg",
       "source_url": null,
       "source_ref": "data/README-products.md#nguon-va-pham-vi"
+    },
+    {
+      "sku": "DEMO-CF-011",
+      "name": "Cà phê Arabica rang đậm 500 g",
+      "category_code": "COFFEE",
+      "price_vnd": 235000,
+      "opening_stock": 18,
+      "sales_unit": "túi",
+      "description": "Gói cà phê nguyên hạt rang đậm cho người thích tách cà phê rõ vị, phù hợp bổ sung vào góc pha hằng ngày.\n\nQuy cách và thông tin: Túi 500 g, cà phê nguyên hạt, mức rang đậm.\n\nGợi ý sử dụng: Xay lượng vừa đủ trước mỗi lần pha. Điều chỉnh cỡ xay theo phin, phễu hoặc máy đang sử dụng; bắt đầu với công thức quen thuộc rồi thay đổi theo gu.\n\nBảo quản: Đóng kín sau khi mở, giữ ở nơi khô mát và tránh ánh nắng. Xem ngày rang và hạn dùng trên bao bì.",
+      "image_url": "/images/products/demo-cf-011.jpg",
+      "source_url": null,
+      "source_ref": "data/README-products.md#nguon-va-pham-vi"
+    },
+    {
+      "sku": "DEMO-CF-012",
+      "name": "Cà phê phối trộn pha espresso 1 kg",
+      "category_code": "COFFEE",
+      "price_vnd": 325000,
+      "opening_stock": 16,
+      "sales_unit": "túi",
+      "description": "Quy cách lớn cho người pha espresso thường xuyên, giúp chuẩn bị hạt thuận tiện cho nhiều buổi pha tại nhà.\n\nQuy cách và thông tin: Túi 1 kg cà phê phối trộn nguyên hạt, dùng cho nhu cầu pha espresso.\n\nGợi ý sử dụng: Xay và cân lượng hạt cho từng lần pha. Điều chỉnh độ mịn, liều lượng và thời gian chiết xuất theo máy; không mặc định dùng một công thức cho mọi thiết bị.\n\nBảo quản: Chia lượng dùng hợp lý và đóng kín phần còn lại. Bảo quản khô mát, tránh nhiệt và xem hạn dùng trên bao bì.",
+      "image_url": "/images/products/demo-cf-012.jpg",
+      "source_url": null,
+      "source_ref": "data/README-products.md#nguon-va-pham-vi"
+    },
+    {
+      "sku": "DEMO-CF-013",
+      "name": "Cà phê xay pha cold brew 500 g",
+      "category_code": "COFFEE",
+      "price_vnd": 175000,
+      "opening_stock": 22,
+      "sales_unit": "túi",
+      "description": "Cà phê xay cho những mẻ ủ lạnh tại nhà, thuận tiện chuẩn bị đồ uống cho ngày làm việc hoặc chuyến đi.\n\nQuy cách và thông tin: Túi 500 g cà phê xay dành cho cách pha ủ lạnh.\n\nGợi ý sử dụng: Dùng bình sạch và nước uống phù hợp. Cân cà phê, thêm nước theo công thức của bạn, ủ lạnh rồi lọc; bảo quản đồ uống đã pha trong ngăn mát và dùng sớm.\n\nBảo quản: Đóng kín túi cà phê, tránh ẩm và mùi mạnh. Xem ngày rang và hạn dùng trên bao bì.",
+      "image_url": "/images/products/demo-cf-013.jpg",
+      "source_url": null,
+      "source_ref": "data/README-products.md#nguon-va-pham-vi"
+    },
+    {
+      "sku": "DEMO-CF-014",
+      "name": "Cà phê túi lọc treo 10 g × 20 túi",
+      "category_code": "COFFEE",
+      "price_vnd": 205000,
+      "opening_stock": 24,
+      "sales_unit": "hộp",
+      "description": "Một hộp túi lọc treo để sẵn ở bàn làm việc hoặc chia vào hành lý, cho những lúc muốn pha gọn một tách cà phê.\n\nQuy cách và thông tin: Hộp 20 gói cà phê túi lọc treo; mỗi gói 10 g.\n\nGợi ý sử dụng: Mở một gói, treo hai tai giấy lên miệng cốc chắc chắn rồi rót nước nóng từng đợt. Đặt cốc trên bề mặt ổn định và cẩn thận với nước nóng.\n\nBảo quản: Giữ các gói chưa dùng nguyên bao bì ở nơi khô mát. Dùng mỗi túi lọc một lần và xem hạn dùng trên hộp.",
+      "image_url": "/images/products/demo-cf-014.jpg",
+      "source_url": null,
+      "source_ref": "data/README-products.md#nguon-va-pham-vi"
+    },
+    {
+      "sku": "DEMO-MC-007",
+      "name": "Máy pha espresso di động Suni G",
+      "category_code": "MACHINE",
+      "price_vnd": 1250000,
+      "opening_stock": 7,
+      "sales_unit": "máy",
+      "description": "Một lựa chọn máy pha gọn cho bộ dụng cụ cá nhân, dễ sắp xếp cùng hành trang khi thay đổi góc pha.\n\nQuy cách và thông tin: Một máy pha espresso di động Suni G. Kiểm tra phụ kiện và hướng dẫn đi kèm khi nhận hàng.\n\nGợi ý sử dụng: Chuẩn bị cà phê và nước theo hướng dẫn của đúng máy. Kiểm tra các khớp lắp trước khi pha, thao tác trên bề mặt chắc chắn và chú ý nước nóng.\n\nBảo quản: Vệ sinh các phần tiếp xúc cà phê sau mỗi lần dùng, để khô trước khi cất. Xác nhận yêu cầu nguồn điện, cỡ xay và phụ kiện tương thích trước khi chọn mua.",
+      "image_url": "/images/products/demo-mc-007.jpg",
+      "source_url": null,
+      "source_ref": "data/README-products.md#nguon-va-pham-vi"
+    },
+    {
+      "sku": "DEMO-MC-008",
+      "name": "Máy pha nhỏ giọt mini Suni H",
+      "category_code": "MACHINE",
+      "price_vnd": 990000,
+      "opening_stock": 9,
+      "sales_unit": "máy",
+      "description": "Máy pha nhỏ giọt nhỏ gọn để tạo một góc cà phê đơn giản tại nhà hoặc trên bàn làm việc.\n\nQuy cách và thông tin: Một máy pha nhỏ giọt mini Suni H, bố cục một vòi rót và giá đỡ cốc.\n\nGợi ý sử dụng: Lắp bộ lọc đúng vị trí, thêm cà phê và nước theo hướng dẫn đi kèm. Dùng cốc chịu nhiệt phù hợp và ngắt nguồn sau khi pha nếu hướng dẫn yêu cầu.\n\nBảo quản: Đợi máy nguội trước khi vệ sinh; làm sạch bộ lọc và khay đỡ, không ngâm thân máy vào nước. Kiểm tra yêu cầu nguồn điện và loại bộ lọc trước khi mua.",
+      "image_url": "/images/products/demo-mc-008.jpg",
+      "source_url": null,
+      "source_ref": "data/README-products.md#nguon-va-pham-vi"
+    },
+    {
+      "sku": "DEMO-BR-013",
+      "name": "Bình pha pour over thủy tinh 600 ml",
+      "category_code": "BREWING",
+      "price_vnd": 285000,
+      "opening_stock": 15,
+      "sales_unit": "bình",
+      "description": "Bình thủy tinh dáng gọn cho những buổi rót chậm, vừa pha vừa quan sát dòng cà phê trong một góc bàn yên tĩnh.\n\nQuy cách và thông tin: Bình pha pour over 600 ml, thân thủy tinh và vòng cầm ở cổ bình.\n\nGợi ý sử dụng: Đặt bình trên mặt phẳng, chọn giấy lọc phù hợp rồi tráng lọc trước khi cho cà phê. Rót nước từng đợt và cầm ở phần tay nắm khi bình còn nóng.\n\nBảo quản: Rửa nhẹ sau khi dùng, tránh thay đổi nhiệt độ đột ngột và va đập. Để khô trước khi cất; giấy lọc được chọn riêng theo kích thước phù hợp.",
+      "image_url": "/images/products/demo-br-013.jpg",
+      "source_url": null,
+      "source_ref": "data/README-products.md#nguon-va-pham-vi"
+    },
+    {
+      "sku": "DEMO-BR-014",
+      "name": "Phễu lọc cà phê inox 2 lớp",
+      "category_code": "BREWING",
+      "price_vnd": 195000,
+      "opening_stock": 20,
+      "sales_unit": "chiếc",
+      "description": "Phễu lọc dùng lại cho góc pour over, thuận tiện khi muốn chuẩn bị bộ pha gọn với ít vật dụng tiêu hao.\n\nQuy cách và thông tin: Một phễu lọc inox dạng nón, cấu trúc lưới hai lớp và chân đế tròn.\n\nGợi ý sử dụng: Đặt chân phễu chắc chắn trên cốc hoặc bình phù hợp. Tráng phễu, cho cà phê rồi rót nước chậm; điều chỉnh cỡ xay để hạn chế bột mịn lọt xuống tách.\n\nBảo quản: Rửa sạch cặn sau khi pha, dùng chổi mềm khi cần và để khô. Tránh cọ bằng vật sắc làm hỏng lưới.",
+      "image_url": "/images/products/demo-br-014.jpg",
+      "source_url": null,
+      "source_ref": "data/README-products.md#nguon-va-pham-vi"
+    },
+    {
+      "sku": "DEMO-BR-015",
+      "name": "Ấm pha moka 3 tách",
+      "category_code": "BREWING",
+      "price_vnd": 340000,
+      "opening_stock": 12,
+      "sales_unit": "ấm",
+      "description": "Ấm moka dáng cổ điển cho người muốn khám phá một cách pha đậm đà trong căn bếp nhỏ.\n\nQuy cách và thông tin: Một ấm pha moka cỡ 3 tách, thân kim loại, tay cầm và núm nắp cách nhiệt.\n\nGợi ý sử dụng: Đổ nước dưới van an toàn, cho cà phê vào phễu và không nén chặt. Lắp kín theo hướng dẫn, dùng mức nhiệt phù hợp và dừng khi pha xong; không mở ấm khi còn áp suất.\n\nBảo quản: Đợi nguội rồi rửa và để khô từng phần. Kiểm tra gioăng, van và độ tương thích với loại bếp trước khi sử dụng.",
+      "image_url": "/images/products/demo-br-015.jpg",
+      "source_url": null,
+      "source_ref": "data/README-products.md#nguon-va-pham-vi"
+    },
+    {
+      "sku": "DEMO-BR-016",
+      "name": "Tay nén cà phê espresso 51 mm",
+      "category_code": "BREWING",
+      "price_vnd": 180000,
+      "opening_stock": 18,
+      "sales_unit": "chiếc",
+      "description": "Tay nén cho thao tác chuẩn bị bánh cà phê gọn và đều hơn trước khi chiết xuất espresso.\n\nQuy cách và thông tin: Một tay nén có đường kính mặt đế 51 mm, đế kim loại phẳng và cán cầm.\n\nGợi ý sử dụng: Đo giỏ lọc của máy trước khi chọn kích thước. Phân bố bột đều, đặt tay nén thẳng và dùng lực ổn định; không dùng tay nén sai cỡ giỏ.\n\nBảo quản: Lau khô sau khi dùng, tránh để cán ngâm nước lâu và giữ mặt đế sạch, không trầy xước.",
+      "image_url": "/images/products/demo-br-016.jpg",
+      "source_url": null,
+      "source_ref": "data/README-products.md#nguon-va-pham-vi"
+    },
+    {
+      "sku": "DEMO-BR-017",
+      "name": "Bộ chia hạt cà phê 6 ống",
+      "category_code": "BREWING",
+      "price_vnd": 245000,
+      "opening_stock": 14,
+      "sales_unit": "bộ",
+      "description": "Sáu ống chia hạt để chuẩn bị từng phần cà phê, giúp bàn pha gọn gàng và dễ sắp xếp trước những buổi pha.\n\nQuy cách và thông tin: Bộ gồm 6 ống đựng hạt bằng thủy tinh, 6 nắp và một giá đỡ gỗ.\n\nGợi ý sử dụng: Cân hạt thành từng phần rồi cho vào các ống sạch và khô. Đặt giá đỡ ở nơi ổn định, đóng nắp sau khi chia và ghi nhớ lượng hạt cho công thức của bạn.\n\nBảo quản: Rửa ống và để khô hoàn toàn trước khi đựng hạt. Lau giá gỗ bằng khăn mềm, tránh ngâm nước và va đập.",
+      "image_url": "/images/products/demo-br-017.jpg",
+      "source_url": null,
+      "source_ref": "data/README-products.md#nguon-va-pham-vi"
+    },
+    {
+      "sku": "DEMO-OD-009",
+      "name": "Túi cuộn dụng cụ pha cà phê",
+      "category_code": "OUTDOOR",
+      "price_vnd": 290000,
+      "opening_stock": 17,
+      "sales_unit": "chiếc",
+      "description": "Túi cuộn để gom những món dụng cụ nhỏ vào một chỗ, thuận tiện mang từ góc pha ở nhà đến điểm dừng chân ngoài trời.\n\nQuy cách và thông tin: Một túi dụng cụ dạng cuộn, nhiều ngăn và dây buộc, tông xanh ô liu.\n\nGợi ý sử dụng: Chọn dụng cụ vừa ngăn, bọc kỹ vật sắc hoặc dễ vỡ, cuộn gọn và cố định dây trước khi cho vào hành lý. Không cất dụng cụ còn nóng hoặc còn ướt.\n\nBảo quản: Lau vết bẩn bằng khăn ẩm và phơi nơi thoáng. Dụng cụ bên trong được mua riêng; kiểm tra kích thước đồ cần mang trước khi chọn túi.",
+      "image_url": "/images/products/demo-od-009.jpg",
+      "source_url": null,
+      "source_ref": "data/README-products.md#nguon-va-pham-vi"
+    },
+    {
+      "sku": "DEMO-OD-010",
+      "name": "Bình rót dã ngoại 350 ml",
+      "category_code": "OUTDOOR",
+      "price_vnd": 220000,
+      "opening_stock": 20,
+      "sales_unit": "bình",
+      "description": "Bình rót nhỏ cho bộ pha di động, giúp chuẩn bị từng tách pour over khi đi xa hoặc khi không cần một ấm lớn.\n\nQuy cách và thông tin: Một bình rót dung tích 350 ml, vòi cổ ngỗng và tay cầm bên hông.\n\nGợi ý sử dụng: Rót nước vào bình rồi cầm chắc tay nắm, thử dòng nước trước khi rót lên cà phê. Cẩn thận với bề mặt nóng; chỉ gia nhiệt trực tiếp khi hướng dẫn của sản phẩm cho phép.\n\nBảo quản: Rửa và để khô sau khi dùng, bảo vệ vòi khỏi va đập khi vận chuyển. Kiểm tra dung tích phù hợp với số tách cần pha.",
+      "image_url": "/images/products/demo-od-010.jpg",
+      "source_url": null,
+      "source_ref": "data/README-products.md#nguon-va-pham-vi"
+    },
+    {
+      "sku": "DEMO-OD-011",
+      "name": "Hộp đựng giấy lọc di động",
+      "category_code": "OUTDOOR",
+      "price_vnd": 110000,
+      "opening_stock": 25,
+      "sales_unit": "chiếc",
+      "description": "Hộp gọn để sắp xếp giấy lọc khô và phẳng trong hành lý, dành cho những chuyến đi vẫn muốn mang theo cách pha quen thuộc.\n\nQuy cách và thông tin: Một hộp đựng giấy lọc dạng mỏng có nắp, tông xanh ô liu.\n\nGợi ý sử dụng: Chọn giấy lọc phù hợp kích thước hộp, xếp phẳng và đóng nắp trước khi di chuyển. Giữ hộp tách khỏi bình nước hoặc dụng cụ còn ẩm.\n\nBảo quản: Lau sạch và để khô trước khi cất. Hộp được bán riêng, không bao gồm giấy lọc; kiểm tra kích thước giấy đang dùng trước khi mua.",
+      "image_url": "/images/products/demo-od-011.jpg",
+      "source_url": null,
+      "source_ref": "data/README-products.md#nguon-va-pham-vi"
     }
   ],
-  "dataset_version": "2026-10-14",
+  "dataset_version": "2026-10-28",
   "provenance": {
     "type": "authored_synthetic_fixture",
     "reference": "data/README-products.md",
@@ -462,7 +630,7 @@
   },
   "approval": {
     "approved_by": "project_owner",
-    "approved_on": "2026-10-15",
-    "scope": "Chấp thuận sử dụng toàn bộ dữ liệu mặc định cho đồ án SuniCoffee."
+    "approved_on": "2026-10-28",
+    "scope": "Chốt dữ liệu triển khai; bổ sung 14 sản phẩm theo yêu cầu, tổng 50 sản phẩm."
   }
 }

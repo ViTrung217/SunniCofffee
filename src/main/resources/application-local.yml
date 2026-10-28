@@ -1,4 +1,4 @@
-# Local catalogue history is imported once; existing records are preserved.
+# Finalized data is preserved; importing sample activity is an explicit opt-in.
 spring:
   config:
     import: optional:file:.runtime/google.properties,optional:file:.runtime/chatbot.properties,optional:file:.runtime/sepay.properties,optional:file:.runtime/mail.properties
@@ -8,4 +8,4 @@ spring:
     password: ""
 app:
   seed-demo: false
-  seed-activity: true
+  seed-activity: false

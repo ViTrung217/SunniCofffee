@@ -44,7 +44,8 @@ public class Product {
         "DEMO-OD-001", "DEMO-OD-002", "DEMO-OD-003");
 
     private static final java.util.Set<String> CATALOG_IMAGE_SKUS = java.util.Set.of(
-        "DEMO-CF-004", "DEMO-CF-005", "DEMO-CF-006", "DEMO-CF-007", "DEMO-CF-008", "DEMO-CF-009", "DEMO-CF-010", "DEMO-MC-004", "DEMO-MC-005", "DEMO-MC-006", "DEMO-BR-004", "DEMO-BR-005", "DEMO-BR-006", "DEMO-BR-007", "DEMO-BR-008", "DEMO-BR-009", "DEMO-BR-010", "DEMO-BR-011", "DEMO-BR-012", "DEMO-OD-004", "DEMO-OD-005", "DEMO-OD-006", "DEMO-OD-007", "DEMO-OD-008");
+        "DEMO-CF-004", "DEMO-CF-005", "DEMO-CF-006", "DEMO-CF-007", "DEMO-CF-008", "DEMO-CF-009", "DEMO-CF-010", "DEMO-MC-004", "DEMO-MC-005", "DEMO-MC-006", "DEMO-BR-004", "DEMO-BR-005", "DEMO-BR-006", "DEMO-BR-007", "DEMO-BR-008", "DEMO-BR-009", "DEMO-BR-010", "DEMO-BR-011", "DEMO-BR-012", "DEMO-OD-004", "DEMO-OD-005", "DEMO-OD-006", "DEMO-OD-007", "DEMO-OD-008",
+        "DEMO-CF-011", "DEMO-CF-012", "DEMO-CF-013", "DEMO-CF-014", "DEMO-MC-007", "DEMO-MC-008", "DEMO-BR-013", "DEMO-BR-014", "DEMO-BR-015", "DEMO-BR-016", "DEMO-BR-017", "DEMO-OD-009", "DEMO-OD-010", "DEMO-OD-011");
 
     public String getImageUrl() {
         if (hasImage) return "/product-images/" + id;
