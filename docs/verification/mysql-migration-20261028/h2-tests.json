@@ -1,0 +1,8 @@
+{
+  "tests": 175,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "database": "Isolated H2 test database",
+  "result": "BUILD SUCCESS"
+}

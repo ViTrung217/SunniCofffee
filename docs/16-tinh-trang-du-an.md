@@ -1,5 +1,7 @@
 # Lịch sử tình trạng SuniCoffee
 
+**Hệ quản trị hiện tại: [MySQL Docker — chuyển đầy đủ dữ liệu 28/10/2026](23-mysql-docker.md).**
+
 **Danh mục mới nhất: [50 sản phẩm / đủ ảnh — 28/10/2026](22-danh-muc-50-san-pham.md).**
 
 **Đánh giá giao diện: [28/10/2026 — rà soát và hoàn thiện giao diện](21-danh-gia-cuoi-cung-20261028.md).** Dữ liệu đã được chủ dự án chốt triển khai. Các mục bên dưới là ghi nhận theo từng thời điểm; các số kiểm thử và giới hạn cũ không thay thế kết quả trong đánh giá hiện tại.

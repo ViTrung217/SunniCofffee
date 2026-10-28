@@ -1,0 +1,8 @@
+{
+  "tests": 175,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "database": "Isolated MySQL 8.4.13 container on port 13306",
+  "result": "BUILD SUCCESS"
+}

@@ -1,6 +1,8 @@
 # Phát hành SuniCoffee 1.0.0 và bàn giao đồ án
 
-Cập nhật hướng dẫn: 14/10/2026. Mục tiêu được xác nhận: bản hoàn chỉnh để bàn giao và bảo vệ đồ án, chưa mở cửa hàng cho khách mua thật. Số phiên bản chỉ phiên bản phần mềm; không chứng nhận giá, tồn kho hay chính sách đã được cửa hàng xác minh.
+**Database chính và profile mặc định là MySQL Docker.** Cách chạy, kết nối Workbench, sao lưu và chuyển máy được hướng dẫn trong [MySQL Docker](23-mysql-docker.md).
+
+Cập nhật hướng dẫn: 28/10/2026. Mục tiêu được xác nhận: bản hoàn chỉnh để bàn giao và bảo vệ đồ án, chưa mở cửa hàng cho khách mua thật. Số phiên bản chỉ phiên bản phần mềm; không chứng nhận giá, tồn kho hay chính sách đã được cửa hàng xác minh.
 
 **Phạm vi cuối: chỉ chạy local, không deploy, không yêu cầu tên miền, HTTPS, Nginx hay máy chủ.** Các mẫu deploy và profile prod thử trong lúc rà soát đã được loại khỏi bản bàn giao.
 
@@ -8,20 +10,25 @@ Cập nhật hướng dẫn: 14/10/2026. Mục tiêu được xác nhận: bản
 
 | Profile | Mục đích | Cơ sở dữ liệu | Nạp mẫu / tài khoản công khai |
 | --- | --- | --- | --- |
-| `local` (mặc định) | Chạy bản bàn giao trên máy | H2 tại `.runtime/sunicoffee` | Không tự nạp; giữ dữ liệu cũ |
-| `mysql` | Nghiệm thu đồ án với MySQL trên máy | `DB_URL`, `DB_USERNAME`, `DB_PASSWORD` | Mặc định không nạp; chỉ bật `SEED_DEMO` khi chủ động dựng dữ liệu minh họa |
+| `local` | H2 dự phòng trước chuyển | H2 tại `.runtime/sunicoffee` | Không tự nạp; giữ dữ liệu cũ |
+| `mysql` (mặc định) | Chạy chính với MySQL Docker | `DB_URL`, `DB_USERNAME`, `DB_PASSWORD` | Mặc định không nạp; chỉ bật `SEED_DEMO` khi chủ động dựng dữ liệu minh họa |
 | `demo` | Dựng lại dữ liệu minh họa trên máy riêng | Cùng tệp H2 cục bộ | Tự nạp khi bảng trống; không dùng trên máy công khai |
 | `test` | Kiểm thử tự động | H2 bộ nhớ, hoặc MySQL kiểm thử riêng | Không dùng dữ liệu cần giữ |
 
-`local` giữ tệp H2, đơn cũ và khóa Gemini hiện có tại `.runtime/chatbot.properties`. Chuyển profile không tự chuyển dữ liệu H2 sang MySQL. Không chạy hai phiên cùng trỏ tệp H2. Dừng phiên 8080 cũ trước khi chạy JAR mới. Nếu Terminal đang đặt `SPRING_PROFILES_ACTIVE=demo`, bỏ biến đó hoặc chỉ rõ `--spring.profiles.active=local`.
+MySQL đọc cấu hình kết nối tại `.runtime/mysql.properties`; các cấu hình Google, Gemini, SePay và email hiện có tiếp tục được đọc từ `.runtime/`. Dừng phiên 8080 cũ trước khi chạy JAR mới. Bỏ biến `SPRING_PROFILES_ACTIVE=local` hoặc `demo` cũ trong Terminal/IDE để dùng profile mặc định `mysql`.
+
+Profile `local` chỉ mở bản H2 trước chuyển, không đồng bộ giao dịch mới từ MySQL. Không dùng để chạy bản bàn giao hiện tại hoặc mở hai phiên cùng trỏ tệp H2.
 
 ## Chạy bản bàn giao
 
 ```bash
+python3 scripts/setup-mysql.py
 python3 scripts/verify-chatbot-baseline.py
 mvn -B verify
 bash scripts/run-local.sh
 ```
+
+Mở Docker Desktop trước khi chạy. Setup giữ nguyên mật khẩu hiện có; script chạy tự khởi động MySQL tại `127.0.0.1:3307` rồi mở ứng dụng ở cổng 8080. Với máy mới cần giữ dữ liệu đã chốt, chuyển bản sao lưu và cấu hình riêng theo [hướng dẫn MySQL Docker](23-mysql-docker.md), thay vì tạo lại dữ liệu minh họa.
 
 Truy cập `http://localhost:8080`. Máy hiện tại đã có tài khoản và dữ liệu, không cần nạp lại. Trên máy mới, tạo quản trị bằng `ADMIN_EMAIL` và `ADMIN_PASSWORD` trong môi trường trước khi chạy; mật khẩu tối thiểu 8 ký tự, tối đa 72 byte UTF-8. Không điền mật khẩu vào lệnh có thể lưu trong shell history. Có thể dùng một phiên Bash để nhập kín:
 
@@ -63,7 +70,7 @@ Admin vào **Đơn hàng**, xác nhận đơn rồi nhập hãng/mã vận đơn
 
 Nhập/xuất ở **Kho**, không sửa trực tiếp tồn trên biểu mẫu sản phẩm. Phiếu sai được bù bằng phiếu ngược chiều có lý do. Báo cáo doanh thu dùng ngày hoàn thành, loại phí giao và chưa trừ giá vốn; không đồng nghĩa tiền COD đã thu.
 
-Cấu hình tùy chọn: `SHIPPING_FEE=0`, `PENDING_REMINDER_HOURS=48`; khởi động lại sau khi đổi. Phí mới không thay phí trên đơn đã đặt. Xem [chat với khách của admin](17-chat-khach-hang.md), [chatbot Gemini](12-chatbot-gemini.md) và [cách nạp 36 sản phẩm mẫu](../data/README-products.md).
+Cấu hình tùy chọn: `SHIPPING_FEE=0`, `PENDING_REMINDER_HOURS=48`; khởi động lại sau khi đổi. Phí mới không thay phí trên đơn đã đặt. Xem [chat với khách của admin](17-chat-khach-hang.md), [chatbot Gemini](12-chatbot-gemini.md) và [cách nạp danh mục 50 sản phẩm](../data/README-products.md).
 
 Khi diễn tập, dùng tài khoản và đơn giả lập: đặt → xác nhận → giao thành công → đối soát; thêm một đơn giao thất bại → nhận hoàn để kiểm tra tồn. Mở hai phiên khách/admin riêng để thử gửi/nhận chat. Kiểm tra desktop và chiều rộng 390 px, thao tác bàn phím, thông báo lỗi biểu mẫu và nút mở/thu nhỏ cửa sổ chat. Đây là checklist, không phải tuyên bố các bước đã được nghiệm thu trực quan.
 
@@ -78,30 +85,18 @@ Lệnh này gọi Gemini thật, có thể tính phí/hạn mức; chỉ chạy 
 
 `ChatbotEvaluationIT` không tự chạy trong `mvn verify`. Thành công của bộ thu thập không đồng nghĩa đạt chất lượng. Kết quả nguyên văn, nguồn và dấu vết tra cứu nằm ngoài `evaluation/chatbot/v1`; chấm theo [quy trình đã khóa](../evaluation/chatbot/v1/PROTOCOL.md). Bộ thu thập kiểm tra tầng dịch vụ với danh tính mô phỏng; các kiểm thử tích hợp riêng kiểm tra HTTP, phiên và quyền trên DB thật. Phải nói rõ giới hạn này trong báo cáo.
 
-## MySQL trên máy cá nhân (tùy chọn)
+## Sao lưu và khôi phục thử
 
-H2 mặc định đủ để chạy bản bàn giao mà không cài MySQL. Khi cần trình bày hệ quản trị cơ sở dữ liệu MySQL, tạo DB riêng và cấu hình `DB_URL`, `DB_USERNAME`, `DB_PASSWORD`, `ADMIN_EMAIL`, `ADMIN_PASSWORD`, rồi chạy:
-
-```bash
-java -jar target/sunicoffee-1.0.0.jar --spring.profiles.active=mysql
-```
-
-Không bật `SEED_DEMO` khi dùng danh mục đã xác nhận. Cả H2 và MySQL local đọc cùng tệp khóa Gemini cục bộ. Không tự chuyển dữ liệu giữa hai hệ quản trị.
-
-## Sao lưu bản local
-
-H2: dừng ứng dụng bằng Ctrl+C, chờ dừng hoàn tất, sao chép `.runtime/sunicoffee.mv.db` ra vị trí sao lưu riêng rồi khởi động lại. Không sao chép tệp đang được ghi và không đưa tệp DB/khóa vào Git. Khi thử khôi phục, chép backup sang thư mục mới và đặt `spring.datasource.url` trỏ bản sao; không ghi đè bản đang dùng.
-
-MySQL local: dùng `scripts/backup-mysql.sh` và `scripts/restore-mysql-check.sh` với tệp kết nối riêng. Lệnh restore chỉ chấp nhận DB mới có hậu tố `_restore_check`. Đối chiếu đơn, tổng tiền, COD, tồn và nhật ký sau khôi phục.
-
-Tệp kết nối MySQL đặt ngoài repository, phân quyền `chmod 600`. Chạy với đường dẫn riêng của máy:
+MySQL Docker là nguồn dữ liệu đang vận hành. Dùng bộ script Docker, không cần cài MySQL client trên máy:
 
 ```bash
-scripts/backup-mysql.sh /absolute/private/client.cnf sunicoffee /absolute/backups/sunicoffee.sql
-scripts/restore-mysql-check.sh /absolute/private/client.cnf sunicoffee_restore_check /absolute/backups/sunicoffee.sql
+bash scripts/backup-mysql-docker.sh .backups/ban-sao-moi.sql
+bash scripts/restore-mysql-docker-check.sh .backups/ban-sao-moi.sql
 ```
 
-Backup không ghi đè tệp có sẵn; nếu lệnh lỗi, không dùng tệp dở. Không thay schema trong khi sao lưu. Restore dừng nếu DB đích đã tồn tại; chỉ dùng dump đáng tin cậy. Kiểm tra thêm ảnh, đăng nhập và lịch sử chat trên bản khôi phục. Giữ backup ngoài Git.
+Backup không ghi đè tệp có sẵn và giữ ảnh BLOB. Restore chỉ tạo database mới có hậu tố `_restore_check` trong container kiểm thử riêng ở cổng 13306. Không thay schema khi sao lưu; chỉ dùng dump đáng tin cậy. Đối chiếu đơn, tổng tiền, COD, tồn, ảnh và nhật ký sau khôi phục. Chi tiết và cách dừng container thử ở [hướng dẫn MySQL Docker](23-mysql-docker.md#sao-lưu-và-thử-khôi-phục).
+
+Giữ backup và `.runtime/` ngoài Git. Bản H2 trước chuyển vẫn được giữ để đối chiếu; không ghi đè hoặc dùng thay MySQL khi đã phát sinh giao dịch mới.
 
 ## Giới hạn đã công bố
 

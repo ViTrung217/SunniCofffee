@@ -2,7 +2,7 @@ spring:
   application:
     name: sunicoffee
   profiles:
-    default: local
+    default: mysql
   flyway:
     clean-disabled: true
   lifecycle:

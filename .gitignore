@@ -10,7 +10,10 @@ target/
 .backups/
 
 *.cnf
-!docs/verification/*.log
+
+# Local database files stay outside Git, including copies made outside .runtime/.
+*.mv.db
+*.trace.db
 
 __pycache__/
 *.py[cod]

@@ -1,0 +1,58 @@
+{
+  "date": "2026-10-28",
+  "database": "MySQL 8.4.13 in Docker",
+  "profile_default": "mysql",
+  "workbench": {
+    "host": "127.0.0.1",
+    "port": 3307,
+    "database": "sunicoffee",
+    "username": "sunicoffee",
+    "password_location": ".runtime/mysql.properties"
+  },
+  "tables_verified": 19,
+  "identity_counters_verified": 11,
+  "counts": {
+    "account_admin_guard": 1,
+    "activity_seed_runs": 1,
+    "app_users": 28,
+    "cart_items": 0,
+    "categories": 4,
+    "customer_orders": 75,
+    "google_accounts": 1,
+    "order_events": 279,
+    "order_items": 75,
+    "password_reset_tokens": 0,
+    "payment_receipts": 0,
+    "product_favorites": 120,
+    "product_gallery": 0,
+    "product_images": 1,
+    "product_reviews": 60,
+    "products": 50,
+    "stock_movements": 172,
+    "support_conversations": 0,
+    "support_messages": 0
+  },
+  "verification": [
+    "dry-run import",
+    "populated target refused",
+    "full production row comparison",
+    "MySQL backup restored and compared",
+    "Docker Java 21 HTTP checks",
+    "host JVM default mysql HTTP checks",
+    "credentials setup repeatability",
+    "MySQL restart persistence"
+  ],
+  "h2_tests": 175,
+  "mysql_tests": 175,
+  "original_h2_unchanged": true,
+  "mysql_volume": "sunicoffee_mysql_data",
+  "mysql_running": true,
+  "web_ports": {
+    "8080": "free",
+    "18080": "free"
+  },
+  "backup_h2": ".backups/mysql-migration-20261028-9f6f662d/source.mv.db",
+  "backup_mysql": ".backups/mysql-after-migration-20261028.sql",
+  "real_external_api_calls": false,
+  "flyway_note": "11.7.2 warns that MySQL 8.4 is newer than its tested version; all schema migrations and local tests passed without disabling validation."
+}

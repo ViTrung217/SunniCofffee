@@ -1,0 +1,169 @@
+{
+  "result" : "PASS",
+  "mode" : "verify-only",
+  "source" : "Immutable H2 backup",
+  "destination" : "MySQL",
+  "comparison" : "All columns, nulls, Unicode, microsecond timestamps, decimals and binary content; sorted SHA-256 row digests",
+  "foreign_keys_disabled" : false,
+  "tables" : [ {
+    "table" : "account_admin_guard",
+    "matched" : true,
+    "sha256" : "f096c549dee62d89c8bf8c68f6787809722b7f2395b212f0b058990cc1655716",
+    "source_rows" : 1,
+    "mysql_rows" : 1
+  }, {
+    "table" : "activity_seed_runs",
+    "matched" : true,
+    "sha256" : "8face8c9431a3655a44938de79f6e76c555e79d416157578bb28dc5d9f14164b",
+    "source_rows" : 1,
+    "mysql_rows" : 1
+  }, {
+    "table" : "app_users",
+    "matched" : true,
+    "sha256" : "1d1f89bfb55580ee03ae76427acdbb44775e3d916c8f4e3eab3cbc58a0c71e2f",
+    "source_rows" : 28,
+    "mysql_rows" : 28
+  }, {
+    "table" : "cart_items",
+    "matched" : true,
+    "sha256" : "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_rows" : 0,
+    "mysql_rows" : 0
+  }, {
+    "table" : "categories",
+    "matched" : true,
+    "sha256" : "6705777a248124998a436b4265e04cc03d95e397ecbdd3a686c71e0bf1ccf9b9",
+    "source_rows" : 4,
+    "mysql_rows" : 4
+  }, {
+    "table" : "customer_orders",
+    "matched" : true,
+    "sha256" : "0fc3fad9d89327818ee0038a4020cd7c6d2dac2ee3f24026c695583069545799",
+    "source_rows" : 75,
+    "mysql_rows" : 75
+  }, {
+    "table" : "google_accounts",
+    "matched" : true,
+    "sha256" : "df6fd6cc480ee8330610437dcc0867552c226499c421e462e2bd4e538cad5ba7",
+    "source_rows" : 1,
+    "mysql_rows" : 1
+  }, {
+    "table" : "order_events",
+    "matched" : true,
+    "sha256" : "068b9b4850f2ba9e1873c0055d5eb2c4fde62b17f6fd73bcbbfd200f5b279e98",
+    "source_rows" : 279,
+    "mysql_rows" : 279
+  }, {
+    "table" : "order_items",
+    "matched" : true,
+    "sha256" : "76122add9cdd1b5d8ac12034342b503062f3cf08ed6252f80021235272a1761b",
+    "source_rows" : 75,
+    "mysql_rows" : 75
+  }, {
+    "table" : "password_reset_tokens",
+    "matched" : true,
+    "sha256" : "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_rows" : 0,
+    "mysql_rows" : 0
+  }, {
+    "table" : "payment_receipts",
+    "matched" : true,
+    "sha256" : "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_rows" : 0,
+    "mysql_rows" : 0
+  }, {
+    "table" : "product_favorites",
+    "matched" : true,
+    "sha256" : "f322e7038af4d602271440e679513a968566aaf6c07f0fc25d32e29ac0892b65",
+    "source_rows" : 120,
+    "mysql_rows" : 120
+  }, {
+    "table" : "product_gallery",
+    "matched" : true,
+    "sha256" : "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_rows" : 0,
+    "mysql_rows" : 0
+  }, {
+    "table" : "product_images",
+    "matched" : true,
+    "sha256" : "305b6cd6d729ae4de43f9403e19302a0e98ca34df1bf5313b83774b7c80bf3bd",
+    "source_rows" : 1,
+    "mysql_rows" : 1
+  }, {
+    "table" : "product_reviews",
+    "matched" : true,
+    "sha256" : "b25e3e171fa81916c7f9e139b71b121e7b41449dab76c3c977b61b2497c0f675",
+    "source_rows" : 60,
+    "mysql_rows" : 60
+  }, {
+    "table" : "products",
+    "matched" : true,
+    "sha256" : "2635f7c0734fc7ba2ae390188db4f2e07af4f70ab637b950a4a0252a3a716003",
+    "source_rows" : 50,
+    "mysql_rows" : 50
+  }, {
+    "table" : "stock_movements",
+    "matched" : true,
+    "sha256" : "ce2e9342e4aa21d34ae50fb33e2e17bb17bf1ba663cae7d6627a7dafb5fb4584",
+    "source_rows" : 172,
+    "mysql_rows" : 172
+  }, {
+    "table" : "support_conversations",
+    "matched" : true,
+    "sha256" : "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_rows" : 0,
+    "mysql_rows" : 0
+  }, {
+    "table" : "support_messages",
+    "matched" : true,
+    "sha256" : "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_rows" : 0,
+    "mysql_rows" : 0
+  } ],
+  "identity_counters" : [ {
+    "matched" : true,
+    "table" : "app_users",
+    "next_id" : 29
+  }, {
+    "matched" : true,
+    "table" : "cart_items",
+    "next_id" : 4
+  }, {
+    "matched" : true,
+    "table" : "categories",
+    "next_id" : 5
+  }, {
+    "matched" : true,
+    "table" : "customer_orders",
+    "next_id" : 76
+  }, {
+    "matched" : true,
+    "table" : "order_events",
+    "next_id" : 280
+  }, {
+    "matched" : true,
+    "table" : "order_items",
+    "next_id" : 76
+  }, {
+    "matched" : true,
+    "table" : "product_gallery",
+    "next_id" : 1
+  }, {
+    "matched" : true,
+    "table" : "products",
+    "next_id" : 51
+  }, {
+    "matched" : true,
+    "table" : "stock_movements",
+    "next_id" : 194
+  }, {
+    "matched" : true,
+    "table" : "support_conversations",
+    "next_id" : 1
+  }, {
+    "matched" : true,
+    "table" : "support_messages",
+    "next_id" : 1
+  } ],
+  "flyway_history" : "Native MySQL migration history retained; H2 history remains in backup"
+}

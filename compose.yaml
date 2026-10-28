@@ -1,0 +1,83 @@
+name: sunicoffee
+services:
+  mysql:
+    image: mysql:8.4@sha256:a0225d1ea6631c8bc2385dc4c2faba17bbf1834ecf369e1659a9a382bd8d5dd7
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: sunicoffee
+      MYSQL_USER: sunicoffee
+      MYSQL_PASSWORD_FILE: /run/secrets/mysql_password
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/mysql_root_password
+      TZ: Asia/Ho_Chi_Minh
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_0900_as_cs
+      - --default-time-zone=+07:00
+      - --max-allowed-packet=64M
+    ports:
+      - "127.0.0.1:3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    secrets:
+      - mysql_password
+      - mysql_root_password
+      - mysql_root_client
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "--host=127.0.0.1", "--silent"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 30s
+  mysql-test:
+    profiles: [test]
+    image: mysql:8.4@sha256:a0225d1ea6631c8bc2385dc4c2faba17bbf1834ecf369e1659a9a382bd8d5dd7
+    environment:
+      MYSQL_DATABASE: sunicoffee_test
+      MYSQL_USER: sunicoffee
+      MYSQL_PASSWORD_FILE: /run/secrets/mysql_password
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/mysql_root_password
+      TZ: Asia/Ho_Chi_Minh
+    command: ["--character-set-server=utf8mb4", "--collation-server=utf8mb4_0900_as_cs", "--default-time-zone=+07:00", "--max-allowed-packet=64M"]
+    ports: ["127.0.0.1:13306:3306"]
+    tmpfs: ["/var/lib/mysql"]
+    secrets: [mysql_password, mysql_root_password, mysql_root_client]
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "--host=127.0.0.1", "--silent"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 30s
+  app:
+    profiles: [app]
+    user: "${SUNI_UID:-10001}:${SUNI_GID:-10001}"
+    build: .
+    restart: unless-stopped
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      SPRING_PROFILES_ACTIVE: mysql
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/sunicoffee?connectionTimeZone=Asia/Ho_Chi_Minh&forceConnectionTimeZoneToSession=true&characterEncoding=UTF-8&sslMode=DISABLED&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: sunicoffee
+      SPRING_CONFIG_IMPORT: optional:file:/app/config/google.properties,optional:file:/app/config/chatbot.properties,optional:file:/app/config/sepay.properties,optional:file:/app/config/mail.properties,configtree:/run/secrets/
+      SERVER_ADDRESS: 0.0.0.0
+      TZ: Asia/Ho_Chi_Minh
+    ports:
+      - "127.0.0.1:8080:8080"
+    volumes:
+      - ./.runtime/google.properties:/app/config/google.properties:ro
+      - ./.runtime/chatbot.properties:/app/config/chatbot.properties:ro
+      - ./.runtime/sepay.properties:/app/config/sepay.properties:ro
+      - ./.runtime/mail.properties:/app/config/mail.properties:ro
+    secrets:
+      - source: mysql_password
+        target: spring.datasource.password
+volumes:
+  mysql_data:
+secrets:
+  mysql_password:
+    file: ./.runtime/docker/mysql-password
+  mysql_root_password:
+    file: ./.runtime/docker/mysql-root-password
+  mysql_root_client:
+    file: ./.runtime/docker/mysql-root-client.cnf

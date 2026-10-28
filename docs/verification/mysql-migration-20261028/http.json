@@ -1,0 +1,342 @@
+{
+  "8080": {
+    "runtime": "Docker Java 21 + MySQL",
+    "readiness": "UP",
+    "products": 50,
+    "pages": [
+      {
+        "path": "/",
+        "status": 200
+      },
+      {
+        "path": "/products",
+        "status": 200
+      },
+      {
+        "path": "/products?q=may+pha+ca+phe",
+        "status": 200
+      },
+      {
+        "path": "/login",
+        "status": 200
+      },
+      {
+        "path": "/register",
+        "status": 200
+      },
+      {
+        "path": "/forgot-password",
+        "status": 200
+      },
+      {
+        "path": "/chat",
+        "status": 200
+      },
+      {
+        "path": "/chat?embedded=true",
+        "status": 200
+      }
+    ],
+    "product_pages_and_images_checked": 50,
+    "images": [
+      {
+        "id": 1,
+        "image_status": 200,
+        "sha256": "9c494ff758cbcef092b7e90609e22772ef40665862bab5e1367d3e4cbc56b9b3"
+      },
+      {
+        "id": 2,
+        "image_status": 200,
+        "sha256": "4f51053b355889feadc9d9c14c882f433e1d26220a93d10c51075eebcc7b2cae"
+      },
+      {
+        "id": 3,
+        "image_status": 200,
+        "sha256": "6786fcfa99908e87e2b8e1a03595bf57ee15eea129ed0e88b8723572d1c1cb98"
+      },
+      {
+        "id": 4,
+        "image_status": 200,
+        "sha256": "519ecb2f91586deadedf88aa351f9c08f7bff0d16052949f8a4747eb57d275bd"
+      },
+      {
+        "id": 5,
+        "image_status": 200,
+        "sha256": "e3f9b9db17156ad03fe9edfe60da2030a0b71f5a066a6a08df3c8a5b237e2054"
+      },
+      {
+        "id": 6,
+        "image_status": 200,
+        "sha256": "0f10e18e839661b32d46c2fcb2a14145729a939f23d69242b065c3dc1d03a02a"
+      },
+      {
+        "id": 7,
+        "image_status": 200,
+        "sha256": "47bbdcf86b7733fe80bdcbdbfda0681ee0a644586617296d34706c83ba8295b4"
+      },
+      {
+        "id": 8,
+        "image_status": 200,
+        "sha256": "16325169e7dda08819751cbcd680d2eaf1e8b1199ea53fd762a6dd90c6228960"
+      },
+      {
+        "id": 9,
+        "image_status": 200,
+        "sha256": "753c45afcffe629fcafbefc37f3d321020a194f4650364032e8c3aae8d22333a"
+      },
+      {
+        "id": 10,
+        "image_status": 200,
+        "sha256": "de06726fdc19e0a8f351f1566f5f712376fa36043eceb798e4eca853af0ce7c3"
+      },
+      {
+        "id": 11,
+        "image_status": 200,
+        "sha256": "c3b47bc6b20a28ef58e5503aa4f13079dd130da8442f73ca867049c11c209baa"
+      },
+      {
+        "id": 12,
+        "image_status": 200,
+        "sha256": "c0d7d5111391db9c4c8ffb9ca6cce3c7ba3d46c4dab696971bcbda1c96d6200b"
+      },
+      {
+        "id": 13,
+        "image_status": 200,
+        "sha256": "d78bf6682b5053faaf0dbc05abab368225b4b11347b325f7292fb3d87ed25897"
+      },
+      {
+        "id": 14,
+        "image_status": 200,
+        "sha256": "c5310ef630ccb309dffe9ff93016e6055592f4753564d636b6b122d0b4919dbf"
+      },
+      {
+        "id": 15,
+        "image_status": 200,
+        "sha256": "db960a51c98a5c39fce5de43e3c3b270565146f65b37fc6ba2960c6ec9a07ff7"
+      },
+      {
+        "id": 16,
+        "image_status": 200,
+        "sha256": "6db3ce7173715edbfe126ac2552c72145c7e919b1768a4870311a0d6fe5c0e43"
+      },
+      {
+        "id": 17,
+        "image_status": 200,
+        "sha256": "a3adbc4527d7d3a1c302d3238cf947490f4cd39a3a6a94d5bfb8e1688f0be97b"
+      },
+      {
+        "id": 18,
+        "image_status": 200,
+        "sha256": "c42bdf0bf1a6674621d052c4b4daa6dd21016f0608ec289dc93200d70695f12c"
+      },
+      {
+        "id": 19,
+        "image_status": 200,
+        "sha256": "c5fdb08691204e8dda4b42d171ca02bb07c0a189033626476f4fe8c3d14dcf9b"
+      },
+      {
+        "id": 20,
+        "image_status": 200,
+        "sha256": "c5535f58567d92ac76eb33451bfc755e69bc5ecc71ca7028bf85ef4f262afeeb"
+      },
+      {
+        "id": 21,
+        "image_status": 200,
+        "sha256": "4e30aa88b63aac3e2e5172dc4fae2560c0f3adc0bbd90aeb675e90b9467b8b3a"
+      },
+      {
+        "id": 22,
+        "image_status": 200,
+        "sha256": "7527343b6a418c1646ca72f2b2c3df36f380e7781142fa08f090063a4e2edf8c"
+      },
+      {
+        "id": 23,
+        "image_status": 200,
+        "sha256": "9a400e4c4e8aa112694ebe0b8a4b8e55b0ad854ba1b477e1cfac12b0154ba54e"
+      },
+      {
+        "id": 24,
+        "image_status": 200,
+        "sha256": "b824a3aca10488931e1e1ec77709fd6d36f9d64b53413557885722df2d6b198d"
+      },
+      {
+        "id": 25,
+        "image_status": 200,
+        "sha256": "d589e6b9b6e2bc66e8e0b92edc18f5e9595dd00c9b70892104147ffe97c89137"
+      },
+      {
+        "id": 26,
+        "image_status": 200,
+        "sha256": "0b32448beb13ff9749ea5d85501ae3e819211bd40f562c4ce0607b7d0b3bee37"
+      },
+      {
+        "id": 27,
+        "image_status": 200,
+        "sha256": "5db00fdbda8ebe0131f2bf7fdd5625a72cf41d56c63fcd565913da12336b567a"
+      },
+      {
+        "id": 28,
+        "image_status": 200,
+        "sha256": "99c3f570c82026cc8d6a827f405deb15e2ecf708c010c080ecec7466798b9eab"
+      },
+      {
+        "id": 29,
+        "image_status": 200,
+        "sha256": "b6b8a917e5573d5622ebfee40840344697a323ad874ac2f0f0a82d3ea4f62c6d"
+      },
+      {
+        "id": 30,
+        "image_status": 200,
+        "sha256": "1620a1fb390cf5b638603c5f028146e3ad077be495779115635e56fa051769e7"
+      },
+      {
+        "id": 31,
+        "image_status": 200,
+        "sha256": "2e8dd26eaaf3ee36a0254b5f03d9683984677d8f91ff7aa2ebb7ec2c4ba581c6"
+      },
+      {
+        "id": 32,
+        "image_status": 200,
+        "sha256": "248ff2d4238ef595a5e227615cad8fef93f8485186a95e426c4b7ae10312ecae"
+      },
+      {
+        "id": 33,
+        "image_status": 200,
+        "sha256": "7abd1a18c86a54ed67d326c14fa9b1a685529a79b52b75a05dcb6cb222a99c6e"
+      },
+      {
+        "id": 34,
+        "image_status": 200,
+        "sha256": "38e24c2de13d8362a146546efcbfdee70e70a6e5c9c924a23845b33377328ccd"
+      },
+      {
+        "id": 35,
+        "image_status": 200,
+        "sha256": "bc860984380b9dcae73d61fa07b4ee12a7d18ad583daed3f9757d810eb59e76e"
+      },
+      {
+        "id": 36,
+        "image_status": 200,
+        "sha256": "229c72ec2e223b1da5de44ea4170341fc73f973e73094622f0f45cf911f126e0"
+      },
+      {
+        "id": 37,
+        "image_status": 200,
+        "sha256": "dc21808230c094bad4a5a1ee5f6c0c5d5aa9fccd513c089036c30e95089cdd90"
+      },
+      {
+        "id": 38,
+        "image_status": 200,
+        "sha256": "223bd99a00569b1c45d4e21ed7d52f3f7c2338e988595d2c9e216add0c048c32"
+      },
+      {
+        "id": 39,
+        "image_status": 200,
+        "sha256": "23cfffa36c6a3bfa7b41d2b1434279be81bc50db7108cc17e9a7d4d98cf17970"
+      },
+      {
+        "id": 40,
+        "image_status": 200,
+        "sha256": "69298e809e576b4138d78dad20b3baf09b70af8e72bfb10a91885b4c48f3e54e"
+      },
+      {
+        "id": 41,
+        "image_status": 200,
+        "sha256": "e9764485761c3e21fc769b9b716f540094e272aa5060e144dd05e3ed267d9c7c"
+      },
+      {
+        "id": 42,
+        "image_status": 200,
+        "sha256": "7bf7ef97e668efc83b1d78809c812049a5004653ba81f3ec865f534aaeffe932"
+      },
+      {
+        "id": 43,
+        "image_status": 200,
+        "sha256": "b660f7427cca29426a8a3cd2213dbc9f4eb3d5cb8dda1549b0796fc2125efb75"
+      },
+      {
+        "id": 44,
+        "image_status": 200,
+        "sha256": "3407ee32908a9cc61ba9e3004eba7e494d7ab15d82b28d0646bee9842a91c212"
+      },
+      {
+        "id": 45,
+        "image_status": 200,
+        "sha256": "3bd985afeb1787f1f56818d325dba97b7d59fb4a569226bdfe57db949f5deb04"
+      },
+      {
+        "id": 46,
+        "image_status": 200,
+        "sha256": "c20dc1f053935b2ab4b352ecda356355a045d0ddfc7593b7b8012da3f5df69a0"
+      },
+      {
+        "id": 47,
+        "image_status": 200,
+        "sha256": "86920bdb89be6279a3c1f43d03329da5644d92db2abdef279f98557d136ae942"
+      },
+      {
+        "id": 48,
+        "image_status": 200,
+        "sha256": "e95290b7548deac9435713ed513fd502a95ef9934cc55c162521922aeb5e3893"
+      },
+      {
+        "id": 49,
+        "image_status": 200,
+        "sha256": "16c53a166640f4c58e95b0762942e6c2b7c029fff8ca5d772def27934e919a4c"
+      },
+      {
+        "id": 50,
+        "image_status": 200,
+        "sha256": "d5fbd6dcd8c9b06c8cad69aadb7b59a2613a1964658e0e38521a18d6c400fab0"
+      }
+    ]
+  },
+  "18080": {
+    "runtime": "Host JVM, default mysql profile",
+    "readiness": "UP",
+    "products": 50,
+    "pages": [
+      {
+        "path": "/",
+        "status": 200
+      },
+      {
+        "path": "/products",
+        "status": 200
+      },
+      {
+        "path": "/products?q=may+pha+ca+phe",
+        "status": 200
+      },
+      {
+        "path": "/login",
+        "status": 200
+      },
+      {
+        "path": "/register",
+        "status": 200
+      },
+      {
+        "path": "/forgot-password",
+        "status": 200
+      },
+      {
+        "path": "/chat",
+        "status": 200
+      },
+      {
+        "path": "/chat?embedded=true",
+        "status": 200
+      }
+    ],
+    "product_pages_and_images_checked": 1,
+    "images": [
+      {
+        "id": 1,
+        "image_status": 200,
+        "sha256": "9c494ff758cbcef092b7e90609e22772ef40665862bab5e1367d3e4cbc56b9b3"
+      }
+    ]
+  },
+  "catalog_identical_in_both_modes": true
+}

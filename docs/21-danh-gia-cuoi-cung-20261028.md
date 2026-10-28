@@ -1,6 +1,8 @@
 # Đánh giá cuối cùng SuniCoffee — 28/10/2026
 
-**Cập nhật tiếp theo cùng ngày:** [danh mục mở rộng lên 50 sản phẩm, đủ 14 ảnh mới](22-danh-muc-50-san-pham.md). Các số 36 sản phẩm và 172 kiểm thử bên dưới là bằng chứng của lượt rà soát giao diện trước khi mở rộng.
+**Hiện trạng bàn giao:** [50 sản phẩm với đầy đủ ảnh](22-danh-muc-50-san-pham.md), dữ liệu chính trên [MySQL Docker](23-mysql-docker.md), profile mặc định `mysql`. Sau chuyển, **175/175 kiểm thử H2 và 175/175 kiểm thử MySQL đạt**; toàn bộ dữ liệu của 19 bảng nghiệp vụ và 11 bộ đếm ID khớp nguồn, backup đã được khôi phục thử. Xem [kết quả chuyển MySQL](verification/mysql-migration-20261028/results.json).
+
+Các số 36 sản phẩm và 172 kiểm thử trong phần kiểm tra giao diện bên dưới ghi nhận lượt rà soát trước khi mở rộng danh mục. Hướng dẫn vận hành hiện tại nằm trong tài liệu MySQL Docker; báo cáo thô v03, script sao lưu MySQL ngoài Docker và hướng dẫn tạo ảnh 12 SKU cũ đã được dọn khỏi repository. Bằng chứng nghiệm thu và hồ sơ nguồn ảnh đang dùng được giữ lại.
 
 **Kết luận: project đáp ứng tốt phạm vi bán hàng và bàn giao local hiện tại. Giao diện đã được hoàn thiện đồng bộ; nghiệp vụ chính qua bộ kiểm thử và kiểm tra HTTP thực tế. Để vận hành nhận thanh toán thật liên tục, ưu tiên hoàn thiện đối soát SePay, quy trình hoàn tiền và nghiệm thu dịch vụ ngoài.**
 
@@ -24,7 +26,7 @@ Dữ liệu đã được chủ dự án chốt triển khai. Lượt này giữ
 
 Các hiệu ứng dùng CSS và Web Animations API, không thêm thư viện ngoài. Nội dung vẫn hiển thị khi JavaScript không chạy; hover trang trí chỉ áp dụng trên thiết bị phù hợp. Ảnh hiện có tiếp tục được lazy-load theo vị trí; carousel dừng ngoài vùng nhìn để giảm công việc nền. Cỡ chữ ô nhập trên mobile được điều chỉnh để hạn chế tự phóng to khi điền form.
 
-## Kết quả kiểm tra
+## Kết quả kiểm tra giao diện trước khi mở rộng danh mục
 
 | Kiểm tra | Kết quả và phạm vi |
 |---|---|
@@ -49,17 +51,16 @@ Bằng chứng: [tổng hợp](verification/project-audit-20261028/results.json)
 | Cao trước khi nhận tiền thật liên tục | SePay đối soát bằng polling khi mở trang, chưa có webhook hoặc tác vụ đối soát nền | Khi khách rời trang, tiền mới đến không được tự nhận ngay. Cần cơ chế đồng bộ nền hoặc quy trình admin kiểm tra chủ động |
 | Cao trước khi xử lý hoàn tiền thực tế | Có trạng thái REVIEW/REFUND_REQUIRED nhưng chưa có luồng kết thúc xử lý tiền thừa/hoàn tiền trong quản trị | Cần ghi nhận kết quả, số tiền, tham chiếu và người xử lý với nhật ký; hiện phải đối chiếu bên ngoài |
 | Cao về nghiệm thu tích hợp | Chưa chạy giao dịch SePay Live, đăng nhập Google, SMTP và đánh giá Gemini/Search thật trong đợt này | Test tự động mô phỏng không chứng minh dịch vụ ngoài sẵn sàng. Dữ liệu đã chốt không thay thế kiểm chứng tích hợp |
-| Vừa | Chưa kiểm tra lại MySQL trong đợt này | Bộ test lần này chạy H2; CI đã có nhánh MySQL nhưng chưa có kết quả cho thay đổi hiện tại |
 | Vừa | Chưa nghiệm thu đủ iOS/Android, Chrome/Firefox/Edge và toàn bộ điều hướng bàn phím | Responsive CSS đã bổ sung; cần lượt kiểm tra thiết bị thực để xác nhận toàn diện |
 | Vừa nếu công khai Internet | Bản hiện tại vẫn chạy local trên `127.0.0.1` | Khi phát hành công khai cần cấu hình môi trường, domain/HTTPS, cookie secure, OAuth callback, URL email, sao lưu và diễn tập phục hồi phù hợp |
-| Thấp theo phạm vi hiện tại | Tìm kiếm so khớp metadata trong Java, chưa có chỉ mục tìm kiếm chuyên dụng | Phù hợp danh mục 36 sản phẩm; đo lại khi dữ liệu lớn trước khi thay kiến trúc |
+| Thấp theo phạm vi hiện tại | Tìm kiếm so khớp metadata trong Java, chưa có chỉ mục tìm kiếm chuyên dụng | Phù hợp danh mục 50 sản phẩm; đo lại khi dữ liệu lớn trước khi thay kiến trúc |
 | Ngoài phạm vi đã chốt | API hãng vận chuyển, đa kho, giá vốn/lợi nhuận, voucher/tích điểm, biến thể | Không ảnh hưởng hoàn thành các luồng đang cam kết; chỉ mở rộng khi có yêu cầu nghiệp vụ |
 
 Không phát hiện lỗi chặn luồng mua hàng trong phạm vi các kiểm tra đã chạy. Đây là đánh giá dựa trên mã nguồn, kiểm thử, HTTP và các màn hình đã quan sát; chưa phải chứng nhận bảo mật độc lập hoặc khả năng chịu tải dài hạn.
 
 ## Bảo toàn dữ liệu và bàn giao
 
-- Profile local đã tắt `seed-activity`; việc nạp hoạt động mẫu cần được bật chủ động. Dữ liệu hiện có được giữ lại.
+- Profile mặc định MySQL tắt `seed-demo` và `seed-activity`; dữ liệu đã chốt được giữ lại. H2 là bản dự phòng trước chuyển, không đồng bộ giao dịch MySQL mới.
 - Dừng phiên cũ đúng cách trước khi sao lưu H2; bản sao nằm tại `.backups/audit-20261028-0164f279/sunicoffee.mv.db`, đã đối chiếu SHA-256 với nguồn lúc sao lưu.
 - Sau cập nhật, so sánh toàn bộ 36 sản phẩm qua API: ID, SKU, tên, mô tả, đơn vị, danh mục, giá, tồn kho và URL ảnh đều giữ nguyên.
 - Không tạo đơn, sửa giỏ hoặc cập nhật kho trên database local chính trong các lượt thử nghiệp vụ. Không gửi email, gọi AI hoặc chuyển tiền thật để kiểm tra.

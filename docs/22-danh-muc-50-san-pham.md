@@ -1,5 +1,7 @@
 # Mở rộng danh mục SuniCoffee lên 50 sản phẩm — 28/10/2026
 
+**Cập nhật hệ quản trị:** dữ liệu đã chuyển đầy đủ sang [MySQL Docker](23-mysql-docker.md). Bằng chứng H2 bên dưới là kết quả trước bước chuyển.
+
 Theo yêu cầu của chủ dự án, bổ sung **14 sản phẩm**, đưa danh mục từ 36 lên **50 SKU / 4 nhóm**: 14 cà phê, 8 máy pha, 17 dụng cụ và 11 phụ kiện. Tên, mô tả, giá, tồn đầu và đường dẫn của 36 sản phẩm gốc trong JSON được giữ nguyên.
 
 ## Sản phẩm mới

@@ -2,19 +2,22 @@
 
 Ứng dụng bán cà phê và dụng cụ pha chế, bản chạy local để bàn giao và bảo vệ đồ án. Bao gồm cửa hàng, quản trị, kho, vận chuyển COD và chatbot Gemini có nguồn tham chiếu, cửa sổ chat ở góc dưới bên phải.
 
-**Dữ liệu đã được chủ dự án chốt triển khai ngày 28/10/2026.** Các thay đổi giao diện giữ nguyên danh mục, giá, tồn kho và lịch sử hiện có; profile local không tự nạp thêm hoạt động mẫu. Xem [đánh giá cuối cùng](docs/21-danh-gia-cuoi-cung-20261028.md) và [lịch sử tình trạng dự án](docs/16-tinh-trang-du-an.md).
+**Dữ liệu đã được chủ dự án chốt triển khai ngày 28/10/2026.** Các thay đổi giao diện giữ nguyên danh mục, giá, tồn kho và lịch sử hiện có; profile MySQL không tự nạp thêm hoạt động mẫu. Xem [đánh giá cuối cùng](docs/21-danh-gia-cuoi-cung-20261028.md) và [lịch sử tình trạng dự án](docs/16-tinh-trang-du-an.md).
 
 ## Chạy bản bàn giao
+
+**Đã chuyển toàn bộ dữ liệu sang MySQL Docker.** Xem [hướng dẫn chạy và kết nối MySQL Workbench](docs/23-mysql-docker.md). Mở Docker Desktop trước khi chạy; MySQL dùng cổng 3307, ứng dụng dùng 8080.
 
 Yêu cầu Java 21–25, Maven 3.6.3 trở lên. Dùng Spring Boot 3.5.16, Thymeleaf, Spring Security, JPA, Flyway. Nếu ứng dụng đang chạy ở 8080, dừng phiên cũ trước khi khởi động bản mới.
 
 ```bash
+python3 scripts/setup-mysql.py
 python3 scripts/verify-chatbot-baseline.py
 mvn -B verify
 bash scripts/run-local.sh
 ```
 
-Truy cập [http://localhost:8080](http://localhost:8080). Khi phát triển có thể chạy `mvn spring-boot:run`. Profile mặc định nay là **local**, giữ dữ liệu H2 ở `.runtime/sunicoffee`, không tự nạp sản phẩm hoặc tạo tài khoản demo. Khóa Gemini hiện có ở `.runtime/chatbot.properties` tiếp tục dùng được trên máy này, không đóng gói hoặc đưa vào Git.
+Truy cập [http://localhost:8080](http://localhost:8080). Khi phát triển có thể chạy `mvn spring-boot:run`. Profile mặc định là **mysql**, đọc kết nối riêng từ `.runtime/mysql.properties`, không tự nạp sản phẩm hoặc tạo tài khoản demo. Database nằm trong Docker volume `sunicoffee_mysql_data`; H2 trước chuyển được giữ làm bản dự phòng. Khóa Gemini hiện có ở `.runtime/chatbot.properties` tiếp tục dùng được trên máy này, không đóng gói hoặc đưa vào Git.
 
 Bản triển khai dùng dữ liệu đã chốt: chuyển database và thư mục ảnh theo hướng dẫn sao lưu; không dùng profile `demo` để thay thế dữ liệu đang vận hành. Máy mới cần tạo quản trị riêng bằng `ADMIN_EMAIL` và `ADMIN_PASSWORD` rồi thêm danh mục/sản phẩm. Xem cách nhập mật khẩu kín, cấu hình MySQL cục bộ và bàn giao trong [hướng dẫn phát hành](docs/13-phat-hanh-va-ban-giao.md). Profile `demo` chỉ dùng khi chủ động dựng dữ liệu minh họa; không phải chế độ mặc định.
 
@@ -32,7 +35,7 @@ Bản triển khai dùng dữ liệu đã chốt: chuyển database và thư m�
 | COD và báo cáo | Đối soát riêng với giao thành công, doanh thu tiền hàng theo ngày hoàn thành tại Việt Nam, bộ lọc đơn |
 | Chat nhân viên | Khách đăng nhập trao đổi trực tiếp với admin; hộp thư, số chưa đọc, đóng/mở lại và lịch sử lưu DB |
 | Chatbot | Gemini, 55 mục tri thức có nguồn, ngữ cảnh hội thoại, luồng tra Google cho kiến thức liên quan (phụ thuộc quota), giá/tồn hiện hành, chỉ tra cứu đơn thuộc tài khoản đã xác thực |
-| Vận hành | MySQL hoặc H2 cục bộ, Flyway, health/readiness, graceful shutdown, backup/restore kiểm tra |
+| Vận hành | MySQL Docker, H2 dự phòng/kiểm thử, Flyway, health/readiness, graceful shutdown, backup/restore kiểm tra |
 
 QR SePay đã có mã tích hợp, cần cấu hình tài khoản và kiểm chứng với dịch vụ thật; xem [hướng dẫn SePay](docs/18-thanh-toan-sepay.md). Khôi phục mật khẩu qua email đã có luồng xử lý; cần cấu hình SMTP theo [hướng dẫn](docs/20-khoi-phuc-mat-khau.md). API hãng vận chuyển, khuyến mại, đa chi nhánh và giá vốn/lợi nhuận nằm ngoài phạm vi đồ án đã chốt. Không mô tả các mục này là chức năng đã triển khai.
 
@@ -50,6 +53,7 @@ Bộ [30 câu đánh giá](evaluation/chatbot/v1/QUESTIONS.md) được khóa tr
 ## Tài liệu bàn giao
 
 - [Phát hành local, khởi động và tài khoản mới](docs/13-phat-hanh-va-ban-giao.md)
+- [MySQL Docker, dữ liệu đã chuyển và MySQL Workbench](docs/23-mysql-docker.md)
 - [Mở rộng danh mục lên 50 sản phẩm và ảnh mới](docs/22-danh-muc-50-san-pham.md)
 - [Đánh giá cuối cùng và nâng cấp giao diện — 28/10/2026](docs/21-danh-gia-cuoi-cung-20261028.md)
 - [Kết quả nghiệm thu và phần còn thiếu](docs/14-nghiem-thu-1.0.0.md)
